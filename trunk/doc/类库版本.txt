@@ -1,0 +1,7 @@
+struts 2.2.1.1
+spring 2.5.6
+hibernate 3.3.2
+lucene 3.0.3
+
+jquery 1.5.0 https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js
+WebFont Loader 1.0.18 https://ajax.googleapis.com/ajax/libs/webfont/1.0.18/webfont.js
