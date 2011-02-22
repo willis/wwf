@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="wwfcore">
+	<property file="build.properties"/>
+
+    <!-- =================================================================== -->
+    <!-- Set Class Path                                                      -->
+    <!-- =================================================================== -->
+    <path id="classpath">
+        <fileset dir="${dir.lib}">
+            <include name="*.jar"/>
+            <include name="*.zip"/>
+        </fileset>
+    </path>
+    <path id="j2eeclasspath">
+    	<path refid="classpath"/>
+        <fileset dir="${dir.j2eelib}">
+            <include name="*.jar"/>
+            <include name="*.zip"/>
+        </fileset>
+    </path>
+    <path id="test.classpath">
+        <path refid="j2eeclasspath"/>
+        <path location="${dir.build.jar}/${jar.filename}"/>
+        <pathelement location="${dir.build.test.classes}"/>
+    </path>
+	
+    <target name="clean">
+        <delete dir="${dir.build.classes}"/>
+    </target>
+	
+    <target name="cleanall" depends="clean" />
+
+	<target name="build" description="==> Build Application (compile &amp; jar)">
+    	
+        <echo>|====== App classes ======|</echo>
+    	<antcall target="apps.jar" />
+		<echo>|====== Copy jar to WWF ======|</echo>
+		<copy todir="${dir.base}/../wwf/source/webapps/wwf/WEB-INF/lib" overwrite="true">
+		      <fileset dir="${dir.build.jar}">
+		        	<include name="**"/>
+		      </fileset>
+		</copy>
+		<echo>|====== Copy jar to wwfgwttee-struts ======|</echo>
+		<copy todir="${dir.base}/../wwfgwttee-struts//lib/" overwrite="true">
+		      <fileset dir="${dir.build.jar}">
+		        	<include name="**"/>
+		      </fileset>
+		</copy>
+		<echo>|====== Copy jar to gwtsample ======|</echo>
+		<copy todir="${dir.base}/../gwtsample/war/WEB-INF/lib" overwrite="true">
+		      <fileset dir="${dir.build.jar}">
+		        	<include name="**"/>
+		      </fileset>
+		</copy>
+		<echo>|====== Copy jar to wwfgwt_showcase ======|</echo>
+		<copy todir="${dir.base}/../wwfgwt_showcase/war/WEB-INF/lib" overwrite="true">
+		      <fileset dir="${dir.build.jar}">
+		        	<include name="**"/>
+		      </fileset>
+		</copy>
+    </target>
+	
+	
+    <target name="apps.compile">
+        <echo>|=========================================================|</echo>
+        <echo>|=== Compile Java Code To dir.build.classes===|</echo>
+        <echo>|=========================================================|</echo>
+    	<delete dir="${dir.build.classes}"/>
+    	<mkdir dir="${dir.build.classes}"/>
+        <javac source="1.6" optimize="on" debug="true" destdir="${dir.build.classes}" includes="**/*.java">
+        	<compilerarg line="-encoding UTF-8 "/> 
+            <classpath refid="j2eeclasspath"/>
+            <src path="${dir.src.java}"/>
+            <src path="${dir.src.test}"/>
+        </javac>
+        <antcall target="apps.copy.non.java"/>
+    </target>
+	<target name="apps.copy.non.java">
+        <echo>|============================================================|</echo>
+        <echo>|=== Copy Non-JAVA Files To dir.build.classes ===|</echo>
+        <echo>|============================================================|</echo>
+        <copy todir="${dir.build.classes}" overwrite="true">
+        	<fileset dir="${dir.src.conf}">
+        		<include name="**"/>
+        	</fileset>
+            <fileset dir="${dir.src.java}">
+                <include name="**"/>
+                <include name="**/*.xml"/>
+                <exclude name="**/*.scc"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+	
+    <target name="apps.jar" depends="apps.compile">
+        <echo>|===========================================|</echo>
+        <echo>|==== Build JAR File from apps classes===|</echo>
+        <echo>|===========================================|</echo>
+        <mkdir dir="${dir.build.jar}"/>
+        <jar jarfile="${dir.build.jar}/${jar.filename}">
+            <fileset dir="${dir.build.classes}">
+                <include name="**"/>
+            	<exclude name="**/*.properties"/>
+            	<exclude name="**/*.xml"/>
+            </fileset>
+        </jar>
+    </target>
+	
+    <target name="svn-version">
+        <echo>|===========================|</echo>
+        <echo>|====  Build SVN Version ===|</echo>
+        <echo>|===========================|</echo>
+        <exec executable="svn" output="${dir.build.classes}/version.html" failonerror="false" failifexecutionfails="false">
+            <arg line="info"/> 
+        	<!--
+            <redirector>
+                <outputfilterchain>
+                    <linecontainsregexp>
+                        <regexp pattern="^Revision:"/>
+                    </linecontainsregexp>
+                    <tokenfilter>
+                        <replaceregex pattern="Revision\:\s*" flags="s" replace=""/>
+                    </tokenfilter>
+                </outputfilterchain>
+            </redirector>
+            -->
+        </exec>
+    </target>
+
+</project>
