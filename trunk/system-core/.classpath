@@ -12,7 +12,6 @@
 	<classpathentry kind="lib" path="lib/asm-commons-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/asm-tree-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-email-1.1.jar"/>
@@ -45,7 +44,6 @@
 	<classpathentry kind="lib" path="lib/junit-3.8.2.jar"/>
 	<classpathentry kind="lib" path="lib/logback-classic-0.9.11.jar"/>
 	<classpathentry kind="lib" path="lib/logback-core-0.9.11.jar"/>
-	<classpathentry kind="lib" path="lib/ognl-2.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/oscache-2.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/paoding-analysis.jar"/>
 	<classpathentry kind="lib" path="lib/postgresql-8.4-701.jdbc4.jar"/>
@@ -53,13 +51,15 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.5.11.jar"/>
 	<classpathentry kind="lib" path="lib/spring-modules-cache.jar"/>
 	<classpathentry kind="lib" path="lib/spring.jar"/>
-	<classpathentry kind="lib" path="lib/struts2-core-2.1.8.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-benchmark-1.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/xwork-core-2.1.6.jar"/>
 	<classpathentry kind="lib" path="D:/workspace/system-core/j2eelib/javaee.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-analyzers-3.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-core-3.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/lucene-highlighter-3.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/ognl-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/struts2-core-2.2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/xwork-core-2.2.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
