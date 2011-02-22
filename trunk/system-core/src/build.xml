@@ -39,30 +39,7 @@
     	
         <echo>|====== App classes ======|</echo>
     	<antcall target="apps.jar" />
-		<echo>|====== Copy jar to WWF ======|</echo>
-		<copy todir="${dir.base}/../wwf/source/webapps/wwf/WEB-INF/lib" overwrite="true">
-		      <fileset dir="${dir.build.jar}">
-		        	<include name="**"/>
-		      </fileset>
-		</copy>
-		<echo>|====== Copy jar to wwfgwttee-struts ======|</echo>
-		<copy todir="${dir.base}/../wwfgwttee-struts//lib/" overwrite="true">
-		      <fileset dir="${dir.build.jar}">
-		        	<include name="**"/>
-		      </fileset>
-		</copy>
-		<echo>|====== Copy jar to gwtsample ======|</echo>
-		<copy todir="${dir.base}/../gwtsample/war/WEB-INF/lib" overwrite="true">
-		      <fileset dir="${dir.build.jar}">
-		        	<include name="**"/>
-		      </fileset>
-		</copy>
-		<echo>|====== Copy jar to wwfgwt_showcase ======|</echo>
-		<copy todir="${dir.base}/../wwfgwt_showcase/war/WEB-INF/lib" overwrite="true">
-		      <fileset dir="${dir.build.jar}">
-		        	<include name="**"/>
-		      </fileset>
-		</copy>
+
     </target>
 	
 	
