@@ -1,7 +1,0 @@
-@CHARSET "UTF-8";
-
-.odTable {width:500px;border:1px solid #ebebeb;line-height:20px;font-size:12px;background:#FFF;}
-.odTable thead {background-color:#ebebeb;}
-.odTable span {color:#333;padding-right:15px;cursor:pointer;}
-.odTable .desc, .odTable .asc {background:url(../images/r_2.jpg) right center no-repeat;}
-.odTable .desc {background-image:url(../images/r_1.jpg);}
