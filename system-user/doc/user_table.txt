@@ -1,0 +1,29 @@
+﻿用户数据表
+userid //用户id
+username //用户名
+password //密码
+status //状态(是否禁用)
+name //昵称
+sex //性别
+birthday //生日
+email //邮箱
+city //所在城市
+profession //职业
+userstatus //用户状态(浏览中,离线等)
+lastlogindate //用户最后登录时间
+logincount //用户登陆次数
+photocount //用户总照片数
+friendcount //用户朋友数
+immediatelyinfo //即时个性签名
+accesscount //被访问次数
+
+用户扩展表
+userid //用户id
+info //用户介绍
+
+用户关联表
+id //自增id
+userid //用户id
+fuid //朋友用户id
+relatedate //关联时间
+attention //是否关注
