@@ -22,9 +22,9 @@ import com.mpaike.util.MD5;
 public class LoginControl {
 
 	public static final String ID_NAME = "loginControl";
-	public static final String LOGIN_NAME = "ICORE_USERNAME";
-	public static final String TRUENAME_NAME = "ICORE_TRUENAME";
-	public static final String POPEDOM_OBJ = "ICORE_POPEDOM";
+	public static final String LOGIN_NAME = "LOGIN_NAME";
+	public static final String TRUENAME_NAME = "TRUENAME_NAME";
+	public static final String POPEDOM_OBJ = "POPEDOM_OBJ";
 	public static final String USER_OBJ = "userOBJ";
 	public static final String SYSMENU_OBJ = "SYSMENU_OBJ";
 	private SysUserService sysUserService = null;
@@ -96,10 +96,10 @@ public class LoginControl {
 				sysMenus.addAll(sr.getSysMenus());
 			}
 
-			session.setAttribute("ICORE_USERNAME", sysUser.getUsername());
-			session.setAttribute("ICORE_TRUENAME", sysUser.getTruename());
-			session.setAttribute("ICORE_POPEDOM", s_popedoms);
-			session.setAttribute("userOBJ", sysUser);
+			session.setAttribute(LOGIN_NAME, sysUser.getUsername());
+			session.setAttribute(TRUENAME_NAME, sysUser.getTruename());
+			session.setAttribute(POPEDOM_OBJ, s_popedoms);
+			session.setAttribute(USER_OBJ, sysUser);
 			session.setAttribute(SYSMENU_OBJ, sysMenus);
 			ok = true;
 			sysUser.setLogintime(new Date());
@@ -115,9 +115,9 @@ public class LoginControl {
 
 	public static synchronized boolean checkPopedom(String code,
 			HttpServletRequest req) {
-		if ((Set) req.getSession().getAttribute("ICORE_POPEDOM") == null)
+		if ((Set) req.getSession().getAttribute(POPEDOM_OBJ) == null)
 			return false;
-		return ((Set) req.getSession().getAttribute("ICORE_OPEDOM"))
+		return ((Set) req.getSession().getAttribute(POPEDOM_OBJ))
 				.contains(code);
 	}
 
@@ -136,9 +136,11 @@ public class LoginControl {
 	}
 
 	public static synchronized void loginOut(HttpServletRequest req) {
-		req.getSession().removeAttribute("ICORE_USERNAME");
-		req.getSession().removeAttribute("ICORE_TRUENAME");
-		req.getSession().removeAttribute("ICORE_POPEDOM");
+		req.getSession().removeAttribute(LOGIN_NAME);
+		req.getSession().removeAttribute(TRUENAME_NAME);
+		req.getSession().removeAttribute(POPEDOM_OBJ);
+		req.getSession().removeAttribute(USER_OBJ);
+		req.getSession().removeAttribute(SYSMENU_OBJ);
 		req.getSession().invalidate();
 	}
 
@@ -147,26 +149,26 @@ public class LoginControl {
 	}
 
 	public static synchronized String getLoginName(HttpServletRequest req) {
-		return (String) req.getSession().getAttribute("ICORE_USERNAME");
+		return (String) req.getSession().getAttribute(LOGIN_NAME);
 	}
 
 	public static synchronized String getTrueName(HttpServletRequest req) {
-		return (String) req.getSession().getAttribute("ICORE_TRUENAME");
+		return (String) req.getSession().getAttribute(TRUENAME_NAME);
 	}
 
 	public static synchronized Set<String> getPopedoms(HttpServletRequest req) {
-		return (Set) req.getSession().getAttribute("ICORE_POPEDOM");
+		return (Set) req.getSession().getAttribute(POPEDOM_OBJ);
 	}
 
 	public static synchronized SysUser getSysUser(HttpServletRequest req) {
-		return (SysUser) req.getSession().getAttribute("userOBJ");
+		return (SysUser) req.getSession().getAttribute(USER_OBJ);
 	}
 
 	public static synchronized SysGroup getSysGroup(HttpServletRequest req) {
-		return (SysGroup) ((SysUser) req.getSession().getAttribute("userOBJ"))
+		return (SysGroup) ((SysUser) req.getSession().getAttribute(USER_OBJ))
 				.getSysGroups().iterator().next();
 	}
-
+	
 	public static synchronized Long getSysUserId(HttpServletRequest req) {
 		return getSysUser(req).getId();
 	}

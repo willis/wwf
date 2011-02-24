@@ -25,5 +25,7 @@
 	<bean id="sysPopedomService"
 		class="com.mpaike.user.service.impl.SysPopedomServiceImpl"
 		autowire="byName" singleton="false" />
-	
+	<bean id="memberService"
+		class="com.mpaike.member.service.impl.MemberServiceImpl"
+		autowire="byName" singleton="false" />
 </beans>
