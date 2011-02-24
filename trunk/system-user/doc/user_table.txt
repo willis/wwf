@@ -16,6 +16,7 @@ photoCount //用户总照片数
 friendCount //用户朋友数
 accessCount //被访问次数
 immediatelyInfo //即时个性签名
+createdDate //创建时间
 
 
 用户扩展表
