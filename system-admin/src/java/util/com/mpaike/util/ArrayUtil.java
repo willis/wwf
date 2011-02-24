@@ -16,14 +16,10 @@ public class ArrayUtil {
 		
 		String[] strValue = ids.split(splitType);
 		Long[] longValue = new Long[strValue.length]; 
-
 		if (strValue.length > 0) {
 			for (int i = 0; i < strValue.length; i++) {
 				longValue[i]=Long.parseLong(strValue[i]);
-			
 			}
-
-		
 		}
 		return longValue;
 	}

@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.fins.gt.server.GridServerHandler;
 import com.mpaike.user.model.SysUser;
+import com.mpaike.user.service.SysMenuControl;
 import com.mpaike.user.service.SysRoleService;
 import com.mpaike.user.service.SysUserService;
 import com.mpaike.util.ArrayUtil;
@@ -124,6 +125,7 @@ public class SysUserAction extends BaseAction  {
 	    	  getSysUserService().addSysRole(sysUser, roleService.getSysRole(new Long(c)));
 	      }
 	    }
+	    SysMenuControl.getInstance().putRootTree();
 	    super.printSuccessJson(response, "添加成功！");
 	}
 	public void changePassword(){

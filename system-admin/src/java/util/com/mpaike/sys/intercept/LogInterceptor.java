@@ -3,12 +3,14 @@ package com.mpaike.sys.intercept;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.mpaike.sys.model.SystemLog;
 import com.mpaike.sys.service.SystemLogService;
 import com.mpaike.user.model.SysUser;
+import com.mpaike.user.service.LoginControl;
 
 
 
@@ -22,9 +24,9 @@ public class LogInterceptor implements MethodBeforeAdvice {
 
 	public SysUser getOperater() {
 		return (SysUser) TransactionSynchronizationManager
-				.getResource("userOBJ");
+				.getResource(LoginControl.USER_OBJ);
 	}
-
+	
 	public void before(Method method, Object[] params, Object target)
 			throws Throwable {
 

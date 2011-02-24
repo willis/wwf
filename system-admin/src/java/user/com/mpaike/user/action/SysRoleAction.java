@@ -7,6 +7,7 @@ import java.util.List;
 import com.fins.gt.server.GridServerHandler;
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.user.model.SysRole;
+import com.mpaike.user.service.SysMenuControl;
 import com.mpaike.user.service.SysMenuService;
 import com.mpaike.user.service.SysRoleService;
 import com.mpaike.util.MyBeanUtils;
@@ -121,6 +122,7 @@ public class SysRoleAction extends BaseAction {
 			}
 
 			sysRoleService.addSysMenu(roleId, cs);
+			SysMenuControl.getInstance().putRootTree();
 			super.printSuccessJson(response, "设置成功！");
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -148,6 +150,7 @@ public class SysRoleAction extends BaseAction {
 				sysRoleService.removeSysRole(new Long(c));
 			}
 			result = "删除成功!";
+			 SysMenuControl.getInstance().putRootTree();
 		}
 		super.printSuccessJson(response, result);
 	}
@@ -163,6 +166,7 @@ public class SysRoleAction extends BaseAction {
 			result = "修改成功!";
 		}
 		sysRoleService.saveSysRole(sysRole);
+		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, result);
 	}
 
