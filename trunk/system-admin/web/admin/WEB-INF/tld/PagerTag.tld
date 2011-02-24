@@ -77,6 +77,15 @@
 
 	</tag>
 	
+		<tag>
+		<name>checkPopedom</name>
+		<tagclass>com.mpaike.util.tag.SysPopedomTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<attribute>
+			<name>code</name>
+			<required>true</required>
+		</attribute>
+	</tag>
 	
 	
 	
