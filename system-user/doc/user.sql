@@ -10,10 +10,10 @@ CREATE TABLE `paike_user` (
   `status` tinyint(4) NOT NULL COMMENT '状态(是否禁用,删除)',
   `name` varchar(16) collate utf8_unicode_ci NOT NULL COMMENT '昵称',
   `sex` tinyint(4) NOT NULL COMMENT '性别',
-  `birthday` date NOT NULL COMMENT '生日',
+  `birthday` date default NULL COMMENT '生日',
   `email` varchar(32) collate utf8_unicode_ci NOT NULL COMMENT '邮箱',
   `city` int(11) NOT NULL COMMENT '所在城市',
-  `profession` varchar(32) collate utf8_unicode_ci NOT NULL COMMENT '职业',
+  `profession` varchar(32) collate utf8_unicode_ci default NULL COMMENT '职业',
   `userStatus` tinyint(4) NOT NULL COMMENT '用户状态(浏览中,离线等)',
   `lastLoginDate` datetime NOT NULL COMMENT '用户最后登录时间',
   `loginCount` int(11) NOT NULL COMMENT '用户登陆次数',
@@ -21,6 +21,7 @@ CREATE TABLE `paike_user` (
   `friendCount` int(11) NOT NULL COMMENT '用户朋友数',
   `accessCount` bigint(20) NOT NULL COMMENT '被访问次数',
   `immediatelyInfo` varchar(128) collate utf8_unicode_ci NOT NULL COMMENT '即时个性签名',
+  `createdDate` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY  (`userid`),
   UNIQUE KEY `username` (`username`),
   KEY `index_sex` (`sex`),
@@ -33,6 +34,7 @@ CREATE TABLE `paike_user` (
   KEY `index_accessCount` (`accessCount`),
   KEY `index_login` (`username`,`password`,`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户数据表';
+
 
 --
 -- 表的结构 `paike_userext`
