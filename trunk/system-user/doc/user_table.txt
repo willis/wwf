@@ -2,20 +2,21 @@
 userid //用户id
 username //用户名
 password //密码
-status //状态(是否禁用)
+status //状态(是否禁用,删除)
 name //昵称
 sex //性别
 birthday //生日
 email //邮箱
 city //所在城市
 profession //职业
-userstatus //用户状态(浏览中,离线等)
-lastlogindate //用户最后登录时间
-logincount //用户登陆次数
-photocount //用户总照片数
-friendcount //用户朋友数
-immediatelyinfo //即时个性签名
-accesscount //被访问次数
+userStatus //用户状态(浏览中,离线等)
+lastLoginDate //用户最后登录时间
+loginCount //用户登陆次数
+photoCount //用户总照片数
+friendCount //用户朋友数
+immediatelyInfo //即时个性签名
+accessCount //被访问次数
+
 
 用户扩展表
 userid //用户id
@@ -25,5 +26,41 @@ info //用户介绍
 id //自增id
 userid //用户id
 fuid //朋友用户id
-relatedate //关联时间
+relateDate //关联时间
 attention //是否关注
+
+照片表
+id
+photoMd5 //md5名称
+photoName //照片名称
+photoType //照片格式(jpg,png...)
+deviceCompany //制造厂商(Canon)
+deviceType //设备型号(Canon EOS-1D Mark II)
+xResolution //X方向分辨率(72)
+yResolution //Y方向分辨率(72)
+resolutionUnit //分辨率单位(dpi)
+sourceImageWidth //指横向像素数(800 pixel)
+sourceImageHeight //指纵向像素数(600 pixel)
+colorSpace //色域、色彩空间(sRGB)
+iso //ISO(100)
+aperture //光圈(F1.6)
+exposureTime //快门速度(0.00800 (1/125) sec)
+exposureProgram //曝光程序(光圈优先)
+dateTimeDigitized //数字化时间
+dateTimeOriginal //拍摄时间
+photoBits //位数(16)
+focalLength //焦距(85 mm) 
+flash //是否使用闪光灯(关闭)
+lightsource //白平衡 
+meteringMode //测光方式(点测光)
+gps //GPS信息
+software //处理软件(Adobe Photoshop CS Macintosh)
+exposureBiasValue //曝光补偿EV+-(0)
+maxApertureValue //最大光圈(85 mm) 
+CompressedBits //压缩时每像素色彩位
+exifVersion //exif版本
+createdDate //上传时间
+accessCount //访问数
+pointCount //购买点数
+shareStatus //是否共享
+userid //用户ID
