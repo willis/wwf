@@ -20,7 +20,7 @@ CREATE TABLE `paike_user` (
   `photoCount` int(11) NOT NULL default '0' COMMENT '用户总照片数',
   `friendCount` int(11) NOT NULL default '0' COMMENT '用户朋友数',
   `accessCount` bigint(20) NOT NULL default '0' COMMENT '被访问次数',
-  `immediatelyInfo` varchar(128) collate utf8_unicode_ci NOT NULL COMMENT '即时个性签名',
+  `immediatelyInfo` varchar(128) collate utf8_unicode_ci default NULL COMMENT '即时个性签名',
   `fattCount` int(11) NOT NULL default '0' COMMENT '被关注的数量',
   `myattCount` int(11) NOT NULL default '0' COMMENT '我关注别人的数量',
   `createdDate` datetime NOT NULL COMMENT '创建时间',
@@ -37,7 +37,6 @@ CREATE TABLE `paike_user` (
   KEY `index_login` (`username`,`password`,`status`),
   KEY `index_login2` (`email`,`password`,`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户数据表';
-
 
 --
 -- 表的结构 `paike_userext`
