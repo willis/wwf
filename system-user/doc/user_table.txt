@@ -16,6 +16,8 @@ photoCount //用户总照片数
 friendCount //用户朋友数
 accessCount //被访问次数
 immediatelyInfo //即时个性签名
+fattCount //被关注的数量
+myattCount //我关注别人的数量
 createdDate //创建时间
 
 
