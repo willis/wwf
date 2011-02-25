@@ -19,7 +19,7 @@ immediatelyInfo //即时个性签名
 fattCount //被关注的数量
 myattCount //我关注别人的数量
 points //用户点数
-level //用户级别
+userLevel //用户级别
 createdDate //创建时间
 
 
