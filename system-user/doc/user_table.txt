@@ -2,14 +2,14 @@
 userid //用户id
 username //用户名
 password //密码
-status //状态(是否禁用,删除)
+status //状态(1=正常,2=禁用,3=删除)
 name //昵称
 sex //性别
 birthday //生日
 email //邮箱
 city //所在城市
 profession //职业
-userStatus //用户状态(浏览中,离线等)
+userStatus //用户状态(1=在线,2=离线,3=发表中)
 lastLoginDate //用户最后登录时间
 loginCount //用户登陆次数
 photoCount //用户总照片数
