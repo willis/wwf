@@ -69,3 +69,46 @@ CREATE TABLE `paike_userrelate` (
   KEY `index_ui_attention` (`userid`,`attention`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户关联表';
 
+
+--
+-- 表的结构 `paike_photo`
+--
+
+CREATE TABLE `paike_photo` (
+  `id` bigint(20) NOT NULL COMMENT 'ID',
+  `userid` bigint(20) NOT NULL COMMENT '用户ID',
+  `photoMd5` varchar(20) collate utf8_unicode_ci NOT NULL COMMENT 'md5名称',
+  `photoName` varchar(255) collate utf8_unicode_ci NOT NULL COMMENT '照片名称',
+  `sourceName` varchar(255) collate utf8_unicode_ci NOT NULL COMMENT '原始的文件名',
+  `photoType` tinyint(4) NOT NULL COMMENT '照片格式(jpg,png...)',
+  `deviceCompany` varchar(255) collate utf8_unicode_ci default NULL COMMENT '制造厂商(Canon)',
+  `deviceType` varchar(255) collate utf8_unicode_ci default NULL COMMENT '设备型号(Canon EOS-1D Mark II)',
+  `xResolution` int(11) default NULL COMMENT 'X方向分辨率(72)',
+  `yResolution` int(11) default NULL COMMENT 'Y方向分辨率(72)',
+  `resolutionUnit` varchar(255) collate utf8_unicode_ci default NULL COMMENT '分辨率单位(dpi)',
+  `sourceImageWidth` int(11) NOT NULL COMMENT '指横向像素数(800 pixel)',
+  `sourceImageHeight` int(11) NOT NULL COMMENT '指纵向像素数(600 pixel)',
+  `colorSpace` varchar(32) collate utf8_unicode_ci default NULL COMMENT '色域、色彩空间(sRGB)',
+  `iso` int(11) default NULL COMMENT 'ISO(100)',
+  `aperture` varchar(255) collate utf8_unicode_ci default NULL COMMENT '光圈(F1.6)',
+  `exposureTime` varchar(255) collate utf8_unicode_ci default NULL COMMENT '快门速度(0.00800 (1/125) sec)',
+  `exposureProgram` varchar(255) collate utf8_unicode_ci default NULL COMMENT '曝光程序(光圈优先)',
+  `dateTimeDigitized` datetime default NULL COMMENT '数字化时间',
+  `dateTimeOriginal` datetime default NULL COMMENT '拍摄时间',
+  `photoBits` tinyint(3) unsigned zerofill default NULL COMMENT '位数(16)',
+  `focalLength` varchar(255) collate utf8_unicode_ci default NULL COMMENT '焦距(85 mm) ',
+  `flash` tinyint(4) default NULL COMMENT '是否使用闪光灯(关闭)',
+  `lightsource` varchar(255) collate utf8_unicode_ci default NULL COMMENT '白平衡 ',
+  `meteringMode` varchar(255) collate utf8_unicode_ci default NULL COMMENT '测光方式(点测光)',
+  `gps` varchar(255) collate utf8_unicode_ci default NULL COMMENT 'GPS信息',
+  `software` varchar(255) collate utf8_unicode_ci default NULL COMMENT '处理软件(Adobe Photoshop CS Macintosh)',
+  `exposureBiasValue` varchar(255) collate utf8_unicode_ci default NULL COMMENT '曝光补偿EV+-(0)',
+  `maxApertureValue` varchar(255) collate utf8_unicode_ci default NULL COMMENT '最大光圈(85 mm) ',
+  `compressedBits` varchar(255) collate utf8_unicode_ci default NULL COMMENT '压缩时每像素色彩位',
+  `exifVersion` varchar(255) collate utf8_unicode_ci default NULL COMMENT 'exif版本',
+  `createdDate` datetime NOT NULL COMMENT '上传时间',
+  `accessCount` int(11) NOT NULL default '0' COMMENT '访问数',
+  `pointCount` int(11) NOT NULL default '0' COMMENT '购买点数',
+  `shareStatus` tinyint(4) NOT NULL default '0' COMMENT '是否共享',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
