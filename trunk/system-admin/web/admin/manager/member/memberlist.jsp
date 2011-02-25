@@ -167,8 +167,9 @@
 	    	myTable1.onLoad({username:$("#username").val(),name:$("#name").val(),status:$("#status").val()});
 	     } 	
 	     function editRenderer(idValue,value){
+
 	     	var txt="";
-	     //	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
+	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/manager/member/memberAction!getById.action?id="+idValue+"\",\"查看\",600,600)'>查看</a>"
 	    // 	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
 	     	return txt;
 	     }	 

@@ -74,7 +74,7 @@
          							 <s:property value="ip" />
          							</td>
          							<td>
-         							  <s:date name="createat" format="yyyy-MM-dd hh:mm:ss" />
+         							  <s:date name="createat" format="yyyy-MM-dd HH:mm:ss" />
          							 
          							</td>
          						
