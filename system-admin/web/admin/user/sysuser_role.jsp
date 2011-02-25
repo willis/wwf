@@ -152,12 +152,12 @@ function removeSelect(){
 		return ;
 	};
 	var param = {
-		method:"delSysRoles",
 		cs:ids,
 		id:${param.id}
 	}
-	doPost("sysUserAction.do", param, function(data) {
+	doPost("sysUser!delSysRoles.action", param, function(data) {
 				if (data.status) {
+				window.parent.parent.jAlert(data.message);
 					query();
 					 
 				}else{
