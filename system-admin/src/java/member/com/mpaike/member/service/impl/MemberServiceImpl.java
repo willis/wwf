@@ -8,6 +8,7 @@ import com.mpaike.member.model.Member;
 import com.mpaike.member.service.MemberService;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.dao.GtGridCommonDao;
+
 @SuppressWarnings("unchecked")
 public class MemberServiceImpl extends GtGridCommonDao implements MemberService {
 
@@ -21,7 +22,7 @@ public class MemberServiceImpl extends GtGridCommonDao implements MemberService 
 			sql.insert(0, " where ");
 		sql.insert(0, " from Member m ");
 
-		String select = " select * ";
+		String select = " ";
 		return super.list(handler, Member.class, sql.toString(), select
 				+ sql.toString(), params.toArray());
 	}
@@ -49,5 +50,14 @@ public class MemberServiceImpl extends GtGridCommonDao implements MemberService 
 					member.getStatus()).toString());
 		}
 
+	}
+	public void remove(Long[] id, Long status) {
+		
+		for (int i = 0, n = id.length; i < n; i++) {
+			
+			super.getHibernateTemplate().bulkUpdate("update Member m set m.status=? where m.id=?",new Object[]{status,id[i]});
+		}
+
+		
 	}
 }
