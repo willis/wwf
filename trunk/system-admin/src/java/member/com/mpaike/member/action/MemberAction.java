@@ -20,6 +20,12 @@ public class MemberAction extends BaseAction {
 	private Member member;
 	private String ids;
 	private Long status;
+	/**
+	 * 
+	 * @author 陈海峰
+	 * @createDate 2011-2-25 下午12:56:26
+	 * @description 会员列表
+	 */
 	public void list(){
 		GridServerHandler handler = new GridServerHandler(request, response);
 		member = new Member();
@@ -29,14 +35,16 @@ public class MemberAction extends BaseAction {
 		memberService.listToGrid(handler, member);
 		handler.printLoadResponseText();
 	}
-
+	/**
+	 * 
+	 * @author 陈海峰
+	 * @createDate 2011-2-25 下午12:56:53
+	 * @description 会员操作
+	 */
 	public void removeByIds(){
 		
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
-
-
 		memberService.remove(longValue,status);
-
 		if(status==3)
 			super.printSuccessJson(response, "删除成功！");
 		if(status==2)
