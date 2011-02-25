@@ -59,7 +59,7 @@ CREATE TABLE `paike_userrelate` (
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `fuid` bigint(20) NOT NULL COMMENT '朋友用户id',
   `relateDate` datetime NOT NULL COMMENT '关联时间',
-  `attention` tinyint(4) NOT NULL COMMENT '是否关注',
+  `attention` tinyint(4) NOT NULL default '0' COMMENT '是否关注',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `unique_uid_fid` (`userid`,`fuid`),
   KEY `index_userid` (`userid`),
