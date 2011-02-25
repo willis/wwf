@@ -81,9 +81,8 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 	public void remove(Long[] id, Long type) {
 		for (int i = 0, n = id.length; i < n; i++) {
 
-			SysUser obj = (SysUser) super.get(SysUser.class, id[i]);
-			obj.setStatus(type);
-			super.update(obj);
+			super.getHibernateTemplate().bulkUpdate("update SysUser  u set u.status=? where u.id=?",new Object[]{type,id[i]});
+		
 		}
 
 	}
@@ -95,10 +94,8 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 	public void changePassword(Long[] id, String password) {
 
 		for (int i = 0, n = id.length; i < n; i++) {
-
-			SysUser obj = (SysUser) super.get(SysUser.class, id[i]);
-			obj.setPassword(MD5.toMD5(password));
-			super.update(obj);
+			super.getHibernateTemplate().bulkUpdate("update SysUser u set u.password=? where u.id=?",new Object[]{MD5.toMD5(password),id[i]});
+			
 		}
 	}
 

@@ -173,6 +173,7 @@ public abstract class CommonDao extends HibernateDaoSupport implements ICommonDa
 	{
 		Object obj = getHibernateTemplate().get(clazz, id);
 		if (obj == null)
+		 
 			throw new ObjectRetrievalFailureException(clazz, id);
 		else
 			return obj;
@@ -238,7 +239,11 @@ public abstract class CommonDao extends HibernateDaoSupport implements ICommonDa
 
 	public  void update(Object object)
 	{
-		super.getHibernateTemplate().update(object);
+		try{
+		super.getHibernateTemplate().saveOrUpdate(object);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public  List findBySql(final String queryString, final Object args[], final int pageCount, final int pageNum)

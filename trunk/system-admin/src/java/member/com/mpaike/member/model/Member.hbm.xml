@@ -15,7 +15,7 @@
 			not-null="true">
 
 		</property>
-		<property name="status" column="status" type="java.lang.Integer"
+		<property name="status" column="status" type="java.lang.Long"
 			not-null="true">
 
 		</property>
@@ -70,8 +70,28 @@
 			type="java.lang.Long">
 
 		</property>
+		<property name="fattCount" column="fattCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="myattCount" column="myattCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="points" column="points"
+			type="java.lang.Long">
+
+		</property>
+		<property name="userLevel" column="userLevel"
+			type="java.lang.Long">
+
+		</property>
 		<property name="immediatelyInfo" column="immediatelyInfo"
 			type="string">
+
+		</property>
+		<property name="createdDate" column="createdDate"
+			type="java.util.Date" not-null="true">
 
 		</property>
 	</class>

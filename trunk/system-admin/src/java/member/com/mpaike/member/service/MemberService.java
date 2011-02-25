@@ -9,5 +9,7 @@ public interface MemberService {
 	  public static String ID_NAME = "memberService";
 	  
 	  public  GridServerHandler listToGrid(GridServerHandler handler, Member member);
+	  
+	  public void remove(Long[] id, Long type);
 
 }

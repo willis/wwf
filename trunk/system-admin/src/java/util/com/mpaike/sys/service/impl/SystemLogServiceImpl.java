@@ -23,7 +23,7 @@ public class SystemLogServiceImpl extends CommonDao implements  SystemLogService
 
 	public List<SystemLog> find(Pager pager) {
 		
-		return super.find(" from SystemLog", " from SystemLog", pager);
+		return super.find(" from SystemLog", " from SystemLog s order by s.createat desc", pager);
 	}
 
 
