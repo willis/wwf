@@ -35,4 +35,6 @@ public interface SysUserService {
 	public SysUser loginUserByPassword(String username, String pwd);
 
 	public List<SysRole> getSysRoles(SysUser paramSysUser);
+	
+    public  void removeSysRole(SysUser paramSysUser, SysRole paramSysRole);
 }

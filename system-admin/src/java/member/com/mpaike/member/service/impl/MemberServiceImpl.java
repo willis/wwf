@@ -60,4 +60,8 @@ public class MemberServiceImpl extends GtGridCommonDao implements MemberService 
 
 		
 	}
+	
+	public Member get(Long id){
+		return (Member)super.get(Member.class, id);
+	}
 }

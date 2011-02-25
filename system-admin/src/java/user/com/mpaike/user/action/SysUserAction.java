@@ -1,7 +1,5 @@
 package com.mpaike.user.action;
 
-
-
 import java.util.Date;
 
 import com.fins.gt.server.GridServerHandler;
@@ -16,14 +14,14 @@ import com.mpaike.util.ParamHelper;
 import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
-public class SysUserAction extends BaseAction  {
+public class SysUserAction extends BaseAction {
 	public SysUserService getSysUserService() {
-		return (SysUserService) ApplictionContext.getInstance()
-				.getBean(SysUserService.ID_NAME);
+		return (SysUserService) ApplictionContext.getInstance().getBean(
+				SysUserService.ID_NAME);
 	}
-	
-    public SysRoleService roleService = (SysRoleService)ApplictionContext.getInstance()
-	.getBean(SysRoleService.ID_NAME);
+
+	public SysRoleService roleService = (SysRoleService) ApplictionContext
+			.getInstance().getBean(SysRoleService.ID_NAME);
 	private SysUser sysUser;
 	private Long id;
 	private String ids;
@@ -33,52 +31,52 @@ public class SysUserAction extends BaseAction  {
 	/**
 	 * @author 陈海峰
 	 * @createDate 2010-12-17 下午02:22:56
-	 * @description 
+	 * @description
 	 */
 	private static final long serialVersionUID = -2286431261254005556L;
 
-	public void save(){
+	public void save() {
 		String result = "";
-		if(sysUser.getId()==null){
+		if (sysUser.getId() == null) {
 			sysUser.setRegtime(new Date());
 			sysUser.setStatus(0l);
-			result ="添加成功!";
-		}else{
-			
+			result = "添加成功!";
+		} else {
+
 			SysUser target = getSysUserService().get(sysUser.getId());
-	
-		    MyBeanUtils.fillForNotNullObject(target, sysUser);
+
+			MyBeanUtils.fillForNotNullObject(target, sysUser);
 			sysUser = target;
-			
-			result ="修改成功!";
+
+			result = "修改成功!";
 		}
 		sysUser.setPassword(MD5.toMD5(sysUser.getPassword()));
-		if(!getSysUserService().save(sysUser)){
-			result ="用户名重复!";
+		if (!getSysUserService().save(sysUser)) {
+			result = "用户名重复!";
 		}
 		super.printSuccessJson(response, result);
-		
+
 	}
-	
-	public String getSysUserInfo(){
+
+	public String getSysUserInfo() {
 		sysUser = getSysUserService().get(id);
 		return "get";
 	}
-	
-	public void removeByIds(){
-	
-		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
-		getSysUserService().remove(longValue,status);
-		if(status==1l)
+
+	public void removeByIds() {
+
+		Long[] longValue = ArrayUtil.toLongArray(ids, ",");
+		getSysUserService().remove(longValue, status);
+		if (status == 1l)
 			super.printSuccessJson(response, "删除成功！");
-		if(status==2l)
+		if (status == 2l)
 			super.printSuccessJson(response, "冻结成功！");
-		if(status==0l)
+		if (status == 0l)
 			super.printSuccessJson(response, "还原成功！");
 	}
-	
-	public void userList(){
-		
+
+	public void userList() {
+
 		GridServerHandler handler = new GridServerHandler(request, response);
 		sysUser = new SysUser();
 		sysUser.setTruename(ParamHelper.getStr(request, "truename", null));
@@ -86,50 +84,75 @@ public class SysUserAction extends BaseAction  {
 		sysUser.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
 		getSysUserService().listToGrid(handler, sysUser);
 		handler.printLoadResponseText();
-		
-	}
-	
-	public void getNotCheckRoles(){
-		
-	    GridServerHandler handler = new GridServerHandler(request, response);
-	    sysUser = new SysUser();
-	    sysUser.setId( ParamHelper.getLongParamter(request, "id", -1L));
-	    getSysUserService().listNotCheckRolesToGrid(handler, sysUser);
-	    handler.printLoadResponseText();
+
 	}
 
-	public void getCheckRoles(){
-		
-	    GridServerHandler handler = new GridServerHandler(request, response);
-	    sysUser = new SysUser();
-	    sysUser.setId( ParamHelper.getLongParamter(request, "id", -1L));
-	    getSysUserService().listCheckRolesToGrid(handler, sysUser);
-	    handler.printLoadResponseText();
-	}
-	
-	public void addSysRoles(){
+	public void getNotCheckRoles() {
 
-	    long id = ParamHelper.getLongParamter(request, "id", -1L);
-	    if (id == -1L)
-	    	super.printSuccessJson(response, "请选择用户！");
-	    String[] cs = request.getParameterValues("cs");
-	    if ((cs == null) || (cs.length == 0))
-	    	super.printSuccessJson(response, "请选择要添加的角色！");
-	    if (cs.length == 1) {
-	      cs = cs[0].split(",");
-	    }
-	    SysUser sysUser = getSysUserService().get(Long.valueOf(id)); 
-	    for (String c : cs) {
-	      if (!"".equals(c.trim())) {
-
-	    	  getSysUserService().addSysRole(sysUser, roleService.getSysRole(new Long(c)));
-	      }
-	    }
-	    SysMenuControl.getInstance().putRootTree();
-	    super.printSuccessJson(response, "添加成功！");
+		GridServerHandler handler = new GridServerHandler(request, response);
+		sysUser = new SysUser();
+		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
+		getSysUserService().listNotCheckRolesToGrid(handler, sysUser);
+		handler.printLoadResponseText();
 	}
-	public void changePassword(){
-		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
+
+	public void getCheckRoles() {
+
+		GridServerHandler handler = new GridServerHandler(request, response);
+		sysUser = new SysUser();
+		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
+		getSysUserService().listCheckRolesToGrid(handler, sysUser);
+		handler.printLoadResponseText();
+	}
+
+	public void addSysRoles() {
+
+		long id = ParamHelper.getLongParamter(request, "id", -1L);
+		if (id == -1L)
+			super.printSuccessJson(response, "请选择用户！");
+		String[] cs = request.getParameterValues("cs");
+		if ((cs == null) || (cs.length == 0))
+			super.printSuccessJson(response, "请选择要添加的角色！");
+		if (cs.length == 1) {
+			cs = cs[0].split(",");
+		}
+		SysUser sysUser = getSysUserService().get(Long.valueOf(id));
+		for (String c : cs) {
+			if (!"".equals(c.trim())) {
+
+				getSysUserService().addSysRole(sysUser,
+						roleService.getSysRole(new Long(c)));
+			}
+		}
+		SysMenuControl.getInstance().putRootTree();
+		super.printSuccessJson(response, "添加成功！");
+	}
+
+	public void delSysRoles() {
+
+		long id = ParamHelper.getLongParamter(request, "id", -1L);
+		if (id == -1L) {
+			super.printSuccessJson(response, "请选择用户！");
+		}
+
+		String[] cs = request.getParameterValues("cs");
+		if ((cs == null) || (cs.length == 0))
+			super.printSuccessJson(response, "请选择要删除的角色！");
+		if (cs.length == 1)
+			cs = cs[0].split(",");
+		SysUser sysUser = getSysUserService().get(Long.valueOf(id));
+
+		for (String c : cs) {
+			if (!"".equals(c.trim())) {
+				getSysUserService().removeSysRole(sysUser,
+						roleService.getSysRole(new Long(c)));
+			}
+		}
+		super.printSuccessJson(response, "删除成功！");
+	}
+
+	public void changePassword() {
+		Long[] longValue = ArrayUtil.toLongArray(ids, ",");
 		getSysUserService().changePassword(longValue, password);
 		super.printSuccessJson(response, "修改密码成功！");
 	}
@@ -137,8 +160,6 @@ public class SysUserAction extends BaseAction  {
 	public SysUser getSysUser() {
 		return sysUser;
 	}
-
-
 
 	public void setSysUser(SysUser sysUser) {
 		this.sysUser = sysUser;
@@ -151,7 +172,6 @@ public class SysUserAction extends BaseAction  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getIds() {
 		return ids;
@@ -169,16 +189,12 @@ public class SysUserAction extends BaseAction  {
 		this.status = status;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	
-	
 }

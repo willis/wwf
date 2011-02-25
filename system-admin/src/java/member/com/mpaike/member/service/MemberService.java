@@ -15,5 +15,7 @@ public interface MemberService {
 	  public  GridServerHandler listToGrid(GridServerHandler handler, Member member);
 	  
 	  public void remove(Long[] id, Long type);
+	  
+	  public Member get(Long id);
 
 }
