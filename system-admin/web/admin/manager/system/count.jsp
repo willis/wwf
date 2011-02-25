@@ -32,7 +32,7 @@
 								<thead>
 									<tr>
 										<th>
-										<input type="checkbox" id="checkall" /><span id="checkalltext">全选</span>
+										<span id="checkalltext">全选</span>
 										</th>
 										
 										<th>
@@ -74,7 +74,7 @@
          							 <s:property value="ip" />
          							</td>
          							<td>
-         							  <s:date name="createat" format="yyyy-MM-dd" />
+         							  <s:date name="createat" format="yyyy-MM-dd hh:mm:ss" />
          							 
          							</td>
          						
