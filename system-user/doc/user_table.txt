@@ -18,6 +18,7 @@ accessCount //被访问次数
 immediatelyInfo //即时个性签名
 fattCount //被关注的数量
 myattCount //我关注别人的数量
+points //用户点数
 createdDate //创建时间
 
 
