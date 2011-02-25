@@ -10,7 +10,7 @@
 
 	</head>
 	<body>
-	
+		<form action="memberAction!list.action" method="post" >
 			<table class="tableContent">
 				<tbody>
 					<tr id="topRow">
@@ -36,15 +36,15 @@
 
 										<li>
 											<a class="delete" href="javascript:"
-												onclick="removeSelect(1)">删除</a>
+												onclick="removeSelect(3)">删除</a>
 										</li>
 										<li>
 											<a class="modify" href="javascript:"
-												onclick="removeSelect(2)">冻结</a>
+												onclick="removeSelect(2)">禁用</a>
 										</li>
 										<li>
 											<a class="modify" href="javascript:"
-												onclick="removeSelect(0)">恢复正常</a>
+												onclick="removeSelect(1)">恢复正常</a>
 										</li>
 										<li>
 											<a class="find"
@@ -69,14 +69,14 @@
 											<option value="-1">
 												全部
 											</option>
-											<option value="0" selected>
+											<option value="1" selected>
 												正常
 											</option>
-											<option value="1">
-												已删除
-											</option>
 											<option value="2">
-												已冻结
+												已禁用
+											</option>
+											<option value="3">
+												已删除
 											</option>
 										</select>
 										<input type="button" class="button" value="查询"
@@ -168,8 +168,8 @@
 	     } 	
 	     function editRenderer(idValue,value){
 	     	var txt="";
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+	     //	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
+	    // 	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
 	     	return txt;
 	     }	 
 	      function regtimeRenderer(idValue,value){
@@ -197,11 +197,11 @@
 		cs+=ids[i];
 	}
 	var message = "您真的要还原这<font color='red'>"+ids.length+"</font>个用户吗？";
-	if(value==1){
+	if(value==3){
 		message = "您真的要删除这<font color='red'>"+ids.length+"</font>个用户吗？";
 	}else
 	if(value==2){
-		message = "您真的要冻结这<font color='red'>"+ids.length+"</font>个用户吗？";
+		message = "您真的要禁用这<font color='red'>"+ids.length+"</font>个用户吗？";
 	} 
 
 			 
@@ -214,7 +214,7 @@
 							status:value
 						}
 		
-						doPost("${cxp}/user/sysUser!removeByIds.action", param, function(data) {
+						doPost("${cxp}/manager/member/memberAction!removeByIds.action", param, function(data) {
 							
 									if (data.status) {
 										query();
@@ -234,12 +234,12 @@
 function statusRenderer(idValue,value){
 switch(value){
 
-	case 0:
-		return '<font color=green>正常</font>';
 	case 1:
-		return '<font color=red>已删除</font>';
-    case 2:
-   	    return '<font color=red>冻结</font>';
+		return '<font color=green>正常</font>';
+	case 2:
+		return '<font color=red>已禁用</font>';
+    case 3:
+   	    return '<font color=red>已删除</font>';
    	default:
    		return '未知'+value
 
@@ -248,5 +248,6 @@ switch(value){
 }
 
 </script>
+</form>
 </body>
 </html>
