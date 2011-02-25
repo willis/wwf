@@ -10,7 +10,9 @@
 		
 		<action name="memberAction"
 			class="com.mpaike.member.action.MemberAction">
-			
+			<result name="getById" type="dispatcher">
+				<param name="location">/manager/member/member.jsp</param>
+			</result>
 		</action>
 	</package>
 </struts>

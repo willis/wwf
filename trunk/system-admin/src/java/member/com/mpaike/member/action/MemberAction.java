@@ -20,6 +20,13 @@ public class MemberAction extends BaseAction {
 	private Member member;
 	private String ids;
 	private Long status;
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	/**
 	 * 
 	 * @author 陈海峰
@@ -53,6 +60,10 @@ public class MemberAction extends BaseAction {
 			super.printSuccessJson(response, "还原成功！");
 	}
 	
+	public String getById(){
+		member = memberService.get(id);
+		return "getById";
+	}
 	public void setMember(Member member) {
 		this.member = member;
 	}
