@@ -110,5 +110,10 @@ CREATE TABLE `paike_photo` (
   `accessCount` int(11) NOT NULL default '0' COMMENT '访问数',
   `pointCount` int(11) NOT NULL default '0' COMMENT '购买点数',
   `shareStatus` tinyint(4) NOT NULL default '0' COMMENT '是否共享',
-  PRIMARY KEY  (`id`)
+  `tags` varchar(512) collate utf8_unicode_ci default NULL COMMENT '//tag标记(美女,野兽,性感)',
+  `directory` bigint(20) NOT NULL default '0' COMMENT '所属目录',
+  PRIMARY KEY  (`id`),
+  KEY `index_userid` (`userid`),
+  KEY `index_uid_dir` (`userid`,`directory`),
+  KEY `index_uid_dir_share` (`userid`,`directory`,`shareStatus`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
