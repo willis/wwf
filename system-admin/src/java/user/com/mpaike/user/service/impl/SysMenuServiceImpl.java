@@ -38,7 +38,7 @@ public class SysMenuServiceImpl extends CommonDao implements SysMenuService {
 		return (SysMenu) super.get(SysMenu.class, Long.valueOf(id));
 	}
 
-	public List<SysMenu> getTree(long rootId) {
+	public List<SysMenu> listTree(long rootId) {
 		SysMenu rootObj = (SysMenu) super.get(SysMenu.class, Long
 				.valueOf(rootId));
 		List tree = new ArrayList();

@@ -42,7 +42,7 @@ public class SysRoleAction extends BaseAction {
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
-		tree = sysMenuService.getTree(rootId);
+		tree = sysMenuService.listTree(rootId);
 		rootObj = tree.remove(0);
 		return "menulist";
 	}

@@ -18,7 +18,7 @@ public interface DictionaryService {
 
 	public boolean delDictionary(long paramLong);
 
-	public List<Dictionary> getTree(long paramLong);
+	public List<Dictionary> listTree(long paramLong);
 
 	public List<Dictionary> getDictionarysByParentId(long paramLong);
 }

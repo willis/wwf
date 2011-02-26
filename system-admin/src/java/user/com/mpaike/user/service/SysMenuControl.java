@@ -30,7 +30,7 @@ public class SysMenuControl {
 				.getInstance().getBean("sysMenuService");
 
 		this.tree = null;
-		this.tree = service.getTree(rootId);
+		this.tree = service.listTree(rootId);
 
 	}
 

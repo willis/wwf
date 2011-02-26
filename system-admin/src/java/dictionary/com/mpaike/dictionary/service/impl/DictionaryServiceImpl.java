@@ -40,7 +40,7 @@ public class DictionaryServiceImpl extends CommonDao implements
 		return result;
 	}
 
-	public List<Dictionary> getTree(long rootId) {
+	public List<Dictionary> listTree(long rootId) {
 		Dictionary rootObj = getDictionary(rootId);
 		List tree = new ArrayList();
 		loadTreeChilds(rootObj, tree);

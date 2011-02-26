@@ -40,8 +40,20 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 	private Long userLevel;//用户级别
 	private Date createdDate;//创建日期
 
-
+	private MemberInfo memberInfo;//用户介绍
 	
+
+	public MemberInfo getMemberInfo() {
+		return memberInfo;
+	}
+
+
+
+	public void setMemberInfo(MemberInfo memberInfo) {
+		this.memberInfo = memberInfo;
+	}
+
+
 
 	public Member() {
 		super();

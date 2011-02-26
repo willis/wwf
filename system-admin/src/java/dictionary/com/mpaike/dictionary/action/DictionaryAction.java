@@ -32,7 +32,7 @@ public class DictionaryAction extends BaseAction{
 
 	public String listDictionary(){
 	    long rootId = ParamHelper.getLongParamter(request, "rootId", Long.parseLong(super.getAppProps().get("dictionaryRootId").toString()));
-	    tree = getDictionaryService().getTree(rootId);
+	    tree = getDictionaryService().listTree(rootId);
 	    rootObj = tree.remove(0);
 	    return "dictionaryList";
 		
