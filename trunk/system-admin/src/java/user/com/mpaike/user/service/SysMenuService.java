@@ -17,7 +17,7 @@ public interface SysMenuService {
 
 	  public  SysMenu getMenu(long paramLong);
 
-	  public  List<SysMenu> getTree(long paramLong);
+	  public  List<SysMenu> listTree(long paramLong);
 
 	  public  List<SysMenu> getMenusByParentId(long paramLong);
 }

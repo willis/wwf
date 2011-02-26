@@ -28,7 +28,7 @@ public class SysMenuAction extends BaseAction {
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
-	    tree = this.getSysMenuService().getTree(rootId);
+	    tree = this.getSysMenuService().listTree(rootId);
 
 	    rootObj = tree.remove(0);
 		return "menulist";

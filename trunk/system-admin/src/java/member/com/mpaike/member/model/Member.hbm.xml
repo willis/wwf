@@ -94,5 +94,7 @@
 			type="java.util.Date" not-null="true">
 
 		</property>
+		<one-to-one name="memberInfo" class="com.mpaike.member.model.MemberInfo" cascade="delete" ></one-to-one>
+		
 	</class>
 </hibernate-mapping>

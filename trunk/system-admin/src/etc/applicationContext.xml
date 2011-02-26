@@ -75,6 +75,9 @@
 				<value>
 					com/mpaike/member/model/Member.hbm.xml
 				</value>
+				<value>
+					com/mpaike/member/model/MemberInfo.hbm.xml
+				</value>
 			</list>
 		</property>
 	</bean>
@@ -92,6 +95,7 @@
 		</property>
 		<property name="transactionAttributes">
 			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>  
 				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
@@ -119,14 +123,14 @@
 		</property>
 		<property name="patterns">
 			<list>
-			
 				<value>.*save*.*</value> 
 				<value>.*remove*.*</value> 
 				<value>.*update*.*</value> 
-				<value>.*change*.*</value>
+				<value>.*change.*</value>
 				<value>.*add*.*</value> 
-			    <value>.*list*.*</value> 
-			    <value>.*loginUserByPassword*.*</value> 
+				<value>.*del*.*</value> 
+			    <value>.*list.*</value> 
+			    <value>.*loginUserByPassword.*</value> 
 			</list>
 		</property>
 	</bean>
@@ -134,7 +138,7 @@
 	<bean
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
-			<value>*Service,*Utils</value>
+			<value>*Service</value>
 		</property>
 		<property name="interceptorNames">
 			<list>

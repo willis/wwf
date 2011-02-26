@@ -31,7 +31,7 @@ public class LogInterceptor implements MethodBeforeAdvice {
 			throws Throwable {
 
 		SysUser sysUser = getOperater();
-
+		System.out.println(sysUser);
 		if (sysUser == null) {
 			return;
 		}
