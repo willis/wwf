@@ -1,8 +1,4 @@
 ﻿
---
--- 表的结构 `paike_user`
---
-
 CREATE TABLE `paike_user` (
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `username` varchar(32) collate utf8_unicode_ci NOT NULL COMMENT '用户名 ',
@@ -24,6 +20,7 @@ CREATE TABLE `paike_user` (
   `fattCount` int(11) NOT NULL default '0' COMMENT '被关注的数量',
   `myattCount` int(11) NOT NULL default '0' COMMENT '我关注别人的数量',
   `points` int(11) NOT NULL default '0' COMMENT '用户点数',
+  `outPoints` int(11) NOT NULL default '0' COMMENT '我花费的点数',
   `userLevel` int(11) NOT NULL default '1' COMMENT '用户级别',
   `createdDate` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY  (`userid`),
