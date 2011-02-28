@@ -103,7 +103,7 @@ public class LoginControl {
 			session.setAttribute(SYSMENU_OBJ, sysMenus);
 			ok = true;
 			sysUser.setLogintime(new Date());
-			 sysUser.setLoginip(req.getRemoteAddr());
+			sysUser.setLoginip(req.getRemoteAddr());
 			this.sysUserService.save(sysUser);
 			TransactionSynchronizationManager.bindResource(USER_OBJ,sysUser);
 			return ok;
