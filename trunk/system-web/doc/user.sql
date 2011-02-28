@@ -108,12 +108,15 @@ CREATE TABLE `paike_photo` (
   `pointCount` int(11) NOT NULL default '0' COMMENT '购买点数',
   `shareStatus` tinyint(4) NOT NULL default '0' COMMENT '是否共享',
   `tags` varchar(512) collate utf8_unicode_ci default NULL COMMENT '//tag标记(美女,野兽,性感)',
-  `directory` bigint(20) NOT NULL default '0' COMMENT '所属目录',
+  `dirid` bigint(20) NOT NULL default '0' COMMENT '所属目录ID',
+  `stat` int(11) NOT NULL default '0' COMMENT '评级',
+  `statCount` int(11) NOT NULL default '0' COMMENT '评级人数',
   PRIMARY KEY  (`id`),
   KEY `index_userid` (`userid`),
-  KEY `index_uid_dir` (`userid`,`directory`),
-  KEY `index_uid_dir_share` (`userid`,`directory`,`shareStatus`)
+  KEY `index_uid_dir` (`userid`,`dirid`),
+  KEY `index_uid_dir_share` (`userid`,`dirid`,`shareStatus`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- 表的结构 `paike_dirgroup`
