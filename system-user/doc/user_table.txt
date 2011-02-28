@@ -89,3 +89,8 @@ dirGroupName //目录组名称
 dirCount //目录数
 createdDate //目录创建时间
 
+Tag表
+id //id
+name //tag名
+count //数量
+hitCount //点击数量
