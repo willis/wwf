@@ -71,3 +71,14 @@ accessCount //访问数
 pointCount //购买点数
 shareStatus //是否共享
 
+目录表
+id //id
+userId //所属用户id
+dirName //目录名
+shareStatus //开放状态
+photoCount //照片数
+newPhotoCount //最新更新数
+newPhotoDate //最新更新时间
+dirPhoto //目录默认显示的photo
+createdDate //目录创建时间
+
