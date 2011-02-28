@@ -40,6 +40,7 @@ id
 userid //用户ID
 photoMd5 //md5名称
 photoName //照片名称
+sourceName //原名称
 photoType //照片格式(jpg,png...)
 deviceCompany //制造厂商(Canon)
 deviceType //设备型号(Canon EOS-1D Mark II)
@@ -64,12 +65,16 @@ gps //GPS信息
 software //处理软件(Adobe Photoshop CS Macintosh)
 exposureBiasValue //曝光补偿EV+-(0)
 maxApertureValue //最大光圈(85 mm) 
-CompressedBits //压缩时每像素色彩位
+compressedBits //压缩时每像素色彩位
 exifVersion //exif版本
 createdDate //上传时间
 accessCount //访问数
 pointCount //购买点数
 shareStatus //是否共享
+tags //Tag标记
+dirid //所属目录ID
+stat //评级
+statCount //评级人数
 
 目录表
 id //id
