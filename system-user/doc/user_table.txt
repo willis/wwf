@@ -75,7 +75,8 @@ shareStatus //是否共享
 id //id
 userid //所属用户id
 dirName //目录名
-shareStatus //开放状态
+dirGroupId //目录组ID
+shareStatus //开放状态(1=开放,2=不开放)
 photoCount //照片数
 newPhotoCount //最新更新数
 newPhotoDate //最新更新时间
@@ -88,6 +89,7 @@ userid //用户id
 dirGroupName //目录组名称
 dirCount //目录数
 createdDate //目录创建时间
+
 
 Tag表
 id //id
