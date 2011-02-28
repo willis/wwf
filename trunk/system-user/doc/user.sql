@@ -114,3 +114,52 @@ CREATE TABLE `paike_photo` (
   KEY `index_uid_dir` (`userid`,`directory`),
   KEY `index_uid_dir_share` (`userid`,`directory`,`shareStatus`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 表的结构 `paike_dirgroup`
+--
+
+CREATE TABLE `paike_dirgroup` (
+  `id` bigint(20) NOT NULL,
+  `userid` bigint(20) NOT NULL,
+  `dirGroupName` varchar(64) collate utf8_unicode_ci NOT NULL,
+  `dirCount` int(11) NOT NULL default '0',
+  `createdDate` datetime NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `index_userid` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 表的结构 `paike_dir`
+--
+
+CREATE TABLE `paike_dir` (
+  `id` bigint(20) NOT NULL COMMENT 'id',
+  `userid` bigint(20) NOT NULL COMMENT '所属用户id',
+  `dirName` varchar(64) collate utf8_unicode_ci NOT NULL COMMENT '目录名',
+  `dirGroupId` bigint(20) NOT NULL default '0' COMMENT '目录组ID',
+  `shareStatus` tinyint(4) NOT NULL default '1' COMMENT '开放状态(1=开放,2=不开放)',
+  `photoCount` int(11) NOT NULL default '0' COMMENT '照片数',
+  `newPhotoCount` int(11) NOT NULL default '0' COMMENT '最新更新数',
+  `newPhotoDate` datetime default NULL COMMENT '最新更新时间',
+  `dirPhoto` bigint(20) default NULL COMMENT '目录默认显示的photo',
+  `createdDate` datetime NOT NULL COMMENT '目录创建时间',
+  PRIMARY KEY  (`id`),
+  KEY `index_userid` (`userid`),
+  KEY `index_userid_dir_share` (`userid`,`shareStatus`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 表的结构 `paike_tag`
+--
+
+CREATE TABLE `paike_tag` (
+  `id` bigint(20) NOT NULL default '0' COMMENT 'id',
+  `name` varchar(255) collate utf8_unicode_ci NOT NULL COMMENT 'tag名',
+  `count` int(11) NOT NULL default '0' COMMENT '数量',
+  `hitCount` int(11) NOT NULL default '0' COMMENT '点击数量',
+  PRIMARY KEY  (`id`),
+  KEY `index_count` (`count`),
+  KEY `index_hitcount` (`hitCount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
