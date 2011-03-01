@@ -1,4 +1,7 @@
-﻿
+﻿--
+-- 表的结构 `paike_user`
+--
+
 CREATE TABLE `paike_user` (
   `userid` bigint(20) NOT NULL COMMENT '用户id',
   `username` varchar(32) collate utf8_unicode_ci NOT NULL COMMENT '用户名 ',
@@ -21,6 +24,8 @@ CREATE TABLE `paike_user` (
   `myattCount` int(11) NOT NULL default '0' COMMENT '我关注别人的数量',
   `points` int(11) NOT NULL default '0' COMMENT '用户点数',
   `outPoints` int(11) NOT NULL default '0' COMMENT '我花费的点数',
+  `userMoney` int(11) NOT NULL default '0' COMMENT '用户币',
+  `outMoney` int(11) NOT NULL default '0' COMMENT '用户用户花费的币',
   `userLevel` int(11) NOT NULL default '1' COMMENT '用户级别',
   `createdDate` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY  (`userid`),
@@ -37,7 +42,6 @@ CREATE TABLE `paike_user` (
   KEY `index_login2` (`email`,`password`,`status`),
   KEY `index_level` (`userLevel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户数据表';
-
 
 --
 -- 表的结构 `paike_userext`
@@ -106,6 +110,7 @@ CREATE TABLE `paike_photo` (
   `createdDate` datetime NOT NULL COMMENT '上传时间',
   `accessCount` int(11) NOT NULL default '0' COMMENT '访问数',
   `pointCount` int(11) NOT NULL default '0' COMMENT '购买点数',
+  `photoMoney` int(11) NOT NULL default '0' COMMENT '价值币',
   `shareStatus` tinyint(4) NOT NULL default '0' COMMENT '是否共享',
   `tags` varchar(512) collate utf8_unicode_ci default NULL COMMENT '//tag标记(美女,野兽,性感)',
   `dirid` bigint(20) NOT NULL default '0' COMMENT '所属目录ID',
@@ -116,7 +121,6 @@ CREATE TABLE `paike_photo` (
   KEY `index_uid_dir` (`userid`,`dirid`),
   KEY `index_uid_dir_share` (`userid`,`dirid`,`shareStatus`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 
 --
 -- 表的结构 `paike_dirgroup`
