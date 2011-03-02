@@ -86,6 +86,18 @@
 			type="java.lang.Long">
 
 		</property>
+		<property name="outPoints" column="outPoints"
+			type="java.lang.Long">
+
+		</property>
+		<property name="userMoney" column="userMoney"
+			type="java.lang.Long">
+
+		</property>
+		<property name="outMoney" column="outMoney"
+			type="java.lang.Long">
+
+		</property>
 		<property name="immediatelyInfo" column="immediatelyInfo"
 			type="string">
 
