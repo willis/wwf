@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 利用SPRING的手动代理 -->
+
+	<bean id="systemLogService"
+		class="cn.com.icore.sys.service.impl.SystemLogServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="sysUserService"
+		class="cn.com.icore.user.service.impl.SysUserServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="sysGroupService"
+		class="cn.com.icore.user.service.impl.SysGroupServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="dictionaryService"
+		class="cn.com.icore.dictionary.service.impl.DictionaryServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="sysRoleService"
+		class="cn.com.icore.user.service.impl.SysRoleServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="sysMenuService"
+		class="cn.com.icore.user.service.impl.SysMenuServiceImpl"
+		autowire="byName" singleton="false" />
+	<bean id="sysPopedomService"
+		class="cn.com.icore.user.service.impl.SysPopedomServiceImpl"
+		autowire="byName" singleton="false" />
+	
+</beans>

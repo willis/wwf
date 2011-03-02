@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="dictionary" extends="default" >
+
+		
+		<action name="dictionaryAction"
+			class="cn.com.icore.dictionary.action.DictionaryAction">
+			<result name="dictionaryList" type="dispatcher">
+				<param name="location">/manager/dictionary/dictionary_list.jsp</param>
+			</result>
+			<result name="toAddDictionary" type="dispatcher">
+				<param name="location">/manager/dictionary/dictionary_add.jsp</param>
+			</result>
+			<result name="toEditDictionary" type="dispatcher">
+				<param name="location">/manager/dictionary/dictionary_add.jsp</param>
+			</result>
+		</action>
+	</package>
+</struts>
