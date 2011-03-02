@@ -38,6 +38,9 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 	private Long myattCount;//我关注别人的数量
 	private Long points;//用户点数
 	private Long userLevel;//用户级别
+	private Long outPoints; //我花费的点数
+	private Long userMoney;//用户币
+    private Long outMoney;//用户用户花费的币
 	private Date createdDate;//创建日期
 
 	private MemberInfo memberInfo;//用户介绍
@@ -60,14 +63,13 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 	}
 
 
-
 	public Member(Long id, String username, String password, Long status,
 			String name, Date birthday, Integer sex, String email,
 			Integer city, String profession, Integer userStatus,
 			Date lastLoginDate, Long loginCount, Long photoCount,
 			Long friendCount, Long accessCount, String immediatelyInfo,
 			Long fattCount, Long myattCount, Long points, Long userLevel,
-			Date createdDate) {
+			Long outPoints, Long userMoney, Long outMoney, Date createdDate) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -90,6 +92,9 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 		this.myattCount = myattCount;
 		this.points = points;
 		this.userLevel = userLevel;
+		this.outPoints = outPoints;
+		this.userMoney = userMoney;
+		this.outMoney = outMoney;
 		this.createdDate = createdDate;
 	}
 
@@ -271,6 +276,42 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 
 	public void setUserLevel(Long userLevel) {
 		this.userLevel = userLevel;
+	}
+
+
+
+	public Long getOutPoints() {
+		return outPoints;
+	}
+
+
+
+	public void setOutPoints(Long outPoints) {
+		this.outPoints = outPoints;
+	}
+
+
+
+	public Long getUserMoney() {
+		return userMoney;
+	}
+
+
+
+	public void setUserMoney(Long userMoney) {
+		this.userMoney = userMoney;
+	}
+
+
+
+	public Long getOutMoney() {
+		return outMoney;
+	}
+
+
+
+	public void setOutMoney(Long outMoney) {
+		this.outMoney = outMoney;
 	}
 
 }
