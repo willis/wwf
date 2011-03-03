@@ -16,7 +16,7 @@
     </property>    
 
 
-    <set name="sysRoles" lazy="false" inverse="false" cascade="none" table="SYSROLETOSYSPOPEDOM" order-by="sysroleid">
+    <set name="sysRoles" lazy="false" inverse="false"  table="SYSROLETOSYSPOPEDOM" order-by="sysroleid">
            <key>
            <column name="syspopedomid"/>
            </key>
