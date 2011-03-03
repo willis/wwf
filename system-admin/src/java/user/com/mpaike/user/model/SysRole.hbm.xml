@@ -19,13 +19,13 @@
 
 		</property>
 
-       <set name="sysMenus" lazy="true"  inverse="false" cascade="none"  table="SYSROLETOSYSMENU" order-by="sysmenuid">
+       <set name="sysMenus" lazy="true"  inverse="false"  table="SYSROLETOSYSMENU" order-by="sysmenuid">
            <key>
            <column name="sysroleid"/>
            </key>
            <many-to-many column="sysmenuid" class="com.mpaike.user.model.SysMenu"  />
         </set>
-        <set name="sysPopedoms"   lazy="true"  inverse="false" cascade="none" table="SYSROLETOSYSPOPEDOM" order-by="syspopedomid">
+        <set name="sysPopedoms"   lazy="true"  inverse="false" table="SYSROLETOSYSPOPEDOM" order-by="syspopedomid">
            <key>
            <column name="sysroleid"/>
            </key>

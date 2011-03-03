@@ -52,7 +52,7 @@
 		</set>
 
 
-		<set name="sysUsers" lazy="false" inverse="false" cascade="none"
+		<set name="sysUsers" lazy="false" inverse="false"
 			table="SYSUSERTOSYSGROUP">
 			<key>
 				<column name="sysgroupid" />
