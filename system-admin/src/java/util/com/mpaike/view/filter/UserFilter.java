@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import com.mpaike.user.model.SysUser;
 import com.mpaike.user.service.LoginControl;
 
 
@@ -36,7 +37,9 @@ public class UserFilter  implements Filter {
 	    throws IOException, ServletException
 	  {
 	    request.setCharacterEncoding(this.defaultEncode);
-
+	   SysUser sysUser = (SysUser) TransactionSynchronizationManager
+		.getResource(LoginControl.USER_OBJ);
+	   System.out.println("-----------"+sysUser);
 	    String nowUrl = ((HttpServletRequest)request).getRequestURI();
 	    boolean isNotCheckJsp = false;
 	    for (String s : this.notCheckJsp) {
@@ -57,15 +60,15 @@ public class UserFilter  implements Filter {
 	    else if (this.isUsePopedom)
 	      try
 	      {
-	        TransactionSynchronizationManager.bindResource("ICORE_POPEDOM", LoginControl.getPopedoms((HttpServletRequest)request));
-	        TransactionSynchronizationManager.bindResource("userOBJ", LoginControl.getSysUser((HttpServletRequest)request));
+	        //TransactionSynchronizationManager.bindResource(LoginControl.POPEDOM_OBJ, LoginControl.getPopedoms((HttpServletRequest)request));
+	       // TransactionSynchronizationManager.bindResource(LoginControl.USER_OBJ, LoginControl.getSysUser((HttpServletRequest)request));
 	        chain.doFilter(request, response);
 	      } catch (Exception e) {
 	        e.printStackTrace();
 	      }
 	      finally {
-	        TransactionSynchronizationManager.unbindResource("ICORE_POPEDOM");
-	        TransactionSynchronizationManager.unbindResource("userOBJ");
+	       // TransactionSynchronizationManager.unbindResource("ICORE_POPEDOM");
+	        //TransactionSynchronizationManager.unbindResource("userOBJ");
 	      }
 	    else
 	      chain.doFilter(request, response);
