@@ -4,7 +4,7 @@ import java.util.List;
 
 import cn.com.icore.sys.model.SystemLog;
 import cn.com.icore.sys.service.SystemLogService;
-import cn.com.icore.util.dao.CommonDao;
+import cn.com.icore.util.hibernate.dao.CommonDao;
 import cn.com.icore.util.pager.Pager;
 
 @SuppressWarnings("unchecked")

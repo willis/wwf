@@ -4,9 +4,8 @@
  * ***/
 $.fn.dictionary = function(opts) {
 	opts = $.extend({
-				url : '/maxejo/manager/dictionary/listDictionary.do',
+				url : contextPath+'/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
 				data : {
-					method : 'getDictionarysByParentId',
 					id : '1'
 				},
 				defaultOp : [{// 默认的选择框

@@ -3,6 +3,8 @@ package cn.com.icore.sys.intercept;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -13,23 +15,22 @@ import cn.com.icore.user.service.LoginControl;
 
 
 public class LogInterceptor implements MethodBeforeAdvice {
-
+	private static final Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 	private SystemLogService systemLogService = null;
 
 	public void setSystemLogService(SystemLogService systemLogService) {
 		this.systemLogService = systemLogService;
 	}
 
-	public SysUser getOperater() {
-		return (SysUser) TransactionSynchronizationManager
-				.getResource(LoginControl.USER_OBJ);
-	}
+
 
 	public void before(Method method, Object[] params, Object target)
 			throws Throwable {
 
-		SysUser sysUser = getOperater();
-
+		SysUser sysUser = (SysUser) TransactionSynchronizationManager
+		.getResource(LoginControl.USER_OBJ);
+		System.out.println("USER_OBJ------------>"+LoginControl.USER_OBJ);
+		System.out.println("intercept------------>"+sysUser);
 		if (sysUser == null) {
 			return;
 		}

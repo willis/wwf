@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>民安信-MAXEJO开发平台</title>
+<title>dictionary-Helper</title>
 <style type="text/css">
 body {
 	font-family: "宋体";
@@ -118,7 +118,7 @@ ul li {
 </style>
 		<%@ include file="/include/taglibs.jsp"%>
 		<%@ include file="/include/jquery.jsp"%>
-		<script src="<c:out value='${cxp }'/>/appjs/plugin/dictionary/jquery.dictionary.js"></script>
+		<script src="${cxp }/appjs/plugin/dictionary/jquery.dictionary.js"></script>
 
 	</head>
 <body>
@@ -140,18 +140,18 @@ ul li {
 	
 	<script >
 	$("#s1").dictionary({
-	url:'<c:out value='${cxp }'/>/manager/dictionary/listDictionary.do',
-	   data:{method:'getDictionarysByParentId',id:'1'},
+	url:'${cxp }/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
+	   data:{id:'1'},
 	   
 	   
 		  callback:function(value){
 		     $("#s2").dictionary({
-				url:'<c:out value='${cxp }'/>/manager/dictionary/listDictionary.do',
-				   data:{method:'getDictionarysByParentId',id:value},
+				url:'${cxp }/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
+				   data:{id:value},
 				   callback:function(value){
 				  	     $("#s3").dictionary({
-							url:'<c:out value='${cxp }'/>/manager/dictionary/listDictionary.do',
-							   data:{method:'getDictionarysByParentId',id:value},
+							url:'${cxp }/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
+							   data:{id:value},
 							   callback:function(value){
 							   		
 							   },
@@ -174,7 +174,7 @@ ul li {
 </div>
 </div>
 <div class="yrepeat"></div>
-<div class="Efooter"><img src="/maxejo/images/MAXEJO-footer.jpg" width="1205" height="51" alt="Efooter" /></div>
+<div class="Efooter"></div>
 </div>
 </body>
 </html>
