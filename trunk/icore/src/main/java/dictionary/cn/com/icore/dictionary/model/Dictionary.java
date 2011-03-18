@@ -3,7 +3,7 @@ package cn.com.icore.dictionary.model;
 import java.util.Date;
 import java.util.Set;
 
-import cn.com.icore.util.hibernate.dao.IBeanPrimaryKey;
+import cn.com.icore.util.dao.IBeanPrimaryKey;
 @SuppressWarnings("unchecked")
 public class Dictionary implements IBeanPrimaryKey, java.io.Serializable{
 	
