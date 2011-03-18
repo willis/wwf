@@ -10,7 +10,7 @@ import cn.com.icore.user.model.SysPopedom;
 import cn.com.icore.user.model.SysRole;
 import cn.com.icore.user.service.SysRoleService;
 import cn.com.icore.util.ParamHelper;
-import cn.com.icore.util.dao.GtGridCommonDao;
+import cn.com.icore.util.hibernate.dao.GtGridCommonDao;
 
 @SuppressWarnings("unchecked")
 public class SysRoleServiceImpl extends GtGridCommonDao implements

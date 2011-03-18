@@ -9,7 +9,7 @@ public class ParamHelper {
 	public static String ENCODING_DEFAULT = "UTF-8";
 	public static String GET_ENCODING_DEFAULT = "UTF-8";
 	public static String FILE_WRITING_ENCODING = "GBK";
-
+//   logger 
 	public ParamHelper()
 	{
 	}

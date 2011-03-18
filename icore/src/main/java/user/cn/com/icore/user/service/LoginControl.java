@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import cn.com.icore.user.model.SysGroup;
@@ -20,7 +22,8 @@ import cn.com.icore.util.MD5;
 
 @SuppressWarnings("unchecked")
 public class LoginControl {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoginControl.class);
 	public static final String ID_NAME = "loginControl";
 	public static final String LOGIN_NAME = "LOGIN_NAME";
 	public static final String TRUENAME_NAME = "TRUENAME_NAME";
@@ -111,11 +114,14 @@ public class LoginControl {
 			this.sysUserService.save(sysUser);
 			TransactionSynchronizationManager.bindResource(USER_OBJ,sysUser);
 			
+
 			return ok;
-		} finally {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 			TransactionSynchronizationManager.unbindResource("loginControl");
 		}
-
+		return ok;
 	}
 
 	public static synchronized boolean checkPopedom(String code,

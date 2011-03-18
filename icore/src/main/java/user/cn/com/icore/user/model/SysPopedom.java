@@ -2,7 +2,7 @@ package cn.com.icore.user.model;
 
 import java.util.Set;
 
-import cn.com.icore.util.dao.IBeanPrimaryKey;
+import cn.com.icore.util.hibernate.dao.IBeanPrimaryKey;
 
 public class SysPopedom implements IBeanPrimaryKey, java.io.Serializable {
 
