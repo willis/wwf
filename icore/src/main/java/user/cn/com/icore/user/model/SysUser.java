@@ -3,7 +3,7 @@ package cn.com.icore.user.model;
 import java.util.Date;
 import java.util.Set;
 
-import cn.com.icore.util.hibernate.dao.IBeanPrimaryKey;
+import cn.com.icore.util.dao.IBeanPrimaryKey;
 
 /**
  * 

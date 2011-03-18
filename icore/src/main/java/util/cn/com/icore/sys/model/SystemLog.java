@@ -2,7 +2,7 @@ package cn.com.icore.sys.model;
 
 import java.util.Date;
 
-import cn.com.icore.util.hibernate.dao.IBeanPrimaryKey;
+import cn.com.icore.util.dao.IBeanPrimaryKey;
 
 
 

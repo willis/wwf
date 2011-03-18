@@ -1,6 +1,6 @@
 package cn.com.icore.user.model;
 
-import cn.com.icore.util.hibernate.dao.IBeanPrimaryKey;
+import cn.com.icore.util.dao.IBeanPrimaryKey;
 
 public class SysUserAndSysGroupToSysRole implements IBeanPrimaryKey, java.io.Serializable{
 	/**
