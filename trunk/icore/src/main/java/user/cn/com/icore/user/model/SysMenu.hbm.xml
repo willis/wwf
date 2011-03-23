@@ -54,7 +54,7 @@
 			<one-to-many class="cn.com.icore.user.model.SysMenu" />
 		</set>
 
-		<set name="sysRoles" lazy="false" table="SYSROLETOSYSMENU" order-by="sysroleid">
+		<set name="sysRoles" lazy="false" table="sysroletosysmenu" order-by="sysroleid">
            <key>
            <column name="sysmenuid"/>
            </key>

@@ -33,6 +33,8 @@ public class MyBeanUtils {
 					&& desor[i].getWriteMethod() != null) {
 				name = desor[i].getName();
 				try {
+					
+				
 					des.put(name, PropertyUtils.getProperty(bean, name));
 				} catch (Exception e) {
 					throw new RuntimeException("属性不存在：" + name);
@@ -61,10 +63,10 @@ public class MyBeanUtils {
 		return des;
 	}
 	@SuppressWarnings("unchecked")
-	public static Map<String, Field> fieldMap(Class clazz){
+	public static Map<String, Field> fieldMap(Class lclazzazz){
 		Map<String, Field> fieldMap = new HashMap<String, Field>();
 		Field[] fields;
-		for (Class cls = clazz; !cls.equals(Object.class); cls = cls.getSuperclass()) {  
+		for (Class cls = lclazzazz; !cls.equals(Object.class); cls = cls.getSuperclass()) {  
 			fields = cls.getDeclaredFields();
 			if(fields!=null){
 				for(Field field:fields){

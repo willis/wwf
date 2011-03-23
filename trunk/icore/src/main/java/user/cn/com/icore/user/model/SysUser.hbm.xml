@@ -117,7 +117,7 @@
 			<meta attribute="field-description">用户状态</meta>
 		</property>
 		<set name="sysGroups" lazy="false" inverse="true"
-			table="SYSUSERTOSYSGROUP">
+			table="sysusertosysgroup">
 			<key>
 				<column name="sysuserid" />
 			</key>
