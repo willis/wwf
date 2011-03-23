@@ -24,9 +24,12 @@ public class RandomCodeImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String RANDOMCODENAME = "randomCode";
-
+	public void init() throws ServletException {
+		
+	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
 		doGet(request, response);
 	}
 
@@ -71,7 +74,7 @@ public class RandomCodeImage extends HttpServlet {
 		}
 
 		request.getSession().setAttribute("randomCode", sRand);
-
+	
 		g.dispose();
 		try {
 			ImageIO.write(image, "JPEG", response.getOutputStream());
@@ -79,6 +82,18 @@ public class RandomCodeImage extends HttpServlet {
 		}
 	}
 
+	
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		
+
+		super.destroy(); // Just puts "destroy" string in log
+		
+		// Put your code here
+	}
 	public Color getRandColor(int fc, int bc) {
 		Random random = new Random();
 		if (fc > 255)

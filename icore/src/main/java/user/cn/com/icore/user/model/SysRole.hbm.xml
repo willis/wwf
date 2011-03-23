@@ -19,13 +19,13 @@
 
 		</property>
 
-       <set name="sysMenus" lazy="true"  inverse="false" cascade="none"  table="SYSROLETOSYSMENU" order-by="sysmenuid">
+       <set name="sysMenus" lazy="true"  inverse="false" cascade="none"  table="sysroletosysmenu" order-by="sysmenuid">
            <key>
            <column name="sysroleid"/>
            </key>
            <many-to-many column="sysmenuid" class="cn.com.icore.user.model.SysMenu"  />
         </set>
-        <set name="sysPopedoms"   lazy="true"  inverse="false" cascade="none" table="SYSROLETOSYSPOPEDOM" order-by="syspopedomid">
+        <set name="sysPopedoms"   lazy="true"  inverse="false" cascade="none" table="sysroletosyspopedom" order-by="syspopedomid">
            <key>
            <column name="sysroleid"/>
            </key>
