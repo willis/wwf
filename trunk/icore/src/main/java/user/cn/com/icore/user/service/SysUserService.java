@@ -31,6 +31,8 @@ public interface SysUserService {
 			GridServerHandler paramGridServerHandler, SysUser paramSysUser);
 
 	public void addSysRole(SysUser paramSysUser, SysRole paramSysRole);
+	
+	public void removeSysRole(SysUser paramSysUser, SysRole paramSysRole);
 
 	public SysUser loginUserByPassword(String username, String pwd);
 

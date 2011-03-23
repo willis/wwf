@@ -126,6 +126,31 @@ public class SysUserAction extends BaseAction  {
 	    }
 	    super.printSuccessJson(response, "添加成功！");
 	}
+	
+
+	  public void delSysRoles()
+	 
+	  {
+	   
+		    long id = ParamHelper.getLongParamter(request, "id", -1L);
+		    if (id == -1L)
+		    	super.printSuccessJson(response, "请选择用户！");
+		    String[] cs = request.getParameterValues("cs");
+		    if ((cs == null) || (cs.length == 0))
+		    	super.printSuccessJson(response, "请选择要删除的角色！");
+		    if (cs.length == 1) {
+		      cs = cs[0].split(",");
+		    }
+		    SysUser sysUser = getSysUserService().get(Long.valueOf(id)); 
+	  
+	    for (String c : cs) {
+	      if (!"".equals(c.trim())) {
+	    	  getSysUserService().removeSysRole(sysUser, roleService.getSysRole(new Long(c)));
+	      }
+	    }
+	    super.printSuccessJson(response, "删除成功！");
+	  
+	  }
 	public void changePassword(){
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
 		getSysUserService().changePassword(longValue, password);
