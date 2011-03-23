@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="cn.com.icore.user.model.SysUserAndSysGroupToSysRole"
-		table="sysusertosysgroup">
+		table="sysuserandgrouptorole">
 		<id name="id" type="java.lang.Long" column="id">
 			<generator class="assigned" />
 		</id>

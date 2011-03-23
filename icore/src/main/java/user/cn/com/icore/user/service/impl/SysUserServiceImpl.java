@@ -161,4 +161,14 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 	    return sysRoles;
 	  }
 
+	
+	public void removeSysRole(SysUser paramSysUser, SysRole paramSysRole) {
+		List l1 = super.find("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?", new Object[] { paramSysUser, paramSysRole }, -1, -1);
+	    for (int i = 0; i < l1.size(); i++)
+	    {
+	      super.remove(l1.get(i));
+	    }
+		
+	}
+
 }
