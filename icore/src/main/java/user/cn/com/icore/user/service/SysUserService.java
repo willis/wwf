@@ -6,6 +6,7 @@ import com.fins.gt.server.GridServerHandler;
 
 import cn.com.icore.user.model.SysRole;
 import cn.com.icore.user.model.SysUser;
+import cn.com.icore.util.pager.Pager;
 
 public interface SysUserService {
 
@@ -37,4 +38,7 @@ public interface SysUserService {
 	public SysUser loginUserByPassword(String username, String pwd);
 
 	public List<SysRole> getSysRoles(SysUser paramSysUser);
+	
+	public List<SysUser> find(Pager pager);
+
 }

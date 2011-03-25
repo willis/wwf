@@ -53,7 +53,6 @@ public class LoginControl {
 		if ((username == null) || (password == null)) {
 			return ok;
 		}
-		TransactionSynchronizationManager.bindResource("loginControl", "OK");
 		try {
 			SysUser sysUser = this.sysUserService.loginUserByPassword(username,
 					MD5.toMD5(password));
@@ -119,7 +118,7 @@ public class LoginControl {
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			TransactionSynchronizationManager.unbindResource("loginControl");
+		
 		}
 		return ok;
 	}

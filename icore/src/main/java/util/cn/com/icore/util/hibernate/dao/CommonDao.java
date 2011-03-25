@@ -15,6 +15,8 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.fins.gt.model.PageInfo;
+
 import cn.com.icore.util.dao.IBeanPrimaryKey;
 import cn.com.icore.util.dao.ICommonDao;
 import cn.com.icore.util.dao.SequenceManager;
@@ -305,5 +307,29 @@ public abstract class CommonDao extends HibernateDaoSupport implements ICommonDa
 	{
 		return findBySql(countString, queryString, new Object[0], pager);
 	}
-  
+	@Override
+	public List find(String countString, String queryString, Object args[], PageInfo pageInfo) {
+
+		int count = count(countString, args).intValue();
+		pageInfo.setTotalRowNum(count);
+		int temp_i = count % pageInfo.getPageSize() != 0 ? 1 : 0;
+		int totalPageNum = count / pageInfo.getPageSize() + temp_i;
+		pageInfo.setTotalPageNum(totalPageNum);
+		if (count == 0)
+			return Collections.EMPTY_LIST;
+		else
+			return find(queryString, args, pageInfo.getPageSize(), pageInfo.getPageNum());
+
+	}
+
+	@Override
+	public List find(String countString, String queryString, PageInfo pageInfo) {
+		
+		return find(countString, queryString, new Object[0], pageInfo);
+	}
+
+
+
+
+
 }

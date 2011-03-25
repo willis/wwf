@@ -16,6 +16,7 @@ import org.apache.struts2.ServletActionContext;
 import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.pager.Pager;
 
+import com.fins.gt.server.GridServerHandler;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -36,22 +37,27 @@ public class BaseAction extends ActionSupport {
 			.get(ServletActionContext.HTTP_RESPONSE);
 
 	public Pager getPager(HttpServletRequest request) {
-		Pager pager = new Pager();
+		Pager  pager = new Pager();
 		try {
-
 			int Pg = ParamHelper.getIntParamter(request, "Pg", 1);
-
+	
 			int pageSize = ParamHelper.getIntParamter(request, "pageSize",
 					Integer.parseInt(getAppProps().get("pageSize").toString()));
+			
 			pager.setPage(Pg);
 			pager.setPageSize(pageSize);
+
 		} catch (Exception e) {
 
 			logger.error(e);
 		}
 		return pager;
 	}
-
+	public GridServerHandler getGridServerHandler(HttpServletRequest request,HttpServletResponse response){
+		GridServerHandler handler = new GridServerHandler(request,response);
+		
+		return handler;
+	}
 	public AppProps getAppProps() {
 
 		return (AppProps) ApplictionContext.getInstance()

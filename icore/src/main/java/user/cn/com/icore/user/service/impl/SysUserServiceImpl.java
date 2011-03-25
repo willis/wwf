@@ -12,6 +12,7 @@ import cn.com.icore.user.service.SysUserService;
 import cn.com.icore.util.MD5;
 import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.hibernate.dao.GtGridCommonDao;
+import cn.com.icore.util.pager.Pager;
 
 @SuppressWarnings("unchecked")
 public class SysUserServiceImpl extends GtGridCommonDao implements
@@ -39,7 +40,7 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 			sql.insert(0, " where ");
 		sql.insert(0, " from SysUser u ");
 		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
-
+		
 		return super.list(handler, SysUser.class, sql.toString(), select
 				+ sql.toString(), params.toArray());
 	}
@@ -170,5 +171,15 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 	    }
 		
 	}
+	
+	public List<SysUser> find(Pager pager) {
+		
+		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
+		
+		String queryString =" from SysUser u";
+	
+		return super.find(select+queryString,null,pager.getPageSize(),pager.getPage());
+	}
+
 
 }

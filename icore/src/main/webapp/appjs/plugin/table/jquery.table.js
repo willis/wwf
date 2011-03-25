@@ -63,17 +63,17 @@ MaxTable.prototype={
 				dataType : "json",
 				success : function(datas) {
 				
-					 
+					
 					
 					var data = datas.data;
 					_parent.page = datas.pageInfo;
-					 
+				
 				 
 					while(_s.rows.length>0){
 					
 						_s.deleteRow(0);
 					}
-				 
+				 	
 					 if(_parent.page.totalRowNum == 0){
 					 	
 					 	var trObj = _s.insertRow(0);
@@ -81,7 +81,7 @@ MaxTable.prototype={
 					    tdObj.colSpan=opts.headerColumns.length;
 					    tdObj.innerHTML="没有记录！";
 					 }else{
-					for(var i=0;i<data.length;i++){
+					 for(var i=0;i<data.length;i++){
 						 
 						var trObj = _s.insertRow(_s.rows.length);
 						trObj.id=i+1;
@@ -169,14 +169,14 @@ MaxTable.prototype={
  	  createPage:function (pageInfo){
  	  	var text = '';
  	  	
- 	  	text+='每页显示<input id="pageSize"   value="'+pageInfo.pageSize+'" type="text" id="pageSize"   style="width:20px; border:solid #CCC 1px"/>'
+ 	  	text+='每页显示<input id="pageSize"   value="'+pageInfo.pageSize+'" type="text" name="pageSize"   style="width:20px; border:solid #CCC 1px"/>'
 	    text+='条&nbsp;|&nbsp;共<font color=red>'+pageInfo.totalPageNum+'</font>页 , <font color=red>'+pageInfo.totalRowNum+'</font>条数据';
 		text+='&nbsp;|&nbsp;'
 		text+='<input id="firstPage"  type="button" '+(pageInfo.pageNum>1?' style="background:#FFF ; border:none;cursor:pointer"  ':' disabled="disabled" ')+'   name="button" id="button" value="首页"  style="background:#FFF ; border:none;"/>&nbsp;';
 		text+='<input id="prePage"  type="button" '+(pageInfo.pageNum>1?'  style="background:#FFF ; border:none;cursor:pointer" ':' disabled="disabled" ')+'   name="button" id="button" value="上一页"  style="background:#FFF ; border:none;"/>&nbsp;';
 		text+='<input id="nextPage"  type="button" '+(pageInfo.totalPageNum>pageInfo.pageNum?' style="background:#FFF ; border:none;cursor:pointer"  ':' disabled="disabled" ')+'   name="button" id="button" value="下一页"  style="background:#FFF ; border:none;"/>&nbsp;';
 		text+='<input id="lastPage"  type="button"  '+(pageInfo.totalPageNum>pageInfo.pageNum?' style="background:#FFF ; border:none;cursor:pointer"  ':' disabled="disabled" ')+'  name="button" id="button" value="尾页"  style="background:#FFF ; border:none;"/>&nbsp;';
-		text+='&nbsp;|&nbsp;第<input id="Pg"   value="'+pageInfo.pageNum+'" type="text" id="Pg" style="width:20px; border:solid #CCC 1px"/>页';
+		text+='&nbsp;|&nbsp;第<input id="Pg"   value="'+pageInfo.pageNum+'" type="text" name="Pg" style="width:20px; border:solid #CCC 1px"/>页';
 		
  
 		return text;
@@ -205,6 +205,7 @@ function Pages(){
 	this.totalPageNum = 0;
 	this.totalRowNum = -1;
 	this.pageSize  = 10;
+
  
 	
 }

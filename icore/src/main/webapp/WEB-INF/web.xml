@@ -13,7 +13,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:applicationContext.xml,classpath:xfire.spring.xml
+			classpath:applicationContext*.xml,classpath:xfire.spring.xml
 		</param-value>
 	</context-param>
 	<!-- 配置session的filter过滤 -->
@@ -84,7 +84,11 @@
 		<servlet-name>RandomCodeImage</servlet-name>
 		<url-pattern>/servlet/randomCodeImage</url-pattern>
 	</servlet-mapping>
-
+	<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>cn.com.icore.servlet.InitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 	<!-- Spring监听器 配置结束 -->
 	<!--xfire-->
 	<servlet>
@@ -94,6 +98,8 @@
 			org.codehaus.xfire.spring.XFireSpringServlet
 		</servlet-class>
 	</servlet>
+  
+
 
 	<servlet-mapping>
 		<servlet-name>XFireServlet</servlet-name>
@@ -104,6 +110,7 @@
 		<servlet-name>XFireServlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
+
 	<!--xfire-->
 
 	<!-- 用户过滤器 -->
