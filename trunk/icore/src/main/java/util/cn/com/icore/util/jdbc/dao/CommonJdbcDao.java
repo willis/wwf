@@ -15,6 +15,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.fins.gt.model.PageInfo;
+
 
 
 import cn.com.icore.util.MyBeanUtils;
@@ -216,5 +218,19 @@ public  class CommonJdbcDao  implements ICommonDao{
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
+
+	@Override
+	public List find(String s, String s1, Object[] aobj, PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List find(String s, String s1, PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 }

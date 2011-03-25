@@ -4,6 +4,8 @@ package cn.com.icore.sys.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fins.gt.server.GridServerHandler;
+
 
 import cn.com.icore.sys.model.SystemLog;
 import cn.com.icore.sys.service.SystemLogService;
@@ -35,6 +37,12 @@ public class SystemLogAction  extends BaseAction {
 		logList = getSystemService().find(page);
 		request.setAttribute("myPage", page);
 		return "log_list";
+	}
+	public void loginfoList(){
+		GridServerHandler handler = super.getGridServerHandler(request, response);
+		logList = getSystemService().find(handler.getPageInfo());
+		handler.setData(logList, SystemLog.class);
+		handler.printLoadResponseText();
 	}
 	public int getCount() {
 		return count;

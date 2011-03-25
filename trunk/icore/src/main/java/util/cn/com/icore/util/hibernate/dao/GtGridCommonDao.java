@@ -1,5 +1,6 @@
 package cn.com.icore.util.hibernate.dao;
 
+import com.fins.gt.model.PageInfo;
 import com.fins.gt.model.SortInfo;
 import com.fins.gt.server.GridServerHandler;
 import java.util.ArrayList;
@@ -16,10 +17,13 @@ public class GtGridCommonDao extends CommonDao {
 			handler.setData(beans);
 		} else {
 			List beans = list(handler, countString, queryString, params);
+		
 			handler.setData(beans, c);
 		}
 		return handler;
 	}
+	
+	
 
 	public GridServerHandler listBySql(GridServerHandler handler, Class c,
 			String countString, String queryString, Object[] params) {
@@ -227,5 +231,8 @@ public class GtGridCommonDao extends CommonDao {
 			Object[] params) {
 		return listToMapRow(handler, queryString, queryString, params);
 	}
+
+
+
 
 }

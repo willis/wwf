@@ -2,6 +2,8 @@ package cn.com.icore.util.dao;
 
 import java.util.List;
 
+import com.fins.gt.model.PageInfo;
+
 import cn.com.icore.util.pager.Pager;
 
 
@@ -39,16 +41,24 @@ public interface ICommonDao {
 	public  void update(Object obj);
 
 	public  void add(Object obj);
-
+	
+	public  List findBySql(String s, Object aobj[], int i, int j);
+	
+	public  Integer countBySql(String s, Object aobj[]);
+	
 	public  List find(String s, String s1, Object aobj[], Pager pager);
 
 	public  List find(String s, String s1, Pager pages);
 
-	public  List findBySql(String s, Object aobj[], int i, int j);
-
-	public  Integer countBySql(String s, Object aobj[]);
-
 	public  List findBySql(String s, String s1, Pager pager);
 
 	public  List findBySql(String s, String s1, Object aobj[], Pager pager);
+	
+	public  List find(String s, String s1, Object aobj[], PageInfo pageInfo);
+
+	public  List find(String s, String s1, PageInfo pageInfo);
+
+
+	
+	
 }

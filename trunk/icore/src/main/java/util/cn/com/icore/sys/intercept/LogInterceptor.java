@@ -29,8 +29,6 @@ public class LogInterceptor implements MethodBeforeAdvice {
 
 		SysUser sysUser = (SysUser) TransactionSynchronizationManager
 		.getResource(LoginControl.USER_OBJ);
-		System.out.println("USER_OBJ------------>"+LoginControl.USER_OBJ);
-		System.out.println("intercept------------>"+sysUser);
 		if (sysUser == null) {
 			return;
 		}

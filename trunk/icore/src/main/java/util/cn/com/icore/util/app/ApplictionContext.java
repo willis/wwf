@@ -1,40 +1,45 @@
 package cn.com.icore.util.app;
 
-
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-
+import org.springframework.web.context.WebApplicationContext;
 
 public class ApplictionContext {
-	private static ApplictionContext instance = new ApplictionContext();
+	private static ApplictionContext instance = null;
 
-	private static AbstractApplicationContext appContext;
-	
+	private WebApplicationContext tempContext = null;
 
-	
-	
 	public static ApplictionContext getInstance() {
+		if (instance == null) {
+			instance = new ApplictionContext();
+		}
 		return instance;
 	}
 
-	private ApplictionContext() {
-		creatContext();
+	public ApplictionContext() {
+
 	}
 
-	public Object getBean(String name){
-		return getApplictionContext().getBean(name);
-	}
-	public AbstractApplicationContext getApplictionContext() {
-		return appContext;
+	public void setAppContext(WebApplicationContext context) {
+		this.tempContext = context;
 	}
 
-	private static void creatContext() {
-		ApplictionContext.appContext = new ClassPathXmlApplicationContext(
+	public Object getBean(String name) {
+		return this.tempContext.getBean(name);
+	}
+
+	public WebApplicationContext getAppContext() {
+		return this.tempContext;
+	}
+
+	public Object getBeanTest(String name) {
+
+		AbstractApplicationContext appContext;
+		appContext = new ClassPathXmlApplicationContext(
 				"classpath:applicationContext*.xml");
-		if (ApplictionContext.appContext == null) {
+		if (appContext == null) {
 			throw new NullPointerException("ERROR:ApplictionContext is null.");
 		}
-
+		return appContext.getBean(name);
 	}
 }
