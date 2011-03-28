@@ -11,7 +11,7 @@ import cn.com.icore.user.model.SysUserToSysRole;
 import cn.com.icore.user.service.SysUserService;
 import cn.com.icore.util.MD5;
 import cn.com.icore.util.ParamHelper;
-import cn.com.icore.util.hibernate.dao.GtGridCommonDao;
+import cn.com.icore.util.dao.hibernate.GtGridCommonDao;
 import cn.com.icore.util.pager.Pager;
 
 @SuppressWarnings("unchecked")

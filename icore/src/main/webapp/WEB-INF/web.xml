@@ -54,7 +54,7 @@
 		<init-param>
 			<param-name>notCheckJsp</param-name>
 			<param-value>
-				/login.jsp,/login_do.jsp,/login_out.jsp,/error.jsp
+				/login.jsp,/login_do.jsp,/login_out.jsp,/error.jsp,/swfupload/example.jsp
 			</param-value>
 		</init-param>
 
@@ -89,6 +89,19 @@
 		<servlet-class>cn.com.icore.servlet.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+   <listener>
+        <listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>cn.com.icore.servlet.UploadServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/uploadServlet</url-pattern>
+    </servlet-mapping> 
 	<!-- Spring监听器 配置结束 -->
 	<!--xfire-->
 	<servlet>

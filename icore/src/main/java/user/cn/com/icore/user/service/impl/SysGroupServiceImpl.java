@@ -15,7 +15,7 @@ import cn.com.icore.user.model.SysGroupToSysRole;
 import cn.com.icore.user.model.SysRole;
 import cn.com.icore.user.model.SysUser;
 import cn.com.icore.user.service.SysGroupService;
-import cn.com.icore.util.hibernate.dao.GtGridCommonDao;
+import cn.com.icore.util.dao.hibernate.GtGridCommonDao;
 
 @SuppressWarnings("unchecked")
 public class SysGroupServiceImpl extends GtGridCommonDao implements
