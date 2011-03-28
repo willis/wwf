@@ -3,7 +3,6 @@ package cn.com.icore.user.action;
 
 
 import java.util.Date;
-import java.util.List;
 
 
 import cn.com.icore.user.model.SysUser;
@@ -15,10 +14,8 @@ import cn.com.icore.util.MyBeanUtils;
 import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.app.ApplictionContext;
 import cn.com.icore.util.app.BaseAction;
-import cn.com.icore.util.pager.Pager;
-
 import com.fins.gt.server.GridServerHandler;
-import com.fins.org.json.JSONObject;
+
 public class SysUserAction extends BaseAction  {
 	public SysUserService getSysUserService() {
 		return (SysUserService) ApplictionContext.getInstance()

@@ -15,6 +15,7 @@ import cn.com.icore.user.service.LoginControl;
 
 
 public class LogInterceptor implements MethodBeforeAdvice {
+	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 	private SystemLogService systemLogService = null;
 
