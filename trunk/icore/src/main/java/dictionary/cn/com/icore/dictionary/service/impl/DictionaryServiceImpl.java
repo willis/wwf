@@ -7,7 +7,7 @@ import java.util.List;
 
 import cn.com.icore.dictionary.model.Dictionary;
 import cn.com.icore.dictionary.service.DictionaryService;
-import cn.com.icore.util.hibernate.dao.CommonDao;
+import cn.com.icore.util.dao.hibernate.CommonDao;
 
 @SuppressWarnings("unchecked")
 public class DictionaryServiceImpl extends CommonDao implements

@@ -7,7 +7,7 @@ import java.util.List;
 
 import cn.com.icore.user.model.SysMenu;
 import cn.com.icore.user.service.SysMenuService;
-import cn.com.icore.util.hibernate.dao.CommonDao;
+import cn.com.icore.util.dao.hibernate.CommonDao;
 
 @SuppressWarnings("unchecked")
 public class SysMenuServiceImpl extends CommonDao implements SysMenuService {

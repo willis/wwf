@@ -8,7 +8,7 @@ import com.fins.gt.server.GridServerHandler;
 import cn.com.icore.user.model.SysPopedom;
 import cn.com.icore.user.service.SysPopedomService;
 import cn.com.icore.util.ParamHelper;
-import cn.com.icore.util.hibernate.dao.GtGridCommonDao;
+import cn.com.icore.util.dao.hibernate.GtGridCommonDao;
 @SuppressWarnings("unchecked")
 public class SysPopedomServiceImpl extends GtGridCommonDao implements SysPopedomService{
 

@@ -8,6 +8,7 @@ import com.fins.gt.server.GridServerHandler;
 
 import cn.com.icore.user.model.SysMenu;
 import cn.com.icore.user.model.SysRole;
+import cn.com.icore.user.service.SysMenuControl;
 import cn.com.icore.user.service.SysMenuService;
 import cn.com.icore.user.service.SysRoleService;
 import cn.com.icore.util.MyBeanUtils;
@@ -121,6 +122,7 @@ public class SysRoleAction extends BaseAction {
 			}
 
 			sysRoleService.addSysMenu(roleId, cs);
+			SysMenuControl.getInstance().putRootTree();
 			super.printSuccessJson(response, "设置成功！");
 		} catch (Exception ex) {
 			ex.printStackTrace();

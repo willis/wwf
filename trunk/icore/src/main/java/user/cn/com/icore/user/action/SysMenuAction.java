@@ -72,12 +72,13 @@ public class SysMenuAction extends BaseAction {
 			
 		    MyBeanUtils.fillForNotNullObject(target, sysMenu);
 		    sysMenu = target;
-		    SysMenuControl.getInstance().putRootTree();
+		    
 			result ="修改成功!";
 		}
 		sysMenu.setOrderBy(sysMenu.getOrderBy()!=null?sysMenu.getOrderBy():0l);
 		sysMenu.setCurDate(new Date());
 		getSysMenuService().save(sysMenu);
+		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, result);
 		
 	}

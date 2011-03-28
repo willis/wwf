@@ -72,7 +72,7 @@
 		</property>
 
 	</bean>
-	<bean id="commonJdbcDao" class="cn.com.icore.util.jdbc.dao.CommonJdbcDao">
+	<bean id="commonJdbcDao" class="cn.com.icore.util.dao.jdbc.CommonJdbcDao">
 		<property name="jdbcTemplate">
 			<ref bean="jdbcTemplate" />
 		</property>
@@ -151,6 +151,7 @@
 				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
 				<prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="query*">PROPAGATION_REQUIRED</prop>  
 				<prop key="update*">
 					PROPAGATION_REQUIRED,-Exception
 				</prop>
@@ -168,7 +169,7 @@
 				<prop key="merge*">
 					PROPAGATION_REQUIRED,-Exception
 				</prop>
-				<prop key="do*">PROPAGATION_REQUIRED,-Exception</prop>
+		
 			</props>
 		</property>
 	</bean>
