@@ -9,11 +9,21 @@ import cn.com.icore.util.pager.Pager;
 
 @SuppressWarnings("unchecked")
 public interface ICommonDao {
-	
-	public  Integer count(String s, Object aobj[]);
-
+	/**
+	 * 查询总数
+	 * 示例 simpleDao.count("from SystemLog sl where sl.logtype=? and sl.createby=?",new Object[]{0l,1l})
+	 * @param "from BeanName bn where bn.x1=?",new Object[]{x}
+	 * @return Integer
+	 */
+	public  Integer count(String bean, Object aobj[]);
+	/**
+	 * 查询总数
+	 * 示例 simpleDao.count("from SystemLog");
+	 * @param from BeanName
+	 * @return Integer
+	 */
 	public  Integer count(String s);
-
+	
 	public  List find(String s);
 
 	public  List findToMapRow(String s);
@@ -58,7 +68,5 @@ public interface ICommonDao {
 
 	public  List find(String s, String s1, PageInfo pageInfo);
 
-
-	
 	
 }
