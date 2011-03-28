@@ -1,0 +1,29 @@
+.swfupload {
+    vertical-align: top;
+}
+#uploadContent{
+	position:relative;
+	width:220px;
+    left:200px;
+}
+#uploadProgress{
+    display:none;
+	width:220px;
+	height:20px;
+    border:1px solid #99CCFF;
+}
+#colorStatus{
+	position:absolute;
+    width:0%;
+    height:20px;
+    background-color:#C2ECA7;
+    z-index:99;
+}
+#percentTxt{
+	position:relative;
+	width:100%;	
+	text-align:center;
+	z-index:100;
+	filter:Alpha(Opacity=80);
+	opacity:0.8;
+}
