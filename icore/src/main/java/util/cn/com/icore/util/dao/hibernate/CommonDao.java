@@ -23,7 +23,7 @@ import cn.com.icore.util.dao.SequenceManager;
 import cn.com.icore.util.pager.Pager;
 
 @SuppressWarnings("unchecked")
-public class CommonDao extends HibernateDaoSupport implements ICommonDao {
+public abstract class CommonDao extends HibernateDaoSupport implements ICommonDao {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
