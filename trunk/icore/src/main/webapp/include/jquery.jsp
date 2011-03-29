@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script type="text/javascript" src="${cxp}/js/jquery/jquery-1.4.3.min.js"></script>
+<script type="text/javascript" src="${cxp}/js/jquery/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="${cxp}/js/jquery/jquery.common.js"></script>
 <script type="text/javascript" src="${cxp}/js/jquery/jquery.ext.js"></script>
 <script type="text/javascript" src="${cxp}/js/jquery/jquery.debug.js"></script>
