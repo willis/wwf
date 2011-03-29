@@ -196,8 +196,6 @@
 	</bean>
 	<bean id="loginControl"
 		class="cn.com.icore.user.service.LoginControl" autowire="byName" />
-	<bean id="commonDao"
-		class="cn.com.icore.util.dao.hibernate.CommonDao" autowire="byName" />
 	<!-- 日志切片 -->
 	<bean id="logInterceptor"
 		class="cn.com.icore.sys.intercept.LogInterceptor" autowire="byName" />
