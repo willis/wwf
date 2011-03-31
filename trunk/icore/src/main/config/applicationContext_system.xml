@@ -29,7 +29,7 @@
 		autowire="byName" />
 	<bean id="sysMenuService"
 		class="cn.com.icore.user.service.impl.SysMenuServiceImpl"
-		autowire="byName" scope="prototype"/>
+		autowire="byName" />
 	<bean id="sysPopedomService"
 		class="cn.com.icore.user.service.impl.SysPopedomServiceImpl"
 		autowire="byName" />

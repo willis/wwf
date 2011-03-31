@@ -37,8 +37,8 @@ public class SysMenuControl {
 
 		if ((alias == null) || (alias.trim().length() == 0))
 			return null;
-		if (this.tree == null)
-			putRootTree();
+
+		putRootTree();
 		for (SysMenu menu : this.tree) {
 
 			if (menu.getAlias() == null)
@@ -57,12 +57,10 @@ public class SysMenuControl {
 			Set<SysMenu> userMenus, int levelLimit) {
 
 		SysMenu d = getSysMenuByAlias(alias);
-
 		List beans = new ArrayList();
 		if (d == null)
 			return beans;
 		loadTreeChilds(d, beans, 0, levelLimit, userMenus);
-
 		return beans;
 	}
 

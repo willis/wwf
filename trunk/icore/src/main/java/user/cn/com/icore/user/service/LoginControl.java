@@ -2,6 +2,7 @@ package cn.com.icore.user.service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,6 @@ public class LoginControl {
 	public static final String USER_OBJ = "userOBJ";
 	public static final String SYSMENU_OBJ = "SYSMENU_OBJ";
 	private SysUserService sysUserService = null;
-
 	private SysGroupService sysGroupService = null;
 
 	public void setSysUserService(SysUserService sysUserService) {
@@ -87,7 +87,7 @@ public class LoginControl {
 			Set<SysMenu> sysMenus = new HashSet<SysMenu>();
 
 			// 将用户所拥有的权限进行过滤
-
+		
 			for (SysRole sr : s_roles) {
 
 				// 找出当前角色下的权限
@@ -99,6 +99,7 @@ public class LoginControl {
 					s_popedoms.add(sp.getCode());
 				}
 				// 添加用户登录后的菜单
+
 				sysMenus.addAll(sr.getSysMenus());
 			}
 
@@ -152,6 +153,11 @@ public class LoginControl {
 		req.getSession().removeAttribute(USER_OBJ);
 		req.getSession().removeAttribute(SYSMENU_OBJ);
 		req.getSession().invalidate();
+		try{
+			TransactionSynchronizationManager.unbindResource(USER_OBJ);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public static synchronized boolean hasLogin(HttpServletRequest req) {
