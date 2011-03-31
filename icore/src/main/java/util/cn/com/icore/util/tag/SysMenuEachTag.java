@@ -31,21 +31,22 @@ public class SysMenuEachTag extends TagSupport {
 	private List<SysMenu> tree = null;
 
 	public int doStartTag() throws JspException {
-		Set<SysMenu>  userMenus = LoginControl
+		Set<SysMenu> userMenus = LoginControl
 				.getSysMenus((HttpServletRequest) this.pageContext.getRequest());
+
 		if (userMenus == null) {
 			return 0;
 		}
 		this.tree = SysMenuControl.getInstance().getSysMenusByAlias(this.alias,
 				userMenus, this.levelLimit);
-
+		
 		if (this.tree.isEmpty())
 			return 0;
 		this.end = this.tree.size();
 		this.index = 0;
 
 		if (this.index < this.end) {
-	
+
 			if (this.varStatus != null) {
 				this.pageContext.getRequest().setAttribute(this.varStatus,
 						Integer.valueOf(this.index));
@@ -72,6 +73,7 @@ public class SysMenuEachTag extends TagSupport {
 	}
 
 	public void release() {
+
 		super.release();
 		this.index = 0;
 		this.end = 0;
@@ -80,6 +82,7 @@ public class SysMenuEachTag extends TagSupport {
 		this.tree = null;
 		this.levelLimit = -1;
 		this.varStatus = null;
+
 	}
 
 	public String getVar() {

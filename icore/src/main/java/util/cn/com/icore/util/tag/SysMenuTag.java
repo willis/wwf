@@ -33,18 +33,18 @@ public class SysMenuTag extends TagSupport {
 			return 0;
 
 		if (this.check) {
-			
-			
-			for(SysMenu sm : userMenus){
-				
-				if(sm.getId().equals(sysMenu.getId())){
-					
-					this.pageContext.getRequest().setAttribute(this.var, sysMenu);
+
+			for (SysMenu sm : userMenus) {
+
+				if (sm.getId().equals(sysMenu.getId())) {
+
+					this.pageContext.getRequest().setAttribute(this.var,
+							sysMenu);
 				}
 			}
-			
-				
+
 		} else {
+
 			this.pageContext.getRequest().setAttribute(this.var, sysMenu);
 		}
 		return 0;
