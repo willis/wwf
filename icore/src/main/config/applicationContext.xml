@@ -137,7 +137,9 @@
 				<value>
 					cn/com/icore/dictionary/model/Dictionary.hbm.xml
 				</value>
-
+				<value>
+					cn/com/icore/upload/model/Annex.hbm.xml
+				</value>
 			</list>
 		</property>
 		<!-- lob处理器,解决oracle的clob,blob问题 -->
@@ -190,6 +192,7 @@
 				<prop key="merge*">
 					PROPAGATION_REQUIRED,-Exception
 				</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
 		
 			</props>
 		</property>
@@ -206,14 +209,7 @@
 		</property>
 		<property name="patterns">
 			<list>
-				<value>.*save*.*</value>
-				<value>.*remove*.*</value>
-				<value>.*update*.*</value>
-				<value>.*change.*</value>
-				<value>.*add*.*</value>
-				<value>.*del*.*</value>
-				<value>.*list.*</value>
-				<value>.*loginUserByPassword.*</value>
+			
 			</list>
 		</property>
 	</bean>

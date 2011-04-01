@@ -78,6 +78,7 @@ public class SysMenuAction extends BaseAction {
 		sysMenu.setOrderBy(sysMenu.getOrderBy()!=null?sysMenu.getOrderBy():0l);
 		sysMenu.setCurDate(new Date());
 		getSysMenuService().save(sysMenu);
+		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, result);
 		
 	}

@@ -4,7 +4,7 @@
 #uploadContent{
 	position:relative;
 	width:220px;
-    left:200px;
+    left:0px;
 }
 #uploadProgress{
     display:none;
