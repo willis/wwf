@@ -1,9 +1,11 @@
-package cn.com.icore.servlet;
+package cn.com.icore.upload.action;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -16,10 +18,14 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileCleaningTracker;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.apache.commons.lang.StringUtils;
 
+import cn.com.icore.upload.model.Annex;
+import cn.com.icore.upload.service.AnnexService;
+import cn.com.icore.user.service.LoginControl;
+import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.app.ApplictionContext;
+
 
 
 /**
@@ -33,7 +39,11 @@ public class UploadServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	public AnnexService getAnnexService() {
+		return (AnnexService) ApplictionContext.getInstance()
+		.getBean(AnnexService.ID_Name);
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -56,18 +66,17 @@ public class UploadServlet extends HttpServlet {
 		}
 		
 		PrintWriter out = resp.getWriter();
-		
-		System.out.println("开始上传");
 		// create factory and file cleanup tracker
 		FileCleaningTracker tracker = FileCleanerCleanup.getFileCleaningTracker(getServletContext());
 		File tmpDir = new File(getBaseDir() + "/upload/temp");
-		
+		String object_id = ParamHelper.getStr(req, "object_id", "");
+		String type = ParamHelper.getStr(req, "type", "");
 
 		DiskFileItemFactory factory = new DiskFileItemFactory(
 				DiskFileItemFactory.DEFAULT_SIZE_THRESHOLD,
 				tmpDir);
 		factory.setFileCleaningTracker(tracker);
-		
+		String objId = UUID.randomUUID().toString();
 		// save upload file to disk
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		try {
@@ -78,19 +87,36 @@ public class UploadServlet extends HttpServlet {
 				if (!item.isFormField()){
 					// 确定是文件而不是一个普通的表单字段
 					fileName = item.getName();
-					savefile = new File(getBaseDir() + "/upload/" + fileName);
-					item.write(savefile);
-					System.out.println(">> [save] " + savefile.getAbsolutePath());
-
-					// to client info
-					System.out.println("上传结束");
-					out.print("fileId=" + savefile.getAbsolutePath());
+					Annex annex = new Annex();
+					annex.setDate(new Date(System.currentTimeMillis()));
+					annex.setUser(LoginControl.getSysUser(req));
+					annex.setFileNames(fileName);
+					String extendName = fileName
+					.substring(fileName.lastIndexOf(".") + 1);
+					annex.setFilePath("/upload/" + objId + "."
+							+ extendName);
 					
+					annex.setFileSize(item.getSize() + "");
+					annex.setType(type);
+					if (StringUtils.isNotBlank(object_id)) {
+						annex.setObject_id(object_id);
+					} else {
+						object_id = "00-";
+						object_id += UUID.randomUUID().toString();
+						annex.setObject_id(object_id);
+					}
+				 
+					savefile = new File(getBaseDir() + "/upload/" + objId + "."
+							+ extendName);
+					item.write(savefile);
+					
+					getAnnexService().save(annex);
+					out.print(object_id);
+					req.setAttribute("object_id", object_id);
 					out.flush();
 				}
 			}
 		} catch (Exception e) {
-			System.out.println(">> " + e.getMessage());
 			throw new IOException(e.getMessage());
 		}
 	}
