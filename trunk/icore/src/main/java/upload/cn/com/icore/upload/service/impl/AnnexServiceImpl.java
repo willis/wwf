@@ -1,14 +1,15 @@
 package cn.com.icore.upload.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import com.fins.gt.model.PageInfo;
+
 import cn.com.icore.upload.model.Annex;
 import cn.com.icore.upload.service.AnnexService;
 import cn.com.icore.util.dao.hibernate.CommonDao;
+
+import com.fins.gt.model.PageInfo;
 
 public class AnnexServiceImpl extends CommonDao implements AnnexService {
 
@@ -85,6 +86,12 @@ public class AnnexServiceImpl extends CommonDao implements AnnexService {
 		StringBuffer stb = new StringBuffer(
 				"from Annex a where a.object_id in('" + object_id + "')");
 		return super.find(stb.toString());
+	}
+
+	@Override
+	public void remove(Long id) {
+		super.remove(Annex.class, id);
+		
 	}
 
 }
