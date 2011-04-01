@@ -71,9 +71,6 @@ function uploadSuccess(file, serverData, response){
  * 开始上传
  * @return
  */
-function  setPostParams(){
- 	
-}
 function startUpload(){
     swfu.setPostParams({"object_id": $("#uuid").val()});
 	swfu.startUpload();
@@ -103,7 +100,6 @@ function startUpload(){
 								操作
 							</th>
 							
-							 
 						</tr>
 					</thead>
 					<tbody id="myTable" >
@@ -119,7 +115,7 @@ function startUpload(){
 		  		table:'myTable',
 		  		loading:'loading',
 		  		id:'id',
-		  		queryUrl:'annexAction!objectList.action',
+		  		queryUrl:'annexAction!annexList.action',
 		  		headerColumns:
 		  		[
 		  		{id:'fileNames'},
@@ -131,8 +127,7 @@ function startUpload(){
 	      
 	     function editRenderer(idValue,value){
 	     	var txt="";
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+	     	txt+= " <a href='javascript:' onclick='javascript:editdelete("+value+");'>删除</a>"
 	     	return txt;
 	     }
 	     function query(object_id){
@@ -141,9 +136,23 @@ function startUpload(){
 	    	myTable1.onLoad({object_id:object_id});
 	     } 	
 	  
-		query($("#uuid").val());
-		 
-		 
+		 query($("#uuid").val());
+		  function editdelete(value){
+			 $.ajax({
+		           type: "post",//使用get方法访问后台
+		           dataType: "json",//返回json格式的数据
+		           url: "annexAction!remove.action?id="+value,//要访问的后台地址
+		          //complete :function(){$("#load").hide();},//AJAX请求完成时隐藏loading提示
+		           success: function(data){//data为返回的数据，在这里做数据绑定
+		           
+		     				query($("#uuid").val());
+							window.parent.jAlert(data.message, "系统提示");
+		           },
+		           error: function(data){
+		           	     window.parent.jAlert("删除文件失败", "系统提示");
+		           }
+		      	});
+		 }
 		</script>	
 	
 				

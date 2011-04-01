@@ -37,6 +37,10 @@ public interface AnnexService {
 	 * 删除方法
 	 */
 	public void remove(Annex annex);
+	/**
+	 * 删除方法
+	 */
+	public void remove(Long id);
 
 	/**
 	 * 得到单个附件
