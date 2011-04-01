@@ -20,11 +20,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileCleaningTracker;
 import org.apache.commons.lang.StringUtils;
 
-import cn.com.icore.upload.model.Annex;
-import cn.com.icore.upload.service.AnnexService;
 import cn.com.icore.user.service.LoginControl;
 import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.app.ApplictionContext;
+import cn.com.icore.upload.model.Annex;
+import cn.com.icore.upload.service.AnnexService;
 
 
 
@@ -89,6 +89,7 @@ public class UploadServlet extends HttpServlet {
 					fileName = item.getName();
 					Annex annex = new Annex();
 					annex.setDate(new Date(System.currentTimeMillis()));
+					//System.out.println(LoginControl.getSysUser(req).getTruename());
 					annex.setUser(LoginControl.getSysUser(req));
 					annex.setFileNames(fileName);
 					String extendName = fileName
@@ -117,7 +118,7 @@ public class UploadServlet extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
-			throw new IOException(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	/**

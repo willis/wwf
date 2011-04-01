@@ -48,17 +48,17 @@ public class UserFilter implements Filter {
 					response);
 		} else if (this.isUsePopedom)
 			try {
-				TransactionSynchronizationManager.bindResource(LoginControl.POPEDOM_OBJ,
+				TransactionSynchronizationManager.bindResource("ICORE_POPEDOM",
 						LoginControl.getPopedoms((HttpServletRequest) request));
-				TransactionSynchronizationManager.bindResource(LoginControl.USER_OBJ,
+				TransactionSynchronizationManager.bindResource("userOBJ",
 						LoginControl.getSysUser((HttpServletRequest) request));
 				chain.doFilter(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				TransactionSynchronizationManager
-						.unbindResource(LoginControl.POPEDOM_OBJ);
-				TransactionSynchronizationManager.unbindResource(LoginControl.USER_OBJ);
+						.unbindResource("ICORE_POPEDOM");
+				TransactionSynchronizationManager.unbindResource("userOBJ");
 			}
 		else
 			chain.doFilter(request, response);
