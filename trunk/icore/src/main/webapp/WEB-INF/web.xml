@@ -95,7 +95,8 @@
     
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>cn.com.icore.servlet.UploadServlet</servlet-class>
+        <servlet-class>cn.com.icore.upload.action.UploadServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     
     <servlet-mapping>

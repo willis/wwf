@@ -17,7 +17,7 @@ window.onload = function(){
     var settings = {
     	preserve_relative_urls:true,
         flash_url:"<%=contextPath%>/swfupload/flash/swfupload.swf",
-        upload_url:"<%=contextPath%>/uploadServlet",         // servlet path
+        upload_url: "<%=contextPath%>/uploadServlet", // servlet path
         file_size_limit:"1000 MB",
         file_types:"*.*",
         file_types_description:"viva pdf文件上传",

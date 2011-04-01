@@ -140,7 +140,8 @@ function uploadSuccess(file, serverData, response){
 	var percentTxt = document.getElementById("percentTxt");
 	colorStatus.style.width = '100%';
 	percentTxt.innerHTML = '100%';
-	alert("server back: " + serverData);
+
+	
 }
 /**
  * 文件上传完成

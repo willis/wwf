@@ -33,5 +33,7 @@
 	<bean id="sysPopedomService"
 		class="cn.com.icore.user.service.impl.SysPopedomServiceImpl"
 		autowire="byName" />
-	
+    <bean id="annexService"
+		class="cn.com.icore.upload.service.impl.AnnexServiceImpl"
+		autowire="byName" />
 </beans>

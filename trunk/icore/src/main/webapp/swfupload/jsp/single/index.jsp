@@ -20,7 +20,7 @@ window.onload = function () {
 	
 	    // Backend settings
 	    preserve_relative_urls: true,
-	    upload_url: "<%=contextPath%>/uploadServlet", // servlet path
+	    upload_url: "<%=contextPath%>/uploadServlet?", // servlet path
 	             
 	    // Flash file settings
 	    file_types : "*.*",             // multi types like: "*.doc;*.wpd;*.pdf"
@@ -50,7 +50,7 @@ window.onload = function () {
 	             
 	    custom_settings : {
 	        progress_target : "fsUploadProgress",
-	        upload_successful : false
+	        upload_successful : true
 	    },
 	    debug:false
 	});

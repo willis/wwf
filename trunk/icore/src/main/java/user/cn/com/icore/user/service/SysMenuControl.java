@@ -37,8 +37,8 @@ public class SysMenuControl {
 
 		if ((alias == null) || (alias.trim().length() == 0))
 			return null;
-
-		putRootTree();
+		if(this.tree==null)
+			putRootTree();
 		for (SysMenu menu : this.tree) {
 
 			if (menu.getAlias() == null)
