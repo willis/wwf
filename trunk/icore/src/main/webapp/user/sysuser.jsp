@@ -133,13 +133,13 @@
 		  		loading:'loading',
 		  		id:'id',
 		  		queryUrl:'sysUser!userList.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},
-		  		{id:'id',name:'操作',renderer:editRenderer},
-		  		{id:'username',name:'用户名'},
-		  		{id:'truename',name:'姓名'},
-		  		{id:'sex',name:'性别'},
-		  		{id:'status',name:'状态',renderer:statusRenderer},
-		  		{id:'regtime',name:'注册时间',renderer:regtimeRenderer}
+		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
+		  		{id:'id',renderer:editRenderer},
+		  		{id:'username'},
+		  		{id:'truename'},
+		  		{id:'sex'},
+		  		{id:'status',renderer:statusRenderer},
+		  		{id:'regtime',renderer:regtimeRenderer}
 		  		]
 		  	}
 		  )
@@ -150,7 +150,8 @@
 	     	myTable1.page.totalRowNum = 0;
 	    	myTable1.onLoad({username:$("#username").val(),truename:$("#truename").val(),status:$("#status").val()});
 	     } 	
-	     function editRenderer(idValue,value){
+	     function editRenderer(idValue,value,record){
+	    	//record["id"]
 	     	var txt="";
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
@@ -253,8 +254,6 @@ function updateSelect(){
 		 
 		</script>	
 	
-
-
 	
 
 	</body>

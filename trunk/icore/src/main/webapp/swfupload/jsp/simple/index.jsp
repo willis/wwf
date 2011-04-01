@@ -99,6 +99,9 @@ function startUpload(){
 							<th>
 								文件名称
 							</th>
+							<th>
+								操作
+							</th>
 							
 							 
 						</tr>
@@ -119,13 +122,19 @@ function startUpload(){
 		  		queryUrl:'annexAction!objectList.action',
 		  		headerColumns:
 		  		[
-		  		{id:'fileNames'}
+		  		{id:'fileNames'},
+		  		{id:'id',name:'操作',renderer:editRenderer}
 		  		]
 		  	}
 		  )
 		  
 	      
-	    
+	     function editRenderer(idValue,value){
+	     	var txt="";
+	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
+	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+	     	return txt;
+	     }
 	     function query(object_id){
 	     	myTable1.page.totalRowNum = 0;
 	     	myTable1.page.pageSize = 5;
