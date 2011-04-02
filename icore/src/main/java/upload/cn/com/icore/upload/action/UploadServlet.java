@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileCleaningTracker;
 import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.ServletActionContext;
 
 import cn.com.icore.user.service.LoginControl;
 import cn.com.icore.util.ParamHelper;
@@ -58,7 +59,7 @@ public class UploadServlet extends HttpServlet {
 		
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
-		
+	
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 		if (!isMultipart){
 			System.out.println(">> This wasn't a file upload request!");
@@ -89,7 +90,7 @@ public class UploadServlet extends HttpServlet {
 					fileName = item.getName();
 					Annex annex = new Annex();
 					annex.setDate(new Date(System.currentTimeMillis()));
-					//System.out.println(LoginControl.getSysUser(req).getTruename());
+					
 					annex.setUser(LoginControl.getSysUser(req));
 					annex.setFileNames(fileName);
 					String extendName = fileName

@@ -17,6 +17,15 @@
 	window.onload = function () {
 		document.getElementById("username").focus();
 	}
+	var openerIsIndex=false;
+
+	if(opener!=null && !openerIsIndex){
+		opener.top.location= "${cxp}/index.jsp";
+		window.close();
+	}else if(top!=self){
+		top.location= "${cxp}/index.jsp";
+	}
+	
 </script>
 </head>
 

@@ -40,7 +40,7 @@ public class LoginControl {
 	public void setSysGroupService(SysGroupService sysGroupService) {
 		this.sysGroupService = sysGroupService;
 	}
-	public  static synchronized  SysUser getOperater() {
+	public  static   SysUser getOperater() {
 		return (SysUser)ServletActionContext.getRequest().getSession().getAttribute(LoginControl.USER_OBJ);
 	}
 
@@ -122,7 +122,7 @@ public class LoginControl {
 		return ok;
 	}
 
-	public static synchronized boolean checkPopedom(String code,
+	public static  boolean checkPopedom(String code,
 			HttpServletRequest req) {
 		if ((Set) req.getSession().getAttribute(POPEDOM_OBJ) == null)
 			return false;
@@ -130,7 +130,7 @@ public class LoginControl {
 				.contains(code);
 	}
 
-	public static synchronized boolean checkPopedom(String[] codes,
+	public static  boolean checkPopedom(String[] codes,
 			HttpServletRequest req) {
 		String[] arrayOfString = codes;
 		int j = codes.length;
@@ -143,7 +143,7 @@ public class LoginControl {
 		}
 		return false;
 	}
-	public static synchronized void clearAttr() {
+	public static  void clearAttr() {
 		
 		ServletActionContext.getRequest().getSession().removeAttribute(LOGIN_NAME);
 		ServletActionContext.getRequest().getSession().removeAttribute(TRUENAME_NAME);
