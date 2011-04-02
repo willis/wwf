@@ -10,8 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.transaction.support.TransactionSynchronizationManager;
-
 import cn.com.icore.user.service.LoginControl;
 
 public class UserFilter implements Filter {
@@ -48,17 +46,11 @@ public class UserFilter implements Filter {
 					response);
 		} else if (this.isUsePopedom)
 			try {
-				TransactionSynchronizationManager.bindResource("ICORE_POPEDOM",
-						LoginControl.getPopedoms((HttpServletRequest) request));
-				TransactionSynchronizationManager.bindResource("userOBJ",
-						LoginControl.getSysUser((HttpServletRequest) request));
 				chain.doFilter(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				TransactionSynchronizationManager
-						.unbindResource("ICORE_POPEDOM");
-				TransactionSynchronizationManager.unbindResource("userOBJ");
+				LoginControl.clearAttr();
 			}
 		else
 			chain.doFilter(request, response);
