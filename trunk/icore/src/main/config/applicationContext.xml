@@ -224,7 +224,7 @@
 	<bean
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
-			<value>*Service,*Utils</value>
+			<value>*Service</value>
 		</property>
 		<property name="interceptorNames">
 			<list>

@@ -8,9 +8,9 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import cn.com.icore.user.model.SysGroup;
 import cn.com.icore.user.model.SysMenu;
@@ -41,8 +41,7 @@ public class LoginControl {
 		this.sysGroupService = sysGroupService;
 	}
 	public  static synchronized  SysUser getOperater() {
-		return (SysUser) TransactionSynchronizationManager
-				.getResource(LoginControl.USER_OBJ);
+		return (SysUser)ServletActionContext.getRequest().getSession().getAttribute(LoginControl.USER_OBJ);
 	}
 
 	public boolean login(String username, String password,
@@ -111,7 +110,7 @@ public class LoginControl {
 			sysUser.setLogintime(new Date());
 			sysUser.setLoginip(req.getRemoteAddr());
 			this.sysUserService.save(sysUser);
-			TransactionSynchronizationManager.bindResource(USER_OBJ,sysUser);
+			
 			
 
 			return ok;
@@ -144,7 +143,16 @@ public class LoginControl {
 		}
 		return false;
 	}
-
+	public static synchronized void clearAttr() {
+		
+		ServletActionContext.getRequest().getSession().removeAttribute(LOGIN_NAME);
+		ServletActionContext.getRequest().getSession().removeAttribute(TRUENAME_NAME);
+		ServletActionContext.getRequest().getSession().removeAttribute(POPEDOM_OBJ);
+		ServletActionContext.getRequest().getSession().removeAttribute(USER_OBJ);
+		ServletActionContext.getRequest().getSession().removeAttribute(SYSMENU_OBJ);
+		ServletActionContext.getRequest().getSession().invalidate();
+		
+	}
 	public static synchronized void loginOut(HttpServletRequest req) {
 		req.getSession().removeAttribute(LOGIN_NAME);
 		req.getSession().removeAttribute(TRUENAME_NAME);
@@ -152,11 +160,7 @@ public class LoginControl {
 		req.getSession().removeAttribute(USER_OBJ);
 		req.getSession().removeAttribute(SYSMENU_OBJ);
 		req.getSession().invalidate();
-		try{
-			TransactionSynchronizationManager.unbindResource(USER_OBJ);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		
 	}
 
 	public static synchronized boolean hasLogin(HttpServletRequest req) {
