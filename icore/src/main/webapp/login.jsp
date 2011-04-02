@@ -31,16 +31,16 @@
 <!---content start--->
 <div id="content">
 
-  <div id="login"><h2>系统登录</h2>
+  <div id="login"><h2>系统登录      <font color="red">默认账号：admin/123</font></h2>
     <form action="${cxp}/login_do.jsp" method="post" onSubmit="return checkForm(this)">
       <label>用户名：</label>
       <input type="text"  name="username" id="username"  checkInfo="用户名;NOTNULL;no"/>
       <label><br />密　码：</label>
       <input type="password"  name="password" id="password"  checkInfo="密码;NOTNULL;no" />
       <label><br />
-      验证码：</label>
-      <input type="text" name="randomCode" class="txtBox_3" />
-      <label><img src="${cxp}/servlet/randomCodeImage"  ></label>
+      <!--  验证码：</label>
+     <input type="text" name="randomCode" class="txtBox_3" />
+      <label><img src="${cxp}/servlet/randomCodeImage"  ></label> -->
       <input type="submit" name="apply" value="登录" class="apply" />
     </form>
   </div>
