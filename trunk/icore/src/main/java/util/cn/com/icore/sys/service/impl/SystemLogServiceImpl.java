@@ -12,9 +12,9 @@ import cn.com.icore.util.pager.Pager;
 @SuppressWarnings("unchecked")
 public class SystemLogServiceImpl extends CommonDao implements SystemLogService {
 
-	public void toSave(SystemLog log) {
+	public void add(SystemLog log) {
 
-		super.save(log);
+		super.add(log);
 	}
 
 	public int count() {

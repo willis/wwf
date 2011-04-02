@@ -87,7 +87,7 @@ function startUpload(){
         <div id="percentTxt"></div>
     </div>
 </div>
-<input type="hidden" id="uuid" name="uuid" value="${object_id}">
+<input type="hidden" id="uuid" name="uuid" value="${ object_id}">
 <input id="btnStartUpload" type="button" value="开始上传" onclick="startUpload()" disabled="disabled" style="position:relative;left:170px;"/>
 	<table class="table" style="width: 220px;" >
 					<thead>

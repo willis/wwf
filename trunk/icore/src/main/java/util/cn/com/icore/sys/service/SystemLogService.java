@@ -11,7 +11,7 @@ public interface SystemLogService {
 	
 	public static final String ID_NAME = "systemLogService";
 	
-	public void toSave(SystemLog log);
+	public void add(SystemLog log);
 	public List<SystemLog> find(Pager pager);
 	public List<SystemLog> find(PageInfo pager);
 
