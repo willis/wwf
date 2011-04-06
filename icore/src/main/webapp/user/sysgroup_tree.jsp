@@ -10,7 +10,7 @@
 		<%@ include file="/include/jquery.jsp"%>
 		<link rel="StyleSheet" href="${cxp}/js/dtree.css" type="text/css" />
 		<link rel="StyleSheet" href="${cxp}/css/css.css" type="text/css" />
-		<script type="text/javascript" src="${cxp}/js/dtree.js"></script>
+		<script type="text/javascript" src="${cxp}/js/dtree2.js"></script>
 
 
 		<style type="text/css">
@@ -178,6 +178,24 @@ function tdBlur(obj){
 
  imagepath="${cxp}/images/img";
 
+			
+var main = parent.window.main;
+
+function myOpen(url){
+        var w_left = screen.width/2-250;
+        var w_height = screen.height/2-150;
+        var changeWindow = window.open(url,'','width=500,height=300');
+        changeWindow.moveTo(w_left,w_height);
+}
+
+function ahref(url){
+    var mainf = parent.document.getElementById("mainf").contentWindow;
+    var mainHref = mainf.location.href;
+  	mainf.location.href=url;
+  
+  
+}
+
 </script>
 
 		<div class="dtree" id="dtree" onclick="hideMyDiv()">
@@ -189,7 +207,16 @@ d = new dTree('d');
 d.add(<s:property value="sysGroup.id"/>,-1,'<span oncontextmenu="return showMyDiv(event)" isroot="true" cid="<s:property value="sysGroup.id"/>" ><s:property value="sysGroup.name"/></span>','javascript:');
 
 
-<s:iterator id="info" value="trees">
+<s:iterator id="info" value="trees"  status="stuts">
+<s:if test="#stuts.first == 1">
+
+<% String defaultId =((String[]) pageContext.findAttribute("info"))[0]; 
+out.println("ahref('sysgroup_user.jsp?id="+defaultId+"&method=getSysGroupUsers');");
+
+%>
+
+</s:if>
+
 d.add(<%=((String[]) pageContext.findAttribute("info"))[0]%>,<%=((String[]) pageContext.findAttribute("info"))[2]%>,'<span oncontextmenu="return showMyDiv(event)" cid="${info[0]}" ><%=((String[]) pageContext.findAttribute("info"))[1]%></span>','javascript:ahref(\'sysgroup_user.jsp?id=<%=((String[]) pageContext.findAttribute("info"))[0]%>&method=getSysGroupUsers\')');		
 
 </s:iterator> 
@@ -199,40 +226,7 @@ document.write(d);
 
 
 </script>
-			<script>
-var main = parent.window.main;
-
-function myOpen(url){
-        var w_left = screen.width/2-250;
-        var w_height = screen.height/2-150;
-        var changeWindow = window.open(url,'','width=500,height=300');
-        changeWindow.moveTo(w_left,w_height);
-}
-
-function ahref(url){
-
-    var mainf = parent.document.getElementById("mainf").contentWindow;
-    var mainHref = mainf.location.href;
-  	mainf.location.href=url;
-  	/********
-  //得取到主框架的地址栏搜索条件,?param=value....
-  var msearch = main.location.search;
-  //得到主框架的地址栏值
-  var mhref = main.location.href;
-  if(msearch == ""){
-  //如果搜索条件为空,那么就直接打开URL
-  main.location.href = url
-  }else{
-  //否则,只是将主框架地址栏中的搜索条件进行变更
-  mhref = mhref.substring(0,mhref.indexOf("?"));
-  main.location.href = mhref+url.substring(url.indexOf("?"));
-
-  }
-  ********/
-  
-}
-
-</script>
+		
 
 		</div>
 	</body>
