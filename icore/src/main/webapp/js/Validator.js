@@ -1,8 +1,7 @@
- /*************************************************
-	Validator v1.05
-	code by 我佛山人
-	wfsr@msn.com
-*************************************************/
+ String.prototype.trim= function()  
+{  
+    return this.replace(/(^\s*)|(\s*$)/g, "");  
+}
  Validator = {
 	Require : /.+/,
 	Email : /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -10,12 +9,14 @@
 	Mobile : /^((\(\d{2,3}\))|(\d{3}\-))?13\d{9}$/,
 	Url : /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/,
 	IdCard : "this.IsIdCard(value)",
+	Emails : "this.IsEmails(value)",
 	Currency : /^\d+(\.\d+)?$/,
 	Number : /^\d+$/,
 	Zip : /^[1-9]\d{5}$/,
 	QQ : /^[1-9]\d{4,8}$/,
 	Integer : /^[-\+]?\d+$/,
 	Double : /^[-\+]?\d+(\.\d+)?$/,
+	Percent : /^\d{1,2}(\.\d{0,2})?$/,
 	English : /^[A-Za-z]+$/,
 	Chinese :  /^[\u0391-\uFFE5]+$/,
 	Username : /^[a-z]\w{3,}$/i,
@@ -23,8 +24,9 @@
 	IsSafe : function(str){return !this.UnSafe.test(str);},
 	SafeString : "this.IsSafe(value)",
 	Filter : "this.DoFilter(value, getAttribute('accept'))",
-	Limit : "this.limit(value.length,getAttribute('min'),  getAttribute('max'))",
-	LimitB : "this.limit(this.LenB(value), getAttribute('min'), getAttribute('max'))",
+	NotFilter : "!this.DoFilter(value, getAttribute('accept'))",
+	Limit : "this.limit(value.trim().length,getAttribute('min'),  getAttribute('max'))",
+	LimitB : "this.limit(this.LenB(value.trim()), getAttribute('min'), getAttribute('max'))",
 	Date : "this.IsDate(value, getAttribute('min'), getAttribute('format'))",
 	Repeat : "value == document.getElementsByName(getAttribute('to'))[0].value",
 	Range : "getAttribute('min') < (value|0) && (value|0) < getAttribute('max')",
@@ -32,7 +34,7 @@
 	Custom : "this.Exec(value, getAttribute('regexp'))",
 	Group : "this.MustChecked(getAttribute('name'), getAttribute('min'), getAttribute('max'))",
 	ErrorItem : [document.forms[0]],
-	ErrorMessage : ["以下原因导致提交失败：\t\t\t\t"],
+	ErrorMessage : ["Information:\t\t\t\t"],
 	createCheckForm : function(theForm) {
 		var obj = theForm || event.srcElement;
 		var count = obj.elements.length;
@@ -56,7 +58,6 @@
 		}
 	},
 	Validate : function(theForm, mode){
-	
 		var obj = theForm || event.srcElement;
 		var count = obj.elements.length;
 		this.ErrorMessage.length = 1;
@@ -67,9 +68,10 @@
 				var _dataType = getAttribute("dataType");
 				if(typeof(_dataType) == "object" || typeof(this[_dataType]) == "undefined")  continue;
 				this.ClearState(obj.elements[i]);
-				if(getAttribute("require") == "false" && value == "") continue;
+				if(getAttribute("require") == "false" && value.trim() == "") continue;
 				switch(_dataType){
 					case "IdCard" :
+					case "Emails" :
 					case "Date" :
 					case "Repeat" :
 					case "Range" :
@@ -80,6 +82,11 @@
 					case "LimitB" :
 					case "SafeString" :
 					case "Filter" :
+						if(!eval(this[_dataType]))	{
+							this.AddError(i, getAttribute("msg"));
+						}
+						break;
+					case "NotFilter" :
 						if(!eval(this[_dataType]))	{
 							this.AddError(i, getAttribute("msg"));
 						}
@@ -97,10 +104,15 @@
 			var errCount = this.ErrorItem.length;
 			switch(mode){
 			case 2 :
-				for(var i=1;i<errCount;i++)
+				for(var i=1;i<errCount;i++){
 					this.ErrorItem[i].style.color = "red";
+					this.ErrorItem[i].style.backgroundColor = "#FFF9CA";
+				}
 			case 1 :
 				alert(this.ErrorMessage.join("\n"));
+				if(this.ErrorItem[1].getAttribute('backcall')){
+					eval(this.ErrorItem[1].getAttribute('backcall'));
+				}
 				this.ErrorItem[1].focus();
 				break;
 			case 3 :
@@ -134,8 +146,10 @@
 	},
 	ClearState : function(elem){
 		with(elem){
-			if(style.color == "red")
+			if(style.color == "red"){
 				style.color = "";
+				style.backgroundColor = "";
+			}
 			var lastNode = parentNode.childNodes[parentNode.childNodes.length-1];
 			if(lastNode.id == "__ErrorMessagePanel")
 				parentNode.removeChild(lastNode);
@@ -174,7 +188,7 @@
 		return min <= hasChecked && hasChecked <= max;
 	},
 	DoFilter : function(input, filter){
-return new RegExp("^.+\.(?=EXT)(EXT)$".replace(/EXT/g, filter.split(/\s*,\s*/).join("|")), "gi").test(input);
+		return new RegExp("^.+\.(?=EXT)(EXT)$".replace(/EXT/g, filter.split(/\s*,\s*/).join("|")), "gi").test(input);
 	},
 	IsIdCard : function(number){
 		var date, Ai;
@@ -199,6 +213,19 @@ return new RegExp("^.+\.(?=EXT)(EXT)$".replace(/EXT/g, filter.split(/\s*,\s*/).j
 		}
 		Ai +=  verify.charAt(sum%11);
 		return (number.length ==15 || number.length == 18 && number == Ai);
+	},
+	IsEmails : function(emails){
+		if(emails){
+			var emailArray = emails.split(";");
+			for(var i=0;i<emailArray.length;i++){
+				if(emailArray[i]){
+					return this.Email.test(emailArray[i]);
+				}
+			}
+			return true;
+		}else{
+			return false;
+		}
 	},
 	IsDate : function(op, formatString){
 		formatString = formatString || "ymd";
