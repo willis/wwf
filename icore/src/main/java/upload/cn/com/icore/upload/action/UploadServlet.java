@@ -19,13 +19,12 @@ import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileCleaningTracker;
 import org.apache.commons.lang.StringUtils;
-import org.apache.struts2.ServletActionContext;
 
+import cn.com.icore.upload.model.Annex;
+import cn.com.icore.upload.service.AnnexService;
 import cn.com.icore.user.service.LoginControl;
 import cn.com.icore.util.ParamHelper;
 import cn.com.icore.util.app.ApplictionContext;
-import cn.com.icore.upload.model.Annex;
-import cn.com.icore.upload.service.AnnexService;
 
 
 

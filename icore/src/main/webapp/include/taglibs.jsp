@@ -11,5 +11,5 @@ var contextPath = "${cxp}/";
 <link href="${cxp}/css/widget.css" rel="stylesheet" type="text/css" />
 <link href="${cxp}/css/layout.css" rel="stylesheet" type="text/css" />
 <link href="${cxp}/css/fonts.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${cxp}/js/myformcheck-min.js"></script>
+<script type="text/javascript" src="${cxp}/js/Validator-min.js"></script>
 <script type="text/javascript" src="${cxp}/js/operater.js"></script>

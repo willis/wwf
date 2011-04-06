@@ -29,7 +29,7 @@
 						<td>
 						
 							<input type="text" name="sysRole.name"
-								checkInfo="角色名称;NOTNULL;No"  value="<s:property value="sysRole.name"/>" style="width:90%"/>
+							 dataType="Require" msg="角色名称不能为空"  value="<s:property value="sysRole.name"/>" style="width:90%"/>
 						</td>
 					</tr>
 					<tr>
@@ -38,7 +38,7 @@
 						</td>
 						<td>
 							<input type="text" name="sysRole.describe" 
-								checkInfo="角色描述;NOTNULL;No"  value="<s:property value="sysRole.describe"/>" style="width:90%" />
+								 dataType="Require" msg="角色描述不能为空"  value="<s:property value="sysRole.describe"/>" style="width:90%" />
 						</td>
 					</tr>
 					
@@ -52,7 +52,7 @@
 		<script>
 
 
-			FormCheck.createCheckForm(document.forms[0]);
+			Validator.createCheckForm(document.forms[0]);
 			/**
 			回调
 			**/

@@ -42,7 +42,7 @@
 				<td>
 					<input type="text" name="dictionary.name"
 					
-						style="width: 80%" value="<s:property value="dictionary.name"/>" checkInfo="名称;NOTNULL;No" />
+						style="width: 80%" value="<s:property value="dictionary.name"/>" dataType="Require" msg="名称不能为空" />
 				</td>
 			</tr>
 
@@ -53,7 +53,7 @@
 				<td>
 					<input type="text" name="dictionary.describe"
 						
-						style="width: 80%" value="<s:property value="dictionary.describe"/>" checkInfo="描述;NOTNULL;No" />
+						style="width: 80%" value="<s:property value="dictionary.describe"/>" dataType="Require" msg="描述不能为空" />
 				</td>
 			</tr>
 
@@ -64,7 +64,7 @@
 				<td>
 					<input type="text" name="dictionary.orderby"
 						
-						style="width: 80%" value="<s:property value="dictionary.orderby"/>" checkInfo="索引;ISNULL;No" />
+						style="width: 80%" value="<s:property value="dictionary.orderby"/>"  />
 				</td>
 			</tr>
 
@@ -80,7 +80,7 @@
 <script>
 
 
-			FormCheck.createCheckForm(document.forms[0]);
+			Validator.createCheckForm(document.forms[0]);
 			/**
 			回调
 			**/

@@ -8,7 +8,7 @@
 		<script type="text/javascript"
 			src="${cxp}/js/My97DatePicker/WdatePicker.js"></script>
 		<link href="${cxp}/js/dtree.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${cxp}/js/dtree.js"></script>
+		<script type="text/javascript" src="${cxp}/js/dtree2.js"></script>
 
 	</head>
 	<body style="height: 100%;">
@@ -85,12 +85,12 @@
 			d.add("${sysMenuBean.id}",-1,'${sysMenuBean.name}');
 			<pager:eachMenu var="menu" alias="${param.menuAlias}" varStatus="ind">
 			<s:if test="#attr.ind==1">
-				<s:if test="not empty(#attr.menu.link)">
+				<s:if test="not empty(#attr.menu.link)&& #attr.menu.link!=''&&#attr.menu.link!=null">
 					<s:set var="defaultLink" value="#attr.menu.link"/>
 				</s:if>
 				
 			</s:if>
-			d.add(${menu.id},${menu.parentObj.id},"${menu.name}","javascript:<s:if test="not empty(#attr.menu.link)">d.mys('${cxp}${menu.link}')</s:if>","","" );
+			d.add(${menu.id},${menu.parentObj.id},"${menu.name}","javascript:<s:if test="not empty(#attr.menu.link)&& #attr.menu.link!=''&&#attr.menu.link!=null">d.mys('${cxp}${menu.link}')</s:if>","","" );
 			</pager:eachMenu>
 
 			document.write(d);

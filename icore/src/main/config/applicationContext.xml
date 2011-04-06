@@ -215,8 +215,7 @@
 				<value>.*change.*</value>
 				<value>.*add*.*</value>
 				<value>.*del*.*</value>
-				<value>.*list.*</value>
-				<value>.*loginUserByPassword.*</value>
+				<value>.*list*.*</value>
 			</list>
 		</property>
 	</bean>

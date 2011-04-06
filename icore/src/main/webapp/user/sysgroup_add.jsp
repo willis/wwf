@@ -38,7 +38,8 @@
 						</td>
 						<td>
 							<input type="text" name="sysGroup.name"
-								checkInfo="组名称;NOTNULL;No"   style="width:90%"/>
+								dataType="Require" msg="组名称不能为空"
+								class="EditBox"   style="width:90%"/>
 						</td>
 					</tr>
 					<tr>
@@ -47,7 +48,7 @@
 						</td>
 						<td>
 							<input type="text" name="sysGroup.describe" 
-								checkInfo="组描述;NOTNULL;No"   style="width:90%" />
+								dataType="Require" msg="组描述不能为空"   style="width:90%" />
 						</td>
 					</tr>
 					<tr>
@@ -56,7 +57,7 @@
 						</td>
 						<td>
 							<input type="text" name="sysGroup.orderby"
-								checkInfo="索引;ISNULL;No"   style="width:90%" />
+								  style="width:90%" />
 						</td>
 					</tr>
 						
@@ -69,7 +70,7 @@
 </s:if>
 		<script>
 
-			FormCheck.createCheckForm(document.forms[0]);
+		Validator.createCheckForm(document.forms[0]);
 			/**
 			回调
 			**/
