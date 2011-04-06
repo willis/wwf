@@ -64,20 +64,23 @@ public class SysMenuAction extends BaseAction {
 	}
 	public void save(){
 		String result = "";
+		boolean type = false;
 		if(sysMenu.getId()==null){
 			result ="添加成功!";
+			type = false;
 		}else{
 			
 			SysMenu target = getSysMenuService().getMenu(sysMenu.getId());
 			
 		    MyBeanUtils.fillForNotNullObject(target, sysMenu);
 		    sysMenu = target;
-		    
 			result ="修改成功!";
+			type = true;
 		}
 		sysMenu.setOrderBy(sysMenu.getOrderBy()!=null?sysMenu.getOrderBy():0l);
 		sysMenu.setCurDate(new Date());
 		getSysMenuService().save(sysMenu);
+		if(type)
 		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, result);
 		

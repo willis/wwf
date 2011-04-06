@@ -27,6 +27,11 @@
 					<td id="tdContent" bgColor="#ffffff">
 		
 								
+						<h2 class="underline" id="loading">
+							系统日志
+						</h2>
+				
+					
 		
 							<table class="table odTable" id="idTable">
 								<thead>
@@ -53,9 +58,10 @@
 									</tr>
 								</thead>
 								<tbody>
-								<s:iterator value="logList">
+								<s:iterator value="logList" status="stuts">  
+
        
-								<tr>
+								<tr  <s:if test="#stuts.odd != true"> class='td2'</s:if>	>
 									
          							<td>
          							 <s:property value="id" />

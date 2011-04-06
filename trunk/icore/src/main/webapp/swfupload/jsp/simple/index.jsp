@@ -80,7 +80,7 @@ function startUpload(){
 <body id="loading" >
 
 <div id="uploadContent">
-    <input id="txtFileName" type="text" disabled="disabled" value="" style="width:151px;"/>
+    <input id="txtFileName" type="text" disabled="disabled" value="" style="width:181px;"/>
     <span id="btnPlaceHolder"></span>
     <div id="uploadProgress">
         <div id="colorStatus"></div>
@@ -88,13 +88,16 @@ function startUpload(){
     </div>
 </div>
 <input type="hidden" id="uuid" name="uuid" value="${ object_id}">
-<input id="btnStartUpload" type="button" value="开始上传" onclick="startUpload()" disabled="disabled" style="position:relative;left:170px;"/>
-	<table class="table" style="width: 220px;" >
+<input id="btnStartUpload" type="button" value="开始上传" onclick="startUpload()" disabled="disabled" style="position:relative;left:200px;"/>
+	<table class="table" style="width: 250px;" >
 					<thead>
 						<tr>
 							
 							<th>
-								文件名称
+								名称
+							</th>
+							<th>
+								大小
 							</th>
 							<th>
 								操作
@@ -118,7 +121,8 @@ function startUpload(){
 		  		queryUrl:'annexAction!annexList.action',
 		  		headerColumns:
 		  		[
-		  		{id:'fileNames'},
+		  		{id:'fileNames',renderer:fileRenderer},
+		  		{id:'fileSize',renderer:getNiceFileSize},
 		  		{id:'id',name:'操作',renderer:editRenderer}
 		  		]
 		  	}
@@ -137,7 +141,7 @@ function startUpload(){
 	     } 	
 	  
 		 query($("#uuid").val());
-		  function editdelete(value){
+		 function editdelete(value){
 			 $.ajax({
 		           type: "post",//使用get方法访问后台
 		           dataType: "json",//返回json格式的数据
@@ -153,6 +157,31 @@ function startUpload(){
 		           }
 		      	});
 		 }
+		  function fileRenderer(idValue,value){
+		 	var zh = value.match(/[^ -~]/g); 
+		 	var fileName = value.length +(zh ? zh.length : 0);
+			if((zh ? zh.length : 0) >10)
+				 value= value.substring(0,10)+"...";
+			else if(value.length>20)
+				value= value.substring(0,20)+"...";
+				 
+	     	return value;
+	     }
+		 var _K = 1024;
+		 var _M = _K*1024;
+		function getNiceFileSize(idValue,value){
+			if(value<_M){
+				if(value<_K){
+					return value+'B';
+		   		}else{
+					return Math.ceil(value/_K)+'K';
+				}
+		
+			}else{
+				return Math.ceil(100*value/_M)/100+'M';
+			}
+	
+		}
 		</script>	
 	
 				

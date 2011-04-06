@@ -23,7 +23,8 @@ function validateForm(formData, jqForm, options) {
 	return false;
 }
 function checkFormMe(form) {
-		return checkForm(form);
+		return Validator.Validate(form,2);
+		//return checkForm(form);
 }
 
 /**

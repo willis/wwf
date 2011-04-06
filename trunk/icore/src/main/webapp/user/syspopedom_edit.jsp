@@ -26,7 +26,7 @@
 						</td>
 						<td >
 							<input type="text" name="sysPopedom.code" 
-								checkInfo="权限代码;NOTNULL;No" size="40"   value="<s:property value="sysPopedom.code"/>" />
+								dataType="Require" msg="权限描述不能为空"  size="40"   value="<s:property value="sysPopedom.code"/>" />
 						</td>
 						
 					</tr>
@@ -37,7 +37,7 @@
 						</td>
 						<td >
 							<input type="text" name="sysPopedom.describe" 
-								checkInfo="权限描述;NOTNULL;No" size="40"  value="<s:property value="sysPopedom.describe"/>"  />
+								dataType="Require" msg="权限描述不能为空" size="40"  value="<s:property value="sysPopedom.describe"/>"  />
 						</td>
 						
 					</tr>
@@ -48,7 +48,7 @@
 		
 		<script>
  
-			FormCheck.createCheckForm(document.forms[0]);
+			Validator.createCheckForm(document.forms[0]);
 	/**
 			回调
 			**/

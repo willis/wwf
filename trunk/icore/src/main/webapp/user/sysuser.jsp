@@ -41,7 +41,7 @@
 					<div id="editor_contents">
 						<ul class="editor_link">
 					<li>
-					<pager:checkPopedom code="resource_del"> <a   name="add" class="add"
+					<pager:checkPopedom code="resource_add"> <a   name="add" class="add"
 									href="javascript:" onclick="window.parent.showWindow('${cxp}/user/sysuser_add.jsp','添加用户',400,500)">添加</a></pager:checkPopedom>
 					 </li>
 								 

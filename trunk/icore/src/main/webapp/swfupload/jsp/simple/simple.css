@@ -3,12 +3,12 @@
 }
 #uploadContent{
 	position:relative;
-	width:220px;
+	width:250px;
     left:0px;
 }
 #uploadProgress{
     display:none;
-	width:220px;
+	width:250px;
 	height:20px;
     border:1px solid #99CCFF;
 }

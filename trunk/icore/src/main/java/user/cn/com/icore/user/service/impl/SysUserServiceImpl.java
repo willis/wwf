@@ -20,8 +20,7 @@ public class SysUserServiceImpl extends GtGridCommonDao implements
 
 	public boolean save(SysUser sysUser) {
 
-		if ((sysUser.getId() == null)
-				&& (super.count(" from SysUser u where u.username=? ",
+		if ((super.count(" from SysUser u where u.username=? ",
 						new Object[] { sysUser.getUsername() }).intValue() > 0)) {
 			return false;
 		} else {

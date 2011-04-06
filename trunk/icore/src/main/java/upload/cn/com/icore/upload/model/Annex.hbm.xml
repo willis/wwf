@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="cn.com.icore.upload.model.Annex"
-		table="annex">
+		table="icore_annex">
 
 		<id name="id" type="java.lang.Long" column="id">
 			<generator class="assigned" />
