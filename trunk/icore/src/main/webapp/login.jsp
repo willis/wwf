@@ -35,7 +35,7 @@
 <div id="content">
 
   <div id="login"><h2>系统登录      <font color="red">默认账号：admin/123</font></h2>
-    <form id="myform" action="${cxp}/login_do.jsp" method="post" onSubmit="return Validator.Validate(this,3);">
+    <form id="myform" action="${cxp}/login_do.jsp" method="post" onSubmit="return Validator.Validate(this,2);">
     <table>
     <tr>
    	 <td>
