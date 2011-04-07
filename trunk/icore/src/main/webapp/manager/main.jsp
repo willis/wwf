@@ -62,7 +62,9 @@
 	
 <pager:menu var="sysMenuBean" alias="${param.menuAlias}" check="true"/>
 					<div id="content">
+						<a href="#" id="allow2" ></a>
 						<div id="left" style="overflow: auto">
+ 						<a href="#" id="allow" ></a>
 
 							<h2 class="person">
 								${sysMenuBean.name}
@@ -127,8 +129,48 @@
 				class="footer" />
 		</div>
 		<script>
-	 $('#rightFrame').width(document.body.scrollWidth-220);
+	 $('#rightFrame').width(document.body.scrollWidth-210);
+	function sideBarShow (){
+	var allow;
+	var allowHidden;
+	if (!(allow = document.getElementById("allow"))) return false;
+	if (!(allowHidden = document.getElementById("allow2"))) return false;
+	allow.onclick = function() {
+			document.getElementById("left").style.display = 'none';
+			allow.style.display="none";
+			allowHidden.style.display="block";
+			  
+			document.getElementById("rightFrame").style.margin = "0px 0px 0px 7px";
+			$('#rightFrame').width(document.body.scrollWidth-27);
+			allowHidden.onclick = function() {
+				document.getElementById("left").style.display = '';
+				allowHidden.style.display="none";
+				allow.style.display="block";
+				document.getElementById("rightFrame").style.margin = "";
+				if(navigator.userAgent.indexOf("Firefox")>0){
+        		 $('#rightFrame').width(document.body.scrollWidth-210);
+   				} else{
+   					$('#rightFrame').width(document.body.scrollWidth-220-173);
+   				}
+				
+			
+			}
+	}
+	}
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
 		
+	} else {
+		window.onload = function() {
+			oldonload();
+			
+			func();
+		}
+	}
+}
+addLoadEvent(sideBarShow);
 		</script>
 
 	</body>
