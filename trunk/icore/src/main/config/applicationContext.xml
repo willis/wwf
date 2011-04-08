@@ -121,6 +121,12 @@
 				
 			</props>
 		</property>
+		<!-- 
+		<property name="mappingDirectoryLocations">
+            <list>
+               	<value>classpath:cn/com/icore/sys/model</value>
+            </list>
+         </property>	 -->
 		<property name="mappingResources">
 			<list>
 				<value>cn/com/icore/sys/model/SystemLog.hbm.xml</value>
