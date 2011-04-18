@@ -4,9 +4,11 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.util.FastHashMap;
@@ -38,6 +40,26 @@ public class MyBeanUtils {
 				} catch (Exception e) {
 					throw new RuntimeException("属性不存在：" + name);
 				}
+			}
+		}
+		return des;
+	}
+	
+	/**
+	 * 获得同时有get和set的field和Field。
+	 * 
+	 * @param bean
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Set<Field> propertysSet(Class clazz) {
+		Set<Field> des = new HashSet<Field>();
+		Map<String,Field> fields = fieldMap(clazz);
+		PropertyDescriptor desor[] = PropertyUtils.getPropertyDescriptors(clazz);
+		for (int i = 0; i < desor.length; i++) {
+			if (desor[i].getReadMethod() != null
+					&& desor[i].getWriteMethod() != null && fields.get(desor[i].getName())!=null) {
+				des.add(fields.get(desor[i].getName()));
 			}
 		}
 		return des;
