@@ -45,17 +45,18 @@ MaxTable.prototype = {
 			// ,border : '1px solid #a00'
 			}
 		});
-
+		
 		$.ajax({
 					type : "POST",
 					url : opts.queryUrl,
 					data : this.getQueryData(parameters),
 					dataType : "json",
 					success : function(datas) {
-
+						try 
+						{ 
 						var data = datas.data;
 						_parent.page = datas.pageInfo;
-
+						
 						while (_s.rows.length > 0) {
 
 							_s.deleteRow(0);
@@ -68,6 +69,7 @@ MaxTable.prototype = {
 							tdObj.colSpan = opts.headerColumns.length;
 							tdObj.innerHTML = "没有记录！";
 						} else {
+							_parent.page.totalRowNum = data.length;
 							for ( var i = 0; i < data.length; i++) {
 
 								var trObj = _s.insertRow(_s.rows.length);
@@ -94,9 +96,6 @@ MaxTable.prototype = {
 								}
 							}
 
-							
-						
-							
 							
 							if (_parent.page.totalRowNum != 0) {
 								var trObj = _s.insertRow(_s.rows.length);
@@ -162,13 +161,25 @@ MaxTable.prototype = {
 							}
 						}
 						_parent.loading.unblock()
-
+						} 
+						catch (e) 
+						{ 
+						alert(e.message); 
+						alert(e.description) ;
+						alert(e.number) ;
+						alert(e.name) ;
+						throw new Error(10) ;
+						} 
 					},
 					error : function(response) {
-						alert(response.responseText);
+						
+						if(response!=null&&response!= undefined&&response.responseText.length>0){
+							alert(response.responseText);
+						}
 					}
 
 				});
+		
 
 	},
 	createPage : function(pageInfo) {

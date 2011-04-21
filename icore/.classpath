@@ -5,12 +5,12 @@
 	<classpathentry kind="src" path="src/main/java/dictionary"/>
 	<classpathentry kind="src" path="src/main/java/servlet"/>
 	<classpathentry kind="src" path="src/main/java/xfire"/>
-	<classpathentry kind="src" path="src/main/java/test"/>
 	<classpathentry kind="src" path="src/main/java/thread"/>
 	<classpathentry kind="src" path="src/main/java/lucene"/>
 	<classpathentry kind="src" path="src/main/java/upload"/>
+	<classpathentry kind="src" path="src/main/java/test"/>
 	<classpathentry kind="src" path="src/main/config"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_03"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_23"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jfreechart-1.0.12.jar"/>
@@ -109,5 +109,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/struts2-core-2.2.1.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xwork-core-2.2.1.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/aspectjweaver-1.6.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/j255"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>
