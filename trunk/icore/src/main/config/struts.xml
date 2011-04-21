@@ -22,7 +22,12 @@
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
 			<result name="error" type="dispatcher">/error.jsp</result>
+			<result name="exception" type="dispatcher">/error/exception/exception.jsp</result>
 		</global-results>
+		
+		<global-exception-mappings>
+		   <exception-mapping name="exception" exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
 	</package>
     <include file="action/struts_system.xml" />
     <include file="action/struts_dictionary.xml" />

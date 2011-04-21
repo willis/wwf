@@ -110,25 +110,5 @@
 		
 		<script type="text/javascript">
 			Validator.createCheckForm(document.forms[0]);
-			function nameCheck(temp){//暂不用
-									
-					$.ajax({
-										            type : "post",//使用get方法访问后台
-										            url : "nameCheck.do",//要访问的后台地址
-										            data : "method=nameCheck&userName="+temp,//要发送的数据
-										            success : function(data){//data为返回的数据，在这里做数据绑定
-										            	data = eval(data);
-										            	//alert("data:::"+data);
-										            	backValue=data+"";
-										            	if(backValue=='exist'){
-										            		alert("对不起，姓名缩写重复请重新输入!");
-										            		$("#extendf5").val("");
-										            		$("#extendf5").focus();
-										            	}
-										            	
-										            }
-							      				 });
-			}
-			
 		</script>
 </html>

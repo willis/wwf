@@ -3,7 +3,6 @@
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-<%@ include file="/include/gt-grid.jsp"%>
 <script type="text/javascript" src="${cxp }/appjs/user/user.js"></script>
 	<head>
 		<title>系统后台</title>

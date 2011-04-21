@@ -3,8 +3,6 @@
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-<script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
 		<head>
 		<title>网站后台</title>
 
@@ -72,7 +70,7 @@
 
 				<table class="table" id="senfe" >
 					<thead>
-						<tr>
+						<tr id="myHead">
 							<th style="width: 80px;">
 								<label class="checkbox">
 									<input type="checkbox" name="c_all"
@@ -144,7 +142,9 @@
 		  	}
 		  )
 		  
-	      
+	      myTable1.initSortHead(
+	      {head:'myHead',cells:[{index:1,name:'id'},{index:2,name:'username'},{index:3,name:'truename'},{index:4,name:'sex'},{index:5,name:'status'},{index:6,name:'regtime'}]}
+	      );
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;

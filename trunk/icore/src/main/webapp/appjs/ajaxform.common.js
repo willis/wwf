@@ -5,7 +5,7 @@ $(document).ready(function() {
 						dataType : 'json',
 						success : processJson,
 						error : function(response) {
-						
+			
 						alert(response.responseText);
 							//图层解锁
 							$("#myForm").unblock();
@@ -42,7 +42,6 @@ if(data.status == SUCCESS){
 	if(window.parent.frames["0"].query){
 		window.parent.frames["0"].query();
 	}else{
-		
 	
 	    window.parent.frames["0"].reload();
 	;
