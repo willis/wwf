@@ -9,15 +9,21 @@
 <title>GT.Grid JSON 版 Demo</title>
 
 <!-- 如果不需要 日期组件 功能,请将下面 4行 代码去掉 -->
-<link rel="stylesheet" type="text/css" media="all" href="../../gt-grid/calendar/calendar-blue.css"  />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../gt-grid/calendar/calendar-blue.css" />
 <script type="text/javascript" src="../../gt-grid/calendar/calendar.js"></script>
-<script type="text/javascript" src="../../gt-grid/calendar/calendar-cn-utf8.js"></script>
-<script type="text/javascript" src="../../gt-grid/calendar/calendar-setup.js"></script>
+<script type="text/javascript"
+	src="../../gt-grid/calendar/calendar-cn-utf8.js"></script>
+<script type="text/javascript"
+	src="../../gt-grid/calendar/calendar-setup.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../../gt-grid/gt_grid.css" />
-<link rel="stylesheet" type="text/css" href="../../gt-grid/skin/china/skinstyle.css" />
-<link rel="stylesheet" type="text/css" href="../../gt-grid/skin/vista/skinstyle.css" />
-<link rel="stylesheet" type="text/css" href="../../gt-grid/skin/mac/skinstyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../gt-grid/skin/china/skinstyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../gt-grid/skin/vista/skinstyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../gt-grid/skin/mac/skinstyle.css" />
 
 <!-- 本示例使用的测试数据,正式使用时,请将下面 1行 代码去掉 -->
 <script type="text/javascript" src="../../gt-grid/_server/test_data.js"></script>
@@ -32,9 +38,10 @@
 
 
 <!-- 如果不需要 图表 功能,请将下面 1行 代码去掉 -->
-<script type="text/javascript" src="../../gt-grid/flashchart/fusioncharts/FusionCharts.js"></script>
+<script type="text/javascript"
+	src="../../gt-grid/flashchart/fusioncharts/FusionCharts.js"></script>
 
-<script type="text/javascript" >
+<script type="text/javascript">
  
 
 ///////////////////////////////////////
@@ -426,53 +433,60 @@ function init(){
 </script>
 </head>
 
-<body onload="init()" style="padding:0px;margin:10px;">
+<body onload="init()" style="padding: 0px; margin: 10px;">
 
-<table id="myHead" style="display:none">
-<tr>
-	<td rowspan="2" columnId='no' resizable='false'>学号</td>
-	<td colspan="3">基本信息</td>
-	<td colspan="4">成绩</td>
-</tr>
-<tr>
-	<td columnId='name'>姓名</td>
-	<td columnId='birthday'>生日</td>
-	<td columnId='gender'>性别</td>
-	<td columnId='english'>英语</td>
-	<td columnId='history'>历史</td>
-	<td columnId='math'>数学</td>
-	<td columnId='physics'>物理</td>
-</tr>
-</table>
-<div id="bigbox" style="display:!none;">
+	<table id="myHead" style="display: none">
+		<tr>
+			<td rowspan="2" columnId='no' resizable='false'>学号</td>
+			<td colspan="3">基本信息</td>
+			<td colspan="4">成绩</td>
+		</tr>
+		<tr>
+			<td columnId='name'>姓名</td>
+			<td columnId='birthday'>生日</td>
+			<td columnId='gender'>性别</td>
+			<td columnId='english'>英语</td>
+			<td columnId='history'>历史</td>
+			<td columnId='math'>数学</td>
+			<td columnId='physics'>物理</td>
+		</tr>
+	</table>
+	<div id="bigbox" style="display: ! none;">
 
-<div id="mygrid_container" style="padding:5px;width:100%;" ></div>
+		<div id="mygrid_container" style="padding: 5px; width: 100%;"></div>
 
-</div>
+	</div>
 
-<br/>
+	<br />
 
-<br/><br/>============================<br/><br/>
+	<br />
+	<br />============================
+	<br />
+	<br />
 
-<input type="button" value="hide/show grid" onclick="showGrid()" />
+	<input type="button" value="hide/show grid" onclick="showGrid()" />
 
-<input type="button" value="setSize" onclick="mygrid.setSize(500,300)" />
+	<input type="button" value="setSize" onclick="mygrid.setSize(500,300)" />
 
-<input type="button" value="setHeader" onclick="mygrid.getColumn(3).setHeader('新标题')" />
+	<input type="button" value="setHeader"
+		onclick="mygrid.getColumn(3).setHeader('新标题')" />
 
-<input type="button" value="lazyLoad" onclick="lazyLoad()" />
+	<input type="button" value="lazyLoad" onclick="lazyLoad()" />
 
-<input type="button" value="test activeCell" onclick="alert( mygrid.activeCell.innerHTML )" />
+	<input type="button" value="test activeCell"
+		onclick="alert( mygrid.activeCell.innerHTML )" />
 
-<input type="button" value="testCheck" onclick="alert( GT.$json(mygrid.getSelectedRecords() ) )" />
+	<input type="button" value="testCheck"
+		onclick="alert( GT.$json(mygrid.getSelectedRecords() ) )" />
 
-<br/>
+	<br />
 
-<input type="button" value="test readOnly true" onclick=" mygrid.readOnly=true" />
+	<input type="button" value="test readOnly true"
+		onclick=" mygrid.readOnly=true" />
 
-<input type="button" value="test readOnly false" onclick=" mygrid.readOnly=false" />
-<br/>
-<form>
-</form>
- </body>
+	<input type="button" value="test readOnly false"
+		onclick=" mygrid.readOnly=false" />
+	<br />
+	<form></form>
+</body>
 </html>

@@ -4,12 +4,15 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>Multi Upload Demo</title>
-<link type="text/css" rel="stylesheet" href="multi.css"/>
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/swfupload.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/swfupload.queue.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/fileprogress.js"></script>
+<link type="text/css" rel="stylesheet" href="multi.css" />
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/swfupload.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/swfupload.queue.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/fileprogress.js"></script>
 <script type="text/javascript" src="handlers.js"></script>
 <script type="text/javascript">
 var swfu;
@@ -53,13 +56,13 @@ window.onload = function(){
 </script>
 </head>
 <body>
-    <div id="uploadProgress" class="fieldset">
-        <span class="legend">Upload Queue</span>
-    </div>
-    <div id="divStatus">0 Files Uploaded</div>
-    <div>
-        <span id="btnPlaceHolder"></span>
-        <input id="btnCancel" type="button" value="取消上传" onclick="swfu.cancelQueue()" disabled="disabled"/>
-    </div>
+	<div id="uploadProgress" class="fieldset">
+		<span class="legend">Upload Queue</span>
+	</div>
+	<div id="divStatus">0 Files Uploaded</div>
+	<div>
+		<span id="btnPlaceHolder"></span> <input id="btnCancel" type="button"
+			value="取消上传" onclick="swfu.cancelQueue()" disabled="disabled" />
+	</div>
 </body>
 </html>

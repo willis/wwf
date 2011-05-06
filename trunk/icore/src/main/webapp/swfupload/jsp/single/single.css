@@ -1,35 +1,41 @@
 /* -- Global Styles ------------------------------ */
 body {
-    font:12px Arial,宋体;
+	font: 12px Arial, 宋体;
 }
+
 h2 {
-    font-weight:300;
-    font-size:22px;
-    padding:1px 2px;    
+	font-weight: 300;
+	font-size: 22px;
+	padding: 1px 2px;
 }
-#content { 
+
+#content {
 	width: 680px;
-	margin:20px 90px;
+	margin: 20px 90px;
 }
 /* -- Table Styles ------------------------------- */
 td {
-    font-size: 13px;
-    vertical-align: top;
+	font-size: 13px;
+	vertical-align: top;
 }
-label { 
-    width: 150px; 
-    text-align: right; 
-    display:block;
-    margin-right: 5px;
+
+label {
+	width: 150px;
+	text-align: right;
+	display: block;
+	margin-right: 5px;
 }
-input { 
-    border-width: 1px; 
-    margin-bottom: 10px;
+
+input {
+	border-width: 1px;
+	margin-bottom: 10px;
 }
+
 div.fieldset {
-	border:  1px solid #afe14c;
+	border: 1px solid #afe14c;
 	padding: 20px 10px;
 }
+
 div.fieldset span.legend {
 	position: relative;
 	top: -30px;
@@ -38,14 +44,16 @@ div.fieldset span.legend {
 	color: #73b304;
 	background-color: #FFF;
 }
+
 div.flash {
 	width: 375px;
 	margin: 10px 5px;
 	border-color: #D9E4FF;
 }
-#btnSubmit { 
-	margin: 0 0 0 155px ;
-	border:1px solid #ccc;
+
+#btnSubmit {
+	margin: 0 0 0 155px;
+	border: 1px solid #ccc;
 }
 /* -- Upload status Styles ----------------------- */
 /*
@@ -107,9 +115,7 @@ div.flash {
 	overflow: hidden;
 }
 
-.progressBarInProgress,
-.progressBarComplete,
-.progressBarError {
+.progressBarInProgress,.progressBarComplete,.progressBarError {
 	font-size: 0;
 	width: 0%;
 	height: 2px;

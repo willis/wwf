@@ -1,15 +1,15 @@
 .gt-skin-vista {
+	
 }
-
 
 .gt-skin-vista .gt-simple-scrollbar {
 	scrollbar-3dlight-color: #cccccc;
 	scrollbar-darkshadow-color: #cccccc;
-	scrollbar-arrow-color:#999999;
-	scrollbar-face-color:#e7eff7;
-	scrollbar-highlight-color:#f3f3fc;
-	scrollbar-shadow-color:#f3f3fc;
-	scrollbar-track-color:#f3f3fc;
+	scrollbar-arrow-color: #999999;
+	scrollbar-face-color: #e7eff7;
+	scrollbar-highlight-color: #f3f3fc;
+	scrollbar-shadow-color: #f3f3fc;
+	scrollbar-track-color: #f3f3fc;
 }
 
 .gt-skin-vista .gt-head-div {
@@ -19,27 +19,25 @@
 .gt-skin-vista .gt-hd-row TD {
 	border-right: 1px solid #668899;
 	border-bottom: 1px solid #668899;
-
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
-.gt-skin-vista .gt-table thead tr td , .gt-skin-vista .gt-table thead th td {
-	color : #ffffff ;
+.gt-skin-vista .gt-table thead tr td,.gt-skin-vista .gt-table thead th td
+	{
+	color: #ffffff;
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
 .gt-skin-vista .gt-hd-row td .gt-inner {
-	color : #ffffff ;
-
+	color: #ffffff;
 }
 
 .gt-skin-vista .gt-hd-row .gt-hd-row-over {
 	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
 }
 
-
 .gt-skin-vista .gt-row td.gt-index-col {
-	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x ;
+	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x;
 }
 
 .gt-skin-vista .gt-hd-icon {
@@ -47,21 +45,19 @@
 }
 
 .gt-skin-vista  .gt-toolbar-box {
-	background-image:url(./images/toolbar_bg.gif); 
+	background-image: url(./images/toolbar_bg.gif);
 }
 
 .gt-skin-vista .gt-dialog-head {
-
 	background-image: url(./images/toolbar_bg.gif);
-
 }
 
 .gt-skin-vista  .gt-row-even {
-	background-color:#f0f9ff;
+	background-color: #f0f9ff;
 }
 
 .gt-skin-vista  .gt-row-even {
-	background-color:#f0f9ff;
+	background-color: #f0f9ff;
 }
 
 .gt-skin-vista .gt-row-selected {

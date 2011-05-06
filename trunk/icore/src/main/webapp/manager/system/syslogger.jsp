@@ -1,94 +1,68 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-		<head>
-		<title>网站后台</title>
+<head>
+<title>网站后台</title>
 
-		<style type="text/css">
-			label.checkbox {
-				cursor: pointer;
-			}
-		</style>
-		
-		
-	</head>
-	<body  >
-	<form action="systemLog!loginfoList.action" method="post" >
+<style type="text/css">
+label.checkbox {
+	cursor: pointer;
+}
+</style>
+
+
+</head>
+<body>
+	<form action="systemLog!loginfoList.action" method="post">
 		<table class="tableContent">
 			<tbody>
 				<tr id="topRow">
-					<td id="topLeft">
-					</td>
-					<td id="topMiddle">
-					</td>
-					<td id="topRight">
-					</td>
+					<td id="topLeft"></td>
+					<td id="topMiddle"></td>
+					<td id="topRight"></td>
 				</tr>
 				<tr id="middleRow">
-					<td id="middleLeft">
-					</td>
+					<td id="middleLeft"></td>
 					<td id="tdContent" bgColor="#ffffff">
 
-						<h2 class="underline" id="loading">
-							系统日志
-						</h2>
-				
+						<h2 class="underline" id="loading">系统日志</h2>
 
-				<table class="table" id="senfe" >
-					<thead>
-						<tr>
-							<th style="width: 80px;">
-								<label class="checkbox">
-									<input type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-						
-							<th>
-								姓名 
-							</th>
-							<th>
-								日志类型 
-							</th>
-							<th>
-								操作内容
-							</th>
-							
-							<th>
-								IP 
-							</th>
-							<th>
-								创建时间
-							</th>
-							 
-						</tr>
-					</thead>
-					<tbody id="myTable" >
-					
-						 
-					</tbody>
-				</table>
-	
-					
-					</td>
-					<td id="middleRight">
-					</td>
+
+						<table class="table" id="senfe">
+							<thead>
+								<tr>
+									<th style="width: 80px;"><label class="checkbox">
+											<input type="checkbox" name="c_all"
+											onClick="selectAll(this.form,this.checked,this.nextSibling)">
+											全选 </label></th>
+
+									<th>姓名</th>
+									<th>日志类型</th>
+									<th>操作内容</th>
+
+									<th>IP</th>
+									<th>创建时间</th>
+
+								</tr>
+							</thead>
+							<tbody id="myTable">
+
+
+							</tbody>
+						</table></td>
+					<td id="middleRight"></td>
 				</tr>
 				<tr id="bottomRow">
-					<td id="bottomLeft">
-					</td>
-					<td id="bottomMiddle">
-					</td>
-					<td id="bottomRight">
-					</td>
+					<td id="bottomLeft"></td>
+					<td id="bottomMiddle"></td>
+					<td id="bottomRight"></td>
 				</tr>
 			</tbody>
 		</table>
-			</form>
-		<script>
+	</form>
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 myTable1.initialize(
@@ -214,11 +188,11 @@ function updateSelect(){
 
 	 
 		 
-		</script>	
-	
+		</script>
 
 
-	
 
-	</body>
+
+
+</body>
 </html>

@@ -1,19 +1,16 @@
 .gt-skin-mac {
-
-
+	
 }
-
 
 .gt-skin-mac .gt-simple-scrollbar {
 	scrollbar-3dlight-color: #ffffff;
 	scrollbar-darkshadow-color: #ffffff;
-	scrollbar-arrow-color:#888888;
-	scrollbar-face-color:#dddddd;
-	scrollbar-highlight-color:#dddddd;
-	scrollbar-shadow-color:#dddddd;
-	scrollbar-track-color:#f0f0f0;
+	scrollbar-arrow-color: #888888;
+	scrollbar-face-color: #dddddd;
+	scrollbar-highlight-color: #dddddd;
+	scrollbar-shadow-color: #dddddd;
+	scrollbar-track-color: #f0f0f0;
 }
-
 
 .gt-skin-mac .gt-head-div {
 	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
@@ -22,7 +19,6 @@
 .gt-skin-mac .gt-hd-row TD {
 	border-right: 1px solid #668899;
 	border-bottom: 1px solid #668899;
-
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
@@ -30,74 +26,65 @@
 	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
 }
 
-
 .gt-skin-mac .gt-hd-icon {
 	background-image: url(./images/s_sort_asc_desc.gif);
 }
 
-.gt-skin-mac .gt-table thead tr td , .gt-skin-vista .gt-table thead th td {
+.gt-skin-mac .gt-table thead tr td,.gt-skin-vista .gt-table thead th td
+	{
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
 .gt-skin-mac  .gt-toolbar-box {
-	background-image:url(./images/toolbar_bg.gif); 
+	background-image: url(./images/toolbar_bg.gif);
 }
 
 .gt-skin-mac  .gt-toolbar-text {
-
-	color:#000000;
+	color: #000000;
 }
-.gt-skin-mac  .gt-page-state {
 
-	color:#000000;
+.gt-skin-mac  .gt-page-state {
+	color: #000000;
 }
 
 .gt-skin-mac .gt-image-button:hover {
-	background : url(./images/button_bg.gif) no-repeat center center;
+	background: url(./images/button_bg.gif) no-repeat center center;
 }
 
-.gt-skin-mac .gt-image-button div , .gt-image-button button{
-
+.gt-skin-mac .gt-image-button div,.gt-image-button button {
 	border-color: #ff0000;
 }
 
-
 .gt-skin-mac .gt-image-button-down {
-	background : url(./images/button_down_bg.gif) no-repeat center center;
+	background: url(./images/button_down_bg.gif) no-repeat center center;
 }
 
 .gt-skin-mac .gt-first-page {
-	background : url(./images/page_first.gif) no-repeat center center;
+	background: url(./images/page_first.gif) no-repeat center center;
 }
 
-
 .gt-skin-mac .gt-prev-page {
-	background : url(./images/page_prev.gif) no-repeat center center;
+	background: url(./images/page_prev.gif) no-repeat center center;
 }
 
 .gt-skin-mac .gt-next-page {
-	background : url(./images/page_next.gif) no-repeat center center;
+	background: url(./images/page_next.gif) no-repeat center center;
 }
 
 .gt-skin-mac .gt-last-page {
-	background : url(./images/page_last.gif) no-repeat center center;
+	background: url(./images/page_last.gif) no-repeat center center;
 }
 
 .gt-skin-mac .gt-goto-page {
-	background : url(./images/page_goto.gif) no-repeat center center;
+	background: url(./images/page_goto.gif) no-repeat center center;
 }
 
-
-
-
 .gt-skin-mac .gt-dialog-head {
-
 	background-image: url(./images/toolbar_bg.gif);
-
 }
 
 .gt-skin-mac .gt-dialog-head-button a {
-	background : url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
+	background: url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
 }
 
 /*

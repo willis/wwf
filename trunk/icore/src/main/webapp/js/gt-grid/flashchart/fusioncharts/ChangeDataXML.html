@@ -1,16 +1,17 @@
 <HTML>
 <HEAD>
-	<TITLE>FusionCharts Free & JavaScript - Updating chart using updateChartXML() Method</TITLE>	
-	<style type="text/css">
-	<!--
-	body {
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 12px;
-	}
-	-->
-	</style>
-	<SCRIPT LANGUAGE="Javascript" SRC="./FusionCharts.js"></SCRIPT>
-	<SCRIPT LANGUAGE="JavaScript">
+<TITLE>FusionCharts Free & JavaScript - Updating chart using
+	updateChartXML() Method</TITLE>
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+-->
+</style>
+<SCRIPT LANGUAGE="Javascript" SRC="./FusionCharts.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
 		/*
 		 * updateChart method is called, when user clicks the button
 		 * Here, we generate the XML data again and build the chart.		  
@@ -26,11 +27,10 @@
 </HEAD>
 <BODY>
 	<CENTER>
-		<h2>FusionCharts Free & JavaScript - Updating chart using updateChartXML() method</h2>
-		
-		<div id="chart1div">
-			FusionCharts
-		</div>
+		<h2>FusionCharts Free & JavaScript - Updating chart using
+			updateChartXML() method</h2>
+
+		<div id="chart1div">FusionCharts</div>
 		<script language="JavaScript">					
 			var chart1 = new FusionCharts("./charts/FCF_Column3D.swf", "chart1Id", "400", "300", "0", "1");		   			
 			chart1.setDataXML("<graph><set name='A' value='10' color='D64646' /><set name='B' value='11' color='66BBFF' /></graph>");
@@ -38,7 +38,8 @@
 		</script>
 		<BR />
 		<form name='frmUpdate'>
-		<input type='button' value='Change Data' onClick="javaScript:updateChart('chart1Id');" name='btnUpdate' />		
+			<input type='button' value='Change Data'
+				onClick="javaScript:updateChart('chart1Id');" name='btnUpdate' />
 		</form>
 	</CENTER>
 </BODY>

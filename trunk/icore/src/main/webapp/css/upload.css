@@ -1,7 +1,8 @@
 /* CSS Document */
-*{
-	font-size:14px;	
-}	
+* {
+	font-size: 14px;
+}
+
 .all {
 	height: 410px;
 	width: 493px;
@@ -10,15 +11,18 @@
 	background-position: left top;
 	background-image: url(../images/colse.jpg);
 }
+
 .but_01 {
 	width: 200px;
 	padding-left: 240px;
 	padding-top: 50px;
 }
+
 .but_02 {
 	width: 410px;
 	padding-left: 30px;
 }
+
 .note {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -40,6 +44,7 @@
 	font-size: 13px;
 	color: #CC0000;
 }
+
 #bg_02 .file {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
@@ -48,6 +53,7 @@
 	padding-top: 15px;
 	padding-right: 45px;
 }
+
 #bg_02 .table {
 	background-color: #FFFFFF;
 	height: 205px;
@@ -57,75 +63,93 @@
 	font-size: 13px;
 	color: #65331D;
 }
-#box{
-	overflow:auto; height:180px; width:100%; font-size: 12px; color: #999999; font-style: normal;
+
+#box {
+	overflow: auto;
+	height: 180px;
+	width: 100%;
+	font-size: 12px;
+	color: #999999;
+	font-style: normal;
 }
+
 span.progressBar {
 	width: 200px;
 	height: 18px;
 	display: block;
 	font-size: 10px;
 	float: left;
-	background: #f0f0f0 url(../images/progressbar.png) no-repeat -270px 0px;		
+	background: #f0f0f0 url(../images/progressbar.png) no-repeat -270px 0px;
 }
-.fileUploading { background: #fee727; }
-#fileSize{
+
+.fileUploading {
+	background: #fee727;
+}
+
+#fileSize {
 	text-align: right;
 	margin-left: 5px;
 }
 
-#fileList{
-	width:96%;
+#fileList {
+	width: 96%;
 	background-color: #EBEBEB;
 	border: 0px;
 }
+
 .nameTd {
-	width:312px;	
+	width: 312px;
 }
-#fileList .flag1{
+
+#fileList .flag1 {
 	width: 15px;
 	height: 15px;
-	background:#FFFFFF url(../images/select.jpg) no-repeat center center  ;
+	background: #FFFFFF url(../images/select.jpg) no-repeat center center;
 }
-#fileList .flag2{
+
+#fileList .flag2 {
 	width: 15px;
 	height: 15px;
-	background:#FFFFFF url(../images/selected.jpg) no-repeat center center  ;
+	background: #FFFFFF url(../images/selected.jpg) no-repeat center center;
 }
-.progressTD{
+
+.progressTD {
 	width: 292px;
 }
-.delectBtn{
+
+.delectBtn {
 	width: 100px;
 	text-align: center;
 }
 
-
-
 /****************add by lijunNing****************/
 #path {
-	height:35px;
-	width:auto;
-	background-color:#E9F5F1;
-	padding:10px 10px 0px 15px;
+	height: 35px;
+	width: auto;
+	background-color: #E9F5F1;
+	padding: 10px 10px 0px 15px;
 }
+
 #outerDiv {
-	width:auto;
-	height:auto;
-	padding : 10px 10px 10px 10px;	
+	width: auto;
+	height: auto;
+	padding: 10px 10px 10px 10px;
 }
+
 #files {
-	height:400px;     
-¡¡	height:auto !important;
+	height: 400px;
+	ï¿½ï¿½ height: auto !important;
 	min-height: 400px;
-	width:auto;
-	margin-top:10px;
-	background-color:#F2F5FC;
-	padding:10px 10px 0px 15px;
+	width: auto;
+	margin-top: 10px;
+	background-color: #F2F5FC;
+	padding: 10px 10px 0px 15px;
 }
+
 .upload_button {
-	margin:10px 0px 10px 0px;	
+	margin: 10px 0px 10px 0px;
 }
+
 .upload_close {
 	display: inline-block;
 	width: 100px;
@@ -133,24 +157,28 @@ span.progressBar {
 	line-height: 32px;
 	border: 0px;
 	background-image: url(../images/upload_close.png);
-	background-position:0px 0px;
-	cursor:pointer;
+	background-position: 0px 0px;
+	cursor: pointer;
 }
+
 .upload_close:hover {
-	background-position:0px 32px;
+	background-position: 0px 32px;
 }
+
 .upload_clear {
 	display: inline-block;
 	width: 100px;
 	height: 32px;
 	border: 0px;
 	background-image: url(../images/upload_clear.png);
-	background-position:0px 0px;
-	cursor:pointer;
+	background-position: 0px 0px;
+	cursor: pointer;
 }
+
 .upload_clear:hover {
-	background-position:0px 32px;
+	background-position: 0px 32px;
 }
+
 .upload_upload {
 	display: inline-block;
 	width: 100px;
@@ -158,15 +186,16 @@ span.progressBar {
 	line-height: 32px;
 	border: 0px;
 	background-image: url(../images/upload_upload.png);
-	background-position:0px 0px;
-	cursor:pointer;
+	background-position: 0px 0px;
+	cursor: pointer;
 }
+
 .upload_upload:hover {
-	background-position:0px 32px;
+	background-position: 0px 32px;
 }
+
 .swfupload {
-	cursor:pointer;
-	margin-bottom:0px;	
-	margin-bottom:-4px\9;	
+	cursor: pointer;
+	margin-bottom: 0px;
+	margin-bottom: -4px\9;
 }
-	

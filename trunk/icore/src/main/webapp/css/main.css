@@ -1,7 +1,10 @@
 @import url(fonts.css);
+
 @import url(widget.css);
+
 * {
-	margin:0; padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 #loginInfo {
@@ -9,6 +12,7 @@
 	right: 20px;
 	top: 10px;
 }
+
 #loginInfo_left {
 	position: absolute;
 	width: 2px;
@@ -16,6 +20,7 @@
 	background-color: red;
 	background-image: url(../images/widgets/quit_left.png);
 }
+
 #loginInfo_content {
 	margin-left: 2px;
 	margin-right: 53px;
@@ -23,13 +28,14 @@
 	padding-right: 1em;
 	height: 21px;
 	color: #ffffff;
-	font-weight: normal ;
+	font-weight: normal;
 	_width: 7em;
 	line-height: 21px;
 	vertical-align: middle;
 	background-image: url(../images/widgets/quit_middle.png);
 	background-repeat: repeat-x;
 }
+
 #loginInfo_right {
 	top: 0px;
 	right: 0px;
@@ -42,14 +48,17 @@
 	background-image: url(../images/widgets/quit_right.png);
 	background-repeat: no-repeat;
 }
+
 #loginInfo_right a {
 	color: #ffffff;
 	text-decoration: none;
 	font-weight: normal;
 }
+
 #loginInfo_right a:hover {
 	text-decoration: underline;
 }
+
 #content {
 	background-image: url(../images/content_bg.jpg);
 	background-repeat: repeat-x;
@@ -60,6 +69,7 @@
 	position: relative;
 	min-width: 900px;
 }
+
 #left {
 	height: 582px;
 	width: 159px;
@@ -71,6 +81,7 @@
 	background-image: url(../images/left_bg.png);
 	background-repeat: no-repeat;
 }
+
 #right {
 	height: 582px;
 	width: 159px;
@@ -81,14 +92,17 @@
 	right: 0px;
 	background-image: url(../images/left_bg.png);
 }
+
 .fleet {
-	position: relative ;
+	position: relative;
 }
+
 div.mainContent {
 	margin: 0px 200px 10px 200px;
 	border: 1px solid #AEAFAA;
 	background-color: #FDFDFD;
 }
+
 div.event {
 	height: 179px;
 	background-image: url(../images/maing/bg_mid.gif);
@@ -97,33 +111,40 @@ div.event {
 	background-repeat: repeat-x;
 	overflow: auto;
 }
+
 div.event h2.fleet {
 	margin-right: 40px;
 }
+
 div.event a.moreWord {
 	border-bottom: 2px solid #D8DBE2;
 	padding-top: 3px;
 	_padding-top: 4px;
 }
+
 div#news {
 	height: 214px;
 	overflow: auto;
 }
+
 a.icon {
 	margin-top: 5px;
 	position: absolute;
 	right: 0px;
 }
+
 iframe {
 	border: 0px;
-	filter:chroma(color=#ffffff);
+	filter: chroma(color = #ffffff);
 }
+
 #rightFrame {
 	display: block;
 	margin-left: 200px;
 	min-height: 530px;
 	_height: 530px;
 }
+
 .label {
 	height: 24px;
 	width: 100%;
@@ -134,14 +155,17 @@ iframe {
 	margin-left: 0px;
 	padding: 0px;
 }
+
 .label li {
 	float: left;
 	display: inline-block;
 }
+
 .label li a.active {
 	color: #000000;
 	background-image: url(../images/widgets/lable_active.png);
 }
+
 .label li a {
 	display: inline-block;
 	height: 25px;
@@ -153,6 +177,7 @@ iframe {
 	background-position: 0px 0px;
 	text-align: center;
 }
+
 #main {
 	min-height: 483px;
 	_height: 483px;
@@ -162,13 +187,16 @@ iframe {
 	background-image: url(../images/content_bg.gif);
 	background-repeat: repeat-x;
 }
+
 #userLabel {
 	margin-top: 15px;
 	margin-bottom: 5px;
 }
+
 #deptLabel {
 	margin-bottom: 10px;
 }
+
 #newWindowBig {
 	background-image: url(../images/widgets/newWindow.gif);
 	background-repeat: repeat-x;

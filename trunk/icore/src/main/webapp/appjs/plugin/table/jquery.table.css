@@ -1,0 +1,20 @@
+.sortAsc {
+	background-image: url(images/s_sort_asc.gif);
+	width: 14px;
+	background-repeat: repeat-x;
+}
+
+.sortDesc {
+	background-image: url(images/s_sort_desc.gif);
+	width: 14px;
+	background-repeat: repeat-x;
+}
+
+.td1 {
+	color: #000000;
+}
+
+.td2 {
+	background-color: #f1f8fe;
+	color: #000000;
+}

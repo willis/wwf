@@ -1,9 +1,19 @@
-.button { 
-	background-color: #ffffff; height: 18px;  font-size: 12px; border: 0px solid #666666; width: 18px;
+.button {
+	background-color: #ffffff;
+	height: 18px;
+	font-size: 12px;
+	border: 0px solid #666666;
+	width: 18px;
 }
 
 .page_content {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; OVERFLOW-X: hidden; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 800px; PADDING-TOP: 0px
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	OVERFLOW-X: hidden;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	WIDTH: 800px;
+	PADDING-TOP: 0px
 }
 
 .fleft {
@@ -27,73 +37,163 @@
 }
 
 .form {
-	PADDING-RIGHT: 0px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #cccccc 1px solid;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
 }
 
 .form_row {
-	PADDING-RIGHT: 0px; BORDER-TOP: #cccccc 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 1px; PADDING-TOP: 0px
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #cccccc 1px solid;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 0px 1px;
+	PADDING-TOP: 0px
 }
 
 .form_row_title {
-	BORDER-RIGHT: #cccccc 1px solid; PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; WIDTH: 80px; COLOR: #444444; PADDING-TOP: 5px; BACKGROUND-COLOR: #f4f4f4; TEXT-ALIGN: left
+	BORDER-RIGHT: #cccccc 1px solid;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 0px;
+	WIDTH: 80px;
+	COLOR: #444444;
+	PADDING-TOP: 5px;
+	BACKGROUND-COLOR: #f4f4f4;
+	TEXT-ALIGN: left
 }
 
 .form_row_content {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; COLOR: orange; LINE-HEIGHT: 20px; PADDING-TOP: 3px; TEXT-ALIGN: left
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 2px;
+	COLOR: orange;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 3px;
+	TEXT-ALIGN: left
 }
 
 .form_row_content B {
-	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FONT-SIZE: 10.5pt; PADDING-BOTTOM: 6px; COLOR: #666; PADDING-TOP: 6px
+	PADDING-RIGHT: 6px;
+	PADDING-LEFT: 6px;
+	FONT-SIZE: 10.5pt;
+	PADDING-BOTTOM: 6px;
+	COLOR: #666;
+	PADDING-TOP: 6px
 }
 
 .form_row_content IMG {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px
 }
 
 .form_row_content SELECT {
-	FONT-SIZE: 9pt; MARGIN: 0px 10px; BACKGROUND-COLOR: #f8f8f8
+	FONT-SIZE: 9pt;
+	MARGIN: 0px 10px;
+	BACKGROUND-COLOR: #f8f8f8
 }
 
 .form_row_content INPUT {
-	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 9pt; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 10px; PADDING-TOP: 0px; 
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 0px 0px 10px;
+	PADDING-TOP: 0px;
 }
 
 .form_row_content TEXTAREA {
-	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; FONT-SIZE: 9pt; PADDING-BOTTOM: 6px; MARGIN: 0px 0px 10px 10px; PADDING-TOP: 6px; BACKGROUND-COLOR: #f8f8f8
+	PADDING-RIGHT: 6px;
+	PADDING-LEFT: 6px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 6px;
+	MARGIN: 0px 0px 10px 10px;
+	PADDING-TOP: 6px;
+	BACKGROUND-COLOR: #f8f8f8
 }
 
 .form_row_submit INPUT {
-	FONT-SIZE: 9pt; MARGIN: 10px 0px 0px 5px
+	FONT-SIZE: 9pt;
+	MARGIN: 10px 0px 0px 5px
 }
 
 .form_note {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 9pt; BACKGROUND: orange; PADDING-BOTTOM: 10px; MARGIN: 1px 0px; COLOR: #ffffff; PADDING-TOP: 10px
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FONT-SIZE: 9pt;
+	BACKGROUND: orange;
+	PADDING-BOTTOM: 10px;
+	MARGIN: 1px 0px;
+	COLOR: #ffffff;
+	PADDING-TOP: 10px
 }
 
 .form_field_tip {
-	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 10.5pt; PADDING-BOTTOM: 5px; COLOR: #000; PADDING-TOP: 5px; EXT-ALIGN: left
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FONT-SIZE: 10.5pt;
+	PADDING-BOTTOM: 5px;
+	COLOR: #000;
+	PADDING-TOP: 5px;
+	EXT-ALIGN: left
 }
 
 .spacer_1 {
-	CLEAR: both; FONT-SIZE: 0px; WIDTH: 1px; LINE-HEIGHT: 0; HEIGHT: 1px
+	CLEAR: both;
+	FONT-SIZE: 0px;
+	WIDTH: 1px;
+	LINE-HEIGHT: 0;
+	HEIGHT: 1px
 }
 
 .spacer_2 {
-	CLEAR: both; FONT-SIZE: 0px; WIDTH: 2px; LINE-HEIGHT: 0; HEIGHT: 2px
+	CLEAR: both;
+	FONT-SIZE: 0px;
+	WIDTH: 2px;
+	LINE-HEIGHT: 0;
+	HEIGHT: 2px
 }
 
 .spacer_5 {
-	CLEAR: both; FONT-SIZE: 0px; WIDTH: 5px; LINE-HEIGHT: 0; HEIGHT: 5px
+	CLEAR: both;
+	FONT-SIZE: 0px;
+	WIDTH: 5px;
+	LINE-HEIGHT: 0;
+	HEIGHT: 5px
 }
 
 .spacer_10 {
-	CLEAR: both; FONT-SIZE: 0px; WIDTH: 10px; LINE-HEIGHT: 0; HEIGHT: 10px
+	CLEAR: both;
+	FONT-SIZE: 0px;
+	WIDTH: 10px;
+	LINE-HEIGHT: 0;
+	HEIGHT: 10px
 }
 
 .spacer_20 {
-	CLEAR: both; FONT-SIZE: 0px; WIDTH: 20px; LINE-HEIGHT: 0; HEIGHT: 20px
+	CLEAR: both;
+	FONT-SIZE: 0px;
+	WIDTH: 20px;
+	LINE-HEIGHT: 0;
+	HEIGHT: 20px
 }
 
 .form_row_content1 {
-	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; COLOR: orange; LINE-HEIGHT: 20px; PADDING-TOP: 3px; PADDING-LEFT: 80px; TEXT-ALIGN: left
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 9pt;
+	PADDING-BOTTOM: 2px;
+	COLOR: orange;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 3px;
+	PADDING-LEFT: 80px;
+	TEXT-ALIGN: left
 }
