@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file="/include/taglibs.jsp"%>
@@ -7,10 +7,11 @@
 <title>Multi Upload Demo</title>
 
 <script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
-<link type="text/css" rel="stylesheet" href="simple.css"/>
+	src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
+<link type="text/css" rel="stylesheet" href="simple.css" />
 <script type="text/javascript" src="${cxp}/swfupload/js/swfupload.js"></script>
-<script type="text/javascript" src="${cxp}/swfupload/jsp/simple/handlers.js"></script>
+<script type="text/javascript"
+	src="${cxp}/swfupload/jsp/simple/handlers.js"></script>
 <script type="text/javascript">
 var swfu;
 window.onload = function () {
@@ -77,40 +78,36 @@ function startUpload(){
 }
     </script>
 </head>
-<body id="loading" >
+<body id="loading">
 
-<div id="uploadContent">
-    <input id="txtFileName" type="text" disabled="disabled" value="" style="width:181px;"/>
-    <span id="btnPlaceHolder"></span>
-    <div id="uploadProgress">
-        <div id="colorStatus"></div>
-        <div id="percentTxt"></div>
-    </div>
-</div>
-<input type="hidden" id="uuid" name="uuid" value="${ object_id}">
-<input id="btnStartUpload" type="button" value="开始上传" onclick="startUpload()" disabled="disabled" style="position:relative;left:200px;"/>
-	<table class="table" style="width: 250px;" >
-					<thead>
-						<tr>
-							
-							<th>
-								名称
-							</th>
-							<th>
-								大小
-							</th>
-							<th>
-								操作
-							</th>
-							
-						</tr>
-					</thead>
-					<tbody id="myTable" >
-					
-						 
-					</tbody>
-				</table>
-				<script>
+	<div id="uploadContent">
+		<input id="txtFileName" type="text" disabled="disabled" value=""
+			style="width: 181px;" /> <span id="btnPlaceHolder"></span>
+		<div id="uploadProgress">
+			<div id="colorStatus"></div>
+			<div id="percentTxt"></div>
+		</div>
+	</div>
+	<input type="hidden" id="uuid" name="uuid" value="${ object_id}">
+	<input id="btnStartUpload" type="button" value="开始上传"
+		onclick="startUpload()" disabled="disabled"
+		style="position: relative; left: 200px;" />
+	<table class="table" style="width: 250px;">
+		<thead>
+			<tr>
+
+				<th>名称</th>
+				<th>大小</th>
+				<th>操作</th>
+
+			</tr>
+		</thead>
+		<tbody id="myTable">
+
+
+		</tbody>
+	</table>
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 myTable1.initialize(
@@ -182,8 +179,8 @@ function startUpload(){
 			}
 	
 		}
-		</script>	
-	
-				
+		</script>
+
+
 </body>
 </html>

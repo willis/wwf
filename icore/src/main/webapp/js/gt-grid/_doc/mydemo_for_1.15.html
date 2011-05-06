@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../../gt-grid/gt_grid_all.js"></script>
 
 
-<script type="text/javascript" >
+<script type="text/javascript">
 // 教程中的代码就写在这个区域里.
 
 	function getClientTestData(max){
@@ -153,51 +153,48 @@ function query() {
 <body>
 
 
-<form name="queryForm" >
-<div class="gt-panel" style="width:700px;" >
-<div class="gt-panel-head"><span>查 询</span></div>
-	<div class="gt-panel-body">
-		<table>
-			<tr>
-				<td width="15%">姓名</td>
-				<td width="35%">
-					<input type="text" name="name" id="q_name">
-				</td>
-				<td width="15%">性别</td>
-				<td width="35%">
-					<select	style="width:100px" name="gender" id="q_gender" >
-						<option value="">全部</option>
-						<option value="U">未知</option>
-						<option value="M">男</option>
-						<option value="F">女</option>
-					</select>
-				</td>	
-			</tr>
-			<tr>
-				<td width="15%">年龄</td>
-				<td width="35%">
-					<input type="text" name="age" id="q_age" />
-				</td>
-				<td width="15%"> </td>
-				<td width="35%"> </td>
+	<form name="queryForm">
+		<div class="gt-panel" style="width: 700px;">
+			<div class="gt-panel-head">
+				<span>查 询</span>
+			</div>
+			<div class="gt-panel-body">
+				<table>
+					<tr>
+						<td width="15%">姓名</td>
+						<td width="35%"><input type="text" name="name" id="q_name">
+						</td>
+						<td width="15%">性别</td>
+						<td width="35%"><select style="width: 100px" name="gender"
+							id="q_gender">
+								<option value="">全部</option>
+								<option value="U">未知</option>
+								<option value="M">男</option>
+								<option value="F">女</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td width="15%">年龄</td>
+						<td width="35%"><input type="text" name="age" id="q_age" />
+						</td>
+						<td width="15%"></td>
+						<td width="35%"></td>
 
-			</tr>
-		</table>
-	</div>
-	<div class="gt-button-area">
-		<input type="button" class="gt-input-button" value="查询" onclick="query()" />
-		<input type="reset" class="gt-input-button" />
-	</div>
-</div>
-</form>
+					</tr>
+				</table>
+			</div>
+			<div class="gt-button-area">
+				<input type="button" class="gt-input-button" value="查询"
+					onclick="query()" /> <input type="reset" class="gt-input-button" />
+			</div>
+		</div>
+	</form>
 
-<br/>
-<!-- grid的容器. -->
-<div id="grid1_container" style="width:700px;height:300px">
-</div>
-<br/>
-<div id="errMsgBox">
-</div>
-<br/>
- </body>
+	<br />
+	<!-- grid的容器. -->
+	<div id="grid1_container" style="width: 700px; height: 300px"></div>
+	<br />
+	<div id="errMsgBox"></div>
+	<br />
+</body>
 </html>

@@ -4,6 +4,7 @@ div#mailRightBar {
 	_min-height: 400px;
 	float: right;
 }
+
 div#mailBody {
 	width: 79%;
 }

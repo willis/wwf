@@ -1,19 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>jQuery UI Draggable - Events</title>
-	<link type="text/css" href="../../themes/base/ui.all.css" rel="stylesheet" />
-	<script type="text/javascript" src="../../jquery-1.3.2.js"></script>
-	<script type="text/javascript" src="../../ui/ui.core.js"></script>
-	<script type="text/javascript" src="../../ui/ui.draggable.js"></script>
-	<link type="text/css" href="../demos.css" rel="stylesheet" />
-	<style type="text/css">
-		#draggable { width: 16em; padding: 0 1em; }
-		#draggable ul li { margin: 1em 0; padding: 0.5em 0; } * html #draggable ul li { height: 1%; }
-		#draggable ul li span.ui-icon { float: left; }
-		#draggable ul li span.count { font-weight: bold; }
-	</style>
-	<script type="text/javascript">
+<title>jQuery UI Draggable - Events</title>
+<link type="text/css" href="../../themes/base/ui.all.css"
+	rel="stylesheet" />
+<script type="text/javascript" src="../../jquery-1.3.2.js"></script>
+<script type="text/javascript" src="../../ui/ui.core.js"></script>
+<script type="text/javascript" src="../../ui/ui.draggable.js"></script>
+<link type="text/css" href="../demos.css" rel="stylesheet" />
+<style type="text/css">
+#draggable {
+	width: 16em;
+	padding: 0 1em;
+}
+
+#draggable ul li {
+	margin: 1em 0;
+	padding: 0.5em 0;
+}
+
+* html #draggable ul li {
+	height: 1%;
+}
+
+#draggable ul li span.ui-icon {
+	float: left;
+}
+
+#draggable ul li span.count {
+	font-weight: bold;
+}
+</style>
+<script type="text/javascript">
 		$(function() {
 			var $start_counter = $('#event-start'), $drag_counter = $('#event-drag'), $stop_counter = $('#event-stop');
 			var counts = [0,0,0];
@@ -47,28 +65,43 @@
 </head>
 <body>
 
-<div class="demo">
+	<div class="demo">
 
-<div id="draggable" class="ui-widget ui-widget-content">
+		<div id="draggable" class="ui-widget ui-widget-content">
 
-	<p>Drag me to trigger the chain of events.</p>
+			<p>Drag me to trigger the chain of events.</p>
 
-	<ul class="ui-helper-reset">
-		<li id="event-start" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-play"></span>"start" invoked <span class="count">0</span>x</li>
-		<li id="event-drag" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-arrow-4"></span>"drag" invoked <span class="count">0</span>x</li>
-		<li id="event-stop" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-stop"></span>"stop" invoked <span class="count">0</span>x</li>
-	</ul>
-</div>
+			<ul class="ui-helper-reset">
+				<li id="event-start" class="ui-state-default ui-corner-all"><span
+					class="ui-icon ui-icon-play"></span>"start" invoked <span
+					class="count">0</span>x</li>
+				<li id="event-drag" class="ui-state-default ui-corner-all"><span
+					class="ui-icon ui-icon-arrow-4"></span>"drag" invoked <span
+					class="count">0</span>x</li>
+				<li id="event-stop" class="ui-state-default ui-corner-all"><span
+					class="ui-icon ui-icon-stop"></span>"stop" invoked <span
+					class="count">0</span>x</li>
+			</ul>
+		</div>
 
-</div><!-- End demo -->
+	</div>
+	<!-- End demo -->
 
-<div class="demo-description">
+	<div class="demo-description">
 
-<p>
-Layer functionality onto the draggable using the <code>start</code>, <code>drag</code>, and <code>stop</code> events.  Start is fired at the start of the drag; drag during the drag; and stop when dragging stops.
-</p>
+		<p>
+			Layer functionality onto the draggable using the
+			<code>start</code>
+			,
+			<code>drag</code>
+			, and
+			<code>stop</code>
+			events. Start is fired at the start of the drag; drag during the
+			drag; and stop when dragging stops.
+		</p>
 
-</div><!-- End demo-description -->
+	</div>
+	<!-- End demo-description -->
 
 </body>
 </html>

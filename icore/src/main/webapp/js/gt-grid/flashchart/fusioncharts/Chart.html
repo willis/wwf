@@ -1,17 +1,17 @@
 <HTML>
 <HEAD>
-	<TITLE>FusionCharts Free - Client Side Chart Plotting</TITLE>	
-	<style type="text/css">
-	<!--
-	body {
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 12px;
-	}
-	-->
-	</style>
-	<SCRIPT LANGUAGE="Javascript" SRC="./FusionCharts.js"></SCRIPT>
-	
-	<SCRIPT LANGUAGE="JavaScript">
+<TITLE>FusionCharts Free - Client Side Chart Plotting</TITLE>
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+-->
+</style>
+<SCRIPT LANGUAGE="Javascript" SRC="./FusionCharts.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
 		//In this example, we'll show you how to plot and update charts on the
 		//client side. Here, we first store our data (to be plotted) in client side
 		//JavaScript arrays. This data is hard-coded in this example. However,
@@ -101,25 +101,30 @@
 		<h2>FusionCharts Free - Client Side JavaScript Charting</h2>
 
 		<!-- Embed a chart -->
-		
+
 		<!-- Create the form for selecting products -->
-		<FORM NAME='productSelector' Id='productSelector' action='Chart.html' method='POST' >
-			<h4>Please select the products for which you want to plot the chart:</h4>
-			<INPUT TYPE='Checkbox' name='ProductA' onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product A&nbsp;&nbsp;
-			<INPUT TYPE='Checkbox' name='ProductB' onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product B&nbsp;&nbsp;
-			<INPUT TYPE='Checkbox' name='ProductC' onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product C&nbsp;&nbsp;
-			<INPUT TYPE='Checkbox' name='ProductD' onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product D&nbsp;&nbsp;
-			
-			<BR /><BR />
-			<B>Chart Configuration:</B>
-			<INPUT TYPE='Checkbox' name='AnimateChart' />Animate chart while changing data?&nbsp;&nbsp;
-			<INPUT TYPE='Checkbox' name='ShowValues' onClick="JavaScript:updateChart('chart1Id');" checked />Show Data Values?&nbsp;&nbsp;
+		<FORM NAME='productSelector' Id='productSelector' action='Chart.html'
+			method='POST'>
+			<h4>Please select the products for which you want to plot the
+				chart:</h4>
+			<INPUT TYPE='Checkbox' name='ProductA'
+				onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product
+			A&nbsp;&nbsp; <INPUT TYPE='Checkbox' name='ProductB'
+				onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product
+			B&nbsp;&nbsp; <INPUT TYPE='Checkbox' name='ProductC'
+				onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product
+			C&nbsp;&nbsp; <INPUT TYPE='Checkbox' name='ProductD'
+				onClick="JavaScript:updateChart('chart1Id');" checked />&nbsp;Product
+			D&nbsp;&nbsp; <BR />
+			<BR /> <B>Chart Configuration:</B> <INPUT TYPE='Checkbox'
+				name='AnimateChart' />Animate chart while changing
+			data?&nbsp;&nbsp; <INPUT TYPE='Checkbox' name='ShowValues'
+				onClick="JavaScript:updateChart('chart1Id');" checked />Show Data
+			Values?&nbsp;&nbsp;
 		</FORM>
-		
-		<div id="chart1div">
-			FusionCharts
-		</div>
-		
+
+		<div id="chart1div">FusionCharts</div>
+
 		<script language="JavaScript">					
 			var chart1 = new FusionCharts("./charts/FCF_MSColumn2D.swf", "chart1Id", "600", "400");		   
 			//Initialize graph with chart data returned by generateXML() function. [ note: the parameter 'this.document.productSelector.AnimateChart.checked' is passed to set animation property of the chart]

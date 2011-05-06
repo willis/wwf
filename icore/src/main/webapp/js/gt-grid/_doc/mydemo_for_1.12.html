@@ -17,7 +17,7 @@
 <script type="text/javascript" src="../../gt-grid/gt_grid_all.js"></script>
 
 
-<script type="text/javascript" >
+<script type="text/javascript">
 // 教程中的代码就写在这个区域里.
 
 	function getClientTestData(max){
@@ -182,21 +182,19 @@ GT.Utils.onLoad( function(){
 
 <style type="text/css">
 /* 自定按钮的样式 */
- .mybutton-cls { 
-		background : url(./mybutton.png) no-repeat center center; 
+.mybutton-cls {
+	background: url(./mybutton.png) no-repeat center center;
 }
 </style>
 </head>
 
 <body>
-<!-- grid的容器. -->
-<div id="grid1_container" style="width:700px;height:300px">
-</div>
-<br/>
-<div id="errMsgBox">
-</div>
-<br/>
-<input type="button" value="看看哪些数据被选中了" 
-onclick="alert( GT.$json(mygrid.getSelectedRecords() ) )" />
- </body>
+	<!-- grid的容器. -->
+	<div id="grid1_container" style="width: 700px; height: 300px"></div>
+	<br />
+	<div id="errMsgBox"></div>
+	<br />
+	<input type="button" value="看看哪些数据被选中了"
+		onclick="alert( GT.$json(mygrid.getSelectedRecords() ) )" />
+</body>
 </html>

@@ -14,13 +14,17 @@ body {
 	background-repeat: repeat-x;
 	background-position: 0px 0px;
 }
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
+	{
 	margin: 0px;
 	padding: 0px;
 }
+
 ul li {
 	list-style-type: none;
 }
+
 .Ejo2 {
 	width: 1205px;
 	margin-top: 0px;
@@ -28,6 +32,7 @@ ul li {
 	margin-bottom: 0px;
 	margin-left: auto;
 }
+
 .EjoBox {
 	background-image: url(/maxejo/images/MAXEJO-2bg.jpg);
 	background-repeat: no-repeat;
@@ -38,6 +43,7 @@ ul li {
 	padding-right: 147px;
 	padding-left: 147px;
 }
+
 .Etitle {
 	font-weight: bold;
 	color: #ffffff;
@@ -49,9 +55,11 @@ ul li {
 	line-height: 31px;
 	padding-left: 10px;
 }
+
 .Ebox {
 	position: relative;
 }
+
 .Eboxleft {
 	height: 542px;
 	width: 210px;
@@ -63,17 +71,23 @@ ul li {
 	padding-top: 18px;
 	padding-left: 18px;
 }
-.Eboxleft ul li {}
+
+.Eboxleft ul li {
+	
+}
+
 .Eboxleft ul li a {
 	font-weight: bold;
 	color: #1D4F74;
 	line-height: 26px;
 	text-decoration: none;
 }
+
 .Eboxleft ul li a:hover {
 	color: #ffffff;
 	background-color: #1D4F74;
 }
+
 .Eboxright {
 	height: 558px;
 	width: 678px;
@@ -84,6 +98,7 @@ ul li {
 	padding-right: 2px;
 	padding-left: 2px;
 }
+
 .EjoD .EjoDtitle {
 	background-color: #D4EBF9;
 	height: 27px;
@@ -93,6 +108,7 @@ ul li {
 	font-weight: bold;
 	position: relative;
 }
+
 .EjoD p {
 	font-size: 12px;
 	font-weight: normal;
@@ -100,6 +116,7 @@ ul li {
 	padding: 20px;
 	line-height: 20px;
 }
+
 .EjoD .EjoDtitle a {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
@@ -116,28 +133,27 @@ ul li {
 }
 </style>
 </head>
- 
-  <script type="text/javascript" src="../../jquery.js"></script>
-  <script type="text/javascript" src="../../jquery.common.js"></script>
-   <script type="text/javascript" src="../../jquery.debug.js"></script>
-   <script type="text/javascript" src="../block/jquery.blockUI.packed.js"></script>
-   <script type="text/javascript" src="jquery.form.js"></script>
-<body>
-<div class="Ejo2">
-<div class="EjoBox">
-  <div class="Etitle">Ajax表单提交</div>
-  <div class="Ebox">
-  
-  <form name="myForm"  id="myForm" method="post" action="getJson.jsp">
-    用户名：<input name="userName"/>
-    密　码：<input name="password"/>
-	<input id="sb" name="sb" type="submit"  value="提交" />
-  </form>
-  <br/>
 
-<div id="v"></div>
-  
-  <script>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../jquery.common.js"></script>
+<script type="text/javascript" src="../../jquery.debug.js"></script>
+<script type="text/javascript" src="../block/jquery.blockUI.packed.js"></script>
+<script type="text/javascript" src="jquery.form.js"></script>
+<body>
+	<div class="Ejo2">
+		<div class="EjoBox">
+			<div class="Etitle">Ajax表单提交</div>
+			<div class="Ebox">
+
+				<form name="myForm" id="myForm" method="post" action="getJson.jsp">
+					用户名：<input name="userName" /> 密 码：<input name="password" /> <input
+						id="sb" name="sb" type="submit" value="提交" />
+				</form>
+				<br />
+
+				<div id="v"></div>
+
+				<script>
 $(document).ready(function() {
 	
 		$('#myForm').ajaxForm({
@@ -170,10 +186,13 @@ $("#myForm").unblock();
  
 </script>
 
-</div>
-</div>
-<div class="yrepeat"></div>
-<div class="Efooter"><img src="/maxejo/images/MAXEJO-footer.jpg" width="1205" height="51" alt="Efooter" /></div>
-</div>
+			</div>
+		</div>
+		<div class="yrepeat"></div>
+		<div class="Efooter">
+			<img src="/maxejo/images/MAXEJO-footer.jpg" width="1205" height="51"
+				alt="Efooter" />
+		</div>
+	</div>
 </body>
 </html>

@@ -2,9 +2,11 @@
 	font-family: "Arial", Gadget, sans-serif;
 	font-size: 12px;
 }
+
 h1 {
 	font-size: 20px;
 }
+
 h2 {
 	font-size: 12px;
 	color: #000000;
@@ -17,9 +19,11 @@ h2 {
 	line-height: 20px;
 	vertical-align: middle;
 }
+
 h2.underline {
 	border-bottom: 2px solid #C5CDDA;
 }
+
 h2.person {
 	font-size: 12px;
 	color: #000000;
@@ -33,6 +37,7 @@ h2.person {
 	vertical-align: middle;
 	border-bottom: 2px solid #C5CDDA;
 }
+
 h2.user {
 	font-size: 12px;
 	color: #000000;
@@ -47,6 +52,7 @@ h2.user {
 	vertical-align: middle;
 	border-bottom: 1px solid #C5CDDA;
 }
+
 h2.dept {
 	font-size: 12px;
 	color: #000000;
@@ -61,24 +67,29 @@ h2.dept {
 	vertical-align: middle;
 	border-bottom: 1px solid #C5CDDA;
 }
+
 h2.email {
 	background-image: url(../images/widgets/h2_email.gif);
 	border-bottom: 1px dotted #C5CDDA;
 	color: #1C405A;
 	font-weight: 800;
 }
+
 h2.event {
 	background-image: url(../images/widgets/h2_email.gif);
 	border-bottom: 2px solid #D8DBE2;
 }
+
 h2.fleet {
 	border-bottom: 2px solid #D8DBE2;
 	color: #1C405A;
 	font-weight: 800;
 }
+
 .navigation li a {
 	font-size: 14px;
 }
+
 .label li a {
 	font-size: 12px;
 	line-height: 24px;
@@ -86,12 +97,15 @@ h2.fleet {
 	color: #ffffff;
 	text-decoration: none;
 }
+
 .green {
 	color: #348600;
 }
-.orange  {
+
+.orange {
 	color: #E7611A;
 }
+
 .tools_link li a.green {
 	color: #348600;
 }

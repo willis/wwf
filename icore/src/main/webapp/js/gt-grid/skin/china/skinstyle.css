@@ -1,15 +1,15 @@
 .gt-skin-china {
+	
 }
-
 
 .gt-skin-china .gt-simple-scrollbar {
 	scrollbar-3dlight-color: #cccccc;
 	scrollbar-darkshadow-color: #cccccc;
-	scrollbar-arrow-color:#999999;
-	scrollbar-face-color:#e9e9e9;
-	scrollbar-highlight-color:#f3f3f3;
-	scrollbar-shadow-color:#f3f3f3;
-	scrollbar-track-color:#f3f3f3;
+	scrollbar-arrow-color: #999999;
+	scrollbar-face-color: #e9e9e9;
+	scrollbar-highlight-color: #f3f3f3;
+	scrollbar-shadow-color: #f3f3f3;
+	scrollbar-track-color: #f3f3f3;
 }
 
 .gt-skin-china .gt-head-div {
@@ -19,27 +19,25 @@
 .gt-skin-china .gt-hd-row TD {
 	border-right: 1px solid #333333;
 	border-bottom: 1px solid #333333;
-
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
-.gt-skin-china .gt-table thead tr td , .gt-skin-china .gt-table thead th td {
-	color : #ffffff ;
+.gt-skin-china .gt-table thead tr td,.gt-skin-china .gt-table thead th td
+	{
+	color: #ffffff;
 	background: #ebeadb url(./images/hd_row_bg.gif) repeat-x;
 }
 
 .gt-skin-china .gt-hd-row td .gt-inner {
-	color : #ffffff ;
-
+	color: #ffffff;
 }
 
 .gt-skin-china .gt-hd-row .gt-hd-row-over {
 	background: #ebeadb url(./images/hd_row_over_bg.gif) repeat-x;
 }
 
-
 .gt-skin-china .gt-row td.gt-index-col {
-	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x ;
+	background: #e0e0e0 url(./images/cell_index_bg.gif) repeat-x;
 }
 
 .gt-skin-china .gt-hd-icon {
@@ -47,53 +45,51 @@
 }
 
 .gt-skin-china  .gt-toolbar-box {
-	background-image:url(./images/toolbar_bg.gif); 
+	background-image: url(./images/toolbar_bg.gif);
 }
 
 .gt-skin-china .gt-dialog-head {
-
 	background-image: url(./images/toolbar_bg.gif);
-
 }
 
 .gt-skin-china  .gt-row-even {
-	background-color:#fffcf0;
+	background-color: #fffcf0;
 }
+
 .gt-skin-china  .gt-row-selected {
-	background-color:#fff6e9;
+	background-color: #fff6e9;
 }
 
 .gt-skin-china  .gt-first-page {
-	background : url(./images/page_first.gif) no-repeat center center;
+	background: url(./images/page_first.gif) no-repeat center center;
 }
 
-
 .gt-skin-china  .gt-prev-page {
-	background : url(./images/page_prev.gif) no-repeat center center;
+	background: url(./images/page_prev.gif) no-repeat center center;
 }
 
 .gt-skin-china  .gt-next-page {
-	background : url(./images/page_next.gif) no-repeat center center;
+	background: url(./images/page_next.gif) no-repeat center center;
 }
 
 .gt-skin-china  .gt-last-page {
-	background : url(./images/page_last.gif) no-repeat center center;
+	background: url(./images/page_last.gif) no-repeat center center;
 }
 
 .gt-skin-china  .gt-goto-page {
-	background : url(./images/page_goto.gif) no-repeat center center;
+	background: url(./images/page_goto.gif) no-repeat center center;
 }
 
 .gt-skin-china .gt-dialog-head-button a {
-	background : url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
+	background: url(./images/dialog_close_btn.gif) no-repeat 0px 0px;
 }
 
 .gt-skin-china .gt-tool-reload {
-	background : url(./images/tool_reload.gif) no-repeat center center;
+	background: url(./images/tool_reload.gif) no-repeat center center;
 }
 
 .gt-skin-china .gt-menu-parent {
-	background-image: url(./images/menu_hassub.gif) ;
+	background-image: url(./images/menu_hassub.gif);
 }
 
 /*

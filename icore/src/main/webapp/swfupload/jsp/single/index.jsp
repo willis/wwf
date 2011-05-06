@@ -4,12 +4,15 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>Classic Form Demo</title>
 <link href="single.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/swfupload.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/swfupload.swfobject.js"></script>
-<script type="text/javascript" src="<%=contextPath%>/swfupload/js/fileprogress.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/swfupload.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/swfupload.swfobject.js"></script>
+<script type="text/javascript"
+	src="<%=contextPath%>/swfupload/js/fileprogress.js"></script>
 <script type="text/javascript" src="handlers.js"></script>
 <script type="text/javascript">
 var swfu;
@@ -58,40 +61,48 @@ window.onload = function () {
     </script>
 </head>
 <body>
- 
-<div id="content">
-    <h2>Classic Form Demo</h2>
-    <form id="form1" action="" enctype="multipart/form-data" method="post">        
-        <div class="fieldset">
-            <span class="legend">Submit your Application</span>
-            <table>
-                <tr>
-                    <td><label for="lastname">Last Name:</label></td>
-                    <td><input id="lastname" name="lastname" type="text" style="width: 200px"/></td>
-                </tr>
-                <tr>
-                    <td><label for="firstname">First Name:</label></td>
-                    <td><input id="firstname" name="firstname" type="text" style="width: 200px"/></td>
-                </tr>
-                <tr>
-                    <td><label for="txtFileName">Resume:</label></td>
-                    <td>
-                        <div>
-                            <div>
-                                <input id="txtFileName" name="txtFileName" type="text" disabled="disabled" style="border: solid 1px; background-color: #FFFFFF;" />
-                                <span id="spanButtonPlaceholder"></span>(10 MB max)
-                            </div>
-                            <div id="fsUploadProgress" class="flash"></div>
-                            <input id="hidFileID" name="hidFileID" type="hidden" value=""/>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <input id="btnSubmit" type="submit" value="Submit Application"/>
-        </div>
-    </form>
-</div>
+
+	<div id="content">
+		<h2>Classic Form Demo</h2>
+		<form id="form1" action="" enctype="multipart/form-data" method="post">
+			<div class="fieldset">
+				<span class="legend">Submit your Application</span>
+				<table>
+					<tr>
+						<td><label for="lastname">Last Name:</label>
+						</td>
+						<td><input id="lastname" name="lastname" type="text"
+							style="width: 200px" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="firstname">First Name:</label>
+						</td>
+						<td><input id="firstname" name="firstname" type="text"
+							style="width: 200px" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="txtFileName">Resume:</label>
+						</td>
+						<td>
+							<div>
+								<div>
+									<input id="txtFileName" name="txtFileName" type="text"
+										disabled="disabled"
+										style="border: solid 1px; background-color: #FFFFFF;" /> <span
+										id="spanButtonPlaceholder"></span>(10 MB max)
+								</div>
+								<div id="fsUploadProgress" class="flash"></div>
+								<input id="hidFileID" name="hidFileID" type="hidden" value="" />
+							</div></td>
+					</tr>
+				</table>
+				<br /> <input id="btnSubmit" type="submit"
+					value="Submit Application" />
+			</div>
+		</form>
+	</div>
 
 </body>
 </html>

@@ -1,52 +1,58 @@
 /* ������ￄ1�7 */
-a,area, button { 
-	blr:expression(this.onFocus=this.blur()) 
+a,area,button {
+	blr: expression(this.onFocus = this.blur () )
 } /* for IE */
-
-a:focus, input:focus { 
-	outline: none; 
-} /* for Firefox */ 
+a:focus,input:focus {
+	outline: none;
+} /* for Firefox */
 a {
 	color: #006BB3;
 	text-decoration: none;
 }
+
 a:hover {
 	color: #358500;
 	text-decoration: underline;
 }
+
 a.go {
-	background-image:url(../images/widgets/go.png);
-	background-repeat:no-repeat;
-	color:#FFFFFF;
-	font-weight:normal;
-	margin-right:1em;
-	padding-left:20px;
-	text-decoration:none;
+	background-image: url(../images/widgets/go.png);
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-weight: normal;
+	margin-right: 1em;
+	padding-left: 20px;
+	text-decoration: none;
 }
+
 a.follow {
-	background-image:url(../images/widgets/follow.png);
-	background-repeat:no-repeat;
-	color:#FFFFFF;
-	font-weight:normal;
-	margin-right:1em;
-	padding-left:20px;
-	text-decoration:none;
+	background-image: url(../images/widgets/follow.png);
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	font-weight: normal;
+	margin-right: 1em;
+	padding-left: 20px;
+	text-decoration: none;
 }
+
 ul li {
 	list-style-type: none;
-	list-style-position : inside ;
+	list-style-position: inside;
 }
+
 table.table {
 	width: 100%;
 	border: 1px solid #C5C4CC;
 	border-bottom: 0px;
 	border-right: 0px;
-	border-collapse:collapse;
+	border-collapse: collapse;
 }
+
 table.table thead {
 	height: 26px;
 	background-image: url(../images/widgets/thead.gif);
 }
+
 table.table thead tr th {
 	padding-left: 10px;
 	border: 1px solid #C5C4CC;
@@ -55,15 +61,19 @@ table.table thead tr th {
 	text-align: left;
 	height: 26px;
 }
+
 table.table tbody tr {
 	height: 25px;
 }
-table.table tbody tr.even  {
+
+table.table tbody tr.even {
 	background-color: #FEF3D1;
 }
+
 table.table tbody tr.hover {
 	background-color: #FEF3D1;
 }
+
 table.table tbody tr td {
 	padding-left: 10px;
 	border: 1px solid #C5C4CC;
@@ -71,11 +81,13 @@ table.table tbody tr td {
 	border-left: 0px;
 	text-align: left;
 }
+
 table.table tbody tr td a.control {
 	padding: 0px;
 	margin-left: 5px;
 	width: auto;
 }
+
 input.button {
 	display: inline-block;
 	width: 49px;
@@ -84,8 +96,9 @@ input.button {
 	border: 0px;
 	color: #ffffff;
 	background-image: url(../images/widgets/btn_1.png);
-	cursor:pointer;
+	cursor: pointer;
 }
+
 input.bluebutton {
 	display: inline-block;
 	width: 59px;
@@ -95,6 +108,7 @@ input.bluebutton {
 	color: #ffffff;
 	background-image: url(../images/widgets/bluebutton.gif);
 }
+
 input.button_big {
 	display: inline-block;
 	width: 85px;
@@ -103,8 +117,9 @@ input.button_big {
 	border: 0px;
 	color: #ffffff;
 	background-image: url(../images/widgets/btn_2.png);
-	cursor:pointer;
+	cursor: pointer;
 }
+
 input.nextWeek {
 	display: inline-block;
 	width: 67px;
@@ -113,8 +128,9 @@ input.nextWeek {
 	border: 0px;
 	color: #ffffff;
 	background-image: url(../images/nextWeek.png);
-	cursor:pointer;
+	cursor: pointer;
 }
+
 input.lastWeek {
 	display: inline-block;
 	width: 67px;
@@ -123,8 +139,9 @@ input.lastWeek {
 	border: 0px;
 	color: #ffffff;
 	background-image: url(../images/lastWeek.png);
-	cursor:pointer;
+	cursor: pointer;
 }
+
 input.btn_big {
 	display: inline-block;
 	width: 139px;
@@ -134,6 +151,7 @@ input.btn_big {
 	color: #006BB3;
 	background-image: url(../images/widgets/btn_big.gif);
 }
+
 div.success {
 	background-image: url(../images/classy_icons_004.png);
 	background-repeat: no-repeat;
@@ -141,6 +159,7 @@ div.success {
 	height: 128px;
 	margin: 2em auto;
 }
+
 p.success {
 	color: #1A3C55;
 	background-image: url(../images/widgets/accept.png);
@@ -151,6 +170,7 @@ p.success {
 	margin: 1em auto;
 	font-weight: bold;
 }
+
 div.fail {
 	background-image: url(../images/classy_icons_289.png);
 	background-repeat: no-repeat;
@@ -158,6 +178,7 @@ div.fail {
 	height: 128px;
 	margin: 2em auto;
 }
+
 p.fail {
 	color: #FF0103;
 	background-image: url(../images/widgets/delete.png);
@@ -167,10 +188,12 @@ p.fail {
 	text-align: left;
 	margin: 1em auto;
 }
+
 p.failContent {
 	width: 60%;
 	margin: 1em auto;
 }
+
 div.block {
 	min-height: 85px;
 	border: 1px solid #C5CDDA;
@@ -178,17 +201,19 @@ div.block {
 	margin-bottom: 12px;
 	padding: 5px;
 }
-div.block a:hover {
 
-    text-decoration:none;
+div.block a:hover {
+	text-decoration: none;
 }
+
 div.block a.moreWord {
 	float: none;
 	display: block;
 	text-align: right;
 	bottom: 0px;
-    text-decoration:none;
+	text-decoration: none;
 }
+
 }
 h4 {
 	color: #1C405A;
@@ -200,6 +225,7 @@ h4 {
 	vertical-align: middle;
 	padding-left: 12px;
 }
+
 span.userName {
 	display: block;
 	width: 129px;
@@ -215,44 +241,52 @@ a.modify {
 	display: inline-block;
 	float: left;
 }
+
 a.modify span {
 	background-image: url(../images/widgets/modify.png);
-		width: 16px;
+	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.add {
 	display: inline-block;
 	float: left;
 }
+
 a.add span {
 	background-image: url(../images/widgets/add.png);
-		width: 16px;
+	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.preview {
-display: inline-block;
+	display: inline-block;
 	float: left;
 }
-a.preview span  {
+
+a.preview span {
 	background-image: url(../images/widgets/preview.png);
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.icon {
-    display: inline-block;
+	display: inline-block;
 	float: left;
 	margin-right: 3px;
 	cursor: pointer;
 }
+
 a.copy span {
 	background-image: url(../images/widgets/copy.png);
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.accept span {
 	background-image: url(../images/widgets/accept.png);
 	width: 16px;
@@ -264,12 +298,14 @@ a.recycle-bin {
 	display: inline-block;
 	float: left;
 }
+
 a.recycle-bin span {
 	background-image: url(../images/widgets/recycle-bin.png);
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.moreWord {
 	float: right;
 	margin-top: 2px;
@@ -277,6 +313,7 @@ a.moreWord {
 	_margin-top: 0px;
 	cursor: pointer;
 }
+
 a.more span {
 	background-image: url(../images/widgets/more.gif);
 	background-repeat: no-repeat;
@@ -284,6 +321,7 @@ a.more span {
 	height: 9px;
 	display: block;
 }
+
 a.word {
 	background-image: url(../images/widgets/word.gif);
 	background-repeat: no-repeat;
@@ -292,58 +330,71 @@ a.word {
 	height: 1.5em;
 	display: inline-block;
 }
+
 a.find {
 	display: inline-block;
 	float: left;
 }
+
 a.find span {
 	background-image: url(../images/widgets/find.png);
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.delete {
 	display: inline-block;
 	float: left;
 }
+
 a.delete span {
 	background-image: url(../images/widgets/delete.png);
 	width: 16px;
 	height: 16px;
 	display: block;
 }
-a.move  {
+
+a.move {
 	background-image: url(../images/widgets/move.png);
 }
+
 a.issue_add {
 	background-image: url(../images/widgets/issue_add.png);
 }
-a.issue{
+
+a.issue {
 	background-image: url(../images/widgets/issue.png);
 }
-a.get{
+
+a.get {
 	background-image: url(../images/widgets/get.png);
 }
-a.put{
+
+a.put {
 	background-image: url(../images/widgets/put.png);
 }
+
 a.revert {
 	background-image: url(../images/widgets/revert.png);
 }
+
 a.chase span {
-    background-image: url(../images/checkout-yellow.gif);
-	background-repeat:no-repeat;
+	background-image: url(../images/checkout-yellow.gif);
+	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 a.approval span {
-    background-image: url(../images/approval.png);
-	background-repeat:no-repeat;
+	background-image: url(../images/approval.png);
+	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
 	display: block;
 }
+
 span#newsWord {
 	background-image: url(../images/main/news.gif);
 	width: 68px;
@@ -359,6 +410,7 @@ span#newsWord {
 	float: left;
 	margin-right: -70px;
 }
+
 span#newsRight {
 	height: 20px;
 	display: block;
@@ -366,77 +418,96 @@ span#newsRight {
 	text-align: right;
 	line-height: 20px;
 	vertical-align: middle;
-	position: relative ;
+	position: relative;
 	background-image: url(../images/main/newsword_title.gif);
 	border-bottom: 1px solid #AEAEAC;
 }
+
 ul.event {
 	*margin-left: -10px;
 }
+
 ul.event li {
 	line-height: 2em;
 }
+
 ul.event li a {
 	color: #737373;
 }
+
 ul.event li a:hover {
 	color: #1C405A;
 }
+
 ul.mail {
 	margin-left: 5px;
 	margin-top: 10px;
 	*margin-left: -10px;
 }
+
 ul.mail li {
-	background-image : url(../images/widgets/email.png);
+	background-image: url(../images/widgets/email.png);
 	background-repeat: no-repeat;
 	text-indent: 10px;
 	height: 25px;
 	display: block;
-	position: relative ;
+	position: relative;
 }
+
 ul.mail li a:hover {
 	color: #1C405A;
 }
+
 ul.mail li span {
 	position: absolute;
 	right: 0px;
 }
+
 ul.mail li.on {
-	background-image : url(../images/widgets/email_open_image.png);
+	background-image: url(../images/widgets/email_open_image.png);
 }
+
 ul.mail li a {
 	color: #000000;
 	display: inline-block;
 	*padding-top: 2px;
 }
+
 ul.affiche li {
-	background-image : url(../images/widgets/newspaper.png);
+	background-image: url(../images/widgets/newspaper.png);
 }
+
 ul.affiche li a {
 	color: #737373;
 }
+
 ul.file li {
 	background-image: url(../images/widgets/file.gif);
 	background-position: 0px -2px;
 }
+
 ul.file li a {
 	color: #1C405A;
 }
+
 ul.download li {
 	background-image: url(../images/widgets/download.gif);
 }
+
 ul.download li a {
 	color: #737373;
 }
+
 ul.download li a:hover {
 	color: #1B3E5A;
 }
+
 ul.news {
 	margin: 5px 10px;
 	*margin: 5px 10px 5px -5px;
 	_margin: 5px 10px;
 }
+
 ul.news li {
 	background-image: url(../images/widgets/new_node.gif);
 	background-repeat: no-repeat;
@@ -447,34 +518,41 @@ ul.news li {
 	border-bottom: 1px dotted #010101;
 	overflow: auto;
 }
+
 ul.news li a {
 	color: #666666;
 	display: block;
 	margin-right: 80px;
 	*display: inline;
 }
+
 ul.news li.new {
 	background-image: url(../images/widgets/news_new.gif);
 	text-indent: 13px;
 }
+
 ul.news li.new a {
 	margin-left: 20px;
 }
+
 ul.news li a:hover {
 	text-decoration: none;
 	color: #1C405A;
 }
+
 span.date {
 	float: right;
 	display: inline-block;
 	width: 80px;
 	color: #666666;
 }
+
 ul.pop {
 	margin: 0px 0px;
 	margin-top: 5px;
 	*margin-left: -10px;
 }
+
 ul.pop li {
 	border-bottom: 0px;
 	text-indent: 0px;
