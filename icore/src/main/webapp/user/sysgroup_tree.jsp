@@ -2,27 +2,28 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
+<head>
 
-		<title>组维护</title>
+<title>组维护</title>
 
-		<%@ include file="/include/taglibs.jsp"%>
-		<%@ include file="/include/jquery.jsp"%>
-		<link rel="StyleSheet" href="${cxp}/js/dtree.css" type="text/css" />
-		<link rel="StyleSheet" href="${cxp}/css/css.css" type="text/css" />
-		<script type="text/javascript" src="${cxp}/js/dtree2.js"></script>
+<%@ include file="/include/taglibs.jsp"%>
+<%@ include file="/include/jquery.jsp"%>
+<link rel="StyleSheet" href="${cxp}/js/dtree.css" type="text/css" />
+<link rel="StyleSheet" href="${cxp}/css/css.css" type="text/css" />
+<script type="text/javascript" src="${cxp}/js/dtree2.js"></script>
 
 
-		<style type="text/css">
+<style type="text/css">
 <!--
 .mydivbgcolor {
 	color: #000000;
 	background: #BCE0FE;
-	FILTER: progid :       DXImageTransform .       Microsoft .   
+	FILTER: progid :         DXImageTransform .         Microsoft .    
 		  
-		gradient(startColorStr :       #0099FF, EndColorStr :       #9FC7FB,
-		GradientType :   
-		   0);
+		
+		gradient(startColorStr :         #0099FF, EndColorStr :         #9FC7FB,
+		GradientType :    
+		    0);
 	overflow: visible;
 }
 
@@ -114,67 +115,54 @@ function tdBlur(obj){
 }
 </script>
 
-	</head>
+</head>
 
 
-	<body onclick="hideMyDiv();">
+<body onclick="hideMyDiv();">
 
-		<div id="dm_1" style="display: none">
-			<table width="95%" border="0" cellspacing="1" cellpadding="1"
-				align="center">
-				<tr class="menuTd">
-					<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
-						onclick="addChannel()">
-						&nbsp;&nbsp;添加组
-					</td>
-				</tr>
-				<tr class="menuTd">
-					<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
-						onclick="editChannel()">
-						&nbsp;&nbsp;修改组
-					</td>
-				</tr>
-				<tr class="menuTd" style="">
-					<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
-						onclick="delChannel()">
-						&nbsp;&nbsp;删除组
-					</td>
-				</tr>
-			</table>
-		</div>
+	<div id="dm_1" style="display: none">
+		<table width="95%" border="0" cellspacing="1" cellpadding="1"
+			align="center">
+			<tr class="menuTd">
+				<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
+					onclick="addChannel()">&nbsp;&nbsp;添加组</td>
+			</tr>
+			<tr class="menuTd">
+				<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
+					onclick="editChannel()">&nbsp;&nbsp;修改组</td>
+			</tr>
+			<tr class="menuTd" style="">
+				<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
+					onclick="delChannel()">&nbsp;&nbsp;删除组</td>
+			</tr>
+		</table>
+	</div>
 
-		<div id="dm_2" style="display: none">
-			<table width="95%" border="0" cellspacing="1" cellpadding="1"
-				align="center">
-				<tr class="menuTd">
-					<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
-						onclick="addChannel()">
-						&nbsp;&nbsp;添加组
-					</td>
-				</tr>
-				<tr class="menuTd">
-					<td style="color: #cccccc">
-						&nbsp;&nbsp;修改组
-					</td>
-				</tr>
-				<tr class="menuTd" style="color: #cccccc">
-					<td>
-						&nbsp;&nbsp;删除组
-					</td>
-				</tr>
-			</table>
-		</div>
+	<div id="dm_2" style="display: none">
+		<table width="95%" border="0" cellspacing="1" cellpadding="1"
+			align="center">
+			<tr class="menuTd">
+				<td onmouseover="tdFocus(this)" onmouseout="tdBlur(this)"
+					onclick="addChannel()">&nbsp;&nbsp;添加组</td>
+			</tr>
+			<tr class="menuTd">
+				<td style="color: #cccccc">&nbsp;&nbsp;修改组</td>
+			</tr>
+			<tr class="menuTd" style="color: #cccccc">
+				<td>&nbsp;&nbsp;删除组</td>
+			</tr>
+		</table>
+	</div>
 
 
-		<div
-			style="width: 100px; height: 100px; border-right: #e2e2e2 solid 2px; border-bottom: #e2e2e2 solid 2px; background-color: #ffffff; display: none; position: absolute"
-			id="myDiv">
-			<div style="width: 100%; height: 100%; border: #cccccc solid 1px;"
-				id="myDiv2">
-			</div>
-		</div>
+	<div
+		style="width: 100px; height: 100px; border-right: #e2e2e2 solid 2px; border-bottom: #e2e2e2 solid 2px; background-color: #ffffff; display: none; position: absolute"
+		id="myDiv">
+		<div style="width: 100%; height: 100%; border: #cccccc solid 1px;"
+			id="myDiv2"></div>
+	</div>
 
-<script>
+	<script>
 
  imagepath="${cxp}/images/img";
 
@@ -198,11 +186,11 @@ function ahref(url){
 
 </script>
 
-		<div class="dtree" id="dtree" onclick="hideMyDiv()">
+	<div class="dtree" id="dtree" onclick="hideMyDiv()">
 
 
 
-			<script>
+		<script>
 d = new dTree('d');
 d.add(<s:property value="sysGroup.id"/>,-1,'<span oncontextmenu="return showMyDiv(event)" isroot="true" cid="<s:property value="sysGroup.id"/>" ><s:property value="sysGroup.name"/></span>','javascript:');
 
@@ -226,8 +214,8 @@ document.write(d);
 
 
 </script>
-		
 
-		</div>
-	</body>
+
+	</div>
+</body>
 </html>

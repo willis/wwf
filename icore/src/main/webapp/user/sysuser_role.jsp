@@ -4,87 +4,83 @@
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
 <script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
- 
-	<head>
-		<title>网站后台</title>
+	src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
 
-		<style type="text/css">
-			label.checkbox {
-				cursor: pointer;
-			}
-		</style>
-	</head>
-	<body >
+<head>
+<title>网站后台</title>
 
-		<table  >
-		<tr><td  id="loading" colspan="3"></td></tr>
-		
-		<tr><td align="center" >当前可添加的角色</td><td>&nbsp;</td><td align="center">已添加角色</td></tr>
-		<tr><td valign="top">
-		<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
+<style type="text/css">
+label.checkbox {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+	<table>
+		<tr>
+			<td id="loading" colspan="3"></td>
+		</tr>
+
+		<tr>
+			<td align="center">当前可添加的角色</td>
+			<td>&nbsp;</td>
+			<td align="center">已添加角色</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 80px"><label class="checkbox"> <input
+										class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								角色名称
-							</th>
-							<th>
-								角色描述
-							</th>
-							 
-  							
-						</tr>
-					</thead>
-					
-					<tbody id="myTable1">
-					</tbody>
-				</table>
-				</form>
-		</td><td >
-		<div>
-		<img src="${cxp }/images/arrow-1.gif" onclick="addSelect()" style="cursor:pointer"/>
-		</div>
-		<div>&nbsp;</div>
-		<div>
-		<img src="${cxp }/images/arrow-2.gif"  onclick="removeSelect()" style="cursor:pointer"/>
-		</div>
-			</td><td valign="top">
-			<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								名称
-							</th>
-							<th>
-								描述
-							</th>
-  							
-						</tr>
-					</thead>
-					
-					<tbody id="myTable2">
-					</tbody>
-				</table>
-				</form>
-		</td></tr></table>
+										全选 </label></th>
+								<th>角色名称</th>
+								<th>角色描述</th>
 
-		<script>
+
+							</tr>
+						</thead>
+
+						<tbody id="myTable1">
+						</tbody>
+					</table>
+				</form></td>
+			<td>
+				<div>
+					<img src="${cxp }/images/arrow-1.gif" onclick="addSelect()"
+						style="cursor: pointer" />
+				</div>
+				<div>&nbsp;</div>
+				<div>
+					<img src="${cxp }/images/arrow-2.gif" onclick="removeSelect()"
+						style="cursor: pointer" />
+				</div></td>
+			<td valign="top">
+				<form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 80px"><label class="checkbox"> <input
+										class="checkbox" type="checkbox" name="c_all"
+										onClick="selectAll(this.form,this.checked,this.nextSibling)">
+										全选 </label></th>
+								<th>名称</th>
+								<th>描述</th>
+
+							</tr>
+						</thead>
+
+						<tbody id="myTable2">
+						</tbody>
+					</table>
+				</form></td>
+		</tr>
+	</table>
+
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 
@@ -168,5 +164,5 @@ function removeSelect(){
 }
 		 
 		</script>
-	</body>
+</body>
 </html>
