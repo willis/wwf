@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import= "cn.com.icore.util.*" %>
-<%@ page import= "cn.com.icore.user.service.*" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page import="cn.com.icore.util.*"%>
+<%@ page import="cn.com.icore.user.service.*"%>
 
 
 
-<%@ page errorPage="error.jsp" %>
+<%@ page errorPage="error.jsp"%>
 
 <%@page import="cn.com.icore.util.app.ApplictionContext"%>
 
