@@ -70,18 +70,12 @@
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
-
 	</bean>
 	<bean id="commonJdbcDao" class="cn.com.icore.util.dao.jdbc.AbstractJdbcDao">
 		<property name="jdbcTemplate">
 			<ref bean="jdbcTemplate" />
 		</property>
 	</bean>
-
-
-
-
-
 	<!-- 配置 sessionFactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -105,7 +99,6 @@
 				<prop key="hibernate.jdbc.batch_size">
 					${hibernate.jdbc.batch_size}
 				</prop>
-				
 				<prop key="hibernate.jdbc.fetch_size">
 					${hibernate.jdbc.fetch_size}
 				</prop>
@@ -134,18 +127,10 @@
 				<value>cn/com/icore/user/model/SysGroup.hbm.xml</value>
 				<value>cn/com/icore/user/model/SysMenu.hbm.xml</value>
 				<value>cn/com/icore/user/model/SysRole.hbm.xml</value>
-				<value>
-					cn/com/icore/user/model/SysPopedom.hbm.xml
-				</value>
-				<value>
-					cn/com/icore/user/model/SysUserAndSysGroupToSysRole.hbm.xml
-				</value>
-				<value>
-					cn/com/icore/dictionary/model/Dictionary.hbm.xml
-				</value>
-				<value>
-					cn/com/icore/upload/model/Annex.hbm.xml
-				</value>
+				<value>cn/com/icore/user/model/SysPopedom.hbm.xml</value>
+				<value>cn/com/icore/user/model/SysUserAndSysGroupToSysRole.hbm.xml</value>
+				<value>cn/com/icore/dictionary/model/Dictionary.hbm.xml</value>
+				<value>cn/com/icore/upload/model/Annex.hbm.xml</value>
 			</list>
 		</property>
 		<!-- lob处理器,解决oracle的clob,blob问题 -->
@@ -202,6 +187,10 @@
 		
 			</props>
 		</property>
+	</bean>
+	<bean name="baseService" class="cn.com.icore.common.serivce.impl.BaseServiceImpl"
+		abstract="true">
+		<property name="sysUserDao" ref="sysUserService" />
 	</bean>
 	<bean id="loginControl"
 		class="cn.com.icore.user.service.LoginControl" autowire="byName" />
