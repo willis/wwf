@@ -31,7 +31,6 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-
 	<tag>
 		<name>eachMenu</name>
 		<tagclass>cn.com.icore.util.tag.SysMenuEachTag</tagclass>
