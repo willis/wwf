@@ -20,8 +20,7 @@
 	<filter>
 		<filter-name>Hibernate Filter</filter-name>
 		<filter-class>
-			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
-		</filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 		<init-param>
 			<param-name>singleSession</param-name>
 			<param-value>true</param-value>
@@ -70,15 +69,11 @@
 	</filter-mapping>
 	<!-- Spring监听器 配置开始 -->
 	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>RandomCodeImage</servlet-name>
-		<servlet-class>
-			cn.com.icore.servlet.RandomCodeImage
-		</servlet-class>
+		<servlet-class>cn.com.icore.servlet.RandomCodeImage</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RandomCodeImage</servlet-name>
@@ -89,30 +84,29 @@
 		<servlet-class>cn.com.icore.servlet.InitServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-   <listener>
-        <listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
-    </listener>
-  
-   <!--  --><servlet>
-        <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>cn.com.icore.upload.action.UploadServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/uploadServlet</url-pattern>
-    </servlet-mapping> 
+	<listener>
+		<listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+	</listener>
+
+	<!-- -->
+	<servlet>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>cn.com.icore.upload.action.UploadServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UploadServlet</servlet-name>
+		<url-pattern>/uploadServlet</url-pattern>
+	</servlet-mapping>
 	<!-- Spring监听器 配置结束 -->
-	<!--xfire-->
+	<!--xfire -->
 	<servlet>
 		<servlet-name>XFireServlet</servlet-name>
 
-		<servlet-class>
-			org.codehaus.xfire.spring.XFireSpringServlet
-		</servlet-class>
+		<servlet-class>org.codehaus.xfire.spring.XFireSpringServlet</servlet-class>
 	</servlet>
-  
+
 
 
 	<servlet-mapping>
@@ -125,7 +119,7 @@
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
 
-	<!--xfire-->
+	<!--xfire -->
 
 	<!-- 用户过滤器 -->
 
@@ -134,8 +128,7 @@
 		<filter-name>struts2</filter-name>
 		<!-- 定义核心Filter的实现类 -->
 		<filter-class>
-			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-		</filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 
 	</filter>
 	<!-- FilterDispatcher用来初始化Struts 2并且处理所有的Web请求 -->
