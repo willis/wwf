@@ -1,128 +1,112 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-		<head>
-		<title>网站后台</title>
+<head>
+<title>网站后台</title>
 
-		<style type="text/css">
-			label.checkbox {
-				cursor: pointer;
-			}
-		</style>
-		
-		
-	</head>
-	<body  >
-	<form action="sysUser!userList.action" method="post" >
+<style type="text/css">
+label.checkbox {
+	cursor: pointer;
+}
+</style>
+
+
+</head>
+<body>
+	<form action="sysUser!userList.action" method="post">
 		<table class="tableContent">
 			<tbody>
 				<tr id="topRow">
-					<td id="topLeft">
-					</td>
-					<td id="topMiddle">
-					</td>
-					<td id="topRight">
-					</td>
+					<td id="topLeft"></td>
+					<td id="topMiddle"></td>
+					<td id="topRight"></td>
 				</tr>
 				<tr id="middleRow">
-					<td id="middleLeft">
-					</td>
+					<td id="middleLeft"></td>
 					<td id="tdContent" bgColor="#ffffff">
 
-						<h2 class="underline" id="loading">
-							用户管理
-						</h2>
-				<div class="editor" style="width: 100%;">
-					<div id="editor_left"></div>
-					<div id="editor_contents">
-						<ul class="editor_link">
-					<li>
-					<pager:checkPopedom code="resource_add"> <a   name="add" class="add"
-									href="javascript:" onclick="window.parent.showWindow('${cxp}/user/sysuser_add.jsp','添加用户',400,500)">添加</a></pager:checkPopedom>
-					 </li>
-								 
-					<li><a class="delete" href="javascript:" onclick="removeSelect(1)">删除</a></li>
-					<li><a class="modify" href="javascript:" onclick="removeSelect(2)">冻结</a></li>
-					<li><a class="modify" href="javascript:" onclick="removeSelect(0)">恢复正常</a></li>
-					<li><a class="modify" href="javascript:" onclick="updateSelect()">修改密码</a></li>
-					<li><a class="find" href="javascript:void($('#find_01').toggle())">查询</a></li>
-						
-						</ul>
-					</div>
-					<div id="editor_right"></div>
-				</div>
-							<table class="table" id="find_01" style="display:none">
-			
-	
-			<tr><td>
-			用户名：<input type="text" name="username" id="username"   >姓名：<input type="text" id="truename" name="truename"   >&nbsp;&nbsp;状态：<select id="status" name="status">
-			<option value="-1">全部</option>
-			<option value="0" selected>正常</option>
-			<option value="1">已删除</option>
-			<option value="2">已冻结</option>
-			</select>
-<input type="button"  class="button" value="查询"  onclick="query()">
-			</td></tr>
-	
-			</table>
+						<h2 class="underline" id="loading">用户管理</h2>
+						<div class="editor" style="width: 100%;">
+							<div id="editor_left"></div>
+							<div id="editor_contents">
+								<ul class="editor_link">
+									<li><pager:checkPopedom code="resource_add">
+											<a name="add" class="add" href="javascript:"
+												onclick="window.parent.showWindow('${cxp}/user/sysuser_add.jsp','添加用户',400,500)">添加</a>
+										</pager:checkPopedom></li>
 
-				<table class="table" id="senfe" >
-					<thead>
-						<tr id="myHead">
-							<th style="width: 80px;">
-								<label class="checkbox">
-									<input type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th style="width: 100px;">
-								操作
-							</th>
-							<th>
-								用户名
-							</th>
-							<th>
-								姓名
-							</th>
-							<th>
-								性别
-							</th>
-							
-							<th>
-								状态
-							</th>
-							<th>
-								注册时间
-							</th>
-							 
-						</tr>
-					</thead>
-					<tbody id="myTable" >
-					
-						 
-					</tbody>
-				</table>
-	
-					
-					</td>
-					<td id="middleRight">
-					</td>
+									<li><a class="delete" href="javascript:"
+										onclick="removeSelect(1)">删除</a>
+									</li>
+									<li><a class="modify" href="javascript:"
+										onclick="removeSelect(2)">冻结</a>
+									</li>
+									<li><a class="modify" href="javascript:"
+										onclick="removeSelect(0)">恢复正常</a>
+									</li>
+									<li><a class="modify" href="javascript:"
+										onclick="updateSelect()">修改密码</a>
+									</li>
+									<li><a class="find"
+										href="javascript:void($('#find_01').toggle())">查询</a>
+									</li>
+
+								</ul>
+							</div>
+							<div id="editor_right"></div>
+						</div>
+						<table class="table" id="find_01" style="display: none">
+
+
+							<tr>
+								<td>用户名：<input type="text" name="username" id="username">姓名：<input
+									type="text" id="truename" name="truename">&nbsp;&nbsp;状态：<select
+									id="status" name="status">
+										<option value="-1">全部</option>
+										<option value="0" selected>正常</option>
+										<option value="1">已删除</option>
+										<option value="2">已冻结</option>
+								</select> <input type="button" class="button" value="查询"
+									onclick="query()"></td>
+							</tr>
+
+						</table>
+
+						<table class="table" id="senfe">
+							<thead>
+								<tr id="myHead">
+									<th style="width: 80px;"><label class="checkbox">
+											<input type="checkbox" name="c_all"
+											onClick="selectAll(this.form,this.checked,this.nextSibling)">
+											全选 </label></th>
+									<th style="width: 100px;">操作</th>
+									<th>用户名</th>
+									<th>姓名</th>
+									<th>性别</th>
+
+									<th>状态</th>
+									<th>注册时间</th>
+
+								</tr>
+							</thead>
+							<tbody id="myTable">
+
+
+							</tbody>
+						</table></td>
+					<td id="middleRight"></td>
 				</tr>
 				<tr id="bottomRow">
-					<td id="bottomLeft">
-					</td>
-					<td id="bottomMiddle">
-					</td>
-					<td id="bottomRight">
-					</td>
+					<td id="bottomLeft"></td>
+					<td id="bottomMiddle"></td>
+					<td id="bottomRight"></td>
 				</tr>
 			</tbody>
 		</table>
-			</form>
-		<script>
+	</form>
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 myTable1.initialize(
@@ -252,9 +236,9 @@ function updateSelect(){
 
 	 
 		 
-		</script>	
-	
-	
+		</script>
 
-	</body>
+
+
+</body>
 </html>

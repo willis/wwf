@@ -4,15 +4,15 @@
 
 <html>
 
-	<head>
-	<%@ include file="/include/taglibs.jsp"%>
-    <%@ include file="/include/jquery.jsp"%>
-		<script type="text/javascript" src="${cxp }/js/TableTree4J.js"></script>
-		<link rel="StyleSheet" href="${cxp }/js/css/tabletree4j.css"
-			type="text/css" />
+<head>
+<%@ include file="/include/taglibs.jsp"%>
+<%@ include file="/include/jquery.jsp"%>
+<script type="text/javascript" src="${cxp }/js/TableTree4J.js"></script>
+<link rel="StyleSheet" href="${cxp }/js/css/tabletree4j.css"
+	type="text/css" />
 
 
-		<style>
+<style>
 .body {
 	font-size: 12px;
 }
@@ -110,52 +110,34 @@ function delMe(value){
 </script>
 
 
-	</head>
+</head>
 
-	<body style="background-color: transparent;" onload="showGridTree();gridTree.openAllNodes()">
-		<table class="tableContent">
-			<tbody>
-				<tr id="topRow">
-					<td id="topLeft">
-					</td>
-					<td id="topMiddle">
-					</td>
-					<td id="topRight">
-					</td>
-				</tr>
-				<tr id="middleRow">
-					<td id="middleLeft">
-					</td>
-					<td id="tdContent" bgColor="#ffffff">
+<body style="background-color: transparent;"
+	onload="showGridTree();gridTree.openAllNodes()">
+	<table class="tableContent">
+		<tbody>
+			<tr id="topRow">
+				<td id="topLeft"></td>
+				<td id="topMiddle"></td>
+				<td id="topRight"></td>
+			</tr>
+			<tr id="middleRow">
+				<td id="middleLeft"></td>
+				<td id="tdContent" bgColor="#ffffff">
 
 
-			<h2 class="underline">
-				系统菜单管理
-			</h2>
+					<h2 class="underline">系统菜单管理</h2>
 
-			<div id="gridTreeDiv">
-
-			</div>
-
-
-		<!-- grid的容器. -->
-						<div id="grid1_container">
-						</div>
-
-
-					</td>
-					<td id="middleRight">
-					</td>
-				</tr>
-				<tr id="bottomRow">
-					<td id="bottomLeft">
-					</td>
-					<td id="bottomMiddle">
-					</td>
-					<td id="bottomRight">
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
+					<div id="gridTreeDiv"></div> <!-- grid的容器. -->
+					<div id="grid1_container"></div></td>
+				<td id="middleRight"></td>
+			</tr>
+			<tr id="bottomRow">
+				<td id="bottomLeft"></td>
+				<td id="bottomMiddle"></td>
+				<td id="bottomRight"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
 </html>

@@ -1,94 +1,91 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html >
+<html>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
- 
-	<head>
-		<title>网站后台</title>
 
-		
-		<style type="text/css">
-			table.form {
-				width: 45em; 
-				margin: 20px auto 0px auto;
-			}
-			table.form tr {
-				height: 2em;
-			}
-		</style>
+<head>
+<title>网站后台</title>
 
-	</head>
-	<body >
 
-		<table>
-		
-		<tr><td  id="loading" colspan="3"></td></tr>
-		<tr><td align="center" >当前可添加的用户</td><td>&nbsp;</td><td align="center">已添加用户</td></tr>
-		<tr><td valign="top">
-		<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
+<style type="text/css">
+table.form {
+	width: 45em;
+	margin: 20px auto 0px auto;
+}
+
+table.form tr {
+	height: 2em;
+}
+</style>
+
+</head>
+<body>
+
+	<table>
+
+		<tr>
+			<td id="loading" colspan="3"></td>
+		</tr>
+		<tr>
+			<td align="center">当前可添加的用户</td>
+			<td>&nbsp;</td>
+			<td align="center">已添加用户</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 80px"><label class="checkbox"> <input
+										class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								用户名
-							</th>
-							<th>
-								姓名
-							</th>
-							 
-  							
-						</tr>
-					</thead>
-					
-					<tbody id="myTable1">
-					</tbody>
-				</table>
-				</form>
-		</td><td >
-		<div>
-		<img src="${cxp }/images/arrow-1.gif" onclick="addSelect()" style="cursor:pointer"/>
-		</div>
-		<div>&nbsp;</div>
-		<div>
-		<img src="${cxp }/images/arrow-2.gif"  onclick="removeSelect()" style="cursor:pointer"/>
-		</div>
-			</td><td valign="top">
-			<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								用户名
-							</th>
-							<th>
-								姓名
-							</th>
-  							
-						</tr>
-					</thead>
-					
-					<tbody id="myTable2">
-					</tbody>
-				</table>
-				</form>
-		</td></tr></table>
+										全选 </label></th>
+								<th>用户名</th>
+								<th>姓名</th>
 
-		<script>
+
+							</tr>
+						</thead>
+
+						<tbody id="myTable1">
+						</tbody>
+					</table>
+				</form></td>
+			<td>
+				<div>
+					<img src="${cxp }/images/arrow-1.gif" onclick="addSelect()"
+						style="cursor: pointer" />
+				</div>
+				<div>&nbsp;</div>
+				<div>
+					<img src="${cxp }/images/arrow-2.gif" onclick="removeSelect()"
+						style="cursor: pointer" />
+				</div></td>
+			<td valign="top">
+				<form>
+					<table class="table">
+						<thead>
+							<tr>
+								<th style="width: 80px"><label class="checkbox"> <input
+										class="checkbox" type="checkbox" name="c_all"
+										onClick="selectAll(this.form,this.checked,this.nextSibling)">
+										全选 </label></th>
+								<th>用户名</th>
+								<th>姓名</th>
+
+							</tr>
+						</thead>
+
+						<tbody id="myTable2">
+						</tbody>
+					</table>
+				</form></td>
+		</tr>
+	</table>
+
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 
@@ -175,5 +172,5 @@ function removeSelect(){
 }
 		 
 		</script>
-	</body>
+</body>
 </html>

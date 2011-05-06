@@ -3,16 +3,16 @@
 
 <html>
 
-	<head>
-	<%@ include file="/include/taglibs.jsp"%>
+<head>
+<%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-		<script type="text/javascript" src="${cxp }/js/TableTree4J.js"></script>
-		<link rel="StyleSheet" href="${cxp }/js/css/tabletree4j.css"
-			type="text/css" />
+<script type="text/javascript" src="${cxp }/js/TableTree4J.js"></script>
+<link rel="StyleSheet" href="${cxp }/js/css/tabletree4j.css"
+	type="text/css" />
 
 <script src="${cxp }/appjs/ajaxform.common.js"></script>
 
-		<style>
+<style>
 .body {
 	font-size: 12px;
 }
@@ -49,7 +49,7 @@
 </style>
 
 
-		<script language="JavaScript"> 
+<script language="JavaScript"> 
 	
 //GridTree
 	var menuTree;	
@@ -79,31 +79,32 @@
  
 
 </script>
- 
 
-	</head>
 
-	<body  onload="showMenuTree();menuTree.openAllNodes()">
-<form name="myForm"  id="myForm" method="post" action="sysRole!addSysMenus.action">
+</head>
+
+<body onload="showMenuTree();menuTree.openAllNodes()">
+	<form name="myForm" id="myForm" method="post"
+		action="sysRole!addSysMenus.action">
 		<div id="main">
 
-<input type="hidden" name="roleId" value="${param.roleId }"/>
+			<input type="hidden" name="roleId" value="${param.roleId }" />
 
-			<div id="menuTreeDiv">
+			<div id="menuTreeDiv"></div>
 
-			</div>
-			
 			<div>
-			<input type="button"  value="全选" class="button" onclick="selectAllCheck()"/>
-			<input type="button"  value="返选" class="button" onclick="selectCheck()"/>
-						<input type="submit" name="subOk" value="保存" class="button"/>
-					<input type="button" name="backOk" value="关闭" class="button" onclick="window.parent.closeWindow()"/>	
-					</div>	
+				<input type="button" value="全选" class="button"
+					onclick="selectAllCheck()" /> <input type="button" value="返选"
+					class="button" onclick="selectCheck()" /> <input type="submit"
+					name="subOk" value="保存" class="button" /> <input type="button"
+					name="backOk" value="关闭" class="button"
+					onclick="window.parent.closeWindow()" />
+			</div>
 
- <p id="errorMsg" style="color:red">&nbsp;</p>
+			<p id="errorMsg" style="color: red">&nbsp;</p>
 		</div>
-		</form>
-		<script>
+	</form>
+	<script>
 		$(document).ready(function() {
 			$.ajax({
 				type : "POST",
@@ -154,5 +155,5 @@
 				});
 			}
 		</script>
-	</body>
+</body>
 </html>

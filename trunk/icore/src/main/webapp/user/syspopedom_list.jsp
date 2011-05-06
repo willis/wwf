@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
 
-	<head>
-		<title>网站后台</title>
+<head>
+<title>网站后台</title>
 
-		<style>
+<style>
 th {
 	vertical-align: middle;
 }
@@ -33,110 +33,82 @@ label.checkbox input {
 	margin-right: 0px;
 }
 </style>
-	</head>
-	<body  >
-		<form action="${cxp}/user/sysPopedom!list.action" method="post" >
+</head>
+<body>
+	<form action="${cxp}/user/sysPopedom!list.action" method="post">
 		<table class="tableContent">
 			<tbody>
 				<tr id="topRow">
-					<td id="topLeft">
-					</td>
-					<td id="topMiddle">
-					</td>
-					<td id="topRight">
-					</td>
+					<td id="topLeft"></td>
+					<td id="topMiddle"></td>
+					<td id="topRight"></td>
 				</tr>
 				<tr id="middleRow">
-					<td id="middleLeft">
-					</td>
+					<td id="middleLeft"></td>
 					<td id="tdContent" bgColor="#ffffff">
 
-						<h2 class="underline" id="loading">
-							权限代码管理
-						</h2>
-			<div class="editor" style="width: 100%;">
-				<div id="editor_left"></div>
-				<div id="editor_contents">
-					<ul class="editor_link">
-						<li>
-							<a name="add" class="add" href="javascript:"
-								onclick="window.parent.showWindow('${cxp }/user/syspopedom_edit.jsp','添加权限',200,400)">添加</a>
+						<h2 class="underline" id="loading">权限代码管理</h2>
+						<div class="editor" style="width: 100%;">
+							<div id="editor_left"></div>
+							<div id="editor_contents">
+								<ul class="editor_link">
+									<li><a name="add" class="add" href="javascript:"
+										onclick="window.parent.showWindow('${cxp }/user/syspopedom_edit.jsp','添加权限',200,400)">添加</a>
 
-						</li>
-						<li>
-							<a class="delete" href="javascript:removeSelect();" name="delSub">删除</a>
-						</li>
-						<li>
-							<a class="find" href="javascript:void($('#find_01').toggle())">查询</a>
-						</li>
+									</li>
+									<li><a class="delete" href="javascript:removeSelect();"
+										name="delSub">删除</a></li>
+									<li><a class="find"
+										href="javascript:void($('#find_01').toggle())">查询</a></li>
 
 
-						
-					</ul>
-				</div>
-				<div id="editor_right"></div>
-			</div>
-			<table class="table" id="find_01" style="display: none">
+
+								</ul>
+							</div>
+							<div id="editor_right"></div>
+						</div>
+						<table class="table" id="find_01" style="display: none">
 
 
-				<tr>
-					<td>
-						代码：
-						<input id="code" type="text" name="code"
-							value="${ param.code}">
-						描述：
-						<input type="text" id="describe" name="describe"
-							value="${ param.describe}">
-						&nbsp;&nbsp;
-						<input type="button" class="button" value="查询" onclick="query()">
-					</td>
-				</tr>
+							<tr>
+								<td>代码： <input id="code" type="text" name="code"
+									value="${ param.code}"> 描述： <input type="text"
+									id="describe" name="describe" value="${ param.describe}">
+									&nbsp;&nbsp; <input type="button" class="button" value="查询"
+									onclick="query()"></td>
+							</tr>
 
-			</table>
+						</table>
 
-			
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th style="width: 45%">
-								权限代码
-							</th>
-							<th style="width: 45%">
-								权限描述
-							</th>
-						</tr>
-					</thead>
-					<tbody id="myTable">
 
-					</tbody>
+						<table class="table">
+							<thead>
+								<tr>
+									<th style="width: 80px"><label class="checkbox"> <input
+											class="checkbox" type="checkbox" name="c_all"
+											onClick="selectAll(this.form,this.checked,this.nextSibling)">
+											全选 </label></th>
+									<th style="width: 45%">权限代码</th>
+									<th style="width: 45%">权限描述</th>
+								</tr>
+							</thead>
+							<tbody id="myTable">
 
-				</table>
-			
+							</tbody>
 
-					</td>
-					<td id="middleRight">
-					</td>
+						</table></td>
+					<td id="middleRight"></td>
 				</tr>
 				<tr id="bottomRow">
-					<td id="bottomLeft">
-					</td>
-					<td id="bottomMiddle">
-					</td>
-					<td id="bottomRight">
-					</td>
+					<td id="bottomLeft"></td>
+					<td id="bottomMiddle"></td>
+					<td id="bottomRight"></td>
 				</tr>
 			</tbody>
 		</table>
 	</form>
-		<script>
+	<script>
 
 		 var myTable1 =  new MaxTable();
 		 myTable1.initialize(
@@ -207,5 +179,5 @@ label.checkbox input {
 	 
 		 
 		</script>
-	</body>
+</body>
 </html>
