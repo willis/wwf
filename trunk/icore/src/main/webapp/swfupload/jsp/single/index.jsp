@@ -55,33 +55,17 @@ window.onload = function () {
 	        progress_target : "fsUploadProgress",
 	        upload_successful : true
 	    },
-	    debug:false
+	    debug : false
 	});
 };
     </script>
 </head>
 <body>
 
-	<div id="content">
-		<h2>Classic Form Demo</h2>
 		<form id="form1" action="" enctype="multipart/form-data" method="post">
-			<div class="fieldset">
-				<span class="legend">Submit your Application</span>
+
 				<table>
-					<tr>
-						<td><label for="lastname">Last Name:</label>
-						</td>
-						<td><input id="lastname" name="lastname" type="text"
-							style="width: 200px" />
-						</td>
-					</tr>
-					<tr>
-						<td><label for="firstname">First Name:</label>
-						</td>
-						<td><input id="firstname" name="firstname" type="text"
-							style="width: 200px" />
-						</td>
-					</tr>
+					
 					<tr>
 						<td><label for="txtFileName">Resume:</label>
 						</td>
@@ -91,18 +75,16 @@ window.onload = function () {
 									<input id="txtFileName" name="txtFileName" type="text"
 										disabled="disabled"
 										style="border: solid 1px; background-color: #FFFFFF;" /> <span
-										id="spanButtonPlaceholder"></span>(10 MB max)
+										id="spanButtonPlaceholder"></span>
 								</div>
 								<div id="fsUploadProgress" class="flash"></div>
 								<input id="hidFileID" name="hidFileID" type="hidden" value="" />
-							</div></td>
+							</div><input id="btnSubmit" type="submit"
+					value="Submit Application" /></td>
 					</tr>
 				</table>
-				<br /> <input id="btnSubmit" type="submit"
-					value="Submit Application" />
-			</div>
-		</form>
-	</div>
+				 
 
+		</form>
 </body>
 </html>

@@ -5,7 +5,6 @@ var formChecker = null;
  */
 function swfUploadLoaded() {
 	var btnSubmit = document.getElementById("btnSubmit");
-	
 	btnSubmit.disabled = false;
 	btnSubmit.onclick = doSubmit;
 	formChecker = window.setInterval(validateForm, 1000);
@@ -17,21 +16,11 @@ function swfUploadLoaded() {
  * @return
  */
 function validateForm() {
-	var txtLastName = document.getElementById("lastname");
-	var txtFirstName = document.getElementById("firstname");
 	var txtFileName = document.getElementById("txtFileName");
-	
 	var isValid = true;
-	if (txtLastName.value === "") {
-		isValid = false;
-	}
-	if (txtFirstName.value === "") {
-		isValid = false;
-	}
 	if (txtFileName.value === "") {
 		isValid = false;
 	}
-	
 	document.getElementById("btnSubmit").disabled = !isValid;
 }
 /**
@@ -143,11 +132,10 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 function uploadProgress(file, bytesLoaded, bytesTotal) {
 	try {
 		var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
-
 		file.id = "singlefile";	// This makes it so FileProgress only makes a single UI element, instead of one for each file
 		var progress = new FileProgress(file, this.customSettings.progress_target);
 		progress.setProgress(percent);
-		progress.setStatus("Uploading...");
+		progress.setStatus("上传中...");
 	} catch (e) {
 	}
 }
@@ -162,9 +150,8 @@ function uploadSuccess(file, serverData) {
 		file.id = "singlefile";	// This makes it so FileProgress only makes a single UI element, instead of one for each file
 		var progress = new FileProgress(file, this.customSettings.progress_target);
 		progress.setComplete();
-		progress.setStatus("Complete.");
+		progress.setStatus("上传完毕。");
 		progress.toggleCancel(false);
-		
 		if (serverData === " ") {
 			this.customSettings.upload_successful = false;
 		} else {

@@ -1,8 +1,4 @@
 /* -- Global Styles ------------------------------ */
-body {
-	font: 12px Arial, 宋体;
-}
-
 h2 {
 	font-weight: 300;
 	font-size: 22px;
@@ -48,24 +44,13 @@ div.fieldset span.legend {
 div.flash {
 	width: 375px;
 	margin: 10px 5px;
-	border-color: #D9E4FF;
+	border-color: #C5C4CC;
 }
 
 #btnSubmit {
 	margin: 0 0 0 155px;
 	border: 1px solid #ccc;
 }
-/* -- Upload status Styles ----------------------- */
-/*
-<div class="progressWrapper">
-    <div class="progressContainer">
-        <a class="progressCancel"></a>
-        <div class="progressName"></div>
-        <div class="progressBarInProgress"></div>
-        <div class="progressBarStatus"></div>
-    </div>
-</div>
-*/
 .progressWrapper {
 	width: 357px;
 	overflow: hidden;
@@ -75,7 +60,7 @@ div.flash {
 	margin: 5px;
 	padding: 4px;
 	border: solid 1px #E8E8E8;
-	background-color: #F7F7F7;
+	background-color: #C5C4CC;
 	overflow: hidden;
 }
 /* Message */
