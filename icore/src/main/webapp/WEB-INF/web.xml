@@ -41,7 +41,7 @@
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
 
-	<!-- 用户过滤器 -->
+	<!-- 用户过滤器 
 
 	<filter>
 		<filter-name>userFilter</filter-name>
@@ -66,7 +66,7 @@
 	<filter-mapping>
 		<filter-name>userFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
+	</filter-mapping>-->
 	<!-- Spring监听器 配置开始 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

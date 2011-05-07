@@ -102,9 +102,8 @@ public class UploadServlet extends HttpServlet {
 					if (StringUtils.isNotBlank(object_id)) {
 						annex.setObject_id(object_id);
 					} else {
-						object_id = "00-";
-						object_id += UUID.randomUUID().toString();
-						annex.setObject_id(object_id);
+				
+						annex.setObject_id(objId);
 					}
 				 
 					savefile = new File(getBaseDir() + "/upload/" + objId + "."
@@ -112,7 +111,7 @@ public class UploadServlet extends HttpServlet {
 					item.write(savefile);
 					
 					getAnnexService().save(annex);
-					out.print(object_id);
+					out.print(objId);
 					req.setAttribute("object_id", object_id);
 					out.flush();
 				}

@@ -11,13 +11,13 @@
 	<include file="struts-default.xml" />
 	<package name="default" extends="struts-default">
 		<interceptors>
-			
+			<interceptor name="auth"
+				class="cn.com.icore.view.filter.AuthUserInterceptor" />
 			<interceptor-stack name="validationStack">
-				<interceptor-ref name="validation" />
-				<interceptor-ref name="basicStack" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="auth" />
 			</interceptor-stack>
 		</interceptors>
-
 		<default-interceptor-ref name="validationStack" />
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
