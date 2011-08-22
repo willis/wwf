@@ -2,6 +2,7 @@ package com.mpaike.bot.spider;
 
 import com.mpaike.util.bot.HTTPSocket;
 import com.mpaike.util.bot.IWorkloadStorable;
+import com.mpaike.util.bot.ImageReportable;
 import com.mpaike.util.bot.Spider;
 import com.mpaike.util.bot.SpiderSQLWorkload;
 
