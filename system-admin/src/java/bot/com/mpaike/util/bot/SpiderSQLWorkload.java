@@ -63,12 +63,12 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
   {
     Class.forName(driver);
     connection = DriverManager.getConnection(source,user,password);
-    prepClear = connection.prepareStatement("DELETE FROM tblWorkload;");
-    prepAssign = connection.prepareStatement("SELECT URL FROM tblWorkload WHERE Status = 'W';");
-    prepGetStatus = connection.prepareStatement("SELECT Status FROM tblWorkload WHERE URL = ?;");
-    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM tblWorkload WHERE URL = ?;");
-    prepSetStatus2 = connection.prepareStatement("INSERT INTO tblWorkload(URL,Status) VALUES (?,?);");
-    prepSetStatus3 = connection.prepareStatement("UPDATE tblWorkload SET Status = ? WHERE URL = ?;");
+    prepClear = connection.prepareStatement("DELETE FROM bot_url;");
+    prepAssign = connection.prepareStatement("SELECT url FROM bot_url WHERE status = 'W';");
+    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE url = ?;");
+    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE url = ?;");
+    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(url,status) VALUES (?,?);");
+    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE url = ?;");
   }
 
   /**
@@ -87,7 +87,7 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
 
       if ( !rs.next() )
         return null;
-      String url = rs.getString("URL");
+      String url = rs.getString("url");
       setStatus(url,RUNNING);
       return url;
     } catch ( SQLException e ) {
@@ -198,7 +198,7 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
       if ( !rs.next() )
         return UNKNOWN;
 
-      return rs.getString("Status").charAt(0);
+      return rs.getString("status").charAt(0);
     } catch ( SQLException e ) {
       Log.logException("SQL Error: ",e );
     } finally {
