@@ -380,6 +380,10 @@ INSERT INTO `sequenceid` (`idtype`, `id`) VALUES
 (800, 1),
 (900, 1);
 
+--
+-- 导出表中的数据 `bot_url`
+--
+
 CREATE TABLE `bot_url` (
   `url` varchar(767) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL,
