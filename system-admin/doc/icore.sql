@@ -380,6 +380,12 @@ INSERT INTO `sequenceid` (`idtype`, `id`) VALUES
 (800, 1),
 (900, 1);
 
+CREATE TABLE `bot_url` (
+  `url` varchar(767) NOT NULL DEFAULT '',
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
