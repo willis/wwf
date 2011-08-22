@@ -8,7 +8,7 @@ package com.mpaike.util.bot;
  * @version 1.0
  */
 
-import java.util.*;
+import java.util.Vector;
 
 public class AttributeList extends Attribute implements Cloneable {
 

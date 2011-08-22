@@ -1,9 +1,11 @@
 package com.mpaike.util.bot;
 
-import java.io.*;
-import java.net.*;
-import javax.net.ssl.*;
-import java.security.*;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  * <p>Title: Myniko.com</p>

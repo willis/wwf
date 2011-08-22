@@ -1,8 +1,10 @@
 package com.mpaike.util.bot;
 
-import java.util.zip.*;
-import java.net.*;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.zip.GZIPInputStream;
 
 /**
  * <p>Title: Myniko.com</p>

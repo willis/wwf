@@ -1,6 +1,7 @@
 package com.mpaike.util.bot;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * <p>Title: Myniko.com</p>
