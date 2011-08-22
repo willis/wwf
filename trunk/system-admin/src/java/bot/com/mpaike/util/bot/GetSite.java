@@ -1,9 +1,12 @@
 package com.mpaike.util.bot;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
-import java.io.*;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class GetSite extends javax.swing.JFrame implements ISpiderReportable {
   /**

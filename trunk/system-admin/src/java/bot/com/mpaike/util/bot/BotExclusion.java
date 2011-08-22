@@ -1,7 +1,11 @@
 package com.mpaike.util.bot;
-import java.util.*;
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * <p>Title: Myniko.com</p>

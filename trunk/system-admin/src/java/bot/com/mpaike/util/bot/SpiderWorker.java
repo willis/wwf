@@ -1,5 +1,6 @@
 package com.mpaike.util.bot;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * <p>Title: Myniko.com</p>

@@ -1,7 +1,10 @@
 package com.mpaike.util.bot;
 
-import java.io.*;
-import java.net.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 /**
  * <p>Title: Myniko.com</p>
  * <p>Description: Myniko.com</p>

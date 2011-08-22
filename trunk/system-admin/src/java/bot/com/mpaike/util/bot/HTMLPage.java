@@ -1,9 +1,14 @@
 package com.mpaike.util.bot;
-import java.util.*;
-import java.net.*;
-import java.io.*;
-import javax.swing.text.*;
-import javax.swing.text.html.*;
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Vector;
+
+import javax.swing.text.BadLocationException;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLEditorKit;
 /**
  * <p>Title: Myniko.com</p>
  * <p>Description: Myniko.com</p>

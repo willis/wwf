@@ -1,5 +1,7 @@
 package com.mpaike.util.bot;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Vector;
 /**
  * <p>Title: Myniko.com</p>
  * <p>Description: Myniko.com</p>

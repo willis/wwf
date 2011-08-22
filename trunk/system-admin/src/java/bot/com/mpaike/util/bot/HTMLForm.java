@@ -1,5 +1,5 @@
 package com.mpaike.util.bot;
-import java.net.*;
+import java.net.URLEncoder;
 
 /**
  * <p>Title: Myniko.com</p>

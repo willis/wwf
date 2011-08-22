@@ -1,5 +1,5 @@
 package com.mpaike.util.bot;
-import javax.swing.text.html.*;
+import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * <p>Title: Myniko.com</p>
