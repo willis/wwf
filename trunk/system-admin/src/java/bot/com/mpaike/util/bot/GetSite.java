@@ -409,7 +409,7 @@ public class GetSite extends javax.swing.JFrame implements ISpiderReportable {
 
     ut._t = page.getURL();
     SwingUtilities.invokeLater(ut);
-    //processFile(page);ȡ������
+    processFile(page);
   }
 
   /**

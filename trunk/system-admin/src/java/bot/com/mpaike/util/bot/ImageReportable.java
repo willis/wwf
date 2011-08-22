@@ -1,7 +1,5 @@
-package com.mpaike.bot.spider;
+package com.mpaike.util.bot;
 
-import com.mpaike.util.bot.HTTP;
-import com.mpaike.util.bot.ISpiderReportable;
 
 public class ImageReportable implements ISpiderReportable{
 
