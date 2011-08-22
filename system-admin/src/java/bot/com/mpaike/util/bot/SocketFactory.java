@@ -107,7 +107,7 @@ public class SocketFactory {
                 String str = "CONNECT " + host + ":" + port + " HTTP/1.0";
                 Log.log(Log.LOG_LEVEL_NORMAL,"Tunnel: " + str );
                 writeString(out,str);
-                str = "User-Agent: Myniko bot 1.0";
+                str = "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
                 writeString(out,str);
                 writeString(out,"");
                 out.flush();
