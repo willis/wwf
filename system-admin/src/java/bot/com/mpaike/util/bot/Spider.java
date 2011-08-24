@@ -121,8 +121,9 @@ public class Spider extends Thread implements ISpiderReportable {
     Constructor constructor = worker.getConstructor(types);
 
     pool = new SpiderWorker[poolSize];
+    HTTP hc;
     for ( int i=0;i<pool.length;i++ ) {
-      HTTP hc = (HTTP)http.newInstance();
+      hc = (HTTP)http.newInstance();
       Object params[]={this,hc};
 
       pool[i] = (SpiderWorker)constructor.newInstance(params);
