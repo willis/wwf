@@ -68,12 +68,22 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
   {
     Class.forName(driver);
     connection = DriverManager.getConnection(source,user,password);
-    prepClear = connection.prepareStatement("DELETE FROM bot_url;");
-    prepAssign = connection.prepareStatement("SELECT url FROM bot_url WHERE status = 'W';");
-    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE id = ?;");
-    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE id = ?;");
-    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(id,url,status) VALUES (?,?,?);");
-    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE id = ?;");
+    init();
+  }
+  
+  public SpiderSQLWorkload(Connection connection)throws SQLException
+  {
+    this.connection = connection;
+    init();
+  }
+  
+  private void init()throws SQLException{
+	    prepClear = connection.prepareStatement("DELETE FROM bot_url;");
+	    prepAssign = connection.prepareStatement("SELECT url FROM bot_url WHERE status = 'W';");
+	    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE id = ?;");
+	    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE id = ?;");
+	    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(id,url,status) VALUES (?,?,?);");
+	    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE id = ?;");
   }
 
   /**
