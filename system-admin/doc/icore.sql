@@ -385,9 +385,22 @@ INSERT INTO `sequenceid` (`idtype`, `id`) VALUES
 --
 
 CREATE TABLE `bot_url` (
-  `url` varchar(767) NOT NULL DEFAULT '',
+  `id` varchar(32) NOT NULL DEFAULT '',
+  `url` varchar(1024) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL,
-  PRIMARY KEY (`url`)
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 导出表中的数据 `bot_url`
+--
+
+CREATE TABLE `bot_images` (
+  `id` varchar(32) NOT NULL DEFAULT '',
+  `url` varchar(1024) NOT NULL DEFAULT '',
+  `filename` varchar(1024) NOT NULL DEFAULT '',
+  `status` char(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
