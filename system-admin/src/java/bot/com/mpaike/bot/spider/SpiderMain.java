@@ -22,7 +22,7 @@ public class SpiderMain {
 
 		      String url = "http://www.moko.cc";
 		      ImageReportable ir = new ImageReportable(url,driverName,jdbcURL,userName,password);
-		      Spider _spider = new Spider( ir,url,new HTTPSocket(),100,wl);
+		      Spider _spider = new Spider( ir,url,new HTTPSocket(),10,wl);
 		      _spider.setMaxBody(200);
 		      _spider.start();
 		    }
