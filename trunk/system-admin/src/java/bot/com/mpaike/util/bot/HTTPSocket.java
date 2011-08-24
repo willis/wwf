@@ -73,7 +73,6 @@ public class HTTPSocket extends HTTP {
 
             command = command + file + " HTTP/1.0";
             SocketFactory.writeString(out,command);
-            System.out.println("Request: " + command);
             Log.log(Log.LOG_LEVEL_NORMAL,"Request: " + command );
 
             // Process client headers
@@ -92,11 +91,9 @@ public class HTTPSocket extends HTTP {
                     headers.append(": ");
                     headers.append(a.getValue());
                     headers.append("\r\n");
-                    System.out.println("Client Header:" + a.getName() + "=" + a.getValue());
                     Log.log(Log.LOG_LEVEL_TRACE,"Client Header:" + a.getName() + "=" + a.getValue() );
                 }
             } while ( a!=null );
-            System.out.println("Writing client headers:" + headers.toString());
             Log.log(Log.LOG_LEVEL_DUMP,"Writing client headers:" + headers.toString() );
             if ( headers.length()>=0 )
                 out.write(headers.toString().getBytes() );
@@ -104,7 +101,6 @@ public class HTTPSocket extends HTTP {
             // Send a blank line to signal end of HTTP headers
             SocketFactory.writeString(out,"");
             if ( post!=null ) {
-                System.out.println("Socket Post(" + post.length() + " bytes):" + new String(post));
                 Log.log(Log.LOG_LEVEL_TRACE,"Socket Post(" + post.length() + " bytes):" + new String(post) );
                 out.write( post.getBytes()  );
             }
@@ -147,7 +143,6 @@ public class HTTPSocket extends HTTP {
                 if ( acl!=null )
                     contentLength = Integer.parseInt(acl.getValue());
             } catch ( Exception e ) {
-                System.out.println("Bad value for content-length:"+e);
                 Log.logException("Bad value for content-length:",e);
             }
 
@@ -163,11 +158,9 @@ public class HTTPSocket extends HTTP {
             ByteList byteList = new ByteList();
             byteList.read(in,max);
             body = byteList.detach();
-            System.out.println("Socket Page Back:" + new String(body) + "\r\n");
             Log.log(Log.LOG_LEVEL_DUMP,"Socket Page Back:" + new String(body) + "\r\n" );
 
             if ( (err>=400) && (err<=599) ) {
-                System.out.println("HTTP Exception:" + response);
                 Log.log(Log.LOG_LEVEL_ERROR,"HTTP Exception:" + response );
                 throw new HTTPException(response);
             }

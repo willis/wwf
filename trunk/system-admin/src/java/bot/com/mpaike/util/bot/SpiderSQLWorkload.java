@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mpaike.util.MD5;
+
 /**
  * <p>Title: Myniko.com</p>
  * <p>Description: Myniko.com</p>
@@ -68,10 +70,10 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
     connection = DriverManager.getConnection(source,user,password);
     prepClear = connection.prepareStatement("DELETE FROM bot_url;");
     prepAssign = connection.prepareStatement("SELECT url FROM bot_url WHERE status = 'W';");
-    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE url = ?;");
-    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE url = ?;");
-    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(url,status) VALUES (?,?);");
-    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE url = ?;");
+    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE id = ?;");
+    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE id = ?;");
+    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(id,url,status) VALUES (?,?,?);");
+    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE id = ?;");
   }
 
   /**
@@ -153,18 +155,19 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
 
     try {
       // first see if one exists
-      prepSetStatus1.setString(1,url);
+      prepSetStatus1.setString(1,MD5.toMD5(url));
       rs = prepSetStatus1.executeQuery();
       rs.next();
       int count = rs.getInt("qty");
 
       if ( count<1 ) {// Create one
-        prepSetStatus2.setString(1,url);
-        prepSetStatus2.setString(2,(new Character(status)).toString());
+    	  prepSetStatus2.setString(1,MD5.toMD5(url));
+        prepSetStatus2.setString(2,url);
+        prepSetStatus2.setString(3,(new Character(status)).toString());
         prepSetStatus2.executeUpdate();
       } else {// Update it
         prepSetStatus3.setString(1,(new Character(status)).toString());
-        prepSetStatus3.setString(2,url);
+        prepSetStatus3.setString(2,MD5.toMD5(url));
         prepSetStatus3.executeUpdate();
       }
     } catch ( SQLException e ) {
@@ -195,7 +198,7 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
 
     try {
       // first see if one exists
-      prepGetStatus.setString(1,url);
+      prepGetStatus.setString(1,MD5.toMD5(url));
       rs = prepGetStatus.executeQuery();
 
       if ( !rs.next() )

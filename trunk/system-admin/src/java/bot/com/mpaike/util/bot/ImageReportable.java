@@ -1,17 +1,28 @@
 package com.mpaike.util.bot;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
+
+import com.mpaike.core.util.date.DateTimeUtil;
+import com.mpaike.core.util.resource.FileUtil;
+import com.mpaike.util.MD5;
 
 
 public class ImageReportable implements ISpiderReportable{
 	
+	
+	
 	Connection connection;
+	PreparedStatement prepAssign;
 	PreparedStatement prepSetStatus;
 	
+	public static String IMAGES_PATH = "/Users/tozhangwj/";
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4))$");
 	private static String score;
@@ -35,24 +46,19 @@ public class ImageReportable implements ISpiderReportable{
 		}
 		Class.forName(driverName);
 	    connection = DriverManager.getConnection(jdbcurl,userName,password);
-	    prepSetStatus =  connection.prepareStatement("INSERT INTO images_url(url,status) VALUES (?,?);");
+	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,url,filename,status) VALUES (?,?,?,?);");
+	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
+
 	}
 
 	@Override
 	public boolean foundInternalLink(String url) {
-		System.out.println("foundInternalLink:"+url);
+		//System.out.println("foundInternalLink:"+url);
 		if(otherPatterns.matcher(url.toLowerCase()).matches()){
 			return false;
 		}
 		if(imgPatterns.matcher(url.toLowerCase()).matches()){
-			try {
-				prepSetStatus.setString(1,url);
-				prepSetStatus.setString(2,"W");
-			    prepSetStatus.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			saveImage(url);
 			return false;
 		}
 		return true;
@@ -60,9 +66,12 @@ public class ImageReportable implements ISpiderReportable{
 
 	@Override
 	public boolean foundExternalLink(String url) {
-		System.out.println("foundExternalLink:"+url);
+		//System.out.println("foundExternalLink:"+url);
 		if(otherPatterns.matcher(url.toLowerCase()).matches()){
 			return false;
+		}
+		if(imgPatterns.matcher(url.toLowerCase()).matches()){
+			saveImage(url);
 		}
 		if(url.toLowerCase().indexOf(score)!=-1) {
 			return true;
@@ -72,7 +81,7 @@ public class ImageReportable implements ISpiderReportable{
 
 	@Override
 	public boolean foundOtherLink(String url) {
-		System.out.println("foundOtherLink:"+url);
+		//System.out.println("foundOtherLink:"+url);
 		return false;
 	}
 
@@ -99,6 +108,54 @@ public class ImageReportable implements ISpiderReportable{
 		
 	}
 	
+	
+	private void saveImage(String url){
+	    ResultSet rs = null;
+	    StringBuilder tagertName=null;
+	    String id =null;
+	    try {
+	      // first see if one exists
+	    	prepAssign.setString(1,MD5.toMD5(url));
+	      rs = prepAssign.executeQuery();
+	      rs.next();
+	      int count = rs.getInt("qty");
+
+	      if ( count<1 ) {// Create one
+	    	  	id = MD5.toMD5(url);
+	    	  	tagertName = new StringBuilder();
+	    	  	tagertName.append(IMAGES_PATH).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/");
+	    	  	//创建目录
+	    	  	mkdir(tagertName.toString());
+	    	  	tagertName.append(id).append(".").append(FileUtil.getTypePart(url));
+
+	        if(UrlIO.imageToFile(url, tagertName.toString(), 500, 500)){
+	        		prepSetStatus.setString(1,id);
+		        prepSetStatus.setString(2,url);
+		        prepSetStatus.setString(3,tagertName.toString());
+		        prepSetStatus.setString(4,"W");
+		        prepSetStatus.executeUpdate();
+	        }
+	      } 
+	    } catch ( SQLException e ) {
+	    		Log.logException("SQL Error: ",e );
+	    } catch (IOException e) {
+	    		Log.logException("ImageIO Error: ",e );
+			e.printStackTrace();
+		} finally {
+	      try {
+	        if ( rs!=null )
+	          rs.close();
+	      } catch ( Exception e ) {
+	      }
+	    }
+	}
+	
+	private void mkdir(String path){
+		File file = new File(path);
+		if(!file.exists()){
+			file.mkdirs();
+		}
+	}
 	
 	
 	public static void main(String[] args) {
