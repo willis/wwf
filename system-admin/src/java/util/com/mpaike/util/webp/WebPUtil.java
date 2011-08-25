@@ -6,18 +6,30 @@ import java.io.InputStream;
 public class WebPUtil {
 	
 	private static String libpath;
+	private static String osname;
 	
 	static{
+		osname=System.getProperty( "os.name").toLowerCase();
+		if(osname.indexOf("mac")!=-1){
+			osname = "macos";
+		}else if(osname.indexOf("windows")!=-1){
+			osname = "windows";
+		}else if(osname.indexOf("linux")!=-1){
+			osname = "linux";
+		}else{
+			osname = "";
+		}
 		String webpath = WebPUtil.class.getResource("/").getPath();
 		libpath = webpath.substring(0,webpath.lastIndexOf("classes/"));
 		System.out.println(libpath);
+		System.out.println(osname);
 	}
 	
 	
 	public static void encodeWebP(String destPath,String webpPath,boolean infoPrint){
 		Process process;
 		try {
-			process = Runtime.getRuntime().exec(libpath+"webp/macos/cwebp -q 80 "+destPath+" -o "+webpPath);
+			process = Runtime.getRuntime().exec(libpath+"webp/"+osname+"/cwebp -q 80 "+destPath+" -o "+webpPath);
 			InputStream in = process.getInputStream();  
 			StringBuilder info = new StringBuilder();  
 			int a;  
