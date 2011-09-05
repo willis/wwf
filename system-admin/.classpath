@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/java/user"/>
+	<classpathentry kind="src" path="src/java/bot"/>
 	<classpathentry kind="src" path="src/java/member"/>
 	<classpathentry kind="src" path="src/java/util"/>
 	<classpathentry kind="src" path="src/java/dictionary"/>
