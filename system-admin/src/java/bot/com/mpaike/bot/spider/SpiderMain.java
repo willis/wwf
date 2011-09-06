@@ -15,9 +15,10 @@ public class SpiderMain {
 		String driverName =  "com.mysql.jdbc.Driver";
 		String jdbcURL = "jdbc:mysql://127.0.0.1:3306/icore?useUnicode=true&characterEncoding=UTF-8";
 		String userName = "root";
-		String password = "qweasdzxc";
+		String password = "";
 		 try
 		    {
+			 ImageReportable.IMAGES_PATH= "D:\\data\\images\\";
 		      IWorkloadStorable wl = new SpiderSQLWorkload(driverName,jdbcURL,userName,password);
 
 		      String url = "http://www.moko.cc";
