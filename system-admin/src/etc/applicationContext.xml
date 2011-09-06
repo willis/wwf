@@ -82,38 +82,22 @@
 				-->
 			</props>
 		</property>
+		<property name="mappingDirectoryLocations">
+            <list>
+               	<value>classpath:com/mpaike/image/model</value>
+               	<value>classpath:com/mpaike/member/model/</value>
+            </list>
+         </property>
 		<property name="mappingResources">
 			<list>
-				<value>
-					com/mpaike/sys/model/SystemLog.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysUser.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysGroup.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysMenu.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysRole.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysPopedom.hbm.xml
-				</value>
-				<value>
-					com/mpaike/user/model/SysUserAndSysGroupToSysRole.hbm.xml
-				</value>
-				<value>
-					com/mpaike/dictionary/model/Dictionary.hbm.xml
-				</value>
-				<value>
-					com/mpaike/member/model/Member.hbm.xml
-				</value>
-				<value>
-					com/mpaike/member/model/MemberInfo.hbm.xml
-				</value>
+				<value>com/mpaike/sys/model/SystemLog.hbm.xml</value>
+				<value>com/mpaike/user/model/SysUser.hbm.xml</value>
+				<value>com/mpaike/user/model/SysGroup.hbm.xml</value>
+				<value>com/mpaike/user/model/SysMenu.hbm.xml</value>
+				<value>com/mpaike/user/model/SysRole.hbm.xml</value>
+				<value>com/mpaike/user/model/SysPopedom.hbm.xml</value>
+				<value>com/mpaike/user/model/SysUserAndSysGroupToSysRole.hbm.xml</value>
+				<value>com/mpaike/dictionary/model/Dictionary.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -194,4 +178,5 @@
 		    </props>
 		  </property>
 	</bean>
+
 </beans>
