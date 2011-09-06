@@ -1,8 +1,13 @@
 package com.mpaike.image.model;
 
+import com.mpaike.util.dao.IBeanPrimaryKey;
 
-public class Picture implements java.io.Serializable
+public class Picture implements IBeanPrimaryKey, java.io.Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Long userId;
 	private String photoMd5;
@@ -12,8 +17,8 @@ public class Picture implements java.io.Serializable
 	private String mimeType;//文件格式
 	private String fileSize;//文件大小
 	private String fileDataTime;//时间戳
-	private int    srcHeight;//图像高度（像素）
-	private int    srcWidth;//图像宽度（像素）
+	private Integer    srcHeight;//图像高度（像素）
+	private Integer    srcWidth;//图像宽度（像素）
 	//图像信息	-----------------------------
     private String imageDescription;//图片说明
     private String make;//制造商 
@@ -376,16 +381,16 @@ public class Picture implements java.io.Serializable
 	public void setThumbnailMimeType(String thumbnailMimeType) {
 		this.thumbnailMimeType = thumbnailMimeType;
 	}
-	public int getSrcHeight() {
+	public Integer getSrcHeight() {
 		return srcHeight;
 	}
-	public void setSrcHeight(int srcHeight) {
+	public void setSrcHeight(Integer srcHeight) {
 		this.srcHeight = srcHeight;
 	}
-	public int getSrcWidth() {
+	public Integer getSrcWidth() {
 		return srcWidth;
 	}
-	public void setSrcWidth(int srcWidth) {
+	public void setSrcWidth(Integer srcWidth) {
 		this.srcWidth = srcWidth;
 	}
 	public Long getId() {
