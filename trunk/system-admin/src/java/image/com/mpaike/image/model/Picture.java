@@ -2,6 +2,9 @@ package com.mpaike.image.model;
 
 public class Picture 
 {
+	private Long id;
+	private Long userId;
+	private String photoMd5;
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -384,6 +387,23 @@ public class Picture
 	public void setSrcWidth(int srcWidth) {
 		this.srcWidth = srcWidth;
 	}
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public String getPhotoMd5() {
+		return photoMd5;
+	}
+	public void setPhotoMd5(String photoMd5) {
+		this.photoMd5 = photoMd5;
+	}
   
 }
