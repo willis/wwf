@@ -1,4 +1,4 @@
-/* ������ￄ1�7 */
+/* 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟介敓锟�*/
 a,area, button { 
 	blr:expression(this.onFocus=this.blur()) 
 } /* for IE */
@@ -76,6 +76,10 @@ table.table tbody tr td a.control {
 	margin-left: 5px;
 	width: auto;
 }
+.lefttd {
+
+	background-color:#EEF2F2;
+}
 input.button {
 	display: inline-block;
 	width: 49px;
@@ -95,6 +99,15 @@ input.bluebutton {
 	color: #ffffff;
 	background-image: url(../images/widgets/bluebutton.gif);
 }
+input.greenbutton {
+	display: inline-block;
+	width: 59px;
+	height: 21px;
+	line-height: 21px;
+	border: 0px;
+	color: #ffffff;
+	background-image: url(../images/widgets/btn-smail-green.png);
+}
 input.button_big {
 	display: inline-block;
 	width: 85px;
@@ -103,6 +116,16 @@ input.button_big {
 	border: 0px;
 	color: #ffffff;
 	background-image: url(../images/widgets/btn_2.png);
+	cursor:pointer;
+}
+input.green_big {
+	display: inline-block;
+	width: 85px;
+	height: 24px;
+	line-height: 24px;
+	border: 0px;
+	color: #ffffff;
+	background-image: url(../images/widgets/btn-green.png);
 	cursor:pointer;
 }
 input.nextWeek {
@@ -247,8 +270,26 @@ a.icon {
 	margin-right: 3px;
 	cursor: pointer;
 }
+a.return span  {
+	background-image: url(../images/widgets/return.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+a.tui span  {
+	background-image: url(../images/widgets/tui.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
 a.copy span {
 	background-image: url(../images/widgets/copy.png);
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+a.accept span {
+	background-image: url(../images/widgets/accept.png);
 	width: 16px;
 	height: 16px;
 	display: block;
