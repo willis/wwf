@@ -411,5 +411,29 @@ public class Picture implements IBeanPrimaryKey, java.io.Serializable
 	public void setPhotoMd5(String photoMd5) {
 		this.photoMd5 = photoMd5;
 	}
-  
+	public String getxResolution() {
+		return xResolution;
+	}
+	public void setxResolution(String xResolution) {
+		this.xResolution = xResolution;
+	}
+	public String getyResolution() {
+		return yResolution;
+	}
+	public void setyResolution(String yResolution) {
+		this.yResolution = yResolution;
+	}
+	public String getyCbCrPositioning() {
+		return yCbCrPositioning;
+	}
+	public void setyCbCrPositioning(String yCbCrPositioning) {
+		this.yCbCrPositioning = yCbCrPositioning;
+	}
+	public String getfNumber() {
+		return fNumber;
+	}
+	public void setfNumber(String fNumber) {
+		this.fNumber = fNumber;
+	}
+	
 }
