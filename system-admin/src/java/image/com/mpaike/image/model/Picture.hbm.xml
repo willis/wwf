@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mpaike.image.model.Member" table="paike_picture">
+
+		<id name="id" type="java.lang.Long" column="pictureid">
+			<generator class="assigned" />
+		</id>
+		<property name="photoMd5" column="photoMd5" type="string">
+		</property>
+		<property name="userId" column="userId" type="java.lang.Long"
+			not-null="true">
+
+		</property>
+		<property name="filename" column="filename" type="string">
+
+		</property>
+		<property name="fileType" column="fileType" type="string">
+
+		</property>
+
+		<property name="mimeType" column="mimeType" type="string">
+
+		</property>
+		<property name="fileSize" column="fileSize" type="string">
+
+		</property>
+		<property name="fileDataTime" column="fileDataTime" type="string">
+
+		</property>
+		<property name="srcHeight" column="srcHeight" type="java.lang.Integer"
+			not-null="true">
+
+		</property>
+
+		<property name="srcWidth" column="srcWidth" type="java.lang.Integer">
+
+		</property>
+		<property name="imageDescription" column="imageDescription"
+			type="string">
+
+		</property>
+
+		<property name="make" column="make" type="string">
+
+		</property>
+		<property name="model" column="model" type="string">
+
+		</property>
+		<property name="orientation" column="orientation" type="string">
+
+		</property>
+		<property name="xResolution" column="xResolution" type="string">
+
+		</property>
+		<property name="yResolution" column="yResolution" type="string">
+
+		</property>
+		<property name="software" column="software" type="string">
+
+		</property>
+		<property name="dateTime" column="dateTime" type="string">
+
+		</property>
+		<property name="artist" column="artist" type="string">
+
+		</property>
+		<property name="yCbCrPositioning" column="yCbCrPositioning"
+			type="string">
+
+		</property>
+		<property name="copyright" column="copyright" type="string">
+
+		</property>
+		<property name="copyrightOfPhotographer" column="copyrightOfPhotographer"
+			type="string">
+
+		</property>
+		<property name="copyrightOfEditor" column="copyrightOfEditor"
+			type="string">
+
+		</property>
+		<property name="exifVersion" column="exifVersion" type="string">
+
+		</property>
+		<property name="flashPixVersion" column="flashPixVersion"
+			type="string">
+
+		</property>
+
+		<property name="dateTimeDigitized" column="dateTimeDigitized"
+			type="string">
+
+		</property>
+		<property name="computedHeight" column="computedHeight" type="string">
+
+		</property>
+		<property name="computedWidth" column="computedWidth" type="string">
+
+		</property>
+		<property name="apertureValue" column="apertureValue" type="string">
+
+		</property>
+		<property name="shutterSpeedValue" column="shutterSpeedValue"
+			type="string">
+
+		</property>
+		<property name="apertureFNumber" column="apertureFNumber"
+			type="string">
+
+		</property>
+		<property name="maxApertureValue" column="maxApertureValue"
+			type="string">
+
+		</property>
+		<property name="exposureTime" column="exposureTime" type="string">
+
+		</property>
+		<property name="fNumber" column="fNumber" type="string">
+
+		</property>
+		<property name="meteringMode" column="meteringMode" type="string">
+
+		</property>
+		<property name="lightSource" column="lightSource" type="string">
+
+		</property>
+		<property name="flash" column="flash" type="string">
+
+		</property>
+		<property name="exposureMode" column="exposureMode" type="string">
+
+		</property>
+		<property name="whiteBalance" column="whiteBalance" type="string">
+
+		</property>
+		<property name="exposureProgram" column="exposureProgram"
+			type="string">
+
+		</property>
+		<property name="exposureBiasValue" column="exposureBiasValue"
+			type="string">
+
+		</property>
+		<property name="isoSpeedRatings" column="isoSpeedRatings"
+			type="string">
+
+		</property>
+		<property name="componentsConfiguration" column="componentsConfiguration"
+			type="string">
+
+		</property>
+		<property name="compressedBitsPerPixel" column="compressedBitsPerPixel"
+			type="string">
+
+		</property>
+		<property name="focusDistance" column="focusDistance" type="string">
+
+		</property>
+		<property name="focalLength" column="focalLength" type="string">
+
+		</property>
+		<property name="focalLengthIn35mmFilm" column="focalLengthIn35mmFilm"
+			type="string">
+
+		</property>
+		<property name="userCommentEncoding" column="userCommentEncoding"
+			type="string">
+
+		</property>
+		<property name="userComment" column="userComment" type="string">
+
+		</property>
+		<property name="colorSpace" column="colorSpace" type="string">
+
+		</property>
+		<property name="exifImageLength" column="exifImageLength" type="string">
+
+		</property>
+		<property name="exifImageWidth" column="exifImageWidth" type="string">
+
+		</property>
+		<property name="fileSource" column="fileSource" type="string">
+
+		</property>
+		<property name="sceneType" column="sceneType" type="string">
+
+		</property>
+		<property name="thumbnailFileType" column="thumbnailFileType" type="string">
+
+		</property>
+		<property name="thumbnailMimeType" column="thumbnailMimeType" type="string">
+
+		</property>
+
+	</class>
+</hibernate-mapping>
