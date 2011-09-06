@@ -5,7 +5,7 @@
 		<title>用户密码-修改</title>
 		<%@ include file="/include/taglibs.jsp"%>
 		<%@ include file="/include/jquery.jsp"%>
-        <script src="${cxp }/appjs/ajaxform.common.js"></script>		
+       <script src="${cxp }/appjs/ajaxform.common.js"></script>	
 		<style type="text/css">
 			table.form {
 				width: 45em; 
@@ -18,40 +18,53 @@
 		
 	</head>
 	<body style="background-color: transparent;">
-			<form action="sysUser!changePassword.action" method="post"  
+			<form id="myForm" name="myForm" action="sysUser!changePassword.action" method="post"  
 				>
-				<div class="buttons">
-					<input type="submit" name="subOk" value="修改" class="button"/>
-					<input type="button" name="backOk" value="关闭" class="button"
-						onclick="window.parent.closeWindow()"/>
-				</div>
+				
 
-			<table class="table" >
+			<table class="table">
 			
 			<tr>
 				<td width="50"   >
 					新密码：
 				</td>
 				<td  >
-					<input type="password" name="password" checkInfo="新密码;NOTNULL;No"
+					<input type="password" name="password"  dataType="Require" msg="新密码不能为空"
 						style="width:90%">
 				</td>
 				
 			</tr>
-			<input type="hidden" name="ids" value="${param.ids}" />
+			
 			
 		</table>
+		<div class="buttons">
+					<input type="submit" name="subOk" value="修改" class="button"/>
+					<input type="button" name="backOk" value="关闭" class="button"
+						onclick="window.parent.closeWindow()"/>
+				</div>
+		<input type="hidden" name="ids" value="${param.ids}" />
 		</form>
 
 		<script>
-			function checkFormMe(form){
+			
+		Validator.createCheckForm(document.forms[0]);
+			/**
+			回调
+			**/
+			function processJson(data) {
 
-			       return checkForm(form);
-			
+			if(data.status == SUCCESS){
+				//图层解锁
+			window.parent.parent.jAlert(data.message, "系统提示");
+				$("#myForm").unblock();
+				window.parent.frames["0"].location.reload();
+				window.parent.parent.closeWindow();
+			}else{
+				window.parent.frames["0"].location.reload();
+				//图层解锁
+				$("#myForm").unblock();
 			}
-			document.forms[0].setAttribute("id","myForm")
-			FormCheck.createCheckForm(document.forms[0]);
-			
+			}
 		</script>		
 	</body>
 </html>

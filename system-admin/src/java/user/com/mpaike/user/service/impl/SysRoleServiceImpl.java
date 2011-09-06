@@ -147,6 +147,9 @@ public class SysRoleServiceImpl extends GtGridCommonDao implements
 	      sysRole.getSysPopedoms().remove((SysPopedom)super.get(SysPopedom.class, new Long(cs[i])));
 		
 	}
+	public List<SysRole> getSysRoleList(String name) {
+		return super.find("from SysRole sr where sr.name=?", new Object[]{name.trim()});
+	}
 
 	
 }

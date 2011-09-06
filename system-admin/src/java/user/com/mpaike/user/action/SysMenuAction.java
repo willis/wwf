@@ -28,7 +28,7 @@ public class SysMenuAction extends BaseAction {
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
-	    tree = this.getSysMenuService().listTree(rootId);
+	    tree = this.getSysMenuService().getTree(rootId);
 
 	    rootObj = tree.remove(0);
 		return "menulist";
@@ -65,20 +65,24 @@ public class SysMenuAction extends BaseAction {
 	}
 	public void save(){
 		String result = "";
+		boolean type = false;
 		if(sysMenu.getId()==null){
 			result ="添加成功!";
+			type = false;
 		}else{
 			
 			SysMenu target = getSysMenuService().getMenu(sysMenu.getId());
 			
 		    MyBeanUtils.fillForNotNullObject(target, sysMenu);
 		    sysMenu = target;
-		    SysMenuControl.getInstance().putRootTree();
 			result ="修改成功!";
+			type = true;
 		}
 		sysMenu.setOrderBy(sysMenu.getOrderBy()!=null?sysMenu.getOrderBy():0l);
 		sysMenu.setCurDate(new Date());
 		getSysMenuService().save(sysMenu);
+		if(type)
+		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, result);
 		
 	}

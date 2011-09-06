@@ -18,7 +18,8 @@ public interface SysRoleService {
 
 	public List<SysRole> getByGrid(GridServerHandler paramGridServerHandler,
 			SysRole paramSysRole);
-
+	public List<SysRole> getSysRoleList(String name);
+	
 	public SysRole getSysRole(long paramSerializable);
 
 	public void saveSysRole(SysRole sysRole);
@@ -46,3 +47,4 @@ public interface SysRoleService {
 	public void removeSysPopedom(long paramLong, String[] paramArrayOfString);
 
 }
+

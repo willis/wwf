@@ -5,7 +5,7 @@
 
 	<head>
 	<%@ include file="/include/taglibs.jsp"%>
-<%@ include file="/include/jquery.jsp"%>
+	<%@ include file="/include/jquery.jsp"%>
 		<script type="text/javascript" src="${cxp }/js/TableTree4J.js"></script>
 		<link rel="StyleSheet" href="${cxp }/js/css/tabletree4j.css"
 			type="text/css" />
