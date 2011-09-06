@@ -37,9 +37,7 @@ public class UserFilter  implements Filter {
 	    throws IOException, ServletException
 	  {
 	    request.setCharacterEncoding(this.defaultEncode);
-	   SysUser sysUser = (SysUser) TransactionSynchronizationManager
-		.getResource(LoginControl.USER_OBJ);
-	   System.out.println("-----------"+sysUser);
+
 	    String nowUrl = ((HttpServletRequest)request).getRequestURI();
 	    boolean isNotCheckJsp = false;
 	    for (String s : this.notCheckJsp) {
