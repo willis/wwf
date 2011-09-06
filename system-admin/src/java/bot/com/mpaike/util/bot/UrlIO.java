@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 
 import com.mpaike.core.util.data.FastByteArrayOutputStream;
 import com.mpaike.core.util.resource.FileUtil;
+import com.mpaike.image.model.Picture;
+import com.mpaike.util.ExifHelper;
 
 public class UrlIO {
 	
@@ -68,12 +70,13 @@ public class UrlIO {
      * @param fileName String
      * @throws Exception
      */
-    public static boolean imageToFile(String destUrl, String fileName,int minWidth,int minHeight) throws IOException {
+    public static byte[] imageToFile(String destUrl, String fileName,int minWidth,int minHeight) throws IOException {
 
         BufferedInputStream bis = null;
         HttpURLConnection httpUrl = null;
         URL url = null;
-        byte[] buf = new byte[BUFFER_SIZE];
+        byte[] bytes;
+        byte[] buf = new byte[BUFFER_SIZE];;
         int size = 0; 
         boolean isSave = false;
        
@@ -89,26 +92,28 @@ public class UrlIO {
         while ((size = bis.read(buf)) != -1){
         		fbao.write(buf, 0, size);
         }
-        
-        InputStream is = new ByteArrayInputStream(fbao.toByteArray());
+        bytes = fbao.toByteArray();
+        InputStream is = new ByteArrayInputStream(bytes);
         
         BufferedImage image = ImageIO.read(is);
 		if(image.getWidth()<minWidth||image.getHeight()<minHeight){
 			isSave = false;
 		}else{
 			OutputStream fos = new FileOutputStream(fileName);
-			fos.write(fbao.toByteArray());
+			fos.write(bytes);
 			fos.close();
 			System.out.println("Save image	:"+destUrl+" ");
-			System.out.println("                 	:"+fileName+" ");
 			isSave = true;
 		}
 		is.close();
 		fbao.close();
         bis.close();
         httpUrl.disconnect();
-
-		return isSave;
+        if(isSave){
+        		return bytes;
+        }else{
+        		return null;
+        }
     }
     
     /**

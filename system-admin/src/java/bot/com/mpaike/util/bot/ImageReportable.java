@@ -128,7 +128,8 @@ public class ImageReportable implements ISpiderReportable{
 	    	  	mkdir(tagertName.toString());
 	    	  	tagertName.append(id).append(".").append(FileUtil.getTypePart(url));
 
-	        if(UrlIO.imageToFile(url, tagertName.toString(), 500, 500)){
+	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
+	        if(bytes!=null){
 	        		prepSetStatus.setString(1,id);
 		        prepSetStatus.setString(2,url);
 		        prepSetStatus.setString(3,tagertName.toString());
