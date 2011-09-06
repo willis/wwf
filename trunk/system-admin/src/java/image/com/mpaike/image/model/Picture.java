@@ -1,6 +1,7 @@
 package com.mpaike.image.model;
 
-public class Picture 
+
+public class Picture implements java.io.Serializable
 {
 	private Long id;
 	private Long userId;
