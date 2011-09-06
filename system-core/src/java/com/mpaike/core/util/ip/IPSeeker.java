@@ -9,7 +9,7 @@ import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -71,7 +71,7 @@ public class IPSeeker {
 	private static Log log = LogFactory.getLog(IPSeeker.class);
 
 	// 用来做为cache，查询一个ip时首先查看cache，以减少不必要的重复查找
-	private Hashtable<String, IPLocation> ipCache;
+	private HashMap<String, IPLocation> ipCache;
 
 	// 随机文件访问类
 	private RandomAccessFile ipFile;
@@ -84,32 +84,23 @@ public class IPSeeker {
 	// 起始地区的开始和结束的绝对偏移
 	private long ipBegin, ipEnd;
 
-	// 为提高效率而采用的临时变量
-	private IPLocation loc;
-
-	private byte[] buf;
-
-	private byte[] b4;
-
-	private byte[] b3;
-
 	private static String IPDATE_FILE_PATH = "";
 
-	private static final String IPDATE_FILE = "IPWry.Dat";
+	private static final String IPDATE_FILE = "nnabc_isp.dat";
 
 	/**
 	 * 私有构造函数
 	 */
 	public IPSeeker() {
-		ipCache = new Hashtable<String, IPLocation>();
-		loc = new IPLocation();
-		buf = new byte[100];
-		b4 = new byte[4];
-		b3 = new byte[3];
+		ipCache = new HashMap<String, IPLocation>();
+		//loc = new IPLocation();
+		//buf = new byte[100];
+		//b4 = new byte[4];
+		//b3 = new byte[3];
 		try {
-			// ClassPathResource cpr = new ClassPathResource("/" + IPDATE_FILE);
-			// System.out.println(cpr.getFile());
-			IPDATE_FILE_PATH = "";
+//			 ClassPathResource cpr = new ClassPathResource("/" + IPDATE_FILE);
+			 System.out.println(this.getClass().getResource("").getPath());
+			IPDATE_FILE_PATH = this.getClass().getResource("").getPath();
 			ipFile = new RandomAccessFile(IPDATE_FILE_PATH + IPDATE_FILE, "r");
 			// ipFile = new RandomAccessFile(cpr.getFile(), "r");
 		} catch (FileNotFoundException e) {
@@ -162,6 +153,7 @@ public class IPSeeker {
 	 */
 	public List getIPEntriesDebug(String s) {
 		List<IPEntry> ret = new ArrayList<IPEntry>();
+		byte[] b4 = new byte[4];
 		long endOffset = ipEnd + 4;
 		for (long offset = ipBegin + 4; offset <= endOffset; offset += IP_RECORD_LENGTH) {
 			// 读取结束IP偏移
@@ -204,7 +196,7 @@ public class IPSeeker {
 				mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, ipFile.length());
 				mbb.order(ByteOrder.LITTLE_ENDIAN);
 			}
-
+			byte[] b4 = new byte[4];
 			int endOffset = (int) ipEnd;
 			for (int offset = (int) ipBegin + 4; offset <= endOffset; offset += IP_RECORD_LENGTH) {
 				int temp = readInt3(offset);
@@ -378,6 +370,7 @@ public class IPSeeker {
 	 */
 	private long readLong3(long offset) {
 		long ret = 0;
+		byte[] b3 = new byte[3];
 		try {
 			ipFile.seek(offset);
 			ipFile.readFully(b3);
@@ -397,6 +390,7 @@ public class IPSeeker {
 	 */
 	private long readLong3() {
 		long ret = 0;
+		byte[] b3 = new byte[3];
 		try {
 			ipFile.readFully(b3);
 			ret |= (b3[0] & 0xFF);
@@ -493,6 +487,7 @@ public class IPSeeker {
 	 */
 	private long locateIP(byte[] ip) {
 		long m = 0;
+		byte[] b4 = new byte[4];
 		int r;
 		// 比较第一个ip项
 		readIP(ipBegin, b4);
@@ -558,6 +553,7 @@ public class IPSeeker {
 	 */
 	private IPLocation getIPLocation(long offset) {
 		try {
+			IPLocation loc = new IPLocation();
 			// 跳过4字节ip
 			ipFile.seek(offset + 4);
 			// 读取第一个字节判断是否标志字节
@@ -598,6 +594,7 @@ public class IPSeeker {
 	 * @return IPLocation对象
 	 */
 	private IPLocation getIPLocation(int offset) {
+		IPLocation loc = new IPLocation();
 		// 跳过4字节ip
 		mbb.position(offset + 4);
 		// 读取第一个字节判断是否标志字节
@@ -681,6 +678,7 @@ public class IPSeeker {
 	 */
 	private String readString(long offset) {
 		try {
+			byte[] buf = new byte[100];
 			ipFile.seek(offset);
 			int i;
 			for (i = 0, buf[i] = ipFile.readByte(); buf[i] != 0; buf[++i] = ipFile.readByte()) {
@@ -704,6 +702,7 @@ public class IPSeeker {
 	 */
 	private String readString(int offset) {
 		try {
+			byte[] buf = new byte[100];
 			mbb.position(offset);
 			int i;
 			for (i = 0, buf[i] = mbb.get(); buf[i] != 0; buf[++i] = mbb.get()) {
@@ -753,8 +752,8 @@ public class IPSeeker {
 	}
 
 	public static void main(String[] args) {
-		 String path = "D:\\MyEclipse 6.0\\eclipse\\workspace\\CP2.1\\source\\webapps\\CP2\\";
-		 System.out.println(IPSeeker.getInstance().getCountry("216.35.68.50"));
+
+		 System.out.println(IPSeeker.getInstance().getCountry("123.123.34.33"));
 		 System.out.println(IPSeeker.getInstance().getArea("210.51.190.3"));
 	}
 }
