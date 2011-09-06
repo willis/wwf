@@ -19,8 +19,7 @@
 		</style>
 	</head>
 	<body style="background-color: transparent;">
-		
-		
+
 				
 				<div class="buttons">
 			
@@ -29,15 +28,15 @@
 						
 				</div>
 				<p id="errorMsg" style="color:red">&nbsp;</p>
-				<table class="table" >
+				<table class="table"  width="300px" >
 					<tr>
-						<td>
+						<td width="100px" class="lefttd">
 							用户名：
 						</td>
 						<td>
 						${member.username}
 						</td>
-						<td>
+						<td width="100px" class="lefttd">
 							昵称：
 						</td>
 						<td>

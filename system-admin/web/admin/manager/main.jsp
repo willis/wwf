@@ -111,7 +111,7 @@
 						<div id="rightFrame">
 							<iframe id="rFrame" name="rFrame" width="100%" height="615px"
 								frameborder="No" border="0" marginwidth="0" marginheight="0"
-								scrolling="auto" src="${cxp }${not empty defaultLink?defaultLink:'/error/404.jsp'}"></iframe>
+								scrolling="auto" src="${cxp }${not empty defaultLink?defaultLink:'/manager/system/gc.jsp'}"></iframe>
 						</div>
 					</div>
 					<!-- tree end -->
@@ -130,7 +130,7 @@
 				class="footer" />
 		</div>
 		<script>
-	 $('#rightFrame').width(document.body.scrollWidth-220);
+	 	$('#rightFrame').width(document.body.scrollWidth-210);
 		
 		</script>
 
