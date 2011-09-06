@@ -42,30 +42,36 @@
 		
 		// Public methods
 		
-		alert: function(message, title, callback) {
+		alert: function(message, title, callback, okBtnText, cancelBtnText) {
 			if( title == null ) title = 'Alert';
-			$.alerts._show(title, message, null, 'alert', function(result) {
+			if(!okBtnText){okBtnText = $.alerts.okButton;}
+			if(!cancelBtnText){cancelBtnText = $.alerts.cancelButton;}
+			$.alerts._show(title, message, null, 'alert', okBtnText, cancelBtnText, function(result) {
 				if( callback ) callback(result);
 			});
 		},
 		
-		confirm: function(message, title, callback) {
+		confirm: function(message, title, callback, okBtnText, cancelBtnText) {
 			if( title == null ) title = 'Confirm';
-			$.alerts._show(title, message, null, 'confirm', function(result) {
+			if(!okBtnText){okBtnText = $.alerts.okButton;}
+			if(!cancelBtnText){cancelBtnText = $.alerts.cancelButton;}
+			$.alerts._show(title, message, null, 'confirm', okBtnText, cancelBtnText, function(result) {
 				if( callback ) callback(result);
 			});
 		},
-			
-		prompt: function(message, value, title, callback) {
+
+		prompt: function(message, value, title, callback,okBtnText, cancelBtnText) {
 			if( title == null ) title = 'Prompt';
-			$.alerts._show(title, message, value, 'prompt', function(result) {
+			if(!okBtnText){okBtnText = $.alerts.okButton;}
+			if(!cancelBtnText){cancelBtnText = $.alerts.cancelButton;}
+			$.alerts._show(title, message, value, 'prompt', okBtnText, cancelBtnText, function(result) {
 				if( callback ) callback(result);
 			});
 		},
-		
+
 		// Private methods
 		
-		_show: function(title, msg, value, type, callback) {
+		_show: function(title, msg, value, type, okBtnText, cancelBtnText, callback) {
 			
 			$.alerts._hide();
 			$.alerts._overlay('show');
@@ -105,7 +111,7 @@
 			
 			switch( type ) {
 				case 'alert':
-					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + okBtnText + '" id="popup_ok" /></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						callback(true);
@@ -115,7 +121,7 @@
 					});
 				break;
 				case 'confirm':
-					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_message").after('<div id="popup_panel"><input type="button" value="' + okBtnText + '" id="popup_ok" /> <input type="button" value="' + cancelBtnText + '" id="popup_cancel" /></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						if( callback ) callback(true);
@@ -131,7 +137,7 @@
 					});
 				break;
 				case 'prompt':
-					$("#popup_message").append('<br /><input type="text" size="30" id="popup_prompt" />').after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_message").append('<br /><input type="text" size="30" id="popup_prompt" />').after('<div id="popup_panel"><input type="button" value="' + okBtnText + '" id="popup_ok" /> <input type="button" value="' + cancelBtnText + '" id="popup_cancel" /></div>');
 					$("#popup_prompt").width( $("#popup_message").width() );
 					$("#popup_ok").click( function() {
 						var val = $("#popup_prompt").val();
@@ -220,16 +226,16 @@
 	}
 	
 	// Shortuct functions
-	jAlert = function(message, title, callback) {
-		$.alerts.alert(message, title, callback);
+	jAlert = function(message, title, callback, okBtnText, cancelBtnText) {
+		$.alerts.alert(message, title, callback, okBtnText, cancelBtnText);
 	}
 	
-	jConfirm = function(message, title, callback) {
-		$.alerts.confirm(message, title, callback);
+	jConfirm = function(message, title, callback, okBtnText, cancelBtnText) {
+		$.alerts.confirm(message, title, callback, okBtnText, cancelBtnText);
 	};
 		
-	jPrompt = function(message, value, title, callback) {
-		$.alerts.prompt(message, value, title, callback);
+	jPrompt = function(message, value, title, callback, okBtnText, cancelBtnText) {
+		$.alerts.prompt(message, value, title, callback, okBtnText, cancelBtnText);
 	};
 	
 })(jQuery);

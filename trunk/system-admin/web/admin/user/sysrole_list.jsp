@@ -3,8 +3,6 @@
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-<script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
 		<head>
 		<title>角色维护</title>
 
@@ -67,11 +65,7 @@
 					<thead>
 						<tr>
 							<th>
-								<label class="checkbox">
-									<input type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
+								
 							</th>
 							<th >
 								操作
@@ -117,7 +111,7 @@
 		  		loading:'loading',
 		  		id:'id',
 		  		queryUrl:'sysRole!list.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},
+		  		headerColumns:[{id:'id',name:'操作',renderer:IdRadioRenderer},
 		  		{id:'id',name:'操作',renderer:editRenderer},
 		  		{id:'name',name:'角色名称'},
 		  		{id:'describe',name:'角色描述'}

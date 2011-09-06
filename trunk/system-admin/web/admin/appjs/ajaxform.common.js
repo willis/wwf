@@ -1,14 +1,17 @@
 $(document).ready(function() {
 			$('#myForm').ajaxForm({
 						beforeSubmit : validateForm,
-						clearForm : false,
+						clearForm : true,
 						dataType : 'json',
 						success : processJson,
 						error : function(response) {
-						
-						alert(response.responseText);
-							//图层解锁
-							$("#myForm").unblock();
+							if(response.responseText.indexOf('loginwindow')!=-1){
+								parent.location.reload();
+							}else{
+								alert(response.responseText);
+								//图层解锁
+								$("#myForm").unblock();
+							}
 						}
 					});
 		});
@@ -23,7 +26,8 @@ function validateForm(formData, jqForm, options) {
 	return false;
 }
 function checkFormMe(form) {
-		return checkForm(form);
+		return Validator.Validate(form,2);
+		//return checkForm(form);
 }
 
 /**

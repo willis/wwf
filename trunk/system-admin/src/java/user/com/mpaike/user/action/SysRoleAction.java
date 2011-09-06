@@ -42,7 +42,7 @@ public class SysRoleAction extends BaseAction {
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
-		tree = sysMenuService.listTree(rootId);
+		tree = sysMenuService.getTree(rootId);
 		rootObj = tree.remove(0);
 		return "menulist";
 	}
@@ -85,7 +85,7 @@ public class SysRoleAction extends BaseAction {
 	    }
 		
 		sysRoleService.addSysPopedom(id, cs);
-
+		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson(response, "添加成功！");
 
 	}
@@ -150,7 +150,6 @@ public class SysRoleAction extends BaseAction {
 				sysRoleService.removeSysRole(new Long(c));
 			}
 			result = "删除成功!";
-			 SysMenuControl.getInstance().putRootTree();
 		}
 		super.printSuccessJson(response, result);
 	}
@@ -165,8 +164,11 @@ public class SysRoleAction extends BaseAction {
 			sysRole = target;
 			result = "修改成功!";
 		}
-		sysRoleService.saveSysRole(sysRole);
-		SysMenuControl.getInstance().putRootTree();
+		if(sysRoleService.getSysRoleList(sysRole.getName()).size()>0){
+			result = "角色名已重复!";
+		}else{
+			sysRoleService.saveSysRole(sysRole);
+		}
 		super.printSuccessJson(response, result);
 	}
 

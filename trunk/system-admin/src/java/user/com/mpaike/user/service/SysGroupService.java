@@ -9,7 +9,6 @@ import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 
 
-@SuppressWarnings("unchecked")
 public interface SysGroupService {
 	public static final String ID_NAME = "sysGroupService";
 

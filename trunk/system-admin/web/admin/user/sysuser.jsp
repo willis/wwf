@@ -3,8 +3,6 @@
 <html>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
-<script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
 		<head>
 		<title>网站后台</title>
 
@@ -41,8 +39,8 @@
 					<div id="editor_contents">
 						<ul class="editor_link">
 					<li>
-					 <a   name="add" class="add"
-									href="javascript:" onclick="window.parent.showWindow('${cxp}/user/sysuser_add.jsp','添加用户',400,500)">添加</a>
+					<pager:checkPopedom code="resource_add"> <a   name="add" class="add"
+									href="javascript:" onclick="window.parent.showWindow('${cxp}/user/sysuser_add.jsp','添加用户',400,500)">添加</a></pager:checkPopedom>
 					 </li>
 								 
 					<li><a class="delete" href="javascript:" onclick="removeSelect(1)">删除</a></li>
@@ -72,7 +70,7 @@
 
 				<table class="table" id="senfe" >
 					<thead>
-						<tr>
+						<tr id="myHead">
 							<th style="width: 80px;">
 								<label class="checkbox">
 									<input type="checkbox" name="c_all"
@@ -133,24 +131,27 @@
 		  		loading:'loading',
 		  		id:'id',
 		  		queryUrl:'sysUser!userList.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},
-		  		{id:'id',name:'操作',renderer:editRenderer},
-		  		{id:'username',name:'用户名'},
-		  		{id:'truename',name:'姓名'},
-		  		{id:'sex',name:'性别'},
-		  		{id:'status',name:'状态',renderer:statusRenderer},
-		  		{id:'regtime',name:'注册时间',renderer:regtimeRenderer}
+		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
+		  		{id:'id',renderer:editRenderer},
+		  		{id:'username'},
+		  		{id:'truename'},
+		  		{id:'sex'},
+		  		{id:'status',renderer:statusRenderer},
+		  		{id:'regtime',renderer:regtimeRenderer}
 		  		]
 		  	}
 		  )
 		  
-	      
+	       myTable1.initSortHead(
+	      {head:'myHead',cells:[{index:1,name:'id'},{index:2,name:'username'},{index:3,name:'truename'},{index:4,name:'sex'},{index:5,name:'status'},{index:6,name:'regtime'}]}
+	      );
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;
 	    	myTable1.onLoad({username:$("#username").val(),truename:$("#truename").val(),status:$("#status").val()});
 	     } 	
-	     function editRenderer(idValue,value){
+	     function editRenderer(idValue,value,record){
+	    	//record["id"]
 	     	var txt="";
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
@@ -253,8 +254,6 @@ function updateSelect(){
 		 
 		</script>	
 	
-
-
 	
 
 	</body>

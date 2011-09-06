@@ -34,7 +34,7 @@
 				<td>
 					<input type="text" name="sysMenu.name"
 						value="<s:property value="sysMenu.name"/>" 
-						style="width: 80%" checkInfo="名称;NOTNULL;No" />
+						style="width: 80%" dataType="Require" msg="名称不能为空" />
 				</td>
 			</tr>
 
@@ -46,7 +46,7 @@
 					<input type="text" name="sysMenu.description"
 					
 						value="<s:property value="sysMenu.description"/>" 
-						style="width: 80%" checkInfo="描述;NOTNULL;No" />
+						style="width: 80%" dataType="Require" msg="描述不能为空"/>
 				</td>
 			</tr>
 						<tr>
@@ -56,7 +56,7 @@
 				<td>
 					<input type="text" name="sysMenu.alias"
 						value="<s:property value="sysMenu.alias"/>"
-						style="width: 80%" checkInfo="别名;ISNULL;No" />
+						style="width: 80%" />
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +66,7 @@
 				<td>
 					<input type="text" name="sysMenu.img"
 						value="<s:property value="sysMenu.img"/>"
-						style="width: 80%" checkInfo="IMG图片;ISNULL;No" />
+						style="width: 80%" />
 				</td>
 			</tr>
 			
@@ -75,7 +75,7 @@
 					链接地址：
 				</td>
 				<td>
-					<TEXTAREA name="sysMenu.link" checkInfo="链接地址;ISNULL;No" style="width: 80%" ><s:property value="sysMenu.link"/></TEXTAREA>
+					<TEXTAREA name="sysMenu.link"  style="width: 80%" ><s:property value="sysMenu.link"/></TEXTAREA>
 				</td>
 			</tr>
 			
@@ -86,7 +86,7 @@
 				<td>
 					<input type="text" name="sysMenu.orderBy"
 						value="<s:property value="sysMenu.orderBy"/>" 
-						style="width: 80%" checkInfo="索引;ISNULL;No" />
+						style="width: 80%" />
 				</td>
 			</tr>
 
@@ -105,7 +105,7 @@
 
 
 
-			FormCheck.createCheckForm(document.forms[0]);
+			Validator.createCheckForm(document.forms[0]);
 			/**
 			回调
 			**/

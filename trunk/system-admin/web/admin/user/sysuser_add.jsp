@@ -35,7 +35,7 @@
 							用户名：
 						</td>
 						<td>
-							<input type="text" name="sysUser.username" checkInfo="用户名;NOTNULL;No"
+							<input type="text" name="sysUser.username"  dataType="Require" msg="用户名不能为空"
 								class="EditBox" style="width:90%" /></td>
 							
 					</tr>
@@ -45,7 +45,7 @@
 							姓名：
 						</td>
 						<td>
-							<input type="text" name="sysUser.truename" style="width:90%"  checkInfo="姓名;NOTNULL;No"
+							<input type="text" name="sysUser.truename" style="width:90%" dataType="Require" msg="姓名不能为空"
 								 class="EditBox" />
 													</td>
 							
@@ -58,7 +58,7 @@
 							密码：
 						</td>
 						<td>
-							<input type="password" name="sysUser.password" style="width:90%"  checkInfo="密码;NOTNULL;No"
+							<input type="password" name="sysUser.password" id="password" style="width:90%"  dataType="Require" msg="密码不能为空"
 								class="EditBox" />
 													</td>
 							
@@ -68,7 +68,7 @@
 							重输：
 						</td>
 						<td>
-							<input type="password" name="password2" style="width:90%"  checkInfo="重输;NOTNULL;No"
+							<input type="password" name="password2" style="width:90%" dataType="Repeat" to="sysUser.password" msg="两次输入的密码不一致"
 								class="EditBox" />
 												</td>
 							
@@ -102,7 +102,7 @@
 							电话：
 						</td>
 						<td>
-							<input type="text" name="sysUser.tel" style="width:90%"  checkInfo="电话;ISNULL;No"
+							<input type="text" name="sysUser.tel" style="width:90%"  
 								class="EditBox" />
 						</td>
 						 
@@ -125,7 +125,7 @@
 		</form>
 		
 		<script type="text/javascript">
-			FormCheck.createCheckForm(document.forms[0]);
+			Validator.createCheckForm(document.forms[0]);
 			function nameCheck(temp){//暂不用
 									
 					$.ajax({
