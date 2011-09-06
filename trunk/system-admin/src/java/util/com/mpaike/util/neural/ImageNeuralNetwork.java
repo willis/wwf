@@ -70,21 +70,13 @@ public class ImageNeuralNetwork {
 
 	public static void main(final String[] args) {
 		String path;
-		if (args.length < 1) {
-			System.out
-					.println("Must specify command file.  See source for format.");
-			path = "/Users/tozhangwj/Documents/workspace/encog/icon/test.txt";
-		}else{
-			path =args[0];
-		}
+		path = "/Users/tozhangwj/Documents/workspace/encog/icon/test.txt";
 		
-		{
-			try {
-				final ImageNeuralNetwork program = new ImageNeuralNetwork();
-				program.execute(path);
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			final ImageNeuralNetwork program = new ImageNeuralNetwork();
+			program.execute(path);
+		} catch (final Exception e) {
+			e.printStackTrace();
 		}
 		
 		Encog.getInstance().shutdown();
