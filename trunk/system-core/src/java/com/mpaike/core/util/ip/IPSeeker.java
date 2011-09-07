@@ -36,10 +36,12 @@ public class IPSeeker{
 	private static BlockingQueue<IPSearch> queue;
 	
 	private IPSeeker(){
+		long startMem = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory());
 		queue = new LinkedBlockingQueue<IPSeeker.IPSearch>();
 		for(int i=0;i<poolSize;i++){
 			queue.offer(new IPSearch());
 		}
+		System.out.println("mem end:"+((Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())-startMem)/(1024)+"k");
 	}
 	
 	/**
@@ -50,43 +52,51 @@ public class IPSeeker{
 	}
 	
 	public String getCountry(String ip){
+		String s= "";
 		try {
 			IPSearch search = queue.take();
-			return search.getCountry(ip);
+			s = search.getCountry(ip);
+			queue.offer(search);
 		} catch (InterruptedException e) {
 			log.error(e);
 		}
-		return "";
+		return s;
 	}
 	
 	public String getCountry(byte[] ip){
+		String s= "";
 		try {
 			IPSearch search = queue.take();
-			return search.getCountry(ip);
+			s = search.getCountry(ip);
+			queue.offer(search);
 		} catch (InterruptedException e) {
 			log.error(e);
 		}
-		return "";
+		return s;
 	}
 	
 	public String getArea(String ip){
+		String s= "";
 		try {
 			IPSearch search = queue.take();
-			return search.getArea(ip);
+			s = search.getArea(ip);
+			queue.offer(search);
 		} catch (InterruptedException e) {
 			log.error(e);
 		}
-		return "";
+		return s;
 	}
 	
 	public String getArea(byte[] ip){
+		String s= "";
 		try {
 			IPSearch search = queue.take();
-			return search.getArea(ip);
+			s = search.getArea(ip);
+			queue.offer(search);
 		} catch (InterruptedException e) {
 			log.error(e);
 		}
-		return "";
+		return s;
 	}
 	
 	public static void main(String[] args) {
@@ -150,7 +160,7 @@ public class IPSeeker{
 		private  IPSearch() {
 			ipCache = new ConcurrentHashMap<String, IPLocation>();
 			RandomAccessFile ipFile = null;
-			long startMem = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory());
+			
 			try {
 //				 ClassPathResource cpr = new ClassPathResource("/" + IPDATE_FILE);
 				 System.out.println(this.getClass().getResource("").getPath());
@@ -198,7 +208,7 @@ public class IPSeeker{
 					ipFile = null;
 				} 
 			}
-			System.out.println("mem end:"+((Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())-startMem)/(1024)+"k");
+			
 		}
 
 		/**
