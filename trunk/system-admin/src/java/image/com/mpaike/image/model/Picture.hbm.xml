@@ -176,7 +176,8 @@
 		<property name="colorSpace" column="colorSpace" type="string">
 
 		</property>
-		<property name="exifImageLength" column="exifImageLength" type="string">
+		<property name="exifImageLength" column="exifImageLength"
+			type="string">
 
 		</property>
 		<property name="exifImageWidth" column="exifImageWidth" type="string">
@@ -188,10 +189,12 @@
 		<property name="sceneType" column="sceneType" type="string">
 
 		</property>
-		<property name="thumbnailFileType" column="thumbnailFileType" type="string">
+		<property name="thumbnailFileType" column="thumbnailFileType"
+			type="string">
 
 		</property>
-		<property name="thumbnailMimeType" column="thumbnailMimeType" type="string">
+		<property name="thumbnailMimeType" column="thumbnailMimeType"
+			type="string">
 
 		</property>
 
