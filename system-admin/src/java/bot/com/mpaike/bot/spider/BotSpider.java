@@ -15,6 +15,7 @@ import com.mpaike.util.bot.SpiderSQLWorkload;
 
 public class BotSpider {
 	
+	private String path;
 	@Autowired
 	private IPictureDao pictureDao;
 	@Autowired
@@ -22,17 +23,37 @@ public class BotSpider {
 	
 	private Map<String,Spider> spiderMap = new HashMap<String,Spider>();
 
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
+	public String getCurrentUrl(String url){
+		Spider spider = spiderMap.get(url);
+		if(spider!=null){
+			return spider.getCurrentUrl();
+		}
+		return null;
+	}
+
 	/**
 	 * @param args
 	 */
-	public void startSpider(String url,String path,int theardNum) {
+	public void startSpider(String url,String enName,int threadNum) {
 		if(url==null){
 			return;
 		}
+		Spider sd = spiderMap.get(url);
+		if(sd!=null){
+			sd.halt();
+		}
 		 try{
 			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource);
-			 	ImageReportable ir = new ImageReportable(url,path,dataSource,pictureDao);
-			 	Spider spider = new Spider( ir,url,new HTTPSocket(),theardNum,wl);
+			 	ImageReportable ir = new ImageReportable(url,path+enName+"/",dataSource,pictureDao);
+			 	Spider spider = new Spider( ir,url,new HTTPSocket(),threadNum,wl);
 			 	spiderMap.put(url, spider);
 			 	//spider.setMaxBody(200);
 			 	spider.start();

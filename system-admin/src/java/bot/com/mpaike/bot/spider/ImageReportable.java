@@ -26,7 +26,7 @@ import com.mpaike.util.bot.UrlIO;
 
 public class ImageReportable implements ISpiderReportable{
 	
-	public static String currentUrl = "";
+	private String currentUrl = "";
 	
 	PreparedStatement prepAssign;
 	PreparedStatement prepSetStatus;
@@ -178,6 +178,14 @@ public class ImageReportable implements ISpiderReportable{
 		}
 	}
 	
+	public String getCurrentUrl() {
+		return currentUrl;
+	}
+
+	public void setCurrentUrl(String currentUrl) {
+		this.currentUrl = currentUrl;
+	}
+
 	public static void main(String[] args) {
 		
 		
