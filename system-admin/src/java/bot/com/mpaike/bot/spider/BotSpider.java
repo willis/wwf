@@ -50,7 +50,7 @@ public class BotSpider {
 		if(spider!=null){
 			return spider.getCurrentUrl();
 		}
-		return null;
+		return "没有爬取";
 	}
 
 	/**

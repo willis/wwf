@@ -9,7 +9,7 @@
 		<%@ include file="/include/jquery.jsp"%>
 		<SCRIPT LANGUAGE="JavaScript">
 		  <!--
-			function monitor(url){
+			function getCurrentUrl(url){
 				if(url){
 					$.ajax({
 						   type: "POST",
@@ -22,6 +22,12 @@
 					
 				}
 			};
+			
+			function monitor(url){
+				setTimeout(function() {
+					getCurrentUrl(url);
+				}, 500);
+			}
 		  
 		//-->
 		</SCRIPT>
