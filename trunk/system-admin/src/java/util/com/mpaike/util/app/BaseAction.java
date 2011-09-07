@@ -6,14 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import net.sf.json.JSONArray;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
-
+import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
 import com.opensymphony.xwork2.ActionContext;
@@ -91,4 +90,12 @@ public class BaseAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
+	//service
+	public BotSpider getBotSpider() {
+		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
+	}
+	
+	
+	
 }

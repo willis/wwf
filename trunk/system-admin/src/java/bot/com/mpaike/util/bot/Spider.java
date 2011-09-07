@@ -19,6 +19,7 @@ public class Spider extends Thread implements ISpiderReportable {
   protected boolean halted = false;
   protected SpiderDone done = new SpiderDone();
   protected int maxBodySize;
+  protected String currentUrl;
 
 
   /**
@@ -135,7 +136,9 @@ public class Spider extends Thread implements ISpiderReportable {
     }
   }
 
-
+  public String getCurrentUrl(){
+	  return currentUrl;
+  }
 
   /**
    * Get the SpiderDone object used by this spider
@@ -260,6 +263,7 @@ public class Spider extends Thread implements ISpiderReportable {
    */
   synchronized public boolean foundInternalLink(String url)
   {
+	currentUrl = url;
     if ( manager.foundInternalLink(url) )
       addWorkload(url);
     return true;
@@ -280,6 +284,7 @@ public class Spider extends Thread implements ISpiderReportable {
    */
   synchronized public boolean foundExternalLink(String url)
   {
+	currentUrl = url;
     if ( worldSpider ) {
       foundInternalLink(url);
       return true;
@@ -303,6 +308,7 @@ public class Spider extends Thread implements ISpiderReportable {
    */
   synchronized public boolean foundOtherLink(String url)
   {
+	currentUrl = url;
     if ( manager.foundOtherLink(url) )
       addWorkload(url);
     return true;

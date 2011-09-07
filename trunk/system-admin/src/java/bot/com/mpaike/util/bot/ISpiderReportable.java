@@ -10,6 +10,8 @@ package com.mpaike.util.bot;
  */
 
 public interface ISpiderReportable {
+	
+	public String getCurrentUrl();
 
   /**
    * Called when the spider finds an internal
