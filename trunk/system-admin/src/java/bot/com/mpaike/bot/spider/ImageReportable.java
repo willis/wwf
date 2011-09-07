@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
+import javax.sql.DataSource;
+
 import com.mpaike.core.database.hibernate.SequenceManager;
 import com.mpaike.core.util.date.DateTimeUtil;
 import com.mpaike.core.util.resource.FileUtil;
@@ -24,20 +26,20 @@ import com.mpaike.util.bot.UrlIO;
 
 public class ImageReportable implements ISpiderReportable{
 	
+	public static String currentUrl = "";
 	
-	
-	Connection connection;
 	PreparedStatement prepAssign;
 	PreparedStatement prepSetStatus;
-	
+
 	private IPictureDao pictureDao;
 	
-	public static String IMAGES_PATH = "/Users/tozhangwj/";
+	public  String imagesPath;
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4))$");
 	private static String score;
 	
-	public ImageReportable(String url,String driverName,String jdbcurl,String userName,String password,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
+	public ImageReportable(String url,String path,DataSource dataSource,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
+		imagesPath = path;
 		if(url!=null){
 			url = url.toLowerCase();
 			if(url.startsWith("http://")){
@@ -55,8 +57,7 @@ public class ImageReportable implements ISpiderReportable{
 			
 		}
 		this.pictureDao = pictureDao;
-		Class.forName(driverName);
-	    connection = DriverManager.getConnection(jdbcurl,userName,password);
+		Connection connection = dataSource.getConnection();
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,url,filename,status) VALUES (?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 
@@ -64,7 +65,7 @@ public class ImageReportable implements ISpiderReportable{
 
 	@Override
 	public boolean foundInternalLink(String url) {
-		//System.out.println("foundInternalLink:"+url);
+		currentUrl = url;
 		if(otherPatterns.matcher(url.toLowerCase()).matches()){
 			return false;
 		}
@@ -77,7 +78,7 @@ public class ImageReportable implements ISpiderReportable{
 
 	@Override
 	public boolean foundExternalLink(String url) {
-		//System.out.println("foundExternalLink:"+url);
+		currentUrl = url;
 		if(otherPatterns.matcher(url.toLowerCase()).matches()){
 			return false;
 		}
@@ -135,7 +136,7 @@ public class ImageReportable implements ISpiderReportable{
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
 	    	  	tagertName = new StringBuilder();
-	    	  	tagertName.append(IMAGES_PATH).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/");
+	    	  	tagertName.append(imagesPath).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/");
 	    	  	//创建目录
 	    	  	mkdir(tagertName.toString());
 	    	  	tagertName.append(id).append(".").append(FileUtil.getTypePart(url));
@@ -176,7 +177,6 @@ public class ImageReportable implements ISpiderReportable{
 			file.mkdirs();
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		
