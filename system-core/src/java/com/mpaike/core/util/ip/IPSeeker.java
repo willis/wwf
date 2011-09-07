@@ -35,12 +35,59 @@ public class IPSeeker{
 	
 	private static BlockingQueue<IPSearch> queue;
 	
+	// 用来做为cache，查询一个ip时首先查看cache，以减少不必要的重复查找
+	private static ConcurrentHashMap<String, IPLocation> ipCache;
+	
 	private IPSeeker(){
 		long startMem = (Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory());
-		queue = new LinkedBlockingQueue<IPSeeker.IPSearch>();
-		for(int i=0;i<poolSize;i++){
-			queue.offer(new IPSearch());
+		RandomAccessFile ipFile = null;
+		try {
+//			 ClassPathResource cpr = new ClassPathResource("/" + IPDATE_FILE);
+			 System.out.println(this.getClass().getResource("").getPath());
+			IPDATE_FILE_PATH = this.getClass().getResource("").getPath();
+			ipFile = new RandomAccessFile(IPDATE_FILE_PATH + IPDATE_FILE, "r");
+			// ipFile = new RandomAccessFile(cpr.getFile(), "r");
+		} catch (FileNotFoundException e) {
+			// 如果找不到这个文件，再尝试再当前目录下搜索，这次全部改用小写文件名
+			// 因为有些系统可能区分大小写导致找不到ip地址信息文件
+			String filename = new File(IPDATE_FILE_PATH + IPDATE_FILE).getName().toLowerCase();
+			File[] files = new File(IPDATE_FILE_PATH).listFiles();
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isFile()) {
+					if (files[i].getName().toLowerCase().equals(filename)) {
+						try {
+							ipFile = new RandomAccessFile(files[i], "r");
+						} catch (FileNotFoundException e1) {
+							log.error("IP地址信息文件没有找到，IP显示功能将无法使用");
+							ipFile = null;
+						}
+						break;
+					}
+				}
+			}
 		}
+		queue = new LinkedBlockingQueue<IPSeeker.IPSearch>();
+		// 如果打开文件成功，读取文件头信息
+		if (ipFile != null) {
+			try {
+				// 映射IP信息文件到内存中
+				FileChannel fc = ipFile.getChannel();
+
+				MappedByteBuffer mbb;
+				for(int i=0;i<poolSize;i++){
+					mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, ipFile.length());
+					mbb.order(ByteOrder.LITTLE_ENDIAN);
+					queue.offer(new IPSearch(mbb));
+				}
+				ipFile.close();
+				ipFile = null;
+	
+			} catch (IOException e) {
+				log.error("IP地址信息文件格式有错误，IP显示功能将无法使用");
+				ipFile = null;
+			} 
+		}
+		
 		System.out.println("mem end:"+((Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory())-startMem)/(1024)+"k");
 	}
 	
@@ -142,10 +189,6 @@ public class IPSeeker{
 
 		private static final byte REDIRECT_MODE_2 = 0x02;
 
-
-		// 用来做为cache，查询一个ip时首先查看cache，以减少不必要的重复查找
-		private ConcurrentHashMap<String, IPLocation> ipCache;
-
 		// 内存映射文件
 		private MappedByteBuffer mbb;
 
@@ -157,57 +200,12 @@ public class IPSeeker{
 		/**
 		 * 私有构造函数
 		 */
-		private  IPSearch() {
+		private  IPSearch(MappedByteBuffer mbb) {
 			ipCache = new ConcurrentHashMap<String, IPLocation>();
-			RandomAccessFile ipFile = null;
 			
-			try {
-//				 ClassPathResource cpr = new ClassPathResource("/" + IPDATE_FILE);
-				 System.out.println(this.getClass().getResource("").getPath());
-				IPDATE_FILE_PATH = this.getClass().getResource("").getPath();
-				ipFile = new RandomAccessFile(IPDATE_FILE_PATH + IPDATE_FILE, "r");
-				// ipFile = new RandomAccessFile(cpr.getFile(), "r");
-			} catch (FileNotFoundException e) {
-				// 如果找不到这个文件，再尝试再当前目录下搜索，这次全部改用小写文件名
-				// 因为有些系统可能区分大小写导致找不到ip地址信息文件
-				String filename = new File(IPDATE_FILE_PATH + IPDATE_FILE).getName().toLowerCase();
-				File[] files = new File(IPDATE_FILE_PATH).listFiles();
-				for (int i = 0; i < files.length; i++) {
-					if (files[i].isFile()) {
-						if (files[i].getName().toLowerCase().equals(filename)) {
-							try {
-								ipFile = new RandomAccessFile(files[i], "r");
-							} catch (FileNotFoundException e1) {
-								log.error("IP地址信息文件没有找到，IP显示功能将无法使用");
-								ipFile = null;
-							}
-							break;
-						}
-					}
-				}
-			}
-			// 如果打开文件成功，读取文件头信息
-			if (ipFile != null) {
-				try {
-					// 映射IP信息文件到内存中
-					FileChannel fc = ipFile.getChannel();
-
-					mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, ipFile.length());
-					mbb.order(ByteOrder.LITTLE_ENDIAN);
-
-
-					ipBegin = readLong4(0);
-					ipEnd = readLong4(4);
-					if (ipBegin == -1 || ipEnd == -1) {
-						ipFile.close();
-						ipFile = null;
-					}
-
-				} catch (IOException e) {
-					log.error("IP地址信息文件格式有错误，IP显示功能将无法使用");
-					ipFile = null;
-				} 
-			}
+			this.mbb = mbb;
+			ipBegin = readLong4(0);
+			ipEnd = readLong4(4);
 			
 		}
 
