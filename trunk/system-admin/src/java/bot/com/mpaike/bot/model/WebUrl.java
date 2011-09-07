@@ -53,5 +53,17 @@ public class WebUrl implements IBeanPrimaryKey, java.io.Serializable{
 	public void setHeight(Integer height) {
 		this.height = height;
 	}
+	public String getEnName() {
+		return enName;
+	}
+	public void setEnName(String enName) {
+		this.enName = enName;
+	}
+	public Integer getThreadNum() {
+		return threadNum;
+	}
+	public void setThreadNum(Integer threadNum) {
+		this.threadNum = threadNum;
+	}
 	
 }

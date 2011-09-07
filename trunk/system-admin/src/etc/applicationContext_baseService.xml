@@ -6,7 +6,7 @@
 	
 	<bean name="myBaseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
 		abstract="true">
-		
+		<property name="webUrlDao" ref="webUrlDao" />
 	</bean>
 	
 </beans>

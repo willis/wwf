@@ -9,7 +9,7 @@ import com.mpaike.util.pager.Pager;
 
 
 @SuppressWarnings("unchecked")
-public class SystemLogServiceImpl extends CommonDao implements  SystemLogService {
+public abstract class SystemLogServiceImpl extends CommonDao implements  SystemLogService {
 
 	public void add(SystemLog log) {
 		
