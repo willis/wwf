@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
 import com.mpaike.util.MD5;
 
 /**
@@ -63,11 +65,9 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
    * @exception java.sql.SQLException
    * @exception java.lang.ClassNotFoundException
    */
-  public SpiderSQLWorkload(String driver, String source ,String user, String password)
-  throws SQLException, ClassNotFoundException
+  public SpiderSQLWorkload(DataSource dataSource) throws SQLException
   {
-    Class.forName(driver);
-    connection = DriverManager.getConnection(source,user,password);
+    connection = dataSource.getConnection();
     init();
   }
   
