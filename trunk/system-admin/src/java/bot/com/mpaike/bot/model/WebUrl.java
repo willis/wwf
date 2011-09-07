@@ -11,9 +11,12 @@ public class WebUrl implements IBeanPrimaryKey, java.io.Serializable{
 	private Long id;
 	private String siteName;//网站名称
 	private String url;//网站链接
+	private String enName;//网站英文名称
+	private Integer threadNum;//线程数
 	private Integer status;//启用状态
 	private Integer width;//宽度
 	private Integer height;//高度
+	
 	public Long getId() {
 		return id;
 	}
