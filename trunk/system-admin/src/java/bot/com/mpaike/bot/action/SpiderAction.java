@@ -4,6 +4,7 @@ import com.mpaike.util.app.BaseAction;
 
 public class SpiderAction extends BaseAction {
 	
+	private String url;
 	private String ajaxContent;
 	
 	public String startSpider(){
