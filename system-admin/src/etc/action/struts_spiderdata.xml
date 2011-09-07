@@ -7,7 +7,7 @@
 <struts>
 	<package name="spider" extends="default" >
 
-		<action name="systemLog" class="com.mpaike.sys.action.SystemLogAction">
+		<action name="spiderAction" class="com.mpaike.bot.action.SpiderAction">
 			<result name="start_spider" type="dispatcher">
 				<param name="location">/manager/bot/spider_run.jsp</param>
 			</result>

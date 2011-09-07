@@ -7,6 +7,24 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<%@ include file="/include/taglibs.jsp"%>
 		<%@ include file="/include/jquery.jsp"%>
+		<SCRIPT LANGUAGE="JavaScript">
+		  <!--
+			function monitor(url){
+				if(url){
+					$.ajax({
+						   type: "POST",
+						   url: "spiderAction!spiderProcess.action",
+						   data: {'url':url},
+						   success: function(msg){
+							  $('spider_url').html(msg);
+						   }
+						});
+					
+				}
+			};
+		  
+		//-->
+		</SCRIPT>
 	</head>
 	<body style="background-color: transparent;">
 		<table class="tableContent">
@@ -29,6 +47,11 @@
 								<td valign="top">
 									<h2 class="underline">抓取监控</h2>
 									<table id="inputTable" class="table">
+										<tr>
+											<td class="lefttd">
+												<input type="button" value="监控" onClick="monitor('')"/>
+											</td>
+										</tr>
 										<tr>
 											<td class="lefttd">
 												正在抓取 <span id="spider_url"></span>
@@ -62,11 +85,5 @@
 			</tbody>
 		</table>
 		
-		 <SCRIPT LANGUAGE="JavaScript">
-		  <!--
-		  
-		  
-		//-->
-		</SCRIPT>
 </body>
 </html>
