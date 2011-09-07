@@ -1,8 +1,7 @@
 package com.mpaike.image.model;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
 
-public class Picture implements IBeanPrimaryKey, java.io.Serializable
+public class Picture implements  java.io.Serializable
 {
 	/**
 	 * 

@@ -1,8 +1,8 @@
 package com.mpaike.bot.spider;
 
+import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.util.bot.HTTPSocket;
 import com.mpaike.util.bot.IWorkloadStorable;
-import com.mpaike.util.bot.ImageReportable;
 import com.mpaike.util.bot.Spider;
 import com.mpaike.util.bot.SpiderSQLWorkload;
 
@@ -11,25 +11,21 @@ public class SpiderMain {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		String driverName =  "com.mysql.jdbc.Driver";
-		String jdbcURL = "jdbc:mysql://127.0.0.1:3306/icore?useUnicode=true&characterEncoding=UTF-8";
-		String userName = "root";
-		String password = "";
+	public static void startSpider(String driverName,String jdbcURL,String userName,String password,IPictureDao pictureDao) {
 		 try
 		    {
 			 ImageReportable.IMAGES_PATH= "D:\\data\\images\\";
 		      IWorkloadStorable wl = new SpiderSQLWorkload(driverName,jdbcURL,userName,password);
 
 		      String url = "http://www.moko.cc";
-		      ImageReportable ir = new ImageReportable(url,driverName,jdbcURL,userName,password);
+		      ImageReportable ir = new ImageReportable(url,driverName,jdbcURL,userName,password,null);
 		      Spider _spider = new Spider( ir,url,new HTTPSocket(),10,wl);
-		      _spider.setMaxBody(200);
+		      //_spider.setMaxBody(200);
 		      _spider.start();
 		    }
 		    catch(Exception e)
 		    {
-		   
+		    		System.out.println("爬虫启动失败："+e);
 		    }
 	}
 

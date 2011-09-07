@@ -1,9 +1,8 @@
 package com.mpaike.image.dao;
 
-import java.io.Serializable;
-
 import com.mpaike.core.database.hibernate.BaseDao;
+import com.mpaike.image.model.Picture;
 
-public interface IPictureDao<T extends Serializable> extends BaseDao<T>{
+public interface IPictureDao extends BaseDao<Picture>{
 
 }
