@@ -32,8 +32,8 @@ public class ImageReportable implements ISpiderReportable{
 	PreparedStatement prepSetStatus;
 
 	private IPictureDao pictureDao;
-	
-	public  String imagesPath;
+	private Connection connection;
+	private  String imagesPath;
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4))$");
 	private static String score;
@@ -57,7 +57,7 @@ public class ImageReportable implements ISpiderReportable{
 			
 		}
 		this.pictureDao = pictureDao;
-		Connection connection = dataSource.getConnection();
+		connection = dataSource.getConnection();
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,url,filename,status) VALUES (?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 
@@ -116,6 +116,14 @@ public class ImageReportable implements ISpiderReportable{
 
 	@Override
 	public void spiderComplete() {
+		if(connection!=null){
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		System.out.println("spiderComplete:");
 		
 	}
