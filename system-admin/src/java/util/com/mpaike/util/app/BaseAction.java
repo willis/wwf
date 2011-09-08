@@ -14,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
 import com.opensymphony.xwork2.ActionContext;
@@ -22,6 +23,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("unchecked")
 public class BaseAction extends ActionSupport {
 	protected final Log logger = LogFactory.getLog(getClass());
+
+
 
 	/**
 	 * @author 陈海峰
@@ -69,7 +72,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
-	public void printBeansJson(List beans) {
+	public void printBeansJson(Object beans) {
 		try {
 			JSONArray jsonArray = JSONArray.fromObject(beans);
 			response.setCharacterEncoding("utf-8");
@@ -92,6 +95,13 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
+	public void printPageList(List beans,Pagination p){
+		JsonPage jp = new JsonPage();
+		jp.setRows(p.getPageNo());
+		jp.setList(beans);
+		printBeansJson(jp);
+	}
+	
 	//service
 	public BotSpider getBotSpider() {
 		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
@@ -100,6 +110,26 @@ public class BaseAction extends ActionSupport {
 	
 	public IWebUrlService getWebUrlService() {
 		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
+	}
+	
+	public class JsonPage{
+		
+		private long rows;
+		private List list;
+		
+		public long getRows() {
+			return rows;
+		}
+		public void setRows(long rows) {
+			this.rows = rows;
+		}
+		public List getList() {
+			return list;
+		}
+		public void setList(List list) {
+			this.list = list;
+		}
+		
 	}
 	
 	
