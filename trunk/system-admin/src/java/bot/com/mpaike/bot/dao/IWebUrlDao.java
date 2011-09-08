@@ -1,14 +1,9 @@
 package com.mpaike.bot.dao;
 
-import java.util.List;
-
 import com.mpaike.bot.model.WebUrl;
+import com.mpaike.core.database.hibernate.BaseDao;
 
-public interface IWebUrlDao {
+public interface IWebUrlDao  extends BaseDao<WebUrl>{
 
-	public void save(WebUrl bean);
-	
-	public WebUrl find(Long id);
-	
-	public List<WebUrl> find();
+
 }

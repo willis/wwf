@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.util.bot.HTTPSocket;
 import com.mpaike.util.bot.IWorkloadStorable;
