@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="com.mpaike.bot.model.WebUrl" table="paike_weburl">
 
-		<id name="id" type="java.lang.Long" column="userid">
+		<id name="id" type="java.lang.Long" column="urlid">
 			<generator class="assigned" />
 		</id>
 		<property name="siteName" column="siteName" type="string"

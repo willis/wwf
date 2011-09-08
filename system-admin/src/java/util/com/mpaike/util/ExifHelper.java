@@ -15,6 +15,7 @@ import javax.imageio.stream.ImageInputStream;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -59,7 +60,7 @@ public class ExifHelper{
 	public static Picture getPicture(File jpegFile) {
 		Picture picture = new Picture();
 		if (jpegFile.exists()) {
-        // 文件信息 -----------------------------
+			// 文件信息 -----------------------------
 			// 获取文件大小，begin
 			String fileSize = "";
 			RandomAccessFile raFile = null;
@@ -126,7 +127,7 @@ public class ExifHelper{
 			
 			String filename = jpegFile.getName();// 文件名
 			String fileDataTime = "";// 时间戳
-	  // 图像信息 -----------------------------
+			// 图像信息 -----------------------------
 			String imageDescription = "";
 			String make = "";
 			String model = "";
@@ -140,7 +141,7 @@ public class ExifHelper{
 			String copyright = "";
 			String copyrightOfPhotographer = "";
 			String copyrightOfEditor = "";
-	 // 拍摄信息 -----------------------------
+			// 拍摄信息 -----------------------------
 			String exifVersion = "";
 			String flashPixVersion = "";
 			String dateTimeOriginal = "";
@@ -259,83 +260,58 @@ public class ExifHelper{
 				e2.printStackTrace();
 			}
 
-			picture.setApertureFNumber(apertureFNumber == null ? ""
-					: apertureFNumber);
-			picture.setApertureValue(apertureValue == null ? ""
-							: apertureValue);
-			picture.setArtist(artist == null ? "" : artist);
-			picture.setColorSpace(colorSpace == null ? "" : colorSpace);
-			picture.setComponentsConfiguration(componentsConfiguration == null ? ""
-							: componentsConfiguration);
-			picture.setCompressedBitsPerPixel(compressedBitsPerPixel == null ? ""
-							: compressedBitsPerPixel);
-			picture.setComputedHeight(computedHeight == null ? ""
-					: computedHeight);
-			picture.setComputedWidth(computedWidth == null ? ""
-							: computedWidth);
-			picture.setCopyright(copyright == null ? "" : copyright);
-			picture.setCopyrightOfEditor(copyrightOfEditor == null ? ""
-					: copyrightOfEditor);
-			picture.setCopyrightOfPhotographer(copyrightOfPhotographer == null ? ""
-							: copyrightOfPhotographer);
-			picture.setDateTime(dateTime == null ? "" : dateTime);
-			picture.setDateTimeDigitized(dateTimeDigitized == null ? ""
-					: dateTimeDigitized);
-			picture.setDateTimeOriginal(dateTimeOriginal == null ? ""
-					: dateTimeOriginal);
-			picture.setExifImageLength(exifImageLength == null ? ""
-					: exifImageLength);
-			picture.setExifImageWidth(exifImageWidth == null ? ""
-					: exifImageWidth);
-			picture.setExifVersion(exifVersion == null ? "" : exifVersion);
-			picture.setExposureBiasValue(exposureBiasValue == null ? ""
-					: exposureBiasValue);
-			picture.setExposureMode(exposureMode == null ? "" : exposureMode);
-			picture.setExposureProgram(exposureProgram == null ? ""
-					: exposureProgram);
-			picture.setExposureTime(exposureTime == null ? "" : exposureTime);
-			picture.setFileDataTime(fileDataTime == null ? "" : fileDataTime);
+			picture.setApertureFNumber(formatString(apertureFNumber));
+			picture.setApertureValue(formatString(apertureValue));
+			picture.setArtist(formatString(artist));
+			picture.setColorSpace(formatString(colorSpace));
+			picture.setComponentsConfiguration(formatString(componentsConfiguration));
+			picture.setCompressedBitsPerPixel(formatString(compressedBitsPerPixel));
+			picture.setComputedHeight(formatString(computedHeight));
+			picture.setComputedWidth(formatString(computedWidth));
+			picture.setCopyright(formatString(copyright));
+			picture.setCopyrightOfEditor(formatString(copyrightOfEditor));
+			picture.setCopyrightOfPhotographer(formatString(copyrightOfPhotographer));
+			picture.setDateTime(formatString(dateTime));
+			picture.setDateTimeDigitized(formatString(dateTimeDigitized));
+			picture.setDateTimeOriginal(formatString(dateTimeOriginal));
+			picture.setExifImageLength(formatString(exifImageLength));
+			picture.setExifImageWidth(formatString(exifImageWidth));
+			picture.setExifVersion(formatString(exifVersion));
+			picture.setExposureBiasValue(formatString(exposureBiasValue ));
+			picture.setExposureMode(formatString(exposureMode ));
+			picture.setExposureProgram(formatString(exposureProgram));
+			picture.setExposureTime(formatString(exposureTime));
+			picture.setFileDataTime(formatString(fileDataTime));
 			picture.setFilename(filename);
-			picture.setFileSize(fileSize == null ? "" : fileSize);
-			picture.setFileSource(fileSource == null ? "" : fileSource);
-			picture.setFileType(fileType == null ? "" : fileType);
-			picture.setFlash(flash == null ? "" : flash);
-			picture.setFlashPixVersion(flashPixVersion == null ? ""
-					: flashPixVersion);
-			picture.setFNumber(fNumber == null ? "" : fNumber);
-			picture.setFocalLength(focalLength == null ? "" : focalLength);
-			picture.setFocalLengthIn35mmFilm(focalLengthIn35mmFilm == null ? ""
-					: focalLengthIn35mmFilm);
-			picture.setFocusDistance(focusDistance == null ? ""
-							: focusDistance);
-			picture.setImageDescription(imageDescription == null ? ""
-					: imageDescription);
-			picture.setIsoSpeedRatings(isoSpeedRatings == null ? ""
-					: isoSpeedRatings);
-			picture.setLightSource(lightSource == null ? "" : lightSource);
-			picture.setMake(make == null ? "" : make);
-			picture.setMaxApertureValue(maxApertureValue == null ? ""
-					: maxApertureValue);
-			picture.setMeteringMode(meteringMode == null ? "" : meteringMode);
-			picture.setMimeType(mimeType == null ? "" : mimeType);
-			picture.setModel(model == null ? "" : model);
-			picture.setOrientation(orientation == null ? "" : orientation);
-			picture.setSceneType(sceneType == null ? "" : sceneType);
-			picture.setShutterSpeedValue(shutterSpeedValue == null ? ""
-					: shutterSpeedValue);
-			picture.setSoftware(software == null ? "" : software);
-			picture.setThumbnailFileType(thumbnailFileType == null ? ""
-					: thumbnailFileType);
-			picture.setThumbnailMimeType(thumbnailMimeType == null ? ""
-					: thumbnailMimeType);
-			picture.setUserComment(userComment == null ? "" : userComment);
-			picture.setUserCommentEncoding(userCommentEncoding == null ? ""
-					: userCommentEncoding);
-			picture.setWhiteBalance(whiteBalance == null ? "" : whiteBalance);
-			picture.setXResolution(xResolution == null ? "" : xResolution);
-			picture.setYCbCrPositioning(yCbCrPositioning == null ? ""
-					: yCbCrPositioning);
-			picture.setYResolution(yResolution == null ? "" : yResolution);
+			picture.setFileSize(formatString(fileSize));
+			picture.setFileSource(formatString(fileSource ));
+			picture.setFileType(formatString(fileType));
+			picture.setFlash(formatString(flash));
+			picture.setFlashPixVersion(formatString(flashPixVersion));
+			picture.setFNumber(formatString(fNumber));
+			picture.setFocalLength(formatString(focalLength));
+			picture.setFocalLengthIn35mmFilm(formatString(focalLengthIn35mmFilm));
+			picture.setFocusDistance(formatString(focusDistance ));
+			picture.setImageDescription(formatString(imageDescription));
+			picture.setIsoSpeedRatings(formatString(isoSpeedRatings ));
+			picture.setLightSource(formatString(lightSource));
+			picture.setMake(formatString(make));
+			picture.setMaxApertureValue(formatString(maxApertureValue));
+			picture.setMeteringMode(formatString(meteringMode));
+			picture.setMimeType(formatString(mimeType));
+			picture.setModel(formatString(model));
+			picture.setOrientation(formatString(orientation ));
+			picture.setSceneType(formatString(sceneType ));
+			picture.setShutterSpeedValue(formatString(shutterSpeedValue));
+			picture.setSoftware(formatString(software ));
+			picture.setThumbnailFileType(formatString(thumbnailFileType));
+			picture.setThumbnailMimeType(formatString(thumbnailMimeType));
+			picture.setUserComment(formatString(userComment));
+			picture.setUserCommentEncoding(formatString(userCommentEncoding));
+			picture.setWhiteBalance(formatString(whiteBalance));
+			picture.setXResolution(formatString(xResolution));
+			picture.setYCbCrPositioning(formatString(yCbCrPositioning));
+			picture.setYResolution(formatString(yResolution));
 			picture.setSrcHeight(srcHeight);
 			picture.setSrcWidth(srcWidth);
 		} else {
@@ -398,7 +374,7 @@ public class ExifHelper{
 			} 
 			
 			String fileDataTime = "";// 时间戳
-	  // 图像信息 -----------------------------
+			// 图像信息 -----------------------------
 			String imageDescription = "";
 			String make = "";
 			String model = "";
@@ -412,7 +388,7 @@ public class ExifHelper{
 			String copyright = "";
 			String copyrightOfPhotographer = "";
 			String copyrightOfEditor = "";
-	 // 拍摄信息 -----------------------------
+			// 拍摄信息 -----------------------------
 			String exifVersion = "";
 			String flashPixVersion = "";
 			String dateTimeOriginal = "";
@@ -531,86 +507,69 @@ public class ExifHelper{
 				e2.printStackTrace();
 			}
 
-			picture.setApertureFNumber(apertureFNumber == null ? ""
-					: apertureFNumber);
-			picture.setApertureValue(apertureValue == null ? ""
-							: apertureValue);
-			picture.setArtist(artist == null ? "" : artist);
-			picture.setColorSpace(colorSpace == null ? "" : colorSpace);
-			picture.setComponentsConfiguration(componentsConfiguration == null ? ""
-							: componentsConfiguration);
-			picture.setCompressedBitsPerPixel(compressedBitsPerPixel == null ? ""
-							: compressedBitsPerPixel);
-			picture.setComputedHeight(computedHeight == null ? ""
-					: computedHeight);
-			picture.setComputedWidth(computedWidth == null ? ""
-							: computedWidth);
-			picture.setCopyright(copyright == null ? "" : copyright);
-			picture.setCopyrightOfEditor(copyrightOfEditor == null ? ""
-					: copyrightOfEditor);
-			picture.setCopyrightOfPhotographer(copyrightOfPhotographer == null ? ""
-							: copyrightOfPhotographer);
-			picture.setDateTime(dateTime == null ? "" : dateTime);
-			picture.setDateTimeDigitized(dateTimeDigitized == null ? ""
-					: dateTimeDigitized);
-			picture.setDateTimeOriginal(dateTimeOriginal == null ? ""
-					: dateTimeOriginal);
-			picture.setExifImageLength(exifImageLength == null ? ""
-					: exifImageLength);
-			picture.setExifImageWidth(exifImageWidth == null ? ""
-					: exifImageWidth);
-			picture.setExifVersion(exifVersion == null ? "" : exifVersion);
-			picture.setExposureBiasValue(exposureBiasValue == null ? ""
-					: exposureBiasValue);
-			picture.setExposureMode(exposureMode == null ? "" : exposureMode);
-			picture.setExposureProgram(exposureProgram == null ? ""
-					: exposureProgram);
-			picture.setExposureTime(exposureTime == null ? "" : exposureTime);
-			picture.setFileDataTime(fileDataTime == null ? "" : fileDataTime);
+			picture.setApertureFNumber(formatString(apertureFNumber));
+			picture.setApertureValue(formatString(apertureValue));
+			picture.setArtist(formatString(artist));
+			picture.setColorSpace(formatString(colorSpace));
+			picture.setComponentsConfiguration(formatString(componentsConfiguration));
+			picture.setCompressedBitsPerPixel(formatString(compressedBitsPerPixel));
+			picture.setComputedHeight(formatString(computedHeight));
+			picture.setComputedWidth(formatString(computedWidth));
+			picture.setCopyright(formatString(copyright));
+			picture.setCopyrightOfEditor(formatString(copyrightOfEditor));
+			picture.setCopyrightOfPhotographer(formatString(copyrightOfPhotographer));
+			picture.setDateTime(formatString(dateTime));
+			picture.setDateTimeDigitized(formatString(dateTimeDigitized));
+			picture.setDateTimeOriginal(formatString(dateTimeOriginal));
+			picture.setExifImageLength(formatString(exifImageLength));
+			picture.setExifImageWidth(formatString(exifImageWidth));
+			picture.setExifVersion(formatString(exifVersion));
+			picture.setExposureBiasValue(formatString(exposureBiasValue ));
+			picture.setExposureMode(formatString(exposureMode ));
+			picture.setExposureProgram(formatString(exposureProgram));
+			picture.setExposureTime(formatString(exposureTime));
+			picture.setFileDataTime(formatString(fileDataTime));
 			picture.setFilename(filename);
-			picture.setFileSize(fileSize == null ? "" : fileSize);
-			picture.setFileSource(fileSource == null ? "" : fileSource);
-			picture.setFileType(fileType == null ? "" : fileType);
-			picture.setFlash(flash == null ? "" : flash);
-			picture.setFlashPixVersion(flashPixVersion == null ? ""
-					: flashPixVersion);
-			picture.setFNumber(fNumber == null ? "" : fNumber);
-			picture.setFocalLength(focalLength == null ? "" : focalLength);
-			picture.setFocalLengthIn35mmFilm(focalLengthIn35mmFilm == null ? ""
-					: focalLengthIn35mmFilm);
-			picture.setFocusDistance(focusDistance == null ? ""
-							: focusDistance);
-			picture.setImageDescription(imageDescription == null ? ""
-					: imageDescription);
-			picture.setIsoSpeedRatings(isoSpeedRatings == null ? ""
-					: isoSpeedRatings);
-			picture.setLightSource(lightSource == null ? "" : lightSource);
-			picture.setMake(make == null ? "" : make);
-			picture.setMaxApertureValue(maxApertureValue == null ? ""
-					: maxApertureValue);
-			picture.setMeteringMode(meteringMode == null ? "" : meteringMode);
-			picture.setMimeType(mimeType == null ? "" : mimeType);
-			picture.setModel(model == null ? "" : model);
-			picture.setOrientation(orientation == null ? "" : orientation);
-			picture.setSceneType(sceneType == null ? "" : sceneType);
-			picture.setShutterSpeedValue(shutterSpeedValue == null ? ""
-					: shutterSpeedValue);
-			picture.setSoftware(software == null ? "" : software);
-			picture.setThumbnailFileType(thumbnailFileType == null ? ""
-					: thumbnailFileType);
-			picture.setThumbnailMimeType(thumbnailMimeType == null ? ""
-					: thumbnailMimeType);
-			picture.setUserComment(userComment == null ? "" : userComment);
-			picture.setUserCommentEncoding(userCommentEncoding == null ? ""
-					: userCommentEncoding);
-			picture.setWhiteBalance(whiteBalance == null ? "" : whiteBalance);
-			picture.setXResolution(xResolution == null ? "" : xResolution);
-			picture.setYCbCrPositioning(yCbCrPositioning == null ? ""
-					: yCbCrPositioning);
-			picture.setYResolution(yResolution == null ? "" : yResolution);
+			picture.setFileSize(formatString(fileSize));
+			picture.setFileSource(formatString(fileSource ));
+			picture.setFileType(formatString(fileType));
+			picture.setFlash(formatString(flash));
+			picture.setFlashPixVersion(formatString(flashPixVersion));
+			picture.setFNumber(formatString(fNumber));
+			picture.setFocalLength(formatString(focalLength));
+			picture.setFocalLengthIn35mmFilm(formatString(focalLengthIn35mmFilm));
+			picture.setFocusDistance(formatString(focusDistance ));
+			picture.setImageDescription(formatString(imageDescription));
+			picture.setIsoSpeedRatings(formatString(isoSpeedRatings ));
+			picture.setLightSource(formatString(lightSource));
+			picture.setMake(formatString(make));
+			picture.setMaxApertureValue(formatString(maxApertureValue));
+			picture.setMeteringMode(formatString(meteringMode));
+			picture.setMimeType(formatString(mimeType));
+			picture.setModel(formatString(model));
+			picture.setOrientation(formatString(orientation ));
+			picture.setSceneType(formatString(sceneType ));
+			picture.setShutterSpeedValue(formatString(shutterSpeedValue));
+			picture.setSoftware(formatString(software ));
+			picture.setThumbnailFileType(formatString(thumbnailFileType));
+			picture.setThumbnailMimeType(formatString(thumbnailMimeType));
+			picture.setUserComment(formatString(userComment));
+			picture.setUserCommentEncoding(formatString(userCommentEncoding));
+			picture.setWhiteBalance(formatString(whiteBalance));
+			picture.setXResolution(formatString(xResolution));
+			picture.setYCbCrPositioning(formatString(yCbCrPositioning));
+			picture.setYResolution(formatString(yResolution));
 			picture.setSrcHeight(srcHeight);
 			picture.setSrcWidth(srcWidth);
 
 		return picture;
+	}
+	
+	private static  String formatString(String str){
+		if(StringUtils.isNotBlank(str))
+			return str;
+		else
+			return "";
+		
 	}
 }

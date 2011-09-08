@@ -5,11 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>jQuery EasyUI</title>
 	<%@ include file="/include/taglibs.jsp"%>
-	<link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/icon.css">
-	<script type="text/javascript" src="${cxp}/js/jquery/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/easyui-lang-zh_CN.js"></script>
+	<%@ include file="/include/jquery.jsp"%>
 
 </head>
 <body>
@@ -57,7 +53,7 @@
 								</div>
 								<div id="editor_right"></div>
 							</div>
-							<table id="test">
+							<table id="datagrid">
 								
 							</table>
 						</td>
@@ -77,76 +73,69 @@
 </body>
 <script>
 		$(function(){
-			$('#test').datagrid({
+			$('#datagrid').datagrid({
 				nowrap: false,
 				striped: true,
 				collapsible:true,
 				fitColumns:true,
-				url:'datagrid_data.json',
-				sortName: 'code',
+				url:'weburlAction!list.action',
+				sortName: 'url',
 				sortOrder: 'desc',
-				remoteSort: false,
-				idField:'code',
-				frozenColumns:[[
-	                {field:'ck',checkbox:true},
-	                {title:'code',field:'code',width:80,sortable:true}
-				]],
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
 				columns:[[
-					{field:'name',title:'Name',width:120},
-					{field:'addr',title:'Address',width:120,sortable:true,
-						sorter:function(a,b){
-							return (a>b?1:-1);
-						}
-					},
-					{field:'col4',title:'Col41',width:120}
+					{field:'siteName',title:'网站名称',width:120},
+					{field:'url',title:'网站链接',width:120,sortable:true},
+					{field:'enName',title:'网站英文名称',width:120}
 				]],
 				pagination:true,
 				rownumbers:true
 			
 			});
-			var p = $('#test').datagrid('getPager');
+			var p = $('#datagrid').datagrid('getPager');
 			if (p){
 				$(p).pagination({
 					onBeforeRefresh:function(){
-						alert('before refresh');
+						
 					}
 				});
 			}
 		});
 		function resize(){
-			$('#test').datagrid('resize', {
+			$('#datagrid').datagrid('resize', {
 				width:$(window).width(),
 				height:400
 			});
 		}
 		function getSelected(){
-			var selected = $('#test').datagrid('getSelected');
+			var selected = $('#datagrid').datagrid('getSelected');
 			if (selected){
 				alert(selected.code+":"+selected.name+":"+selected.addr+":"+selected.col4);
 			}
 		}
 		function getSelections(){
 			var ids = [];
-			var rows = $('#test').datagrid('getSelections');
+			var rows = $('#datagrid').datagrid('getSelections');
 			for(var i=0;i<rows.length;i++){
 				ids.push(rows[i].code);
 			}
 			alert(ids.join(':'));
 		}
 		function clearSelections(){
-			$('#test').datagrid('clearSelections');
+			$('#datagrid').datagrid('clearSelections');
 		}
 		function selectRow(){
-			$('#test').datagrid('selectRow',2);
+			$('#datagrid').datagrid('selectRow',2);
 		}
 		function selectRecord(){
-			$('#test').datagrid('selectRecord','002');
+			$('#datagrid').datagrid('selectRecord','002');
 		}
 		function unselectRow(){
-			$('#test').datagrid('unselectRow',2);
+			$('#datagrid').datagrid('unselectRow',2);
 		}
 		function mergeCells(){
-			$('#test').datagrid('mergeCells',{
+			$('#datagrid').datagrid('mergeCells',{
 				index:2,
 				field:'addr',
 				rowspan:2,
