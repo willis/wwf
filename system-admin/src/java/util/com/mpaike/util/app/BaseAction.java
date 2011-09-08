@@ -106,9 +106,13 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
-	public void printPageList(List beans,int rows){
+	public void printPageList(List beans){
 		JsonPage jp = new JsonPage();
-		jp.setRows(rows);
+		if(pageinfo!=null){
+			jp.setRows(pageinfo.getPageSize());
+		}else{
+			jp.setRows(rows);
+		}
 		jp.setList(beans);
 		printBeansJson(jp);
 	}
