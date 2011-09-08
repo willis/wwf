@@ -4,9 +4,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 	
-	<bean name="myBaseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
-		abstract="true">
-	
+	<bean name="webUrlDao" class="com.mpaike.bot.dao.impl.WebUrlDao">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
+		abstract="true">
+		<property name="webUrlDao" ref="webUrlDao"/>
+	</bean>
+	
+	<bean id="webUrlService"
+		class="com.mpaike.bot.service.impl.WebUrlService"
+		autowire="byName" parent="baseService">
+		
+	</bean>
 </beans>

@@ -3,8 +3,6 @@
 <html>
 	<%@ include file="/include/taglibs.jsp"%>
 	<%@ include file="/include/jquery.jsp"%>
-	<script type="text/javascript"
-		src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
 	<head>
 		<title>会员管理</title>
 

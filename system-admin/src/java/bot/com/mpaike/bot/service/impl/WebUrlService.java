@@ -20,13 +20,13 @@ public class WebUrlService extends BaseService implements IWebUrlService{
 	@Override
 	public WebUrl find(Long id) {
 
-		return super.getWebUrlDao().find(id);
+		return super.getWebUrlDao().get(id);
 	}
 
 	@Override
 	public List<WebUrl> find() {
 		
-		return super.getWebUrlDao().find();
+		return super.getWebUrlDao().findAll();
 	}
 
 	

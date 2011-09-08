@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
+import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
@@ -96,6 +97,10 @@ public class BaseAction extends ActionSupport {
 		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
 	}
 	
+	
+	public IWebUrlService getWebUrlService() {
+		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
+	}
 	
 	
 }
