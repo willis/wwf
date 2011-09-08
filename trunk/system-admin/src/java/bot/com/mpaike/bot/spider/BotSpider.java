@@ -61,6 +61,7 @@ public class BotSpider {
 		Spider sd = spiderMap.get(url);
 		if(sd!=null){
 			sd.halt();
+			sd.spiderComplete();
 		}
 		 try{
 			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource);
