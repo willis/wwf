@@ -48,7 +48,7 @@ public class SequenceManager {
 	private int blockSize;
 
 	private DataSource dataSource = (DataSource) ApplictionContext
-			.getInstance().getApplictionContext().getBean("dataSource");
+			.getInstance().getBean("dataSource");
 
 	/**
 	 * 取得多例

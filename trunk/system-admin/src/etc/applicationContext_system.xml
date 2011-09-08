@@ -6,26 +6,26 @@
 
 	<bean id="systemLogService"
 		class="com.mpaike.sys.service.impl.SystemLogServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName" />
 	<bean id="sysUserService"
 		class="com.mpaike.user.service.impl.SysUserServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName" />
 	<bean id="sysGroupService"
 		class="com.mpaike.user.service.impl.SysGroupServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName" />
 	<bean id="dictionaryService"
 		class="com.mpaike.dictionary.service.impl.DictionaryServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName"/>
 	<bean id="sysRoleService"
 		class="com.mpaike.user.service.impl.SysRoleServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName"  />
 	<bean id="sysMenuService"
 		class="com.mpaike.user.service.impl.SysMenuServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName" />
 	<bean id="sysPopedomService"
 		class="com.mpaike.user.service.impl.SysPopedomServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName"/>
 	<bean id="memberService"
 		class="com.mpaike.member.service.impl.MemberServiceImpl"
-		autowire="byName" singleton="false" />
+		autowire="byName" />
 </beans>

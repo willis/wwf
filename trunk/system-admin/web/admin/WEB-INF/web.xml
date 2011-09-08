@@ -12,9 +12,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:applicationContext.xml,classpath:xfire.spring.xml
-		</param-value>
+		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
 	<!-- 配置session的filter过滤 -->
 	<filter>
@@ -86,6 +84,12 @@
 	</servlet-mapping>
 
 	<!-- Spring监听器 配置结束 -->
+	<!-- 系统初始化Servlet  -->
+	<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>com.mpaike.servlet.InitServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
 	<!--xfire-->
 	<servlet>
 		<servlet-name>XFireServlet</servlet-name>
