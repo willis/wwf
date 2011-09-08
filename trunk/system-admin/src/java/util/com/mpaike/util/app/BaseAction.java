@@ -14,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
+import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
@@ -24,7 +25,17 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport {
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
+	// easyUI前台传过来的请求页数，故必须以此命名，当然你也可以不这样，但set方法必须是setPage
+    private int page;
+    // easyUI前台传过来的请求记录数，故必须以此命名，原因同上
+    private int rows;
+    // easyUI前台传过来的排序字段，故必须以此命名，原因同上
+    private String sort;
+    // easyUI前台传过来的排序方式(desc?asc)，故必须以此命名，原因同上
+    private String order;
+    
+    protected Pagination pageinfo;
+    protected OrderBy orderby;
 
 	/**
 	 * @author 陈海峰
@@ -95,23 +106,50 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
-	public void printPageList(List beans,Pagination p){
+	public void printPageList(List beans,int rows){
 		JsonPage jp = new JsonPage();
-		jp.setRows(p.getPageNo());
+		jp.setRows(rows);
 		jp.setList(beans);
 		printBeansJson(jp);
 	}
-	
-	//service
-	public BotSpider getBotSpider() {
-		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
+
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 	
-	
-	public IWebUrlService getWebUrlService() {
-		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
+	public Pagination pageToPageinfo() {
+		pageinfo = new Pagination();
+		pageinfo.setPageNo(page);
+		if(rows!=0){
+			pageinfo.setPageSize(rows);
+		}
+		return pageinfo;
 	}
-	
+
+	public OrderBy getOrderby() {
+		if(order!=null&&sort!=null){
+			if("asc".equals(order)){
+				orderby = OrderBy.asc(sort);
+			}else{
+				orderby = OrderBy.desc(sort);
+			}
+		}
+		return orderby;
+	}
+
 	public class JsonPage{
 		
 		private long rows;
@@ -130,6 +168,16 @@ public class BaseAction extends ActionSupport {
 			this.list = list;
 		}
 		
+	}
+	
+	//service
+	public BotSpider getBotSpider() {
+		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
+	}
+	
+	
+	public IWebUrlService getWebUrlService() {
+		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
 	}
 	
 	
