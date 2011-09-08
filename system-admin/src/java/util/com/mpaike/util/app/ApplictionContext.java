@@ -1,40 +1,35 @@
 package com.mpaike.util.app;
 
 
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
 
 
 
 public class ApplictionContext {
-	private static ApplictionContext instance = new ApplictionContext();
+	private static ApplictionContext instance = null;
 
-	private static AbstractApplicationContext appContext;
-	
+	private ApplicationContext tempContext = null;
 
-	
-	
 	public static ApplictionContext getInstance() {
+		if (instance == null) {
+			instance = new ApplictionContext();
+		}
 		return instance;
 	}
 
-	private ApplictionContext() {
-		creatContext();
+	public ApplictionContext() {
+
 	}
 
-	public Object getBean(String name){
-		return getApplictionContext().getBean(name);
-	}
-	public AbstractApplicationContext getApplictionContext() {
-		return appContext;
+	public void setAppContext(ApplicationContext context) {
+		this.tempContext = context;
 	}
 
-	private static void creatContext() {
-		ApplictionContext.appContext = new ClassPathXmlApplicationContext(
-				"classpath:applicationContext*.xml");
-		if (ApplictionContext.appContext == null) {
-			throw new NullPointerException("ERROR:ApplictionContext is null.");
-		}
+	public Object getBean(String name) {
+		return this.tempContext.getBean(name);
+	}
 
+	public ApplicationContext getAppContext() {
+		return this.tempContext;
 	}
 }

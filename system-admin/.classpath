@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/java/user"/>
+	<classpathentry kind="src" path="src/java/image"/>
 	<classpathentry kind="src" path="src/java/bot"/>
 	<classpathentry kind="src" path="src/java/member"/>
 	<classpathentry kind="src" path="src/java/util"/>
@@ -10,7 +11,7 @@
 	<classpathentry kind="src" path="src/java/servlet"/>
 	<classpathentry kind="src" path="src/etc"/>
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JVM Contents (MacOS X Default)"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_23"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/antlr-2.7.6rc1.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/aopalliance.jar"/>
