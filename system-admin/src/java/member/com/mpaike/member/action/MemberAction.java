@@ -1,11 +1,10 @@
 package com.mpaike.member.action;
 
-import com.fins.gt.server.GridServerHandler;
+import java.util.List;
+
 import com.mpaike.member.model.Member;
-import com.mpaike.member.service.MemberService;
 import com.mpaike.util.ArrayUtil;
 import com.mpaike.util.ParamHelper;
-import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 public class MemberAction extends BaseAction {
@@ -15,8 +14,6 @@ public class MemberAction extends BaseAction {
 	 * @description 
 	 */
 	private static final long serialVersionUID = 1L;
-	public MemberService memberService = (MemberService)ApplictionContext.getInstance()
-	.getBean(MemberService.ID_NAME);
 	private Member member;
 	private String ids;
 	private Long status;
@@ -34,13 +31,11 @@ public class MemberAction extends BaseAction {
 	 * @description 会员列表
 	 */
 	public void list(){
-		GridServerHandler handler = new GridServerHandler(request, response);
-		member = new Member();
-		member.setName(ParamHelper.getStr(request, "name", null));
-		member.setUsername(ParamHelper.getStr(request, "username", null));
-		member.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
-		memberService.listToGrid(handler, member);
-		handler.printLoadResponseText();
+		
+		List<Member> datas = this.getMemberService().find(this.pageToPageinfo(),this.getOrderby());
+		
+		System.out.println("--------"+datas.size());
+		this.printPageList(datas);
 	}
 	/**
 	 * 
@@ -51,7 +46,7 @@ public class MemberAction extends BaseAction {
 	public void removeByIds(){
 		
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
-		memberService.remove(longValue,status);
+		this.getMemberService().remove(longValue,status);
 		if(status==3)
 			super.printSuccessJson("删除成功！");
 		if(status==2)
@@ -61,7 +56,7 @@ public class MemberAction extends BaseAction {
 	}
 	
 	public String getById(){
-		member = memberService.get(id);
+		member = this.getMemberService().get(id);
 		return "getById";
 	}
 	public void setMember(Member member) {

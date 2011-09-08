@@ -37,8 +37,8 @@
 												onclick="removeSelect(3)">删除</a>
 										</li>
 										<li>
-											<a class="modify" href="javascript:"
-												onclick="removeSelect(2)">禁用</a>
+											<a class="add" href="javascript:"
+												onclick="">添加</a>
 										</li>
 										<li>
 											<a class="modify" href="javascript:"
@@ -84,6 +84,10 @@
 				remoteSort: true,
 				loadMsg:'数据加载中，请稍后......',
 				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'code',field:'id',width:80,sortable:true}
+				]],
 				columns:[[
 					{field:'siteName',title:'网站名称',width:120},
 					{field:'url',title:'网站链接',width:120,sortable:true},
@@ -102,46 +106,7 @@
 				});
 			}
 		});
-		function resize(){
-			$('#datagrid').datagrid('resize', {
-				width:$(window).width(),
-				height:400
-			});
-		}
-		function getSelected(){
-			var selected = $('#datagrid').datagrid('getSelected');
-			if (selected){
-				alert(selected.code+":"+selected.name+":"+selected.addr+":"+selected.col4);
-			}
-		}
-		function getSelections(){
-			var ids = [];
-			var rows = $('#datagrid').datagrid('getSelections');
-			for(var i=0;i<rows.length;i++){
-				ids.push(rows[i].code);
-			}
-			alert(ids.join(':'));
-		}
-		function clearSelections(){
-			$('#datagrid').datagrid('clearSelections');
-		}
-		function selectRow(){
-			$('#datagrid').datagrid('selectRow',2);
-		}
-		function selectRecord(){
-			$('#datagrid').datagrid('selectRecord','002');
-		}
-		function unselectRow(){
-			$('#datagrid').datagrid('unselectRow',2);
-		}
-		function mergeCells(){
-			$('#datagrid').datagrid('mergeCells',{
-				index:2,
-				field:'addr',
-				rowspan:2,
-				colspan:2
-			});
-		}
+	
 	</script>
 
 </html>
