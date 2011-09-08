@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.mpaike.bot.model.WebUrl;
 import com.mpaike.bot.service.IWebUrlService;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.sys.service.impl.BaseService;
 
 
@@ -21,12 +23,14 @@ public class WebUrlService extends BaseService implements IWebUrlService{
 	public WebUrl find(Long id) {
 
 		return super.getWebUrlDao().get(id);
+		
 	}
 
 	@Override
-	public List<WebUrl> find() {
+	public List<WebUrl> find(Pagination p,OrderBy ob) {
 		
-		return super.getWebUrlDao().findAll();
+		return super.getWebUrlDao().findAllPagination(p, ob);
+		
 	}
 
 	

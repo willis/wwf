@@ -3,6 +3,8 @@ package com.mpaike.bot.service;
 import java.util.List;
 
 import com.mpaike.bot.model.WebUrl;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
 
 public interface IWebUrlService {
 	
@@ -12,5 +14,6 @@ public interface IWebUrlService {
 	
 	public WebUrl find(Long id);
 	
-	public List<WebUrl> find();
+	public List<WebUrl> find(Pagination p,OrderBy ob);
+	
 }

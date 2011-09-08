@@ -111,13 +111,13 @@ public class BaseAction extends ActionSupport {
 	public void printPageList(List beans){
 		JsonPage jp = new JsonPage();
 		if(pageinfo!=null){
-			jp.setRows(pageinfo.getPageSize());
+			jp.setTotal(pageinfo.getTotalCount());
 		}else{
-			jp.setRows(rows);
+			jp.setTotal(0);
 		}
-		jp.setList(beans);
+		jp.setRows(beans);
 		try {
-			JSONObject json = JSONObject.fromObject(beans);
+			JSONObject json = JSONObject.fromObject(jp);
 			response.setCharacterEncoding("utf-8");
 			System.out.println(json);
 			response.getWriter().println(json);
@@ -165,22 +165,23 @@ public class BaseAction extends ActionSupport {
 
 	public class JsonPage{
 		
-		private long rows;
-		private List list;
-		
-		public long getRows() {
+		private long total;
+		@SuppressWarnings("rawtypes")
+		private List rows;
+		public long getTotal() {
+			return total;
+		}
+		public void setTotal(long total) {
+			this.total = total;
+		}
+		public List getRows() {
 			return rows;
 		}
-		public void setRows(long rows) {
+		public void setRows(List rows) {
 			this.rows = rows;
 		}
-		public List getList() {
-			return list;
-		}
-		public void setList(List list) {
-			this.list = list;
-		}
 		
+
 	}
 	
 	//service
