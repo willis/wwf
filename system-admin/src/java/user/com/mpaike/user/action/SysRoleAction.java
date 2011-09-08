@@ -73,20 +73,20 @@ public class SysRoleAction extends BaseAction {
 
 		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
-			super.printSuccessJson(response, "请选择权限！");
+			super.printSuccessJson("请选择权限！");
 		}
 
 
 	    String[] cs = request.getParameterValues("cs");
 	    if ((cs == null) || (cs.length == 0))
-	    	super.printSuccessJson(response, "请选择权限！");
+	    	super.printSuccessJson("请选择权限！");
 	    if (cs.length == 1) {
 	      cs = cs[0].split(",");
 	    }
 		
 		sysRoleService.addSysPopedom(id, cs);
 		SysMenuControl.getInstance().putRootTree();
-		super.printSuccessJson(response, "添加成功！");
+		super.printSuccessJson("添加成功！");
 
 	}
 
@@ -94,18 +94,18 @@ public class SysRoleAction extends BaseAction {
 
 		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
-			super.printSuccessJson(response, "请选择权限！");
+			super.printSuccessJson("请选择权限！");
 		}
 
 		String[] cs = request.getParameterValues("cs");
 		if ((cs == null) || (cs.length == 0))
-	    	super.printSuccessJson(response, "请选择权限！");
+	    	super.printSuccessJson("请选择权限！");
 	    if (cs.length == 1) {
 	      cs = cs[0].split(",");
 	    }
 		sysRoleService.removeSysPopedom(id, cs);
 
-		super.printSuccessJson(response, "删除成功！");
+		super.printSuccessJson("删除成功！");
 
 	}
 
@@ -113,17 +113,17 @@ public class SysRoleAction extends BaseAction {
 		try {
 			long roleId = ParamHelper.getLongParamter(request, "roleId", -1L);
 			if (roleId == -1L)
-				super.printSuccessJson(response, "角色为空不能设置菜单！");
+				super.printSuccessJson( "角色为空不能设置菜单！");
 			String[] cs = request.getParameterValues("c");
 
 			if (cs == null) {
 				sysRoleService.addSysMenu(roleId, new String[0]);
-				super.printSuccessJson(response, "清空了菜单！");
+				super.printSuccessJson("清空了菜单！");
 			}
 
 			sysRoleService.addSysMenu(roleId, cs);
 			SysMenuControl.getInstance().putRootTree();
-			super.printSuccessJson(response, "设置成功！");
+			super.printSuccessJson("设置成功！");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -136,7 +136,7 @@ public class SysRoleAction extends BaseAction {
 		}
 
 		List beans = sysRoleService.getSysMenusByRoleId(roleId);
-		super.printBeansJson(response, beans);
+		super.printBeansJson(beans);
 
 	}
 
@@ -151,7 +151,7 @@ public class SysRoleAction extends BaseAction {
 			}
 			result = "删除成功!";
 		}
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 	}
 
 	public void save() {
@@ -169,7 +169,7 @@ public class SysRoleAction extends BaseAction {
 		}else{
 			sysRoleService.saveSysRole(sysRole);
 		}
-		super.printSuccessJson(response, result);
+		super.printSuccessJson( result);
 	}
 
 	public String getSysRoleInfo() {

@@ -61,7 +61,7 @@ public class SysMenuAction extends BaseAction {
 		  }else{
 			  result ="删除数据失败!";
 		  }
-		    super.printSuccessJson(response, result);
+		    super.printSuccessJson(result);
 	}
 	public void save(){
 		String result = "";
@@ -83,7 +83,7 @@ public class SysMenuAction extends BaseAction {
 		getSysMenuService().save(sysMenu);
 		if(type)
 		SysMenuControl.getInstance().putRootTree();
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 		
 	}
 	

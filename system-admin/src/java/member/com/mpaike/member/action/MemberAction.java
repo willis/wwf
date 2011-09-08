@@ -53,11 +53,11 @@ public class MemberAction extends BaseAction {
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
 		memberService.remove(longValue,status);
 		if(status==3)
-			super.printSuccessJson(response, "删除成功！");
+			super.printSuccessJson("删除成功！");
 		if(status==2)
-			super.printSuccessJson(response, "禁用成功！");
+			super.printSuccessJson("禁用成功！");
 		if(status==1)
-			super.printSuccessJson(response, "还原成功！");
+			super.printSuccessJson("还原成功！");
 	}
 	
 	public String getById(){

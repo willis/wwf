@@ -70,7 +70,7 @@ public class DictionaryAction extends BaseAction{
 		}
 		dictionary.setCurDate(new Date());
 		getDictionaryService().saveDictionary(dictionary);
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 		
 	}
 	public void del(){
@@ -84,7 +84,7 @@ public class DictionaryAction extends BaseAction{
 		  }else{
 			  result ="删除数据失败!";
 		  }
-		    super.printSuccessJson(response, result);
+		    super.printSuccessJson(result);
 	}
 
 	/**

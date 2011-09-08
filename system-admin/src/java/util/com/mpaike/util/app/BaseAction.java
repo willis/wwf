@@ -58,7 +58,7 @@ public class BaseAction extends ActionSupport {
 				.getBean("appProps");
 	}
 
-	public void printSuccessJson(HttpServletResponse response, String message) {
+	public void printSuccessJson(String message) {
 		try {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(
@@ -69,7 +69,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
-	public void printBeansJson(HttpServletResponse response, List beans) {
+	public void printBeansJson(List beans) {
 		try {
 			JSONArray jsonArray = JSONArray.fromObject(beans);
 			response.setCharacterEncoding("utf-8");
@@ -80,7 +80,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
-	public void printJson(HttpServletResponse response, String message){
+	public void printJson(String message){
 		response.setCharacterEncoding("utf-8");
 		try {
 			response.getWriter().print(
