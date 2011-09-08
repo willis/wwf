@@ -7,8 +7,6 @@
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/form/jquery.form-min.js"></script>
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/thickbox/thickbox.js"></script>
 <link href="${cxp}/js/jquery/plugin/thickbox/thickbox.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${cxp}/js/jquery/plugin/ui/js/jquery-ui-1.7.2.custom.min.js"></script>
-<link href="${cxp}/js/jquery/plugin/ui/css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/alert/jquery.alerts-min.js"></script>
 <link href="${cxp}/js/jquery/plugin/alert/jquery.alerts.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${cxp}/appjs/plugin/dictionary/jquery.dictionary.js"></script>
