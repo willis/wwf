@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -83,7 +84,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
-	public void printBeansJson(Object beans) {
+	public void printBeansJson(List beans) {
 		try {
 			JSONArray jsonArray = JSONArray.fromObject(beans);
 			response.setCharacterEncoding("utf-8");
@@ -106,6 +107,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
+	
 	public void printPageList(List beans){
 		JsonPage jp = new JsonPage();
 		if(pageinfo!=null){
@@ -114,7 +116,14 @@ public class BaseAction extends ActionSupport {
 			jp.setRows(rows);
 		}
 		jp.setList(beans);
-		printBeansJson(jp);
+		try {
+			JSONObject json = JSONObject.fromObject(beans);
+			response.setCharacterEncoding("utf-8");
+			System.out.println(json);
+			response.getWriter().println(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 
