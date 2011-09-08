@@ -35,13 +35,13 @@ public class SysPopedomAction extends BaseAction {
 		String[] cs = request.getParameterValues("c");
 
 		if (cs == null)
-			super.printSuccessJson(response, "请选择要删除的权限代码！");
+			super.printSuccessJson("请选择要删除的权限代码！");
 		for (String c : cs) {
 			if (!"".equals(c.trim())) {
 				sysPopedomService.removeSysPopedom(new Long(c));
 			}
 		}
-		super.printSuccessJson(response, "删除成功！");
+		super.printSuccessJson( "删除成功！");
 
 	}
 
@@ -57,7 +57,7 @@ public class SysPopedomAction extends BaseAction {
 			result = "修改成功!";
 		}
 		sysPopedomService.saveSysPopedom(sysPopedom);
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 	}
 
 	public String edit() {

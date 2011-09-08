@@ -54,7 +54,7 @@ public class SysUserAction extends BaseAction {
 		if (!getSysUserService().save(sysUser)) {
 			result = "用户名重复!";
 		}
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 
 	}
 
@@ -68,11 +68,11 @@ public class SysUserAction extends BaseAction {
 		Long[] longValue = ArrayUtil.toLongArray(ids, ",");
 		getSysUserService().remove(longValue, status);
 		if (status == 1l)
-			super.printSuccessJson(response, "删除成功！");
+			super.printSuccessJson("删除成功！");
 		if (status == 2l)
-			super.printSuccessJson(response, "冻结成功！");
+			super.printSuccessJson("冻结成功！");
 		if (status == 0l)
-			super.printSuccessJson(response, "还原成功！");
+			super.printSuccessJson("还原成功！");
 	}
 
 	public void userList() {
@@ -109,10 +109,10 @@ public class SysUserAction extends BaseAction {
 
 		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L)
-			super.printSuccessJson(response, "请选择用户！");
+			super.printSuccessJson("请选择用户！");
 		String[] cs = request.getParameterValues("cs");
 		if ((cs == null) || (cs.length == 0))
-			super.printSuccessJson(response, "请选择要添加的角色！");
+			super.printSuccessJson("请选择要添加的角色！");
 		if (cs.length == 1) {
 			cs = cs[0].split(",");
 		}
@@ -125,19 +125,19 @@ public class SysUserAction extends BaseAction {
 			}
 		}
 		SysMenuControl.getInstance().putRootTree();
-		super.printSuccessJson(response, "添加成功！");
+		super.printSuccessJson("添加成功！");
 	}
 
 	public void delSysRoles() {
 
 		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
-			super.printSuccessJson(response, "请选择用户！");
+			super.printSuccessJson("请选择用户！");
 		}
 
 		String[] cs = request.getParameterValues("cs");
 		if ((cs == null) || (cs.length == 0))
-			super.printSuccessJson(response, "请选择要删除的角色！");
+			super.printSuccessJson("请选择要删除的角色！");
 		if (cs.length == 1)
 			cs = cs[0].split(",");
 		SysUser sysUser = getSysUserService().get(Long.valueOf(id));
@@ -148,13 +148,13 @@ public class SysUserAction extends BaseAction {
 						roleService.getSysRole(new Long(c)));
 			}
 		}
-		super.printSuccessJson(response, "删除成功！");
+		super.printSuccessJson("删除成功！");
 	}
 
 	public void changePassword() {
 		Long[] longValue = ArrayUtil.toLongArray(ids, ",");
 		getSysUserService().changePassword(longValue, password);
-		super.printSuccessJson(response, "修改密码成功！");
+		super.printSuccessJson("修改密码成功！");
 	}
 
 	public SysUser getSysUser() {

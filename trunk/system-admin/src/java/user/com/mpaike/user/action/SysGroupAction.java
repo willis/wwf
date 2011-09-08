@@ -62,7 +62,7 @@ public class SysGroupAction extends BaseAction {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		super.printSuccessJson(response, msg);
+		super.printSuccessJson(msg);
 
 	}
 
@@ -85,7 +85,7 @@ public class SysGroupAction extends BaseAction {
 				msg = "删除成功！";
 			}
 		}
-		super.printSuccessJson(response, msg);
+		super.printSuccessJson(msg);
 	}
 
 	public void getCheckUsers() {
@@ -119,7 +119,7 @@ public class SysGroupAction extends BaseAction {
 		}
 
 		getSysGroupService().saveSysGroup(sysGroup);
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 
 	}
 
@@ -139,7 +139,7 @@ public class SysGroupAction extends BaseAction {
 			}
 			
 		}
-		super.printSuccessJson(response, result);
+		super.printSuccessJson(result);
 	}
 
 	public SysGroup getSysGroup() {
