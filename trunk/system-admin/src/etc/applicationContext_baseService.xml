@@ -11,6 +11,7 @@
 	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
 		abstract="true">
 		<property name="webUrlDao" ref="webUrlDao"/>
+		<property name="memberDao" ref="memberDao"/>
 	</bean>
 	
 	<bean id="webUrlService"
@@ -18,4 +19,11 @@
 		autowire="byName" parent="baseService">
 		
 	</bean>
+	
+	<bean name="memberDao" class="com.mpaike.member.dao.impl.MemberDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="memberService"
+		class="com.mpaike.member.service.impl.MemberServiceImpl"
+		autowire="byName" parent="baseService"/>
 </beans>

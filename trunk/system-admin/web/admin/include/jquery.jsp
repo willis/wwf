@@ -14,10 +14,9 @@
 <link href="${cxp}/appjs/plugin/table/jquery.table.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/messager/jquery.messager.js"></script>
 <link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/icon.css">
-	<script type="text/javascript" src="${cxp}/js/jquery/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/icon.css">
+<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${cxp}/js/jquery/plugin/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 function dateFormate(objdate)
 {

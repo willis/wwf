@@ -17,6 +17,7 @@ import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.page.Pagination;
+import com.mpaike.member.service.MemberService;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
 import com.opensymphony.xwork2.ActionContext;
@@ -194,5 +195,8 @@ public class BaseAction extends ActionSupport {
 		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
 	}
 	
+	public MemberService getMemberService() {
+		return (MemberService) ApplictionContext.getInstance().getBean(MemberService.ID_NAME);
+	}
 	
 }

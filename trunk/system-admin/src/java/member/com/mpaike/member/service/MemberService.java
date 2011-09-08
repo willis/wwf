@@ -1,6 +1,9 @@
 package com.mpaike.member.service;
 
-import com.fins.gt.server.GridServerHandler;
+import java.util.List;
+
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.member.model.Member;
 /**
  * 
@@ -12,7 +15,7 @@ public interface MemberService {
 	
 	  public static String ID_NAME = "memberService";
 	  
-	  public  GridServerHandler listToGrid(GridServerHandler handler, Member member);
+	  public List<Member> find(Pagination p,OrderBy ob);
 	  
 	  public void remove(Long[] id, Long type);
 	  
