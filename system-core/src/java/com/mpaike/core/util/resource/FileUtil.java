@@ -324,21 +324,6 @@ public class FileUtil {
 
 	}
 
-	/**
-	 * 返回文件的URL地址。
-	 * 
-	 * @param file
-	 *            文件
-	 * @return 文件对应的的URL地址
-	 * @throws MalformedURLException
-	 * @since 0.4
-	 * @deprecated 在实现的时候没有注意到File类本身带一个toURL方法将文件路径转换为URL。 请使用File.toURL方法。
-	 */
-	public static URL getURL(File file) throws MalformedURLException {
-		String fileURL = "file:/" + file.getAbsolutePath();
-		URL url = new URL(fileURL);
-		return url;
-	}
 
 	/**
 	 * 从文件路径得到文件名。
