@@ -17,23 +17,26 @@ public class JsonConfigFactory {
 	private static final TimestampDateJsonValueProcessor timestampValueProcessor = new TimestampDateJsonValueProcessor();
 
 	private static JsonConfig jsonConfig;
-	
+	static {
+		jsonConfig = new JsonConfig(); 
+		jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT); 
+		jsonConfig.setExcludes(excludes);
+		
+		jsonConfig.registerJsonValueProcessor(java.util.Date.class, dataValueProcessor);
+		jsonConfig.registerJsonValueProcessor(java.sql.Date.class, sqldataValueProcessor);
+		jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, timestampValueProcessor);
+
+		//set PropertyFilter
+		jsonConfig.setJsonPropertyFilter(new NullPropertyFilter());
+
+	}
+
 	public static JsonConfig getConfigJson() {
-		if(jsonConfig==null){
-			jsonConfig = new JsonConfig(); 
-			jsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT); 
-			jsonConfig.setExcludes(excludes);
-			
-			jsonConfig.registerJsonValueProcessor(java.util.Date.class, dataValueProcessor);
-			jsonConfig.registerJsonValueProcessor(java.sql.Date.class, sqldataValueProcessor);
-			jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, timestampValueProcessor);
+		return jsonConfig;
+	}
 	
-			//set PropertyFilter
-			jsonConfig.setJsonPropertyFilter(new NullPropertyFilter());
-			return jsonConfig; 
-		}else{
-			return jsonConfig;
-		}
+	public static void main(String[] argv){
+		new JsonConfigFactory();
 	}
 
 }
