@@ -120,7 +120,7 @@ public class BaseAction extends ActionSupport {
 		}
 		jp.setRows(beans);
 		try {
-			JSONObject json = JSONObject.fromObject(jp,JsonConfigFactory.getConfigJson());
+			JSONObject json = JSONObject.fromObject(jp,JsonConfigFactory.getConfigJson(1));
 			response.setCharacterEncoding("utf-8");
 			System.out.println(json);
 			response.getWriter().println(json);
