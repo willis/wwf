@@ -41,6 +41,27 @@ public class OrderBy extends Condition {
 		}
 
 	}
+	
+	public static String asOrdersString(OrderBy[] orderBys) {
+		if (orderBys != null) {
+			StringBuilder sb = new StringBuilder(" ");
+			for (int i = 0,n=orderBys.length; i < n; i++) {
+				sb.append(orderBys[i].getField());
+				if(orderBys[i].orderType==OrderType.ASC){
+					sb.append(" asc");
+				}else{
+					sb.append(" desc");
+				}
+				if(i==(n-1)){
+					sb.append(",");
+				}
+			}
+			return sb.toString();
+		} else {
+			return "";
+		}
+
+	}
 
 	public static enum OrderType {
 		ASC, DESC
