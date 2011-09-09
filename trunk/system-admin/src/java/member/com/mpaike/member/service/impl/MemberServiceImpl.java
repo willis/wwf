@@ -21,13 +21,14 @@ public class MemberServiceImpl extends BaseService implements  MemberService {
 
 	@Override
 	public void remove(Long[] id, Long type) {
-		// TODO Auto-generated method stub
+		
+		this.getMemberDao().remove(id, type);
 		
 	}
 
 	@Override
 	public Member get(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.getMemberDao().get(id);
 	}
 }

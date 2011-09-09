@@ -3,27 +3,33 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	
-	<bean name="webUrlDao" class="com.mpaike.bot.dao.impl.WebUrlDao">
+	<!-- 系统dao -->
+	<bean name="sysUserDao" class="com.mpaike.user.dao.impl.SysUserDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<!-- 系统dao -->
 	
 	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
 		abstract="true">
+		<!-- 系统dao -->
+		<property name="sysUserDao" ref="sysUserDao"/>
+		<!-- 系统dao -->
 		<property name="webUrlDao" ref="webUrlDao"/>
 		<property name="memberDao" ref="memberDao"/>
+		<property name="pictureDao" ref="pictureDao"/>
 	</bean>
 	
-	<bean id="webUrlService"
-		class="com.mpaike.bot.service.impl.WebUrlService"
-		autowire="byName" parent="baseService">
-		
-	</bean>
+
 	
 	<bean name="memberDao" class="com.mpaike.member.dao.impl.MemberDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="memberService"
-		class="com.mpaike.member.service.impl.MemberServiceImpl"
-		autowire="byName" parent="baseService"/>
+	<bean name="webUrlDao" class="com.mpaike.bot.dao.impl.WebUrlDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean name="pictureDao" class="com.mpaike.image.dao.impl.PictureDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 </beans>

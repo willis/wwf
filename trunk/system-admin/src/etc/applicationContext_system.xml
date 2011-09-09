@@ -9,6 +9,8 @@
 	<bean id="systemLogService"
 		class="com.mpaike.sys.service.impl.SystemLogServiceImpl"
 		autowire="byName" />
+		
+
 	<bean id="sysUserService"
 		class="com.mpaike.user.service.impl.SysUserServiceImpl"
 		autowire="byName" />
@@ -27,4 +29,15 @@
 	<bean id="sysPopedomService"
 		class="com.mpaike.user.service.impl.SysPopedomServiceImpl"
 		autowire="byName"/>
+		
+		
+	<bean id="webUrlService"
+		class="com.mpaike.bot.service.impl.WebUrlService"
+		autowire="byName" parent="baseService">
+		
+	</bean>
+	
+	<bean id="memberService"
+		class="com.mpaike.member.service.impl.MemberServiceImpl"
+		autowire="byName" parent="baseService"/>
 </beans>
