@@ -228,7 +228,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected List<T> findList(String hsql, Object[] value, Pagination p,
+	protected List findList(String hsql, Object[] value, Pagination p,
 			OrderBy... orders) {
 		// TODO Auto-generated method stub
 		Assert.hasText(hsql);
