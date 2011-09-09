@@ -28,7 +28,7 @@ public class JsonConfigFactory {
 		jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, dataValueProcessor);
 
 		//set PropertyFilter
-		timestampJsonConfig.setJsonPropertyFilter(new NullPropertyFilter());
+		jsonConfig.setJsonPropertyFilter(new NullPropertyFilter());
 		
 		timestampJsonConfig = new JsonConfig(); 
 		timestampJsonConfig.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT); 
