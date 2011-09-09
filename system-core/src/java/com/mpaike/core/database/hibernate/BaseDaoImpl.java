@@ -162,7 +162,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		return createQuery(hql, values).list();
 	}
 	
-
+	
 	/**
 	 * 按HQL查询对象列表
 	 * @param hql HQL语句
@@ -225,6 +225,14 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		// TODO Auto-generated method stub
 		Assert.hasText(property);
 		return findByCriteria(createCriteria(Restrictions.eq(property, value)),r,null,OrderBy.asOrders(orders));
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected List<T> findList(String hsql, Object[] value, Pagination p,
+			OrderBy... orders) {
+		// TODO Auto-generated method stub
+		Assert.hasText(hsql);
+		return findList(hsql+OrderBy.asOrdersString(orders),p,value);
 	}
 
 	/**
