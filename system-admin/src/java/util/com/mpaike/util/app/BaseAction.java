@@ -16,6 +16,8 @@ import org.apache.struts2.ServletActionContext;
 import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.json.DateJsonValueProcessor;
+import com.mpaike.core.util.json.JsonConfigFactory;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.member.service.MemberService;
 import com.mpaike.util.ParamHelper;
@@ -118,7 +120,7 @@ public class BaseAction extends ActionSupport {
 		}
 		jp.setRows(beans);
 		try {
-			JSONObject json = JSONObject.fromObject(jp);
+			JSONObject json = JSONObject.fromObject(jp,JsonConfigFactory.getConfigJson());
 			response.setCharacterEncoding("utf-8");
 			System.out.println(json);
 			response.getWriter().println(json);
