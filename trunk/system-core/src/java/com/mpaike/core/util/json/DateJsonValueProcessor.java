@@ -13,7 +13,7 @@ import net.sf.json.processors.JsonValueProcessor;
  */
 public class DateJsonValueProcessor implements JsonValueProcessor {
 
-	private static final String format = "yyyy,MM-1,dd";
+	private static final String format = "yyyy-MM-dd";
 
 	public DateJsonValueProcessor() {
 	}
@@ -36,7 +36,8 @@ public class DateJsonValueProcessor implements JsonValueProcessor {
 			JsonConfig jsonConfig) {
 		if (value instanceof Date) {
 			String str = new SimpleDateFormat(format).format((Date) value);
-			return new JSONExpression("Date.parseServerDate("+str+")");
+			return str;
+			//return new JSONExpression("new Date("+str+")");
 		}
 		return value.toString();
 	}

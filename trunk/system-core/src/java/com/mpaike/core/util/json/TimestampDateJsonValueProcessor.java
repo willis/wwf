@@ -13,7 +13,7 @@ import net.sf.json.processors.JsonValueProcessor;
  */
 public class TimestampDateJsonValueProcessor implements JsonValueProcessor {
 
-	private static final String format = "yyyy,MM-1,dd,HH,mm,ss";
+	private static final String format = "yyyy-MM-dd HH:mm:ss";
 
 	public TimestampDateJsonValueProcessor() {
 	}
@@ -35,7 +35,8 @@ public class TimestampDateJsonValueProcessor implements JsonValueProcessor {
 			JsonConfig jsonConfig) {
 		if (value instanceof Date) {
 			String str = new SimpleDateFormat(format).format((Date) value);
-			return new JSONExpression("new Date("+str+")");
+			return str;
+			//return new JSONExpression("new Date("+str+")");
 		}
 		return value.toString();
 	}
