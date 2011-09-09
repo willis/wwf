@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -112,6 +113,10 @@ public class BaseAction extends ActionSupport {
 	
 	
 	public void printPageList(List beans){
+		printPageList(beans,null);
+	}
+	
+	public void printPageList(List beans,JsonConfig jsonConfig){
 		JsonPage jp = new JsonPage();
 		if(pageinfo!=null){
 			jp.setTotal(pageinfo.getTotalCount());
@@ -120,7 +125,13 @@ public class BaseAction extends ActionSupport {
 		}
 		jp.setRows(beans);
 		try {
-			JSONObject json = JSONObject.fromObject(jp,JsonConfigFactory.getConfigJson(1));
+			
+			JSONObject json;
+			if(jsonConfig!=null){
+				json = JSONObject.fromObject(jp,jsonConfig);
+			}else{
+				json = JSONObject.fromObject(jp,JsonConfigFactory.getConfigJson(1));
+			}
 			response.setCharacterEncoding("utf-8");
 			System.out.println(json);
 			response.getWriter().println(json);
