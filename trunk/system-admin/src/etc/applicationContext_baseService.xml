@@ -31,5 +31,7 @@
 	<bean name="pictureDao" class="com.mpaike.image.dao.impl.PictureDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	
 
 </beans>

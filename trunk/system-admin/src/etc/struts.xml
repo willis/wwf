@@ -29,5 +29,6 @@
     <include file="action/struts_member.xml" />
     <include file="action/struts_spiderdata.xml" />
     <include file="action/struts_weburl.xml" />
+    <include file="action/struts_affix.xml" />
 </struts>
 

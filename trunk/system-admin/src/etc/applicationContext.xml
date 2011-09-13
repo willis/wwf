@@ -87,6 +87,7 @@
                	<value>classpath:com/mpaike/image/model</value>
                	<value>classpath:com/mpaike/member/model</value>
                	<value>classpath:com/mpaike/bot/model</value>
+               	<value>classpath:com/mpaike/affix/model</value>
             </list>
          </property>
 		<property name="mappingResources">
