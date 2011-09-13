@@ -23,6 +23,7 @@
  */
 package com.mpaike.user.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mpaike.core.database.hibernate.BaseDaoImpl;
@@ -30,61 +31,57 @@ import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysPopedomDao;
 import com.mpaike.user.model.SysPopedom;
+import com.mpaike.util.ParamHelper;
 
 /**
  * @author Chen.H @Date 2011-9-13
  * com.mpaike.user.dao.impl system-admin
  */
 public class SysPopedomDao extends BaseDaoImpl<SysPopedom> implements ISysPopedomDao{
-
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	protected void createSQLWhere(SysPopedom popedom, StringBuffer sql, List params)
+	  {
+	    if (!ParamHelper.isEmpty(popedom.getCode())) {
+	      if (sql.length() > 0)
+	        sql.append(" and ");
+	      sql.append(" p.code like ? ");
+	      params.add("%" + popedom.getCode().trim() + "%");
+	    }
+	    if (!ParamHelper.isEmpty(popedom.getDescribe())) {
+	      if (sql.length() > 0)
+	        sql.append(" and ");
+	      sql.append(" p.describe like ? ");
+	      params.add("%" + popedom.getDescribe().trim() + "%");
+	    }
+	  }
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<SysPopedom> listToGrid(SysPopedom paramSysPopedom,
 			Pagination p, OrderBy ob) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<SysPopedom> getByGrid(SysPopedom paramSysPopedom, Pagination p,
-			OrderBy ob) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public SysPopedom getSysPopedom(long paramSerializable) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuffer sql = new StringBuffer();
+	    List params = new ArrayList();
+	    createSQLWhere(paramSysPopedom, sql, params);
+	    if (sql.length() > 0)
+	      sql.insert(0, " where ");
+	    sql.insert(0, " from SysPopedom p ");
+	    String select = " select new SysPopedom(p.id,p.code,p.describe)  ";
+	    return this.findList(select + sql.toString(), params.toArray(), p, ob);
 	}
 
 	@Override
 	public void removeSysPopedom(long paramSerializable) {
-		// TODO Auto-generated method stub
+		this.deleteById(paramSerializable);
 		
 	}
 
 	@Override
 	public void removeSysPopedom(SysPopedom paramSysPopedom) {
-		// TODO Auto-generated method stub
+		this.delete(paramSysPopedom);
 		
 	}
 
-	@Override
-	public void saveSysPopedom(SysPopedom paramSysPopedom) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public int count() {
-		return this.findAll().size();
-	}
-
-	@Override
-	public List<SysPopedom> getSysPopedoms(int paramInt1, int paramInt2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void updateSysPopedom(SysPopedom paramSysPopedom) {

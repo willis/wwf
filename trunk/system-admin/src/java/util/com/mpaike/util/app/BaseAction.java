@@ -20,6 +20,8 @@ import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.json.JsonConfigFactory;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.member.service.MemberService;
+import com.mpaike.user.service.SysPopedomService;
+import com.mpaike.user.service.SysUserService;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
 import com.opensymphony.xwork2.ActionContext;
@@ -176,11 +178,10 @@ public class BaseAction extends ActionSupport {
 		}
 		return orderby;
 	}
-
+	@SuppressWarnings("rawtypes")
 	public class JsonPage{
 		
 		private long total;
-		@SuppressWarnings("rawtypes")
 		private List rows;
 		public long getTotal() {
 			return total;
@@ -188,6 +189,7 @@ public class BaseAction extends ActionSupport {
 		public void setTotal(long total) {
 			this.total = total;
 		}
+		
 		public List getRows() {
 			return rows;
 		}
@@ -212,4 +214,12 @@ public class BaseAction extends ActionSupport {
 		return (MemberService) ApplictionContext.getInstance().getBean(MemberService.ID_NAME);
 	}
 	
+	public SysPopedomService getSysPopedomService() {
+		return (SysPopedomService) ApplictionContext
+		.getInstance().getBean(SysPopedomService.ID_NAME);
+	}
+	public SysUserService getSysUserService() {
+		return (SysUserService) ApplictionContext.getInstance().getBean(
+				SysUserService.ID_NAME);
+	}
 }

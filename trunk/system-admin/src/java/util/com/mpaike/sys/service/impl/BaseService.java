@@ -4,10 +4,12 @@ import com.mpaike.bot.dao.IWebUrlDao;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.member.dao.IMemberDao;
 import com.mpaike.sys.service.IBaseService;
+import com.mpaike.user.dao.ISysPopedomDao;
 import com.mpaike.user.dao.ISysUserDao;
 
 public class BaseService implements IBaseService{
 	private ISysUserDao sysUserDao;
+	private ISysPopedomDao sysPopedomDao;
 	
 	private IWebUrlDao webUrlDao;
 	private IMemberDao memberDao;
@@ -36,6 +38,14 @@ public class BaseService implements IBaseService{
 
 	public void setSysUserDao(ISysUserDao sysUserDao) {
 		this.sysUserDao = sysUserDao;
+	}
+	
+	public ISysPopedomDao getSysPopedomDao() {
+		return sysPopedomDao;
+	}
+
+	public void setSysPopedomDao(ISysPopedomDao sysPopedomDao) {
+		this.sysPopedomDao = sysPopedomDao;
 	}
 
 	public IPictureDao getPictureDao() {

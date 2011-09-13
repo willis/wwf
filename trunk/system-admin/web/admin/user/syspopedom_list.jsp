@@ -1,37 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
 	<head>
-		<title>网站后台</title>
+	<title></title>
 
-		<style>
-th {
-	vertical-align: middle;
-}
 
-label.checkbox {
-	cursor: pointer;
-	min-width: 5em;
-	overflow: auto;
-	vertical-align: middle;
-}
-
-label.checkbox * {
-	vertical-align: middle;
-}
-
-label.checkbox input {
-	float: left;
-	display: inline-block;
-	margin-top: 1px;
-	margin-right: 2px; *
-	float: none; *
-	margin-top: 0px; *
-	margin-right: 0px;
-}
-</style>
 	</head>
 	<body  >
 		<form action="${cxp}/user/sysPopedom!list.action" method="post" >
@@ -95,27 +70,8 @@ label.checkbox input {
 
 			
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th style="width: 45%">
-								权限代码
-							</th>
-							<th style="width: 45%">
-								权限描述
-							</th>
-						</tr>
-					</thead>
-					<tbody id="myTable">
-
-					</tbody>
+				<table class="table" id="datagrid">
+				
 
 				</table>
 			
@@ -136,33 +92,79 @@ label.checkbox input {
 		</table>
 	</form>
 		<script>
+		$(function(){
+			$('#datagrid').datagrid({
+				nowrap: false,
+				striped: true,
+				collapsible:true,
+				fitColumns:true,
+				url:'sysPopedom!list.action',
+				sortName: 'id',
+				sortOrder: 'desc',
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'操作',field:'id',width:140,formatter:function(value,rec){
+				                	return "<a href='javascript:' onclick='window.parent.showWindow(\"${cxp }/user/sysPopedom!edit.action?id="+value+"\",\"修改权限代码\",200,400)'>修改权限代码</a>";
+				                	
+				                }}
+				]],
+				columns:[[
+					{field:'code',title:'权限代码',width:120},
+					{field:'describe',title:'权限描述',width:120}
+				]],
+				pagination:true,
+				rownumbers:true
+			
+			});
+			var p = $('#datagrid').datagrid('getPager');
+			if (p){
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						
+					}
+				});
+			}
+		});
+	
+		
+		
+		function query (){
+			// 获取查询参数
+			var queryParams = $('#datagrid').datagrid('options').queryParams;
+		
+			var code = $.trim($("#code").val());
+			var describe = $.trim($("#describe").val());
+			 // condition对应action的实例变量condition
+			queryParams["code"] = code;
+			queryParams["describe"] = describe;
 
-		 var myTable1 =  new MaxTable();
-		 myTable1.initialize(
-		  	{
-		  		table:'myTable',
-		  		loading:'loading',
-		  		id:'id',
-		  		queryUrl:'sysPopedom!list.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},{id:'code',name:'权限代码',renderer:editRenderer},{id:'describe',name:'权限描述'}]
-		  	}
-		  )
-		  
-	      
+			 // 重置查询页数为1
+			$('#datagrid').datagrid('options').pageNumber = 1;
+			 
+			var p = $('#datagrid').datagrid('getPager');
+			 
+			if (p){
+				$(p).pagination({
+					pageNumber:1
+					});
+				}
+			// 刷新列表数据
+			$('#datagrid').datagrid('reload');
+		}
 	    
-	     function query(){
-	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({code:$("#code").val(),describe:$("#describe").val()});
-	     } 	
+
 	     function editRenderer(idValue,value){
 	     	return "<a href='javascript:' onclick='window.parent.showWindow(\"${cxp }/user/sysPopedom!edit.action?id="+idValue+"\",\"修改权限代码\",200,400)'>"+value+"</a>"
 	     }	  
-		 query();
+	
 		 
 
 	 
     function removeSelect(){
-	var ids  = getCheckedValuesByContainer("c",$("#myTable"));
+	var ids  = $('#datagrid').datagrid('getSelections');
 	
 	if(ids.length == 0)
 	{
@@ -174,7 +176,7 @@ label.checkbox input {
 		if(i>0){
 			cs+=",";
 		}
-		cs+=ids[i];
+		cs+=ids[i].id;
 	}
 	
 
