@@ -103,7 +103,7 @@
 				                {title:'操作',field:'id',width:140,formatter:function(value,rec){
 				                 	var txt="";
 				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+value+"\",\"修改\",300,400)'>编辑</a>"
-				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,800)'>角色配置</a>"
 				        	     	return txt;
 				                	
 				                }}
@@ -146,56 +146,56 @@
 		
 
     function removeSelect(value){
-	var ids  = getCheckedValuesByContainer("c",$("#myTable"));
-	
-	if(ids.length == 0)
-	{
-		window.parent.parent.jAlert("请选择记录", "系统提示");
-		return ;
-	}
-	var cs = "";
-	for(var i=0;i<ids.length;i++){
-		if(i>0){
-			cs+=",";
-		}
-		cs+=ids[i];
-	}
-	var message = "您真的要还原这<font color='red'>"+ids.length+"</font>个用户吗？";
-	if(value==1){
-		message = "您真的要删除这<font color='red'>"+ids.length+"</font>个用户吗？";
-	}else
-	if(value==2){
-		message = "您真的要冻结这<font color='red'>"+ids.length+"</font>个用户吗？";
-	} 
-
-			 
-			window.parent.parent.jConfirm(message, '操作确认', function(r) {
-			
-				if (r) {
-						var param = {
-						
-							ids:cs,
-							status:value
-						}
+	    var ids  = $('#datagrid').datagrid('getSelections');
 		
-						doPost("${cxp}/user/sysUser!removeByIds.action", param, function(data) {
+		if(ids.length == 0)
+		{
+			window.parent.parent.jAlert("请选择记录", "系统提示");
+			return ;
+		}
+		var cs = "";
+		for(var i=0;i<ids.length;i++){
+			if(i>0){
+				cs+=",";
+			}
+			cs+=ids[i].id;
+		}
+		var message = "您真的要还原这<font color='red'>"+ids.length+"</font>个用户吗？";
+		if(value==1){
+			message = "您真的要删除这<font color='red'>"+ids.length+"</font>个用户吗？";
+		}else
+		if(value==2){
+			message = "您真的要冻结这<font color='red'>"+ids.length+"</font>个用户吗？";
+		} 
+	
+				 
+				window.parent.parent.jConfirm(message, '操作确认', function(r) {
+				
+					if (r) {
+							var param = {
 							
-									if (data.status) {
-										query();
-										window.parent.parent.jAlert(data.message, "系统提示");
-									}else{
-									    query();
-										window.parent.parent.jAlert(data.message, "系统提示");
-									}
-							});
-				}
-	});
-
-}
+								ids:cs,
+								status:value
+							}
+			
+							doPost("${cxp}/user/sysUser!removeByIds.action", param, function(data) {
+								
+										if (data.status) {
+											query();
+											window.parent.parent.jAlert(data.message, "系统提示");
+										}else{
+										    query();
+											window.parent.parent.jAlert(data.message, "系统提示");
+										}
+								});
+					}
+		});
+		}
 
 
 		function updateSelect(){
-			var ids  = getCheckedValuesByContainer("c",$("#myTable"));
+		
+			var ids  = $('#datagrid').datagrid('getSelections');
 			if(ids.length == 0){
 				window.parent.parent.jAlert("请选择记录", "系统提示");
 				return ;
@@ -206,7 +206,7 @@
 				if(i>0){
 					cs+=",";
 				}
-				cs+=ids[i];
+				cs+=ids[i].id;
 			}
 			window.parent.showWindow('${cxp}/user/user_password.jsp?ids=' + cs ,'修改密码',100,200);
 		

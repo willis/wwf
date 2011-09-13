@@ -4,8 +4,12 @@
 
 <hibernate-mapping>
   <class name="com.mpaike.user.model.SysPopedom" table="icore_popedom">
-		<id name="id" type="java.lang.Long" column="id">
-			<generator class="assigned" />
+		<id name="id" type="java.lang.Long" column="id"
+			unsaved-value="null">
+			<generator
+				class="native"> 
+				<param name="sequence">icore_syspopedom_seq</param>
+			</generator>
 		</id>
 
     <property name="code" column="code" type="string" length="200" not-null="false" update="true">

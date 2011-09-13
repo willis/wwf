@@ -1,11 +1,10 @@
 package com.mpaike.user.action;
 
-import com.fins.gt.server.GridServerHandler;
+import java.util.List;
+
 import com.mpaike.user.model.SysPopedom;
-import com.mpaike.user.service.SysPopedomService;
 import com.mpaike.util.MyBeanUtils;
 import com.mpaike.util.ParamHelper;
-import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 
@@ -16,19 +15,15 @@ public class SysPopedomAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	SysPopedomService sysPopedomService = (SysPopedomService) ApplictionContext
-			.getInstance().getBean(SysPopedomService.ID_NAME);
 
 	public void list() {
-
-		GridServerHandler handler = new GridServerHandler(request, response);
 
 		sysPopedom = new SysPopedom();
 		sysPopedom.setCode(ParamHelper.getStr(request, "code", null));
 		sysPopedom.setDescribe(ParamHelper.getStr(request, "describe", null));
-		sysPopedomService.listToGrid(handler, sysPopedom);
 
-		handler.printLoadResponseText();
+		List<SysPopedom> datas = this.getSysPopedomService().listToGrid(sysPopedom, this.pageToPageinfo(), this.getOrderby());
+		this.printPageList(datas);
 	}
 
 	public void del() {
@@ -38,7 +33,7 @@ public class SysPopedomAction extends BaseAction {
 			super.printSuccessJson("请选择要删除的权限代码！");
 		for (String c : cs) {
 			if (!"".equals(c.trim())) {
-				sysPopedomService.removeSysPopedom(new Long(c));
+				this.getSysPopedomService().removeSysPopedom(new Long(c));
 			}
 		}
 		super.printSuccessJson( "删除成功！");
@@ -50,18 +45,18 @@ public class SysPopedomAction extends BaseAction {
 		if (sysPopedom.getId() == null) {
 			result = "添加成功!";
 		} else {
-			SysPopedom target = sysPopedomService.getSysPopedom(sysPopedom
+			SysPopedom target = this.getSysPopedomService().getSysPopedom(sysPopedom
 					.getId());
 			MyBeanUtils.fillForNotNullObject(target, sysPopedom);
 			sysPopedom = target;
 			result = "修改成功!";
 		}
-		sysPopedomService.saveSysPopedom(sysPopedom);
+		this.getSysPopedomService().saveSysPopedom(sysPopedom);
 		super.printSuccessJson(result);
 	}
 
 	public String edit() {
-		sysPopedom = sysPopedomService.getSysPopedom(id);
+		sysPopedom = this.getSysPopedomService().getSysPopedom(id);
 		return "edit";
 	}
 

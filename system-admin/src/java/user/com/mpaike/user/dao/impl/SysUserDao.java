@@ -33,6 +33,7 @@ import com.mpaike.user.dao.ISysUserDao;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 import com.mpaike.user.model.SysUserToSysRole;
+import com.mpaike.util.MD5;
 import com.mpaike.util.ParamHelper;
 
 /**
@@ -73,7 +74,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		
 		for (int i = 0, n = id.length; i < n; i++) {
 			
-			this.updateAndDelBeanForSQL("update SysUser  u set u.status=? where u.id=?",new Object[]{password,id[i]});
+			this.updateAndDelBeanForSQL("update SysUser u set u.password=? where u.id=?",new Object[]{MD5.toMD5(password),id[i]});
 		}
 		
 	}
@@ -86,6 +87,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public List<SysUser> find(SysUser sysuser, Pagination p, OrderBy ob) {
 		StringBuffer sql = new StringBuffer();
@@ -95,7 +97,6 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		if (sql.length() > 0)
 			sql.insert(0, " where ");
 		sql.insert(0, " from SysUser u ");
-		System.out.println(sql.toString());
 		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
 		return this.findList(select + sql.toString(), params.toArray(), p, ob);
 	}
@@ -135,8 +136,6 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		for (int i = 0; i < datas.size(); i++)
 		{
 		    SysUserToSysRole sysUserToRole = (SysUserToSysRole)datas.get(i);
-		    //sysUserToRole.getSysRole().getSysMenus().size();//
-		    //sysUserToRole.getSysRole().getSysPopedoms().size();//
 		    sysRoles.add(sysUserToRole.getSysRole());
 		     
 		 }

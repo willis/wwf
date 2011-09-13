@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/include/taglibs.jsp"%>
 <%@ include file="/include/jquery.jsp"%>
@@ -21,29 +21,8 @@
 		<tr><td align="center" >当前可添加的角色</td><td>&nbsp;</td><td align="center">已添加角色</td></tr>
 		<tr><td valign="top">
 		<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								角色名称
-							</th>
-							<th>
-								角色描述
-							</th>
-							 
-  							
-						</tr>
-					</thead>
+				<table class="table" id="noCheckTable">
 					
-					<tbody id="myTable1">
-					</tbody>
 				</table>
 				</form>
 		</td><td >
@@ -56,67 +35,96 @@
 		</div>
 			</td><td valign="top">
 			<form>
-				<table class="table">
-					<thead>
-						<tr>
-							<th style="width: 80px">
-								<label class="checkbox">
-									<input class="checkbox" type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th>
-								名称
-							</th>
-							<th>
-								描述
-							</th>
-  							
-						</tr>
-					</thead>
+				<table class="table" id="checkTable">
 					
-					<tbody id="myTable2">
-					</tbody>
 				</table>
 				</form>
 		</td></tr></table>
 
 		<script>
+		$(function(){
+			$('#noCheckTable').datagrid({
+				nowrap: false,
+				striped: true,
+				collapsible:true,
+				fitColumns:true,
+				url:'sysUser!getNotCheckRoles.action?id=${param.id}',
+				sortName: 'id',
+				sortOrder: 'desc',
+				width : 400,
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'操作',field:'id',width:60,formatter:function(value,rec){
+				                 	var txt="";
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+value+"\",\"修改\",300,400)'>编辑</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+				        	     	return txt;
+				                	
+				                }}
+				]],
+				columns:[[
+					{field:'name',title:'名称',width:120},
+					{field:'describe',title:'描述',width:120}
+		
+				]],
+				pagination:true,
+				rownumbers:true
+			
+			});
+			var p = $('#noCheckTable').datagrid('getPager');
+			if (p){
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						
+					}
+				});
+			}
+		});
+		$(function(){
+			$('#checkTable').datagrid({
+				nowrap: false,
+				striped: true,
+				collapsible:true,
+				fitColumns:true,
+				width : 400,
+				url:'sysUser!getCheckRoles.action?id=${param.id}',
+				sortName: 'id',
+				sortOrder: 'desc',
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'操作',field:'id',width:60,formatter:function(value,rec){
+				                 	var txt="";
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+value+"\",\"修改\",300,400)'>编辑</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+				        	     	return txt;
+				                	
+				                }}
+				]],
+				columns:[[
+					{field:'name',title:'名称',width:120},
+					{field:'describe',title:'描述',width:120}
+		
+				]],
+				pagination:true,
+				rownumbers:true
+			
+			});
+			var p = $('#checkTable').datagrid('getPager');
+			if (p){
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						
+					}
+				});
+			}
+		});
 
-		 var myTable1 =  new MaxTable();
-		 
-		 var myTable2 =  new MaxTable();
-		 
-		 myTable1.initialize(
-		  	{
-		  		table:'myTable1',
-		  		loading:'loading',
-		  		id:'id',
-		  		isSort:false,
-		  		queryUrl:'sysUser!getNotCheckRoles.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},{id:'name',name:'名称'},{id:'describe',name:'描述'}]
-		  	}
-		  )
-		   myTable2.initialize(
-		  	{
-		  		table:'myTable2',
-		  		loading:'loading',
-		  		id:'id',
-		  		isSort:false,
-		  		queryUrl:'sysUser!getCheckRoles.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdCheckBoxRenderer},{id:'name',name:'名称'},{id:'describe',name:'描述'}]
-		  	}
-		  )
-		 
-	     function query(){
-	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({ id:${param.id}});
-	    	myTable2.page.totalRowNum = 0;
-	    	myTable2.onLoad({ id:${param.id}});
-	    	
-	     }
-		 query();
 		 
 
 function addSelect(){

@@ -3,7 +3,6 @@ package com.mpaike.user.action;
 import java.util.Date;
 import java.util.List;
 
-import com.fins.gt.server.GridServerHandler;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 import com.mpaike.user.service.SysMenuControl;
@@ -17,10 +16,7 @@ import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 public class SysUserAction extends BaseAction {
-	public SysUserService getSysUserService() {
-		return (SysUserService) ApplictionContext.getInstance().getBean(
-				SysUserService.ID_NAME);
-	}
+
 
 	public SysRoleService roleService = (SysRoleService) ApplictionContext
 			.getInstance().getBean(SysRoleService.ID_NAME);

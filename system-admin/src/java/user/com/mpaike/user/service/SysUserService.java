@@ -2,7 +2,6 @@ package com.mpaike.user.service;
 
 import java.util.List;
 
-import com.fins.gt.server.GridServerHandler;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.model.SysRole;

@@ -79,7 +79,7 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 
 	@Override
 	public List<SysRole> listCheckRolesToGrid(SysUser sysuser, Pagination p) {
-		// TODO Auto-generated method stub
+		
 		return this.getSysUserDao().listCheckRolesToGrid(sysuser, p);
 	}
 }
