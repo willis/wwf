@@ -33,8 +33,6 @@ public class MemberAction extends BaseAction {
 	public void list(){
 		
 		List<Member> datas = this.getMemberService().find(this.pageToPageinfo(),this.getOrderby());
-		
-		System.out.println("--------"+datas.size());
 		this.printPageList(datas);
 	}
 	/**
