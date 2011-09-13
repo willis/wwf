@@ -100,13 +100,33 @@
 				idField:'id',
 				frozenColumns:[[
 				                {field:'ck',checkbox:true},
-				                {title:'操作',field:'id',width:80,sortable:true}
+				                {title:'操作',field:'id',width:140,formatter:function(value,rec){
+				                 	var txt="";
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+value+"\",\"修改\",300,400)'>编辑</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+				        	     	return txt;
+				                	
+				                }}
 				]],
 				columns:[[
 					{field:'username',title:'用户名',width:120},
 					{field:'truename',title:'姓名',width:120,sortable:true},
 					{field:'sex',title:'性别',width:120},
-					{field:'status',title:'状态',width:120},
+					{field:'status',title:'状态',width:120,formatter:function(value,rec){
+						switch(value){
+
+						case 0:
+							return '<font color=green>正常</font>';
+						case 1:
+							return '<font color=red>已删除</font>';
+					    case 2:
+					   	    return '<font color=red>冻结</font>';
+					   	default:
+					   		return '未知'+value
+
+					}
+						
+					}},
 					{field:'regtime',title:'注册时间',width:120}
 				]],
 				pagination:true,
@@ -174,41 +194,47 @@
 }
 
 
-
-function statusRenderer(idValue,value){
-switch(value){
-
-	case 0:
-		return '<font color=green>正常</font>';
-	case 1:
-		return '<font color=red>已删除</font>';
-    case 2:
-   	    return '<font color=red>冻结</font>';
-   	default:
-   		return '未知'+value
-
-}
- 
-}
-
-function updateSelect(){
-	var ids  = getCheckedValuesByContainer("c",$("#myTable"));
-	if(ids.length == 0){
-		window.parent.parent.jAlert("请选择记录", "系统提示");
-		return ;
-	};
-	
-	var cs = "";
-	for(var i=0;i<ids.length;i++){
-		if(i>0){
-			cs+=",";
+		function updateSelect(){
+			var ids  = getCheckedValuesByContainer("c",$("#myTable"));
+			if(ids.length == 0){
+				window.parent.parent.jAlert("请选择记录", "系统提示");
+				return ;
+			};
+			
+			var cs = "";
+			for(var i=0;i<ids.length;i++){
+				if(i>0){
+					cs+=",";
+				}
+				cs+=ids[i];
+			}
+			window.parent.showWindow('${cxp}/user/user_password.jsp?ids=' + cs ,'修改密码',100,200);
+		
 		}
-		cs+=ids[i];
-	}
-	window.parent.showWindow('${cxp}/user/user_password.jsp?ids=' + cs ,'修改密码',100,200);
-
-}
-
+		function query (){
+			// 获取查询参数
+			var queryParams = $('#datagrid').datagrid('options').queryParams;
+		
+			var status = $.trim($("#status").val());
+			var truename = $.trim($("#truename").val());
+			var username = $.trim($("#username").val());
+			 // condition对应action的实例变量condition
+			queryParams["status"] = status;
+			queryParams["truename"] = truename;
+			queryParams["username"] = username;
+			 // 重置查询页数为1
+			$('#datagrid').datagrid('options').pageNumber = 1;
+			 
+			var p = $('#datagrid').datagrid('getPager');
+			 
+			if (p){
+				$(p).pagination({
+					pageNumber:1
+					});
+				}
+			// 刷新列表数据
+			$('#datagrid').datagrid('reload');
+		}
 	 
 		 
 		</script>	

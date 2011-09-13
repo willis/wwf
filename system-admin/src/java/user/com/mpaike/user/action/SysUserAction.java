@@ -82,7 +82,8 @@ public class SysUserAction extends BaseAction {
 		sysUser.setTruename(ParamHelper.getStr(request, "truename", null));
 		sysUser.setUsername(ParamHelper.getStr(request, "username", null));
 		sysUser.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
-		List<SysUser> datas = getSysUserService().find(sysUser,this.pageToPageinfo(), this.getOrderby());
+		List<SysUser> datas = getSysUserService().find(sysUser,this.pageToPageinfo(),this.getOrderby());
+		
 		this.printPageList(datas);
 
 	}

@@ -175,7 +175,7 @@
 				}
 			// 刷新列表数据
 			$('#datagrid').datagrid('reload');
-			}
+	}
 
 
 

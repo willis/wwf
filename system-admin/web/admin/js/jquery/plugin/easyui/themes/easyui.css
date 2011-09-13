@@ -417,6 +417,7 @@
 	padding:3px 4px;
 	white-space:nowrap;
 	word-wrap:normal;
+	height:20px;//修改默认高度
 }
 .datagrid-header-check{
 	padding:3px 6px;
@@ -876,7 +877,7 @@ a.m-btn-plain-active{
 }
 .panel-body{
 	overflow:auto;
-	border:1px solid #99BBE8;
+	border:1px solid #C5C4CC;//更新边框颜色
 	border-top-width:0px;
 }
 .panel-body-noheader{

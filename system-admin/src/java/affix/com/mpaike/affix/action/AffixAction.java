@@ -23,7 +23,7 @@ import com.mpaike.util.file.FileUtil;
  * 通用附件上传
  * 
  * @author zhangchong
- * @email zhangchong@maxtech.com.cn
+ * @email zhangchong@.com.cn
  * @createDate Sep 9, 2011 2:55:21 PM
  * @description
  */

@@ -95,7 +95,8 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		if (sql.length() > 0)
 			sql.insert(0, " where ");
 		sql.insert(0, " from SysUser u ");
-		String select = " select u.*  SysUser";
+		System.out.println(sql.toString());
+		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
 		return this.findList(select + sql.toString(), params.toArray(), p, ob);
 	}
 
