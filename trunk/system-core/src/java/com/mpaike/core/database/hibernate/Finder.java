@@ -218,7 +218,11 @@ public class Finder {
 		if (projection.indexOf("select") == -1) {
 			return ROW_COUNT;
 		} else {
-			return projection.replace("select", "select count(") + ") ";
+			if(projection.indexOf("select new")!=-1){
+				return projection.replace("select new", "select count(") + ") ";
+			}else{
+				return projection.replace("select", "select count(") + ") ";
+			}
 		}
 	}
 
@@ -311,7 +315,7 @@ public class Finder {
 
 	public static void main(String[] args) {
 		Finder find = Finder
-				.create("select distinct p FROM BookType join fetch p");
+				.create("select new p FROM BookType join fetch p");
 		System.out.println(find.getRowCountHql());
 		System.out.println(find.getOrigHql());
 	}
