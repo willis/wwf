@@ -12,6 +12,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/member"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/bot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/image"/>
+<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/affix"/>
         <property name="context-root" value="system-admin"/>
         <property name="java-output-path" value="/system-admin/web/admin/WEB-INF/classes"/>
     </wb-module>

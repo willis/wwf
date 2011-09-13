@@ -12,16 +12,16 @@
 	window.onload = function () {
 		document.getElementById("username").focus();
 	};
-	var openerIsIndex=false;
-
-	if(opener!=null && !openerIsIndex){
-		opener.top.location= "${cxp}/login.jsp";
-		window.close();
-	}else if(top!=self){
-		top.location= "${cxp}/login.jsp";
-	}
-	}catch(e){
+	
+		var parentUrl = window.top.location.href;
+		parentUrl = parentUrl.substring(parentUrl.lastIndexOf("/")+1);
 		
+		
+		if(window.top && parentUrl!="login.jsp" && parentUrl!="") {
+			window.top.location.href="${cxp}/login.jsp";
+		}
+	}catch(e){
+		alert(e);
 	}
 </script>
 </head>
