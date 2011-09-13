@@ -52,7 +52,7 @@ public class OrderBy extends Condition {
 				}else{
 					sb.append(" desc");
 				}
-				if(i==(n-1)){
+				if(i!=(n-1)){
 					sb.append(",");
 				}
 			}
