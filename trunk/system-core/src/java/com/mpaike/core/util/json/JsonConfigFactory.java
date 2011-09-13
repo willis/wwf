@@ -16,6 +16,8 @@ public class JsonConfigFactory {
 	//private static final DateJsonValueProcessor sqldataValueProcessor = new DateJsonValueProcessor();
 	private static final TimestampDateJsonValueProcessor timestampValueProcessor = new TimestampDateJsonValueProcessor();
 	private static final HibernateJsonBeanProcessor hibernateJsonBeanProcessor = new HibernateJsonBeanProcessor();
+	
+	private static final HibernateJsonBeanProcessorMatcher hibernateJsonBeanProcessorMatcher = new HibernateJsonBeanProcessorMatcher();
 
 	private static JsonConfig jsonConfig;
 	private static JsonConfig timestampJsonConfig;
@@ -28,6 +30,8 @@ public class JsonConfigFactory {
 		jsonConfig.registerJsonValueProcessor(java.sql.Date.class, dataValueProcessor);
 		jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, dataValueProcessor);
 		jsonConfig.registerJsonBeanProcessor(org.hibernate.proxy.HibernateProxy.class,hibernateJsonBeanProcessor);
+		
+		jsonConfig.setJsonBeanProcessorMatcher(hibernateJsonBeanProcessorMatcher);
 
 
 		//set PropertyFilter
@@ -40,8 +44,9 @@ public class JsonConfigFactory {
 		timestampJsonConfig.registerJsonValueProcessor(java.util.Date.class, timestampValueProcessor);
 		timestampJsonConfig.registerJsonValueProcessor(java.sql.Date.class, timestampValueProcessor);
 		timestampJsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, timestampValueProcessor);
-		
 		timestampJsonConfig.registerJsonBeanProcessor(org.hibernate.proxy.HibernateProxy.class,hibernateJsonBeanProcessor);
+		
+		timestampJsonConfig.setJsonBeanProcessorMatcher(hibernateJsonBeanProcessorMatcher);
 
 		//set PropertyFilter
 		timestampJsonConfig.setJsonPropertyFilter(new NullPropertyFilter());
