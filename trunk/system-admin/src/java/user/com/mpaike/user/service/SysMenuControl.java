@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.util.app.AppProps;
 import com.mpaike.util.app.ApplictionContext;
 
 
-@SuppressWarnings("unchecked")
 public class SysMenuControl {
 
 	private List<SysMenu> tree = null;
