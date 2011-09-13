@@ -35,20 +35,6 @@ public class HibernateJsonBeanProcessor implements JsonBeanProcessor {
 		typeMap.put(java.sql.Timestamp.class.getName(), "true");
 
 	}
-	
-	private int contain;
-	private Map<String,Boolean> filterData;
-	private Map<String, String> hibernateJsonFiled;
-	
-//	public HibernateJsonBeanProcessor(int contain,Map<String,Boolean> filterData,Map<String, String> lazyProperty){
-//		this.contain = contain;
-//		this.hibernateJsonFiled = lazyProperty;
-//		if(filterData==null){
-//			filterData = EMPTY_MAP;
-//		}else{
-//			this.filterData = filterData;
-//		}
-//	}
 
 	public JSONObject processBean(Object obj, JsonConfig jsonConfig) {
 		JSONObject jsonObject = null;
@@ -90,11 +76,11 @@ public class HibernateJsonBeanProcessor implements JsonBeanProcessor {
 					fieldValueObject = null;
 				}
 				if(fieldValueObject!=null){
-					if(isLazy(fieldValueObject.getClass())){
+//					if(isLazy(fieldValueObject.getClass())){
 						lazyObject.element(pd.getName(), parseLazyObject(fieldValueObject,jsonConfig,level+1));
-					}else{
-						lazyObject.element(pd.getName(), fieldValueObject);
-					}
+//					}else{
+//						lazyObject.element(pd.getName(), fieldValueObject);
+//					}
 				}
 			}
 		}
