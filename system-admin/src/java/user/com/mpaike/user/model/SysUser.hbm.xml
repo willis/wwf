@@ -116,7 +116,7 @@
 			not-null="false">
 			<meta attribute="field-description">用户状态</meta>
 		</property>
-		<set name="sysGroups" lazy="true" inverse="true"
+		<set name="sysGroups" lazy="false" inverse="true"
 			table="SYSUSERTOSYSGROUP">
 			<key>
 				<column name="sysuserid" />
@@ -124,7 +124,7 @@
 			<many-to-many column="sysgroupid"
 				class="com.mpaike.user.model.SysGroup" />
 		</set>
-		<set name="sysUserToSysRoles" lazy="true" inverse="true">
+		<set name="sysUserToSysRoles" lazy="false" inverse="true">
 			<key>
 				<column name="sysuserid" />
 			</key>
