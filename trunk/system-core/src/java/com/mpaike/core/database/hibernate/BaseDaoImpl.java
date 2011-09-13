@@ -603,6 +603,11 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	 */
 	protected int updateAndDelBeanForSQL(String sql, Object... value) {
 		Query query = this.getSession().createQuery(sql);
+		if(value!=null){
+			for(int i=0,n=value.length;i<n;i++){
+				query.setParameter(i+1, value[i]);
+			}
+		}
 		return new Integer(query.executeUpdate());
 	}
 	
