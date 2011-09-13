@@ -1,8 +1,10 @@
 package com.mpaike.user.action;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fins.gt.server.GridServerHandler;
+import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 import com.mpaike.user.service.SysMenuControl;
 import com.mpaike.user.service.SysRoleService;
@@ -76,33 +78,29 @@ public class SysUserAction extends BaseAction {
 	}
 
 	public void userList() {
-
-		GridServerHandler handler = new GridServerHandler(request, response);
 		sysUser = new SysUser();
 		sysUser.setTruename(ParamHelper.getStr(request, "truename", null));
 		sysUser.setUsername(ParamHelper.getStr(request, "username", null));
 		sysUser.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
-		getSysUserService().listToGrid(handler, sysUser);
-		handler.printLoadResponseText();
+		List<SysUser> datas = getSysUserService().find(sysUser,this.pageToPageinfo(), this.getOrderby());
+		this.printPageList(datas);
 
 	}
 
 	public void getNotCheckRoles() {
 
-		GridServerHandler handler = new GridServerHandler(request, response);
+
 		sysUser = new SysUser();
 		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
-		getSysUserService().listNotCheckRolesToGrid(handler, sysUser);
-		handler.printLoadResponseText();
+		List<SysRole> datas =getSysUserService().listNotCheckRolesToGrid(sysUser,this.pageToPageinfo());
+		this.printPageList(datas);
 	}
 
 	public void getCheckRoles() {
-
-		GridServerHandler handler = new GridServerHandler(request, response);
 		sysUser = new SysUser();
 		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
-		getSysUserService().listCheckRolesToGrid(handler, sysUser);
-		handler.printLoadResponseText();
+		List<SysRole> datas =getSysUserService().listCheckRolesToGrid(sysUser,this.pageToPageinfo());
+		this.printPageList(datas);
 	}
 
 	public void addSysRoles() {

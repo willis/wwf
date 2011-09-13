@@ -67,46 +67,9 @@
 			</td></tr>
 	
 			</table>
-
-				<table class="table" id="senfe" >
-					<thead>
-						<tr id="myHead">
-							<th style="width: 80px;">
-								<label class="checkbox">
-									<input type="checkbox" name="c_all"
-										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
-								</label>
-							</th>
-							<th style="width: 100px;">
-								操作
-							</th>
-							<th>
-								用户名
-							</th>
-							<th>
-								姓名
-							</th>
-							<th>
-								性别
-							</th>
-							
-							<th>
-								状态
-							</th>
-							<th>
-								注册时间
-							</th>
-							 
-						</tr>
-					</thead>
-					<tbody id="myTable" >
-					
-						 
-					</tbody>
+				<table id="datagrid" >
 				</table>
-	
-					
+		
 					</td>
 					<td id="middleRight">
 					</td>
@@ -123,48 +86,44 @@
 		</table>
 			</form>
 		<script>
-
-		 var myTable1 =  new MaxTable();
-		 myTable1.initialize(
-		  	{
-		  		table:'myTable',
-		  		loading:'loading',
-		  		id:'id',
-		  		queryUrl:'sysUser!userList.action',
-		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
-		  		{id:'id',renderer:editRenderer},
-		  		{id:'username'},
-		  		{id:'truename'},
-		  		{id:'sex'},
-		  		{id:'status',renderer:statusRenderer},
-		  		{id:'regtime',renderer:regtimeRenderer}
-		  		]
-		  	}
-		  )
-		  
-	       myTable1.initSortHead(
-	      {head:'myHead',cells:[{index:1,name:'id'},{index:2,name:'username'},{index:3,name:'truename'},{index:4,name:'sex'},{index:5,name:'status'},{index:6,name:'regtime'}]}
-	      );
-	    
-	     function query(){
-	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({username:$("#username").val(),truename:$("#truename").val(),status:$("#status").val()});
-	     } 	
-	     function editRenderer(idValue,value,record){
-	    	//record["id"]
-	     	var txt="";
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
-	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
-	     	return txt;
-	     }	 
-	      function regtimeRenderer(idValue,value){
-	     	if(value!=null)
-	     	return value.substring(0,value.length-2);
-	     	else
-	     	return '';
-	     }	   
-		 query();
-		 
+		$(function(){
+			$('#datagrid').datagrid({
+				nowrap: false,
+				striped: true,
+				collapsible:true,
+				fitColumns:true,
+				url:'sysUser!userList.action',
+				sortName: 'id',
+				sortOrder: 'desc',
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'操作',field:'id',width:80,sortable:true}
+				]],
+				columns:[[
+					{field:'username',title:'用户名',width:120},
+					{field:'truename',title:'姓名',width:120,sortable:true},
+					{field:'sex',title:'性别',width:120},
+					{field:'status',title:'状态',width:120},
+					{field:'regtime',title:'注册时间',width:120}
+				]],
+				pagination:true,
+				rownumbers:true
+			
+			});
+			var p = $('#datagrid').datagrid('getPager');
+			if (p){
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						
+					}
+				});
+			}
+		});
+	
+		
 
     function removeSelect(value){
 	var ids  = getCheckedValuesByContainer("c",$("#myTable"));

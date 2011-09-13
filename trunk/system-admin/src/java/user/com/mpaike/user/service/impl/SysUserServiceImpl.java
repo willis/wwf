@@ -2,174 +2,84 @@ package com.mpaike.user.service.impl;
 
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.fins.gt.server.GridServerHandler;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
+import com.mpaike.sys.service.impl.BaseService;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
-import com.mpaike.user.model.SysUserToSysRole;
 import com.mpaike.user.service.SysUserService;
-import com.mpaike.util.MD5;
-import com.mpaike.util.ParamHelper;
-import com.mpaike.util.dao.GtGridCommonDao;
 
 
-@SuppressWarnings("unchecked")
-public class SysUserServiceImpl extends GtGridCommonDao implements
-		SysUserService {
-
+public class SysUserServiceImpl extends BaseService implements SysUserService {
+	@Override
 	public boolean save(SysUser sysUser) {
-
+		
 		if ((sysUser.getId() == null)
-				&& (super.count(" from SysUser u where u.username=? ",
-						new Object[] { sysUser.getUsername() }).intValue() > 0)) {
+				&& (this.getSysUserDao().countByProperty("username", new Object[] { sysUser.getUsername() }) > 0)) {
 			return false;
 		} else {
-			super.save(sysUser);
+			this.getSysUserDao().save(sysUser);
 			return true;
 		}
+		
 	}
 
-	public GridServerHandler listToGrid(GridServerHandler handler, SysUser user) {
 
-		StringBuffer sql = new StringBuffer();
-		List params = new ArrayList();
-		createSQLWhere(user, sql, params);
 
-		if (sql.length() > 0)
-			sql.insert(0, " where ");
-		sql.insert(0, " from SysUser u ");
-		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
-
-		return super.list(handler, SysUser.class, sql.toString(), select
-				+ sql.toString(), params.toArray());
-	}
-
-	public void createSQLWhere(SysUser user, StringBuffer sql, List params) {
-
-		if (user.getUsername() != null
-				&& !ParamHelper.isEmpty(user.getUsername())) {
-			if (sql.length() > 0)
-				sql.append(" and ");
-			sql.append(" u.username like ? ");
-			params.add((new StringBuilder("%")).append(
-					user.getUsername().trim()).append("%").toString());
-		}
-		if (user.getTruename() != null
-				&& !ParamHelper.isEmpty(user.getTruename())) {
-			if (sql.length() > 0)
-				sql.append(" and ");
-			sql.append(" u.truename like ? ");
-			params.add((new StringBuilder("%")).append(
-					user.getTruename().trim()).append("%").toString());
-		}
-		if (user.getStatus() != null && user.getStatus().intValue() != -1) {
-			if (sql.length() > 0)
-				sql.append(" and ");
-			sql.append((new StringBuilder(" u.status= ")).append(
-					user.getStatus()).toString());
-		}
-
-	}
-
+	@Override
 	public SysUser get(Long id) {
 
-		return (SysUser) super.get(SysUser.class, id);
+		return this.getSysUserDao().get(id);
 	}
-
+	@Override
 	public void remove(Long[] id, Long type) {
-		for (int i = 0, n = id.length; i < n; i++) {
-
-			super.getHibernateTemplate().bulkUpdate("update SysUser  u set u.status=? where u.id=?",new Object[]{type,id[i]});
 		
-		}
-
+		this.getSysUserDao().remove(id, type);
 	}
-
+	@Override
 	public void add(SysUser sysUser) {
-		super.add(sysUser);
+		this.getSysUserDao().save(sysUser);
 	}
-
+	@Override
 	public void changePassword(Long[] id, String password) {
-
-		for (int i = 0, n = id.length; i < n; i++) {
-			super.getHibernateTemplate().bulkUpdate("update SysUser u set u.password=? where u.id=?",new Object[]{MD5.toMD5(password),id[i]});
-			
-		}
+		this.getSysUserDao().changePassword(id, password);
+	}
+	@Override
+	public List<SysRole> listNotCheckRolesToGrid(SysUser sysuser, Pagination p){
+		return this.getSysUserDao().listNotCheckRolesToGrid(sysuser, p);
 	}
 
-	public GridServerHandler listNotCheckRolesToGrid(GridServerHandler handler,
-			SysUser user) {
-		StringBuffer sql = new StringBuffer();
-		sql
-				.insert(
-						0,
-						"  from SysRole u where u.id not in(  select u.sysRole.id from SysUserToSysRole u where u.sysUser.id= "
-								+ user.getId() + ")");
-		String select = " select new SysRole(u.id,u.name,u.describe) ";
-		return super.list(handler, SysRole.class, sql.toString(), select
-				+ sql.toString());
-	}
-
-	public GridServerHandler listCheckRolesToGrid(GridServerHandler handler,
-			SysUser user) {
-		StringBuffer sql = new StringBuffer();
-
-		sql.insert(0, "  from SysUserToSysRole u where u.sysUser.id= "
-				+ user.getId());
-
-		String select = " select new SysRole(u.sysRole.id,u.sysRole.name,u.sysRole.describe) ";
-		return super.list(handler, SysRole.class, sql.toString(), select
-				+ sql.toString());
-	}
-
-	public void addSysRole(SysUser sysUser, SysRole sysRole) {
-		List l1 = super.find(
-				"from SysUserToSysRole s where s.sysUser=? and s.sysRole=?",
-				new Object[] { sysUser, sysRole }, -1, -1);
-		if (l1.size() == 0) {
-
-			SysUserToSysRole info = new SysUserToSysRole();
-			info.setSysRole(sysRole);
-			info.setSysUser(sysUser);
-			super.save(info);
-		}
-	}
-
-	public SysUser loginUserByPassword(String username, String password) {
-		List beans = super
-				.find(
-						" from SysUser where username=? and password=? and status=? ",
-						new Object[] { username, password, Long.valueOf(0) },
-						-1, -1);
-		if (beans.isEmpty())
-			return null;
-		return (SysUser) beans.get(0);
-	}
 	
-	  public List<SysRole> getSysRoles(SysUser sysUser)
-	  {
-	    List sysRoles = new ArrayList();
+	@Override
+	public void addSysRole(SysUser sysUser, SysRole sysRole) {
+		this.getSysUserDao().addSysRole(sysUser, sysRole);
+	}
+	@Override
+	public SysUser loginUserByPassword(String username, String password) {
+		return this.getSysUserDao().loginUserByPassword(username, password);
+	}
+	@Override
+	public List<SysRole> getSysRoles(SysUser sysUser)
+	{
+		 return this.getSysUserDao().getSysRoles(sysUser);
+	}
+	@Override
+	public void removeSysRole(SysUser sysUser, SysRole sysRole)
+	{
+	   this.getSysUserDao().removeSysRole(sysUser, sysRole);
+	}
 
-	    List l1 = super.find("from SysUserToSysRole s where s.sysUser=?", new Object[] { sysUser }, -1, -1);
-	    for (int i = 0; i < l1.size(); i++)
-	    {
-	      SysUserToSysRole sysUserToRole = (SysUserToSysRole)l1.get(i);
-	      sysUserToRole.getSysRole().getSysMenus().size();//
-	      sysUserToRole.getSysRole().getSysPopedoms().size();//
-	      sysRoles.add(sysUserToRole.getSysRole());
-	     
-	    }
+	@Override
+	public List<SysUser> find(SysUser sysuser, Pagination p, OrderBy ob) {
+		
+		return this.getSysUserDao().find(sysuser, p, ob);
+	}
 
-	    return sysRoles;
-	  }
-	  public void removeSysRole(SysUser sysUser, SysRole sysRole)
-	  {
-	    List l1 = super.find("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?", new Object[] { sysUser, sysRole }, -1, -1);
-	    for (int i = 0; i < l1.size(); i++)
-	    {
-	      super.remove(l1.get(i));
-	    }
-	  }
+	@Override
+	public List<SysRole> listCheckRolesToGrid(SysUser sysuser, Pagination p) {
+		// TODO Auto-generated method stub
+		return this.getSysUserDao().listCheckRolesToGrid(sysuser, p);
+	}
 }

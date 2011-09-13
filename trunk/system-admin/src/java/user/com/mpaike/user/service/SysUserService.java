@@ -3,6 +3,8 @@ package com.mpaike.user.service;
 import java.util.List;
 
 import com.fins.gt.server.GridServerHandler;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 
@@ -21,14 +23,11 @@ public interface SysUserService {
 
 	public void changePassword(Long[] id, String password);
 
-	public GridServerHandler listToGrid(GridServerHandler gridserverhandler,
-			SysUser sysuser);
+	public List<SysUser> find(SysUser sysuser,Pagination p, OrderBy ob);
 
-	public GridServerHandler listNotCheckRolesToGrid(
-			GridServerHandler paramGridServerHandler, SysUser paramSysUser);
+	public List<SysRole> listNotCheckRolesToGrid(SysUser sysuser, Pagination p);
 
-	public GridServerHandler listCheckRolesToGrid(
-			GridServerHandler paramGridServerHandler, SysUser paramSysUser);
+	public List<SysRole> listCheckRolesToGrid(SysUser sysuser, Pagination p);
 
 	public void addSysRole(SysUser paramSysUser, SysRole paramSysRole);
 
