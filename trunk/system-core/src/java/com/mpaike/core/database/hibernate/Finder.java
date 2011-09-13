@@ -219,7 +219,7 @@ public class Finder {
 			return ROW_COUNT;
 		} else {
 			if(projection.indexOf("select new")!=-1){
-				return projection.replace("select new", "select count(") + ") ";
+				return ROW_COUNT;
 			}else{
 				return projection.replace("select", "select count(") + ") ";
 			}
