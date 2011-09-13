@@ -44,7 +44,7 @@ public class OrderBy extends Condition {
 	
 	public static String asOrdersString(OrderBy[] orderBys) {
 		if (orderBys != null) {
-			StringBuilder sb = new StringBuilder(" Order by ");
+			StringBuilder sb = new StringBuilder(" order by ");
 			for (int i = 0,n=orderBys.length; i < n; i++) {
 				sb.append(orderBys[i].getField());
 				if(orderBys[i].orderType==OrderType.ASC){
