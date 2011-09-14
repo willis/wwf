@@ -1,5 +1,7 @@
 package com.mpaike.image.model;
 
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
+
 
 public class Picture implements  java.io.Serializable
 {
@@ -7,6 +9,7 @@ public class Picture implements  java.io.Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private Long userId;
 	private String photoMd5;
