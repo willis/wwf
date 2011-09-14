@@ -2,12 +2,20 @@ package com.mpaike.core.database.hibernate;
 
 import static org.hibernate.EntityMode.POJO;
 
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
@@ -19,12 +27,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Example.PropertySelector;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.Example.PropertySelector;
 import org.hibernate.impl.CriteriaImpl;
 import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.transform.ResultTransformer;
@@ -50,7 +58,38 @@ import com.mpaike.core.util.page.RecordInfo;
 public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	protected Logger log = LoggerFactory.getLogger(getClass());
 
+	private Class<T> persistentClass;
+	private Set<Field> properitesSet;
+	protected Map<String,PropertyDescriptor> propertyDescriptorMap;
+	protected String _key;
+	
 	protected SessionFactory sessionFactory;
+	
+	
+
+	@SuppressWarnings("unchecked")
+	public BaseDaoImpl() {
+
+		java.lang.reflect.Type t = (java.lang.reflect.Type)getClass().getGenericSuperclass();
+        if (t instanceof ParameterizedType) {
+        	java.lang.reflect.Type[] p = ((ParameterizedType) t).getActualTypeArguments();
+            this.persistentClass = (Class<T>) p[0];
+
+            propertyDescriptorMap = MyBeanUtils.describe(persistentClass);
+            properitesSet = MyBeanUtils.propertysSet(persistentClass);
+			
+			Iterator<Field> iteratorKey = properitesSet.iterator();
+			Field field;
+			Annotation anno;
+			while(iteratorKey.hasNext()){
+				field = iteratorKey.next();
+				anno = field.getAnnotation(AnnotationObjectKey.class);
+				if(anno!=null){
+					_key = (String)field.getName();
+				}
+			}
+        }
+	}
 
 	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -75,6 +114,26 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
 	public Object saveOrUpdate(Object entity) {
 		Assert.notNull(entity);
+		if(_key!=null){
+			try {
+				if(MyBeanUtils.getFieldValue(entity, _key)==null){
+					PropertyDescriptor pd = propertyDescriptorMap.get(_key);
+					String type = pd.getPropertyType().getName();
+					if(type.endsWith("Long.class")){
+							invokeMethod(pd.getWriteMethod(),entity,new Object[]{SequenceManager.nextID(100)});
+					}
+				}
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		getSession().saveOrUpdate(entity);
 		return entity;
 	}
@@ -375,7 +434,6 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		return findByCriteria(crit,p,projection,orders);
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	protected Pagination findByCriteria(Criteria crit, Pagination p, Projection projection, Order... orders) {
 		int totalCount = ((Number) crit.setProjection(Projections.rowCount())
@@ -622,16 +680,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		return criteria;
 	}
 
-	private Class<T> persistentClass;
 
-	@SuppressWarnings("unchecked")
-	public BaseDaoImpl() {
-        java.lang.reflect.Type t = (java.lang.reflect.Type)getClass().getGenericSuperclass();
-        if (t instanceof ParameterizedType) {
-        	java.lang.reflect.Type[] p = ((ParameterizedType) t).getActualTypeArguments();
-            this.persistentClass = (Class<T>) p[0];
-        }
-	}
 
 	public Class<T> getPersistentClass() {
 		return persistentClass;
@@ -668,5 +717,27 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 							.isBlank((String) object));
 		}
 	}
+	
+    /** This just catches and wraps IllegalArgumentException. */
+    private Object invokeMethod(
+                        Method method, 
+                        Object bean, 
+                        Object[] values) 
+                            throws
+                                IllegalAccessException,
+                                InvocationTargetException {
+        try {
+            
+            return method.invoke(bean, values);
+        
+        } catch (IllegalArgumentException e) {
+            
+            log.error("Method invocation failed.", e);
+            throw new IllegalArgumentException(
+                "Cannot invoke " + method.getDeclaringClass().getName() + "." 
+                + method.getName() + " - " + e.getMessage());
+            
+        }
+    }
 
 }
