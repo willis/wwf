@@ -60,7 +60,6 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
 	private Class<T> persistentClass;
 	private Set<Field> properitesSet;
-	protected Map<String,PropertyDescriptor> propertyDescriptorMap;
 	protected String _key;
 	
 	protected SessionFactory sessionFactory;
@@ -75,7 +74,6 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
         	java.lang.reflect.Type[] p = ((ParameterizedType) t).getActualTypeArguments();
             this.persistentClass = (Class<T>) p[0];
 
-            propertyDescriptorMap = MyBeanUtils.describe(persistentClass);
             properitesSet = MyBeanUtils.propertysSet(persistentClass);
 			
 			Iterator<Field> iteratorKey = properitesSet.iterator();
@@ -115,23 +113,11 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	public Object saveOrUpdate(Object entity) {
 		Assert.notNull(entity);
 		if(_key!=null){
-			try {
-				if(MyBeanUtils.getFieldValue(entity, _key)==null){
-					PropertyDescriptor pd = propertyDescriptorMap.get(_key);
-					String type = pd.getPropertyType().getName();
-					if(type.endsWith("Long.class")){
-							invokeMethod(pd.getWriteMethod(),entity,new Object[]{SequenceManager.nextID(100)});
-					}
+			Object obj = null;
+			if((obj=MyBeanUtils.getSimpleProperty(entity, _key))==null){
+				if(obj.getClass().getName().endsWith("Long.class")){
+					MyBeanUtils.setSimpleProperty(entity, _key, SequenceManager.nextID(100));
 				}
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
 		getSession().saveOrUpdate(entity);
