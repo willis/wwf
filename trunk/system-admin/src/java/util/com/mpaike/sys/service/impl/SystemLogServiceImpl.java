@@ -2,28 +2,27 @@ package com.mpaike.sys.service.impl;
 
 import java.util.List;
 
+import com.mpaike.core.database.hibernate.Finder;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
+import com.mpaike.sys.dao.ISystemLogDao;
 import com.mpaike.sys.model.SystemLog;
 import com.mpaike.sys.service.SystemLogService;
-import com.mpaike.util.dao.CommonDao;
 import com.mpaike.util.pager.Pager;
 
 
 @SuppressWarnings("unchecked")
-public  class SystemLogServiceImpl extends CommonDao implements  SystemLogService {
+public  class SystemLogServiceImpl extends BaseService implements  SystemLogService {
 
 	public void add(SystemLog log) {
 		
-		 super.add(log);
+		getSysLogDao().save(log);
 	}
 
-	public int count() {
-		
-		return super.count(" from SystemLog");
-	}
 
-	public List<SystemLog> find(Pager pager) {
-		
-		return super.find(" from SystemLog", " from SystemLog s order by s.createat desc", pager);
+	@Override
+	public List<SystemLog> find(Pagination pager) {
+		return getSysLogDao().findAllPagination(pager, OrderBy.desc("createat"));
 	}
 
 

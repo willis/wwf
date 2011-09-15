@@ -2,8 +2,8 @@ package com.mpaike.sys.service;
 
 import java.util.List;
 
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.sys.model.SystemLog;
-import com.mpaike.util.pager.Pager;
 
 
 public interface SystemLogService {
@@ -12,8 +12,6 @@ public interface SystemLogService {
 	
 	public void add(SystemLog log);
 	
-	public List<SystemLog> find(Pager pager);
-
-
+	public List<SystemLog> find(Pagination pager);
 
 }

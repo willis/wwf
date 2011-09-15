@@ -42,7 +42,7 @@ public class BaseAction extends ActionSupport {
     // easyUI前台传过来的排序方式(desc?asc)，故必须以此命名，原因同上
     private String order;
     
-    protected Pagination pageinfo;
+    protected Pagination pageinfo = new Pagination();
     protected OrderBy orderby;
 
 	/**
@@ -144,6 +144,13 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
+	public Pagination getPageinfo() {
+		return pageinfo;
+	}
+
+	public void setPageinfo(Pagination pageinfo) {
+		this.pageinfo = pageinfo;
+	}
 
 	public void setPage(int page) {
 		this.page = page;

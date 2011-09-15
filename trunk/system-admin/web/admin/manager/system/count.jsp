@@ -5,7 +5,7 @@
   
     <title>系统日志</title>
 	<%@ include file="/include/taglibs.jsp"%>
-
+	<script src="${cxp}/js/page.js?s"></script>
   </head>
   
   <body>
@@ -81,10 +81,17 @@
 								</s:iterator>
 								<tr>
 									<td colspan="6">
-									<pager:pageForm name="myPage" action="systemLog!logList.action" method="post">
+									<script language="JavaScript">
+										<!--
+										var pg = new showPages('pg');
+										pg.pageCount = <s:property value="pageinfo.totalPage"/>;
+										pg.totalCount = <s:property value="pageinfo.totalCount"/>;
+										pg.pageSize = <s:property value="pageinfo.pageSize"/>;
+										pg.argName = 'pageinfo.pageNo';
+										pg.printHtml(2);
+										//-->
+									</script>
 									
-							
-									</pager:pageForm>
 							</td>
 								</tr>
 								</tbody>

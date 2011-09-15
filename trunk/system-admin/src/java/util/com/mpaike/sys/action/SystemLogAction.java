@@ -31,10 +31,7 @@ public class SystemLogAction  extends BaseAction {
 	}
 	
 	public String logList() {
-		
-		Pager page = super.getPager(request);
-		logList = getSystemService().find(page);
-		request.setAttribute("myPage", page);
+		logList = getSystemService().find(pageinfo);
 		return "log_list";
 	}
 	public int getCount() {
