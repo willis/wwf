@@ -109,8 +109,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public T save(T entity) {
-		Assert.notNull(entity);
+	public Object save(Object entity) {
 		Assert.notNull(entity);
 		if(_key!=null){
 		

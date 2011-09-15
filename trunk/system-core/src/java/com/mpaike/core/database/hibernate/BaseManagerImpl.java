@@ -121,7 +121,7 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 		return updateByUpdater(Updater.create(entity));
 	}
 
-	public T save(T entity) {
+	public Object save(Object entity) {
 		return dao.save(entity);
 	}
 
