@@ -85,7 +85,7 @@ public interface BaseManager<T extends Serializable> {
 	 *            实体对象
 	 * @return 操作信息
 	 */
-	public T save(T entity);
+	public Object save(Object entity);
 
 	public Object update(Object o);
 

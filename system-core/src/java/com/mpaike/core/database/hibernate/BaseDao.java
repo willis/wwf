@@ -110,7 +110,7 @@ public interface BaseDao<T extends Serializable> {
 	 *            实体对象
 	 * @return 实体对象
 	 */
-	public T save(T entity);
+	public Object save(Object entity);
 
 	/**
 	 * 更新对象
