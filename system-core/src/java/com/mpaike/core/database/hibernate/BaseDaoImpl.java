@@ -41,6 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+import com.mpaike.core.exception.WWFException;
 import com.mpaike.core.util.MyBeanUtils;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.core.util.page.RecordInfo;
@@ -70,6 +71,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	public BaseDaoImpl() {
 
 		java.lang.reflect.Type t = (java.lang.reflect.Type)getClass().getGenericSuperclass();
+		
         if (t instanceof ParameterizedType) {
         	java.lang.reflect.Type[] p = ((ParameterizedType) t).getActualTypeArguments();
             this.persistentClass = (Class<T>) p[0];
@@ -91,6 +93,8 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 					keyType = field.getType().getName();
 				}
 			}
+        }else{
+        		throw new WWFException("类型错误:"+t);
         }
 	}
 
