@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mpaike.core.util.ApplicationContextUtil;
 
 public class SequenceManager {
 
@@ -46,8 +46,9 @@ public class SequenceManager {
 	 */
 	private int blockSize;
 
-	@Autowired
-	private DataSource dataSource;
+
+	private DataSource dataSource = (DataSource) ApplicationContextUtil
+	.getInstance().getBean("dataSource");
 
 	/**
 	 * 取得多例

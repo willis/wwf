@@ -9,7 +9,7 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.XMLOutputter;
 /**
- * xml工具类
+ * xml
  * @author niko
  * @version 1.0
  */
@@ -89,7 +89,7 @@ public class XmlForJdomUtil {
 			return elmt;
 		}
 
-		//element值为空，设置为""
+		//
 		if (elementValue == null) {
 			elementValue = "";
 		}
