@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -56,8 +57,10 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	protected Logger log = LoggerFactory.getLogger(getClass());
 
 	private Class<T> persistentClass;
-	private Set<Field> properitesSet;
+	private Map<String,Field> properitesMap;
+	//private Set<Field> properitesSet;
 	protected String _key;
+	protected String keyType;
 	
 	protected SessionFactory sessionFactory;
 	
@@ -71,7 +74,11 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
         	java.lang.reflect.Type[] p = ((ParameterizedType) t).getActualTypeArguments();
             this.persistentClass = (Class<T>) p[0];
 
-            properitesSet = MyBeanUtils.propertysSet(persistentClass);
+            Set<Field> properitesSet = MyBeanUtils.propertysSet(persistentClass);
+            properitesMap = new HashMap<String,Field>();
+            for(Field f : properitesSet){
+            	properitesMap.put(f.getName(), f);
+            }
 			
 			Iterator<Field> iteratorKey = properitesSet.iterator();
 			Field field;
@@ -80,7 +87,8 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 				field = iteratorKey.next();
 				anno = field.getAnnotation(AnnotationObjectKey.class);
 				if(anno!=null){
-					_key = (String)field.getName();
+					_key = field.getName();
+					keyType = field.getType().getName();
 				}
 			}
         }
@@ -97,6 +105,16 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
 	public T save(T entity) {
 		Assert.notNull(entity);
+		Assert.notNull(entity);
+		if(_key!=null){
+		
+			if(MyBeanUtils.getSimpleProperty(entity, _key)==null){
+				
+				if(keyType.equals("java.lang.Long")){
+					MyBeanUtils.setSimpleProperty(entity, _key, SequenceManager.nextID(100));
+				}
+			}
+		}
 		getSession().save(entity);
 		return entity;
 	}
@@ -110,9 +128,9 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 	public Object saveOrUpdate(Object entity) {
 		Assert.notNull(entity);
 		if(_key!=null){
-			Object obj = null;
-			if((obj=MyBeanUtils.getSimpleProperty(entity, _key))==null){
-				if(obj.getClass().getName().endsWith("Long.class")){
+		
+			if(MyBeanUtils.getSimpleProperty(entity, _key)==null){
+				if(keyType.equals("java.lang.Long")){
 					MyBeanUtils.setSimpleProperty(entity, _key, SequenceManager.nextID(100));
 				}
 			}
