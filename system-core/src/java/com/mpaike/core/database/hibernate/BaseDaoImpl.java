@@ -93,8 +93,10 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 					keyType = field.getType().getName();
 				}
 			}
-        }else{
-        		throw new WWFException("类型错误:"+t);
+        }
+
+        if(persistentClass==null){
+        		throw new WWFException("类型错误 (泛型构造错误，请在BaseDaoImpl<T>方式继承): "+this.getClass().getName());
         }
 	}
 
