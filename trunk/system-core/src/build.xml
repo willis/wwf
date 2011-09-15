@@ -39,7 +39,11 @@
     	
         <echo>|====== App classes ======|</echo>
     	<antcall target="apps.jar" />
-
+        <copy todir="../../system-admin/web/admin/WEB-INF/lib/" overwrite="true">
+            <fileset dir="${dir.build.jar}">
+            	
+            </fileset>
+        </copy>
     </target>
 	
 	
