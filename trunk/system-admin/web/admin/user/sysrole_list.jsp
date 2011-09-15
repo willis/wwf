@@ -5,14 +5,6 @@
 <%@ include file="/include/jquery.jsp"%>
 		<head>
 		<title>角色维护</title>
-
-		<style type="text/css">
-			label.checkbox {
-				cursor: pointer;
-			}
-		</style>
-		
-		
 	</head>
 	<body>
 	<form action="${cxp}/user/sysRole!list.action.action" method="post" >
@@ -61,29 +53,8 @@
 	
 			</table>
 
-				<table class="table" id="senfe" >
-					<thead>
-						<tr>
-							<th>
-								
-							</th>
-							<th >
-								操作
-							</th>
-							<th>
-								角色名称
-							</th>
-							<th>
-								角色描述
-							</th>
-							
-							 
-						</tr>
-					</thead>
-					<tbody id="myTable" >
-					
-						 
-					</tbody>
+				<table class="table" id="datagrid" >
+	
 				</table>
 	
 					
@@ -103,23 +74,47 @@
 		</table>
 			</form>
 		<script>
+		$(function(){
+			$('#datagrid').datagrid({
+				nowrap: false,
+				striped: true,
+				collapsible:true,
+				fitColumns:true,
+				url:'sysRole!list.action',
+				sortName: 'id',
+				sortOrder: 'desc',
+				remoteSort: true,
+				loadMsg:'数据加载中，请稍后......',
+				idField:'id',
+				frozenColumns:[[
+				                {field:'ck',checkbox:true},
+				                {title:'操作',field:'id',width:180,formatter:function(value,rec){
+				        	     	var txt="";
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysRole!getSysRoleInfo.action?id="+value+"\",\"修改\",200,400)'>编辑</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysrole_popedom.jsp?id="+value+"\",\"配置权限\",400,600)'>配置权限</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysRole!listSysMenu.action?roleId="+value+"\",\"配置系统菜单\",400,600)'>配置系统菜单</a>"
+				        	     	return txt;
+				                	
+				                }}
+				]],
+				columns:[[
+					{field:'name',title:'角色名称',width:120},
+					{field:'describe',title:'角色描述',width:120,sortable:true}
+				]],
+				pagination:true,
+				rownumbers:true
+			
+			});
+			var p = $('#datagrid').datagrid('getPager');
+			if (p){
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						
+					}
+				});
+			}
+		});
 
-		 var myTable1 =  new MaxTable();
-		 myTable1.initialize(
-		  	{
-		  		table:'myTable',
-		  		loading:'loading',
-		  		id:'id',
-		  		queryUrl:'sysRole!list.action',
-		  		headerColumns:[{id:'id',name:'操作',renderer:IdRadioRenderer},
-		  		{id:'id',name:'操作',renderer:editRenderer},
-		  		{id:'name',name:'角色名称'},
-		  		{id:'describe',name:'角色描述'}
-		  		]
-		  	}
-		  )
-		  
-	      
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;
@@ -133,7 +128,7 @@
 	     	return txt;
 	     }	 
 	     
-		 query();
+
 		 
 
     function removeSelect(){

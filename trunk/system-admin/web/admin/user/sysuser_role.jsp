@@ -7,21 +7,18 @@
 	<head>
 		<title>网站后台</title>
 
-		<style type="text/css">
-			label.checkbox {
-				cursor: pointer;
-			}
-		</style>
+		
 	</head>
 	<body >
 
-		<table  >
-		<tr><td  id="loading" colspan="3"></td></tr>
+		<table >
+		<tr><td colspan="3"></td></tr>
 		
 		<tr><td align="center" >当前可添加的角色</td><td>&nbsp;</td><td align="center">已添加角色</td></tr>
 		<tr><td valign="top">
 		<form>
-				<table class="table" id="noCheckTable">
+				<table id="noCheckTable" width="400px;">
+					
 					
 				</table>
 				</form>
@@ -35,25 +32,28 @@
 		</div>
 			</td><td valign="top">
 			<form>
-				<table class="table" id="checkTable">
+				<table  id="checkTable">
 					
 				</table>
 				</form>
 		</td></tr></table>
 
-		<script>
-		$(function(){
+		
+	</body>
+	<script>
+		$(document).ready(function(){
 			$('#noCheckTable').datagrid({
 				nowrap: false,
 				striped: true,
 				collapsible:true,
 				fitColumns:true,
-				url:'sysUser!getNotCheckRoles.action?id=${param.id}',
+				url:'sysUser!getNotCheckRoles.action',
+				pageNumber:1,
+				queryParams:{id:"${param.id}"},//
 				sortName: 'id',
 				sortOrder: 'desc',
 				width : 400,
 				remoteSort: true,
-				loadMsg:'数据加载中，请稍后......',
 				idField:'id',
 				frozenColumns:[[
 				                {field:'ck',checkbox:true},
@@ -74,27 +74,28 @@
 				rownumbers:true
 			
 			});
-			var p = $('#noCheckTable').datagrid('getPager');
-			if (p){
-				$(p).pagination({
+			var pnoCheckTable = $('#noCheckTable').datagrid('getPager');
+			if (pnoCheckTable){
+				$(pnoCheckTable).pagination({
 					onBeforeRefresh:function(){
 						
 					}
 				});
 			}
-		});
-		$(function(){
+			
 			$('#checkTable').datagrid({
 				nowrap: false,
 				striped: true,
-				collapsible:true,
+				collapsible:false,
 				fitColumns:true,
 				width : 400,
-				url:'sysUser!getCheckRoles.action?id=${param.id}',
+				url:'sysUser!getCheckRoles.action',
+				pageNumber:1,
+				queryParams:{id:"${param.id}"},//
 				sortName: 'id',
 				sortOrder: 'desc',
 				remoteSort: true,
-				loadMsg:'数据加载中，请稍后......',
+				nowrap: false,
 				idField:'id',
 				frozenColumns:[[
 				                {field:'ck',checkbox:true},
@@ -115,14 +116,15 @@
 				rownumbers:true
 			
 			});
-			var p = $('#checkTable').datagrid('getPager');
-			if (p){
-				$(p).pagination({
+			var pcheckTable = $('#checkTable').datagrid('getPager');
+			if (pcheckTable){
+				$(pcheckTable).pagination({
 					onBeforeRefresh:function(){
 						
 					}
 				});
 			}
+			
 		});
 
 		 
@@ -174,5 +176,4 @@ function removeSelect(){
 }
 		 
 		</script>
-	</body>
 </html>

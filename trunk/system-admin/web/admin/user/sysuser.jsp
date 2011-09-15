@@ -103,7 +103,7 @@
 				                {title:'操作',field:'id',width:140,formatter:function(value,rec){
 				                 	var txt="";
 				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+value+"\",\"修改\",300,400)'>编辑</a>"
-				        	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+value+"&method=get\",\"角色配置\",400,800)'>角色配置</a>"
+				        	     	txt+= " <a href='javascript:' onclick='window.open(\"${cxp}/user/sysuser_role.jsp?id="+value+"\",\"角色配置\",400,900)'>角色配置</a>"
 				        	     	return txt;
 				                	
 				                }}
