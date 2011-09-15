@@ -6,13 +6,11 @@ import java.util.List;
 
 import com.fins.gt.server.GridServerHandler;
 import com.mpaike.user.model.SysMenu;
+import com.mpaike.user.model.SysPopedom;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.service.SysMenuControl;
-import com.mpaike.user.service.SysMenuService;
-import com.mpaike.user.service.SysRoleService;
 import com.mpaike.util.MyBeanUtils;
 import com.mpaike.util.ParamHelper;
-import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 
@@ -20,10 +18,7 @@ import com.mpaike.util.app.BaseAction;
 public class SysRoleAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
-	SysRoleService sysRoleService = (SysRoleService) ApplictionContext
-			.getInstance().getBean(SysRoleService.ID_NAME);
-	SysMenuService sysMenuService = (SysMenuService) ApplictionContext
-			.getInstance().getBean(SysMenuService.ID_NAME);
+
 
 	private SysRole sysRole;
 	private long id;
@@ -31,41 +26,37 @@ public class SysRoleAction extends BaseAction {
 	private SysMenu rootObj;
 
 	public void list() {
-		GridServerHandler handler = new GridServerHandler(request, response);
 		sysRole = new SysRole();
 		sysRole.setName(ParamHelper.getStr(request, "name", null));
 		sysRole.setDescribe(ParamHelper.getStr(request, "describe", null));
-		sysRoleService.listToGrid(handler, sysRole);
-		handler.printLoadResponseText();
+		List<SysRole> datas = this.getSysRoleService().listToGrid(sysRole,this.pageToPageinfo(),this.getOrderby());
+		this.printPageList(datas);
 	}
 
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
-		tree = sysMenuService.getTree(rootId);
+		tree = this.getSysMenuService().getTree(rootId);
 		rootObj = tree.remove(0);
 		return "menulist";
 	}
 
 	public void getCheckPopedoms() throws Exception {
-		GridServerHandler handler = new GridServerHandler(request, response);
+
 
 		sysRole = new SysRole();
 		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
-		sysRoleService.listCheckPopedomsToGrid(handler, sysRole);
-
-		handler.printLoadResponseText();
+		List<SysPopedom> datas = this.getSysRoleService().listCheckPopedomsToGrid(sysRole,this.pageToPageinfo());
+		this.printPageList(datas);
 
 	}
 
 	public void getNotCheckPopedoms() throws Exception {
-		GridServerHandler handler = new GridServerHandler(request, response);
 
 		sysRole = new SysRole();
 		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
-		sysRoleService.listNotCheckPopedomsToGrid(handler, sysRole);
-
-		handler.printLoadResponseText();
+		List<SysPopedom> datas = this.getSysRoleService().listNotCheckPopedomsToGrid(sysRole,this.pageToPageinfo());
+		this.printPageList(datas);
 
 	}
 
@@ -83,8 +74,7 @@ public class SysRoleAction extends BaseAction {
 	    if (cs.length == 1) {
 	      cs = cs[0].split(",");
 	    }
-		
-		sysRoleService.addSysPopedom(id, cs);
+		this.getSysRoleService().addSysPopedom(id, cs);
 		SysMenuControl.getInstance().putRootTree();
 		super.printSuccessJson("添加成功！");
 
@@ -103,7 +93,7 @@ public class SysRoleAction extends BaseAction {
 	    if (cs.length == 1) {
 	      cs = cs[0].split(",");
 	    }
-		sysRoleService.removeSysPopedom(id, cs);
+		this.getSysRoleService().removeSysPopedom(id, cs);
 
 		super.printSuccessJson("删除成功！");
 
@@ -117,11 +107,11 @@ public class SysRoleAction extends BaseAction {
 			String[] cs = request.getParameterValues("c");
 
 			if (cs == null) {
-				sysRoleService.addSysMenu(roleId, new String[0]);
+				this.getSysRoleService().addSysMenu(roleId, new String[0]);
 				super.printSuccessJson("清空了菜单！");
 			}
 
-			sysRoleService.addSysMenu(roleId, cs);
+			this.getSysRoleService().addSysMenu(roleId, cs);
 			SysMenuControl.getInstance().putRootTree();
 			super.printSuccessJson("设置成功！");
 		} catch (Exception ex) {
@@ -135,7 +125,7 @@ public class SysRoleAction extends BaseAction {
 
 		}
 
-		List beans = sysRoleService.getSysMenusByRoleId(roleId);
+		List beans = this.getSysRoleService().getSysMenusByRoleId(roleId);
 		super.printBeansJson(beans);
 
 	}
@@ -147,7 +137,7 @@ public class SysRoleAction extends BaseAction {
 			result = "请选择删除的记录!";
 		for (String c : cs) {
 			if (!"".equals(c.trim())) {
-				sysRoleService.removeSysRole(new Long(c));
+				this.getSysRoleService().removeSysRole(new Long(c));
 			}
 			result = "删除成功!";
 		}
@@ -159,21 +149,21 @@ public class SysRoleAction extends BaseAction {
 		if (sysRole.getId() == null) {
 			result = "添加成功!";
 		} else {
-			SysRole target = sysRoleService.getSysRole(sysRole.getId());
+			SysRole target = this.getSysRoleService().getSysRole(sysRole.getId());
 			MyBeanUtils.fillForNotNullObject(target, sysRole);
 			sysRole = target;
 			result = "修改成功!";
 		}
-		if(sysRoleService.getSysRoleList(sysRole.getName()).size()>0){
+		if(this.getSysRoleService().getSysRoleList(sysRole.getName()).size()>0){
 			result = "角色名已重复!";
 		}else{
-			sysRoleService.saveSysRole(sysRole);
+			this.getSysRoleService().saveSysRole(sysRole);
 		}
 		super.printSuccessJson( result);
 	}
 
 	public String getSysRoleInfo() {
-		sysRole = sysRoleService.getSysRole(id);
+		sysRole = this.getSysRoleService().getSysRole(id);
 		return "get";
 	}
 

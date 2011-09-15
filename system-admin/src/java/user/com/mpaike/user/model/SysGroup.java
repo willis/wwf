@@ -2,7 +2,7 @@ package com.mpaike.user.model;
 
 import java.util.Set;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 
 /**
@@ -12,8 +12,9 @@ import com.mpaike.util.dao.IBeanPrimaryKey;
  * @description
  */
 
-public class SysGroup   implements IBeanPrimaryKey, java.io.Serializable{
+public class SysGroup   implements  java.io.Serializable{
 	 private static final long serialVersionUID = 1L;
+	 @AnnotationObjectKey
 	 private Long id;
 	 private String name;
 	 private SysGroup parentGroup;

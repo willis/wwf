@@ -18,10 +18,7 @@ public class SysMenuAction extends BaseAction {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	SysMenuService getSysMenuService(){
-    	
-    	return (SysMenuService)ApplictionContext.getInstance().getBean(SysMenuService.ID_NAME);
-    }
+
 	private List<SysMenu> tree= new ArrayList<SysMenu>();
     private SysMenu rootObj;
     private SysMenu sysMenu;

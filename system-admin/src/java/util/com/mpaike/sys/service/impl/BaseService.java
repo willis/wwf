@@ -4,13 +4,16 @@ import com.mpaike.bot.dao.IWebUrlDao;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.member.dao.IMemberDao;
 import com.mpaike.sys.service.IBaseService;
+import com.mpaike.user.dao.ISysMenuDao;
 import com.mpaike.user.dao.ISysPopedomDao;
+import com.mpaike.user.dao.ISysRoleDao;
 import com.mpaike.user.dao.ISysUserDao;
 
 public class BaseService implements IBaseService{
 	private ISysUserDao sysUserDao;
 	private ISysPopedomDao sysPopedomDao;
-	
+	private ISysRoleDao sysRoleDao;
+	private ISysMenuDao sysMenuDao;
 	private IWebUrlDao webUrlDao;
 	private IMemberDao memberDao;
 
@@ -54,6 +57,22 @@ public class BaseService implements IBaseService{
 
 	public void setPictureDao(IPictureDao pictureDao) {
 		this.pictureDao = pictureDao;
+	}
+
+	public ISysRoleDao getSysRoleDao() {
+		return sysRoleDao;
+	}
+
+	public void setSysRoleDao(ISysRoleDao sysRoleDao) {
+		this.sysRoleDao = sysRoleDao;
+	}
+
+	public ISysMenuDao getSysMenuDao() {
+		return sysMenuDao;
+	}
+
+	public void setSysMenuDao(ISysMenuDao sysMenuDao) {
+		this.sysMenuDao = sysMenuDao;
 	}
 	
 	

@@ -9,6 +9,12 @@
 	<bean name="sysPopedomDao" class="com.mpaike.user.dao.impl.SysPopedomDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean name="sysRoleDao" class="com.mpaike.user.dao.impl.SysRoleDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysMenuDao" class="com.mpaike.user.dao.impl.SysMenuDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<!-- 系统dao -->
 	
 	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
@@ -16,6 +22,7 @@
 		<!-- 系统dao -->
 		<property name="sysUserDao" ref="sysUserDao"/>
 		<property name="sysPopedomDao" ref="sysPopedomDao"/>
+		<property name="sysRoleDao" ref="sysRoleDao"/>
 		<!-- 系统dao -->
 		<property name="webUrlDao" ref="webUrlDao"/>
 		<property name="memberDao" ref="memberDao"/>

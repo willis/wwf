@@ -20,7 +20,9 @@ import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.json.JsonConfigFactory;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.member.service.MemberService;
+import com.mpaike.user.service.SysMenuService;
 import com.mpaike.user.service.SysPopedomService;
+import com.mpaike.user.service.SysRoleService;
 import com.mpaike.user.service.SysUserService;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.pager.Pager;
@@ -221,5 +223,13 @@ public class BaseAction extends ActionSupport {
 	public SysUserService getSysUserService() {
 		return (SysUserService) ApplictionContext.getInstance().getBean(
 				SysUserService.ID_NAME);
+	}
+	public SysRoleService getSysRoleService() {
+		return (SysRoleService) ApplictionContext.getInstance().getBean(
+				SysRoleService.ID_NAME);
+	}
+	public SysMenuService getSysMenuService() {
+		return (SysMenuService) ApplictionContext.getInstance().getBean(
+				SysMenuService.ID_NAME);
 	}
 }

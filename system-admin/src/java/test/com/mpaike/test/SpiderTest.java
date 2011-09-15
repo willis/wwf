@@ -17,7 +17,7 @@ public class SpiderTest {
 	
 	public static void testSpider(){
 		
-		AbstractApplicationContext ac = ApplicationContextUtil.getInstance().getApplictionContext();
+		AbstractApplicationContext ac = ApplicationContextUtil.getInstance().creatContext();
 
 		BotSpider db = (BotSpider)ac.getBean("botSpider");
 		

@@ -2,7 +2,7 @@ package com.mpaike.user.model;
 
 import java.util.Set;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 
 /**
@@ -10,8 +10,9 @@ import com.mpaike.util.dao.IBeanPrimaryKey;
  * @author coolmind
  * 
  */
-public class SysRole implements IBeanPrimaryKey, java.io.Serializable {
+public class SysRole implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private String name;
 	private String describe;
