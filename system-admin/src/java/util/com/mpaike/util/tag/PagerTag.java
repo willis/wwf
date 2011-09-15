@@ -42,18 +42,18 @@ public class PagerTag extends TagSupport {
 				JspWriter out = pageContext.getOut();
 				out.println("<script>");
 				out.println("function pageFormSetPageSize(form,value){ var p1 = /^\\d{1,}$/; if(!p1.test(value)){alert(\"分页只能是数字！\");return ; } form.submit();}");
-				out.println("function pageFormGo(form,value){ form.Pg.value = value; form.submit();}");
-				out.println("function pageFormSetPg(form,value){ var p1 = /^\\d{1,}$/; if(!p1.test(value)){alert(\"分页只能是数字！\");return ; } form.Pg.value = value;form.submit();}");
+				out.println("function pageFormGo(form,value){ form.pageNo.value = value; form.submit();}");
+				out.println("function pageFormSetPg(form,value){ var p1 = /^\\d{1,}$/; if(!p1.test(value)){alert(\"分页只能是数字！\");return ; } form.pageNo.value = value;form.submit();}");
 				out.println("</script>");
 				out.println((new StringBuilder("<form name='formPage' action='")).append(action).append("' method='").append(method).append("'> ").toString());
-				out.println((new StringBuilder("每页显示<input name=\"pageSize\" onblur=\"pageFormSetPageSize(this.form,this.value)\" value=\"")).append(pager.getPageSize()).append("\" type=\"text\" id=\"pageSize\"   style=\"width:20px; border:solid #CCC 1px\"/>").toString());
+				out.println((new StringBuilder("每页显示<input name=\"pageinfo.pageSize\" onblur=\"pageFormSetPageSize(this.form,this.value)\" value=\"")).append(pager.getPageSize()).append("\" type=\"text\" id=\"pageSize\"   style=\"width:20px; border:solid #CCC 1px\"/>").toString());
 				out.println((new StringBuilder("条&nbsp;|&nbsp;共<font color='red'>")).append(pager.getRePages()).append("</font>页 , <font color='red'>").append(pager.getReCount()).append("</font>条数据").toString());
 				out.println("&nbsp;|&nbsp;");
 				out.println((new StringBuilder("<input type=\"button\"  ")).append(pager.getPage() != 1 ? " style=\"background:#FFF ; border:none;cursor:pointer\"" : "disabled=\"disabled\"").append(" onclick=\"pageFormGo(this.form,1)\" name=\"button\" id=\"button\" value=\"首页\"  style=\"background:#FFF ; border:none; \"/>&nbsp;").toString());
 				out.println((new StringBuilder("<input type=\"button\" ")).append(pager.getPage() != 1 ? " style=\"background:#FFF ; border:none;cursor:pointer\"" : "disabled=\"disabled\"").append(" onclick=\"pageFormGo(this.form,").append(pager.getPage() - 1).append(")\" name=\"button\" id=\"button\" value=\"上一页\"  style=\"background:#FFF ; border:none;\"/>&nbsp;").toString());
 				out.println((new StringBuilder("<input type=\"button\" ")).append(pager.getPage() < pager.getRePages() ? " style=\"background:#FFF ; border:none;cursor:pointer\"" : "disabled=\"disabled\"").append(" onclick=\"pageFormGo(this.form,").append(pager.getPage() + 1).append(")\" name=\"button\" id=\"button\" value=\"下一页\"  style=\"background:#FFF ; border:none;\"/>&nbsp;").toString());
 				out.println((new StringBuilder("<input type=\"button\" ")).append(pager.getPage() < pager.getRePages() ? " style=\"background:#FFF ; border:none;cursor:pointer\"" : "disabled=\"disabled\"").append(" onclick=\"pageFormGo(this.form,").append(pager.getRePages()).append(")\" name=\"button\" id=\"button\" value=\"尾页\"  style=\"background:#FFF ; border:none; \"/>&nbsp;").toString());
-				out.println((new StringBuilder("&nbsp;|&nbsp;第<input name=\"Pg\" onblur=\"pageFormSetPg(this.form,this.value)\" value=\"")).append(pager.getPage()).append("\" type=\"text\" id=\"Pg\" style=\"width:20px; border:solid #CCC 1px\"/>页").toString());
+				out.println((new StringBuilder("&nbsp;|&nbsp;第<input name=\"pageinfo.pageNo\" onblur=\"pageFormSetPg(this.form,this.value)\" value=\"")).append(pager.getPage()).append("\" type=\"text\" id=\"pageNo\" style=\"width:20px; border:solid #CCC 1px\"/>页").toString());
 			}
 			catch (Exception e)
 			{
