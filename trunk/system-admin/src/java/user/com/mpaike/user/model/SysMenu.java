@@ -3,6 +3,7 @@ package com.mpaike.user.model;
 import java.util.Date;
 import java.util.Set;
 
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 import com.mpaike.util.dao.IBeanPrimaryKey;
 
 
@@ -11,9 +12,10 @@ import com.mpaike.util.dao.IBeanPrimaryKey;
  * @author coolmind
  * 
  */
-public class SysMenu implements IBeanPrimaryKey, java.io.Serializable {
+public class SysMenu implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private String name;
 	private String description;

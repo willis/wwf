@@ -39,6 +39,10 @@ import com.mpaike.util.ParamHelper;
  */
 public class SysPopedomDao extends BaseDaoImpl<SysPopedom> implements ISysPopedomDao{
 	
+	public SysPopedomDao(){
+		super();
+	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void createSQLWhere(SysPopedom popedom, StringBuffer sql, List params)
 	  {

@@ -3,7 +3,7 @@ package com.mpaike.user.model;
 import java.util.Date;
 import java.util.Set;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 
 /**
@@ -12,7 +12,7 @@ import com.mpaike.util.dao.IBeanPrimaryKey;
  * @createDate 2010-12-16 下午03:51:03
  * @description
  */
-public class SysUser  implements IBeanPrimaryKey, java.io.Serializable {
+public class SysUser  implements java.io.Serializable {
 	
 	/**
 	 * @author 陈海峰
@@ -20,6 +20,7 @@ public class SysUser  implements IBeanPrimaryKey, java.io.Serializable {
 	 * @description 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private String username;
 	private String truename;

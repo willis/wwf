@@ -1,154 +1,117 @@
 package com.mpaike.user.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.fins.gt.server.GridServerHandler;
+import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.util.page.Pagination;
+import com.mpaike.sys.service.impl.BaseService;
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.user.model.SysPopedom;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.service.SysRoleService;
-import com.mpaike.util.ParamHelper;
-import com.mpaike.util.dao.GtGridCommonDao;
 
 
-@SuppressWarnings("unchecked")
-public class SysRoleServiceImpl extends GtGridCommonDao implements
+
+public class SysRoleServiceImpl  extends BaseService implements
 		SysRoleService {
 
-
-	public GridServerHandler listToGrid(GridServerHandler handler, SysRole role) {
-		StringBuffer sql = new StringBuffer();
-		List params = new ArrayList();
-		createSQLWhere(role, sql, params);
-		if (sql.length() > 0)
-			sql.insert(0, " where ");
-		sql.insert(0, " from SysRole u ");
-
-		String select = " select new SysRole(u.id,u.name,u.describe) ";
-		return super.list(handler, SysRole.class, sql.toString(), select
-				+ sql.toString(), params.toArray());
+	@Override
+	public List<SysRole> listToGrid(SysRole paramSysRole, Pagination p,
+			OrderBy ob) {
+		
+		return this.getSysRoleDao().listToGrid(paramSysRole, p, ob);
 	}
 
-	public List<SysMenu> getSysMenusByRoleId(long roleId) {
-		return super
-				.find(" select new SysMenu(d.id,d.name,d.description,d.orderBy,d.img,d.link,d.alias) from SysMenu d inner join  d.sysRoles as e where e.id=  "
-						+ roleId);
-	}
-
-	public void createSQLWhere(SysRole role, StringBuffer sql, List params) {
-		if (role.getName() != null && !ParamHelper.isEmpty(role.getName())) {
-			if (sql.length() > 0)
-				sql.append(" and ");
-			sql.append(" u.name like ? ");
-			params.add("%" + role.getName().trim() + "%");
-		}
-		if (role.getDescribe() != null
-				&& !ParamHelper.isEmpty(role.getDescribe())) {
-			if (sql.length() > 0)
-				sql.append(" and ");
-			sql.append(" u.describe like ? ");
-			params.add("%" + role.getDescribe().trim() + "%");
-		}
-	}
-
-	public List<SysRole> getByGrid(GridServerHandler handler, SysRole role) {
-		StringBuffer sql = new StringBuffer();
-		List params = new ArrayList();
-		createSQLWhere(role, sql, params);
-		if (sql.length() > 0)
-			sql.insert(0, " where ");
-		sql.insert(0, " from SysRole u ");
-
-		String select = " select new SysRole(u.id,u.name,u.describe) ";
-		return super.list(handler, sql.toString(), select + sql, params
-				.toArray());
-	}
-
-	public SysRole getSysRole(long id) {
-		return (SysRole) super.get(SysRole.class, id);
-	}
-
-	public void removeSysRole(long id) {
-		super.remove(SysRole.class, id);
-	}
-
-	public void removeSysRole(SysRole sysRole) {
-		super.remove(sysRole);
-	}
-
-	public void saveSysRole(SysRole sysRole) {
-		super.save(sysRole);
-	}
-
-	public void updateSysRole(SysRole sysRole) {
-		super.save(sysRole);
-	}
-
-	public int count() {
-		return super.count("from SysRole", null).intValue();
-	}
-
-	public List<SysRole> getSysRoles(int pageSize, int Pg) {
-		return super.find("from SysRole order by id", null, pageSize, Pg);
-	}
-
-	public void addSysMenu(long sysroleid, String[] cs) {
-		SysRole sysRole = (SysRole) super.get(SysRole.class, Long
-				.valueOf(sysroleid));
-		sysRole.getSysMenus().clear();
-		for (int i = 0; i < cs.length; i++){
+	@Override
+	public List<SysPopedom> listCheckPopedomsToGrid(SysRole paramSysRole,
+			Pagination p) {
 	
-			sysRole.getSysMenus().add(
-					(SysMenu) super.get(SysMenu.class, new Long(cs[i])));
+		return this.getSysRoleDao().listCheckPopedomsToGrid(paramSysRole, p);
+	}
+
+	@Override
+	public List<SysPopedom> listNotCheckPopedomsToGrid(SysRole paramSysRole,
+			Pagination p) {
+		
+		return this.getSysRoleDao().listNotCheckPopedomsToGrid(paramSysRole, p);
+	}
+
+
+
+	@Override
+	public SysRole getSysRole(long paramSerializable) {
+		
+		return this.getSysRoleDao().get(paramSerializable);
+	}
+
+
+
+	@Override
+	public void saveSysRole(SysRole sysRole) {
+		this.getSysRoleDao().saveOrUpdate(sysRole);
+		
+	}
+
+
+
+	@Override
+	public void removeSysRole(long paramSerializable) {
+		this.getSysRoleDao().deleteById(paramSerializable);
+	}
+
+
+
+	@Override
+	public void removeSysRole(SysRole paramSysRole) {
+		this.getSysRoleDao().delete(paramSysRole);
+	}
+
+
+
+	@Override
+	public void updateSysRole(SysRole paramSysRole) {
+		this.getSysRoleDao().update(paramSysRole);
+	}
+
+	@Override
+	public List<SysMenu> getSysMenusByRoleId(long paramLong) {
+		
+		return this.getSysRoleDao().getSysMenusByRoleId(paramLong);
+	}
+
+
+	@Override
+	public void addSysMenu(long paramLong, String[] paramArrayOfString) {
+		SysRole sysRole =  this.getSysRoleDao().get(paramLong);
+		sysRole.getSysMenus().clear();
+		for (int i = 0; i < paramArrayOfString.length; i++){
+			
+			sysRole.getSysMenus().add(this.getSysMenuDao().get(Long.parseLong(paramArrayOfString[i])));
 			
 		}
 		
 	}
 
-	public void addSysPopedom(long sysroleid, String[] cs) {
-	    SysRole sysRole = (SysRole)super.get(SysRole.class, Long.valueOf(sysroleid));
-	    for (int i = 0; i < cs.length; i++)
-	      sysRole.getSysPopedoms().add((SysPopedom)super.get(SysPopedom.class, new Long(cs[i])));
+	@Override
+	public void addSysPopedom(long paramLong, String[] paramArrayOfString) {
+		SysRole sysRole = this.getSysRoleDao().get(paramLong);
+	    for (int i = 0; i < paramArrayOfString.length; i++)
+	      sysRole.getSysPopedoms().add(this.getSysPopedomDao().get(Long.parseLong(paramArrayOfString[i])));
 		
 	}
 
-	public GridServerHandler listCheckPopedomsToGrid(
-			GridServerHandler handler, SysRole role) {
-		   StringBuffer sql = new StringBuffer();
-		    List params = new ArrayList();
-		    createSQLWhere(role, sql, params);
-		    if (sql.length() > 0)
-		      sql.insert(0, " and ");
-		    sql.insert(0, " from SysPopedom u inner join u.sysRoles as r where r.id= " + role.getId());
-
-		    String select = " select new SysPopedom(u.id,u.code,u.describe) ";
-		    return super.list(handler, SysPopedom.class, sql.toString(), select + sql.toString(), params.toArray());
-	}
-
-	public GridServerHandler listNotCheckPopedomsToGrid(
-			GridServerHandler handler, SysRole role) {
-		StringBuffer sql = new StringBuffer();
-	    List params = new ArrayList();
-	    createSQLWhere(role, sql, params);
-	    if (sql.length() > 0)
-	      sql.append(" and ");
-	    sql.append("  u.id not in (select n.id from SysPopedom n inner join n.sysRoles as r where r.id=" + role.getId() + ") ");
-
-	    sql.insert(0, " from SysPopedom u  where ");
-
-	    String select = " select new SysPopedom(u.id,u.code,u.describe) ";
-	    return super.list(handler, SysPopedom.class, sql.toString(), select + sql.toString(), params.toArray());
-	}
-
-	public void removeSysPopedom(long sysroleid, String[] cs) {
-		SysRole sysRole = (SysRole)super.get(SysRole.class, Long.valueOf(sysroleid));
-	    for (int i = 0; i < cs.length; i++)
-	      sysRole.getSysPopedoms().remove((SysPopedom)super.get(SysPopedom.class, new Long(cs[i])));
+	@Override
+	public void removeSysPopedom(long paramLong, String[] paramArrayOfString) {
+		SysRole sysRole = this.getSysRoleDao().get(paramLong);
+	    for (int i = 0; i < paramArrayOfString.length; i++)
+	      sysRole.getSysPopedoms().remove(this.getSysPopedomDao().get(Long.parseLong(paramArrayOfString[i])));
 		
 	}
+
+	@Override
 	public List<SysRole> getSysRoleList(String name) {
-		return super.find("from SysRole sr where sr.name=?", new Object[]{name.trim()});
+		
+		return this.getSysRoleDao().getSysRoleList(name);
 	}
 
 	

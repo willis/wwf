@@ -2,15 +2,16 @@ package com.mpaike.user.model;
 
 import java.util.Set;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 
-public class SysPopedom implements IBeanPrimaryKey, java.io.Serializable {
+public class SysPopedom implements  java.io.Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    @AnnotationObjectKey
 	private Long id;
 	private String code;
 	private String describe;
