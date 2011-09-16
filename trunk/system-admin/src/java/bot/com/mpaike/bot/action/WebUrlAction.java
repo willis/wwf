@@ -14,7 +14,7 @@ public class WebUrlAction extends BaseAction{
 	private static final long serialVersionUID = 2884893102617198833L;
 
 	public void list(){
-		List<WebUrl> datas = this.getWebUrlService().find(this.pageToPageinfo(),this.getOrderby());
+		List<WebUrl> datas = this.getWebUrlService().find(this.pageInfo,this.getOrderby());
 		this.printPageList(datas);
 	}
 

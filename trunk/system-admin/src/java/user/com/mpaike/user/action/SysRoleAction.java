@@ -29,7 +29,7 @@ public class SysRoleAction extends BaseAction {
 		sysRole = new SysRole();
 		sysRole.setName(ParamHelper.getStr(request, "name", null));
 		sysRole.setDescribe(ParamHelper.getStr(request, "describe", null));
-		List<SysRole> datas = this.getSysRoleService().listToGrid(sysRole,this.pageToPageinfo(),this.getOrderby());
+		List<SysRole> datas = this.getSysRoleService().listToGrid(sysRole,this.pageInfo,this.getOrderby());
 		this.printPageList(datas);
 	}
 
@@ -46,7 +46,7 @@ public class SysRoleAction extends BaseAction {
 
 		sysRole = new SysRole();
 		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
-		List<SysPopedom> datas = this.getSysRoleService().listCheckPopedomsToGrid(sysRole,this.pageToPageinfo());
+		List<SysPopedom> datas = this.getSysRoleService().listCheckPopedomsToGrid(sysRole,this.pageInfo);
 		this.printPageList(datas);
 
 	}
@@ -55,7 +55,7 @@ public class SysRoleAction extends BaseAction {
 
 		sysRole = new SysRole();
 		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
-		List<SysPopedom> datas = this.getSysRoleService().listNotCheckPopedomsToGrid(sysRole,this.pageToPageinfo());
+		List<SysPopedom> datas = this.getSysRoleService().listNotCheckPopedomsToGrid(sysRole,this.pageInfo);
 		this.printPageList(datas);
 
 	}
