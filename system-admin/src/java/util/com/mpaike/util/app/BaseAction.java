@@ -155,6 +155,21 @@ public class BaseAction extends ActionSupport {
 		}
 		return orderby;
 	}
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	public String getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(String sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 	@SuppressWarnings("rawtypes")
 	public class JsonPage{
 		
