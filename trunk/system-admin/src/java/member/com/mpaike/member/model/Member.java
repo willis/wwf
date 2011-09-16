@@ -2,14 +2,14 @@ package com.mpaike.member.model;
 
 import java.util.Date;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 /**
  * 
  * @author 陈海峰
  * @createDate 2011-2-24 下午03:18:12
  * @description 会员表
  */
-public class Member implements IBeanPrimaryKey, java.io.Serializable{
+public class Member implements java.io.Serializable{
 	
 	/**
 	 * @author 陈海峰
@@ -17,6 +17,7 @@ public class Member implements IBeanPrimaryKey, java.io.Serializable{
 	 * @description 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;//用户id
 	private String username;//用户名
 	private String password;//密码
