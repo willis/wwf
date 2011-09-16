@@ -84,10 +84,10 @@
 									<script language="JavaScript">
 										<!--
 										var pg = new showPages('pg');
-										pg.pageCount = <s:property value="pageinfo.totalPage"/>;
-										pg.totalCount = <s:property value="pageinfo.totalCount"/>;
-										pg.pageSize = <s:property value="pageinfo.pageSize"/>;
-										pg.argName = 'pageinfo.pageNo';
+										pg.pageCount = <s:property value="pageInfo.totalPage"/>;
+										pg.totalCount = <s:property value="pageInfo.totalCount"/>;
+										pg.pageSize = <s:property value="pageInfo.pageSize"/>;
+										pg.argName = 'pageInfo.pageNo';
 										pg.printHtml(2);
 										//-->
 									</script>
