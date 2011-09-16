@@ -47,27 +47,10 @@ public class BaseAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -2713334070045301162L;
 	ActionContext context = ActionContext.getContext();
-	protected HttpServletRequest request = (HttpServletRequest) context
+	private HttpServletRequest request = (HttpServletRequest) context
 			.get(ServletActionContext.HTTP_REQUEST);
-	protected HttpServletResponse response = (HttpServletResponse) context
+	private HttpServletResponse response = (HttpServletResponse) context
 			.get(ServletActionContext.HTTP_RESPONSE);
-
-	public Pager getPager(HttpServletRequest request) {
-		Pager pager = new Pager();
-		try {
-
-			int Pg = ParamHelper.getIntParamter(request, "Pg", 1);
-
-			int pageSize = ParamHelper.getIntParamter(request, "pageSize",
-					Integer.parseInt(getAppProps().get("pageSize").toString()));
-			pager.setPage(Pg);
-			pager.setPageSize(pageSize);
-		} catch (Exception e) {
-
-			logger.error(e);
-		}
-		return pager;
-	}
 
 	public AppProps getAppProps() {
 
@@ -142,8 +125,6 @@ public class BaseAction extends ActionSupport {
 	public void setPageInfo(Pagination pageInfo) {
 		this.pageInfo = pageInfo;
 	}
-
-
 
 	public OrderBy getOrderby() {
 		if(field!=null&&!"".equals(field)&&sortOrder!=null){
