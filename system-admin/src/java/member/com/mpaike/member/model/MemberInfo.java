@@ -1,13 +1,14 @@
 package com.mpaike.member.model;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
-public class MemberInfo  implements IBeanPrimaryKey, java.io.Serializable{
+public class MemberInfo  implements java.io.Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private String info;
 	private Member member;
