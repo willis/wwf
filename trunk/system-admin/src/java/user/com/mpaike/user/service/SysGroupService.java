@@ -3,7 +3,7 @@ package com.mpaike.user.service;
 import java.util.List;
 import java.util.Map;
 
-import com.fins.gt.server.GridServerHandler;
+import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.model.SysGroup;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
@@ -12,36 +12,34 @@ import com.mpaike.user.model.SysUser;
 public interface SysGroupService {
 	public static final String ID_NAME = "sysGroupService";
 
-	public abstract GridServerHandler listCheckUsersToGrid(
-			GridServerHandler paramGridServerHandler, SysUser paramSysUser,
-			long paramLong);
+	public  List<SysUser> listCheckUsersToGrid(SysUser paramSysUser,
+			long paramLong, Pagination p);
 
-	public abstract GridServerHandler listNotCheckUsersToGrid(
-			GridServerHandler paramGridServerHandler, SysUser paramSysUser,
-			long paramLong);
+	public  List<SysUser> listNotCheckUsersToGrid(SysUser paramSysUser,
+			long paramLong ,Pagination p);
 
-	public abstract List<Map> getSysGroupsToMap(long paramLong);
+	public  List<Map> getSysGroupsToMap(long paramLong);
 
-	public abstract List<Map> getSysUserByGroupIdToMap(long paramLong);
+	public  List<Map> getSysUserByGroupIdToMap(long paramLong);
 
-	public abstract SysGroup getSysGroup(Long paramSerializable);
+	public  SysGroup getSysGroup(Long paramSerializable);
 
-	public abstract boolean removeSysGroup(Long paramSerializable);
+	public  boolean removeSysGroup(Long paramSerializable);
 
-	public abstract void removeSysGroup(SysGroup paramSysGroup);
+	public  void removeSysGroup(SysGroup paramSysGroup);
 
-	public abstract void saveSysGroup(SysGroup paramSysGroup);
+	public  void saveSysGroup(SysGroup paramSysGroup);
 
-	public abstract void addSysUserToGroup(long paramLong1, long paramLong2);
+	public  void addSysUserToGroup(long paramLong1, long paramLong2);
 
-	public abstract List<SysGroup> getSysGroups(Long paramLong);
+	public  List<SysGroup> getSysGroups(Long paramLong);
 
-	public abstract List<String[]> getTrees(SysGroup paramSysGroup,
+	public  List<String[]> getTrees(SysGroup paramSysGroup,
 			List<String[]> paramList);
 
-	public abstract void removeSysUserToGroup(long paramLong1, long paramLong2);
+	public  void removeSysUserToGroup(long paramLong1, long paramLong2);
 
-	public abstract List<SysGroup> findSysGroupByName(String paramString);
+	public  List<SysGroup> findSysGroupByName(String paramString);
 
-	public abstract List<SysRole> getSysRoles(SysGroup paramSysGroup);
+	public  List<SysRole> getSysRoles(SysGroup paramSysGroup);
 }

@@ -152,7 +152,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SysRole> listCheckRolesToGrid(SysUser sysuser, Pagination p) {
-		return this.findList(" select new SysRole(u.id,u.name,u.describe)  from SysUserToSysRole u where u.sysUser.id=?",p, new Object[]{sysuser.getId()});
+		return this.findList(" select new SysRole(u.id,u.name,u.describe)  from SysRole u where u.id  in(  select u.sysRole.id from SysUserToSysRole u where u.sysUser.id= ? )",p, new Object[]{sysuser.getId()});
 	}
 
 

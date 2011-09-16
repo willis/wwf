@@ -5,28 +5,28 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import com.mpaike.sys.service.impl.BaseService;
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.user.service.SysMenuService;
-import com.mpaike.util.dao.CommonDao;
 
 
 @SuppressWarnings("unchecked")
-public class SysMenuServiceImpl extends CommonDao implements SysMenuService {
+public class SysMenuServiceImpl extends BaseService implements SysMenuService {
 
 	public void addMenu(SysMenu menu) {
 		menu.setCurDate(new Date());
-		super.add(menu);
+		this.getSysMenuDao().save(menu);
 	}
 
 	public void updateMenu(SysMenu menu) {
 		menu.setCurDate(new Date());
-		super.update(menu);
+		this.getSysMenuDao().update(menu);
 	}
 
 	public boolean delMenu(long id) {
 		boolean result;
 		try {
-			super.remove(SysMenu.class, Long.valueOf(id));
+			this.getSysMenuDao().delete(id);
 			result = true;
 		} catch (Exception e) {
 			result = false;
@@ -35,12 +35,11 @@ public class SysMenuServiceImpl extends CommonDao implements SysMenuService {
 	}
 
 	public SysMenu getMenu(long id) {
-		return (SysMenu) super.get(SysMenu.class, Long.valueOf(id));
+		return this.getSysMenuDao().get(id);
 	}
 
 	public List<SysMenu> getTree(long rootId) {
-		SysMenu rootObj = (SysMenu) super.get(SysMenu.class, Long
-				.valueOf(rootId));
+		SysMenu rootObj = this.getSysMenuDao().get(rootId);
 		List tree = new ArrayList();
 
 		loadTreeChilds(rootObj, tree, 1);
@@ -59,15 +58,13 @@ public class SysMenuServiceImpl extends CommonDao implements SysMenuService {
 	}
 
 	public List<SysMenu> getMenusByParentId(long parentId) {
-		return super
-				.find(" select new SysMenu(d.id,d.name,d.description,d.orderBy,d.img,d.link,d.alias) from SysMenu d where d.parentObj.id= "
-						+ parentId + " order by d.orderby ");
+		return this.getSysMenuDao().getMenusByParentId(parentId);
 	}
 
 	public boolean save(SysMenu bean) {
 		boolean result;
 		try {
-			super.save(bean);
+			this.getSysMenuDao().saveOrUpdate(bean);
 			result = true;
 		} catch (Exception e) {
 			result = false;

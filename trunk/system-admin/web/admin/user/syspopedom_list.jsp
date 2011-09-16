@@ -152,7 +152,7 @@ label.checkbox input {
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({code:$("#code").val(),describe:$("#describe").val()});
+	    	myTable1.onLoad({"sysPopedom.code":$("#code").val(),"sysPopedom.describe":$("#describe").val()});
 	     } 	
 	     function editRenderer(idValue,value){
 	     	return "<a href='javascript:' onclick='window.parent.showWindow(\"${cxp }/user/sysPopedom!edit.action?id="+idValue+"\",\"修改权限代码\",200,400)'>"+value+"</a>"

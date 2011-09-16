@@ -23,6 +23,8 @@
  */
 package com.mpaike.user.dao;
 
+import java.util.List;
+
 import com.mpaike.core.database.hibernate.BaseDao;
 import com.mpaike.user.model.SysMenu;
 
@@ -31,5 +33,7 @@ import com.mpaike.user.model.SysMenu;
  * com.mpaike.user.dao system-admin
  */
 public interface ISysMenuDao   extends BaseDao<SysMenu>{
+	
+	public List<SysMenu> getMenusByParentId(long parentId);
 
 }

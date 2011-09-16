@@ -123,7 +123,7 @@
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({name:$("#name").val(),describe:$("#describe").val()});
+	    	myTable1.onLoad({"sysRole.name":$("#name").val(),"sysRole.describe":$("#describe").val()});
 	     } 	
 	     function editRenderer(idValue,value){
 	     	var txt="";

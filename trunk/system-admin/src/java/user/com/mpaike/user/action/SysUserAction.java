@@ -6,25 +6,21 @@ import java.util.List;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 import com.mpaike.user.service.SysMenuControl;
-import com.mpaike.user.service.SysRoleService;
-import com.mpaike.user.service.SysUserService;
 import com.mpaike.util.ArrayUtil;
 import com.mpaike.util.MD5;
 import com.mpaike.util.MyBeanUtils;
-import com.mpaike.util.ParamHelper;
-import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 public class SysUserAction extends BaseAction {
 
 
-	public SysRoleService roleService = (SysRoleService) ApplictionContext
-			.getInstance().getBean(SysRoleService.ID_NAME);
 	private SysUser sysUser;
 	private Long id;
 	private String ids;
 	private Long status;
 	private String password;
+	private String[] cs;
+
 
 	/**
 	 * @author 陈海峰
@@ -74,12 +70,7 @@ public class SysUserAction extends BaseAction {
 	}
 
 	public void userList() {
-		sysUser = new SysUser();
-		sysUser.setTruename(ParamHelper.getStr(request, "truename", null));
-		sysUser.setUsername(ParamHelper.getStr(request, "username", null));
-		sysUser.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
 		List<SysUser> datas = getSysUserService().find(sysUser,this.pageInfo,this.getOrderby());
-		
 		this.printPageList(datas);
 
 	}
@@ -88,24 +79,24 @@ public class SysUserAction extends BaseAction {
 
 
 		sysUser = new SysUser();
-		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
+		sysUser.setId(id);
 		List<SysRole> datas =getSysUserService().listNotCheckRolesToGrid(sysUser,this.pageInfo);
 		this.printPageList(datas);
 	}
 
 	public void getCheckRoles() {
 		sysUser = new SysUser();
-		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
+		sysUser.setId(id);
 		List<SysRole> datas =getSysUserService().listCheckRolesToGrid(sysUser,this.pageInfo);
 		this.printPageList(datas);
 	}
 
 	public void addSysRoles() {
 
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
+		
 		if (id == -1L)
 			super.printSuccessJson("请选择用户！");
-		String[] cs = request.getParameterValues("cs");
+	
 		if ((cs == null) || (cs.length == 0))
 			super.printSuccessJson("请选择要添加的角色！");
 		if (cs.length == 1) {
@@ -116,7 +107,7 @@ public class SysUserAction extends BaseAction {
 			if (!"".equals(c.trim())) {
 
 				getSysUserService().addSysRole(sysUser,
-						roleService.getSysRole(new Long(c)));
+						this.getSysRoleService().getSysRole(new Long(c)));
 			}
 		}
 		SysMenuControl.getInstance().putRootTree();
@@ -125,12 +116,10 @@ public class SysUserAction extends BaseAction {
 
 	public void delSysRoles() {
 
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
 			super.printSuccessJson("请选择用户！");
 		}
 
-		String[] cs = request.getParameterValues("cs");
 		if ((cs == null) || (cs.length == 0))
 			super.printSuccessJson("请选择要删除的角色！");
 		if (cs.length == 1)
@@ -140,7 +129,7 @@ public class SysUserAction extends BaseAction {
 		for (String c : cs) {
 			if (!"".equals(c.trim())) {
 				getSysUserService().removeSysRole(sysUser,
-						roleService.getSysRole(new Long(c)));
+						this.getSysRoleService().getSysRole(new Long(c)));
 			}
 		}
 		super.printSuccessJson("删除成功！");
@@ -192,4 +181,12 @@ public class SysUserAction extends BaseAction {
 		this.password = password;
 	}
 
+	public String[] getCs() {
+		return cs;
+	}
+
+	public void setCs(String[] cs) {
+		this.cs = cs;
+	}
+	
 }

@@ -8,7 +8,12 @@ import java.util.Date;
  *
  * Aug 9, 2010
  */
-public class Affix {
+public class Affix implements  java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Long id;// id
 
 	private String name;// 名称

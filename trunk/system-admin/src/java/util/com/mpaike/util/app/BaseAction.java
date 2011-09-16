@@ -25,11 +25,9 @@ import com.mpaike.user.service.SysPopedomService;
 import com.mpaike.user.service.SysRoleService;
 import com.mpaike.user.service.SysUserService;
 import com.mpaike.util.ParamHelper;
-import com.mpaike.util.pager.Pager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-@SuppressWarnings("unchecked")
 public class BaseAction extends ActionSupport {
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -47,9 +45,9 @@ public class BaseAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -2713334070045301162L;
 	ActionContext context = ActionContext.getContext();
-	private HttpServletRequest request = (HttpServletRequest) context
+	protected HttpServletRequest request = (HttpServletRequest) context
 			.get(ServletActionContext.HTTP_REQUEST);
-	private HttpServletResponse response = (HttpServletResponse) context
+	protected HttpServletResponse response = (HttpServletResponse) context
 			.get(ServletActionContext.HTTP_RESPONSE);
 
 	public AppProps getAppProps() {

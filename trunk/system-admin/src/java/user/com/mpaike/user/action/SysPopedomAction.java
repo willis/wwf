@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.mpaike.user.model.SysPopedom;
 import com.mpaike.util.MyBeanUtils;
-import com.mpaike.util.ParamHelper;
 import com.mpaike.util.app.BaseAction;
 
 
 public class SysPopedomAction extends BaseAction {
 	private SysPopedom sysPopedom;
 	private Long id;
+	private String[] c;
 	/**
 	 * 
 	 */
@@ -18,16 +18,12 @@ public class SysPopedomAction extends BaseAction {
 
 	public void list() {
 
-		sysPopedom = new SysPopedom();
-		sysPopedom.setCode(ParamHelper.getStr(request, "code", null));
-		sysPopedom.setDescribe(ParamHelper.getStr(request, "describe", null));
-
 		List<SysPopedom> datas = this.getSysPopedomService().listToGrid(sysPopedom, this.pageInfo, this.getOrderby());
 		this.printPageList(datas);
 	}
 
 	public void del() {
-		String[] cs = request.getParameterValues("c");
+		String[] cs = c;
 
 		if (cs == null)
 			super.printSuccessJson("请选择要删除的权限代码！");
