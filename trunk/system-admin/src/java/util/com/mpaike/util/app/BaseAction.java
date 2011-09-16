@@ -122,12 +122,8 @@ public class BaseAction extends ActionSupport {
 	@SuppressWarnings("rawtypes")
 	public void printPageList(List beans,JsonConfig jsonConfig){
 		JsonPage jp = new JsonPage();
-		if(pageinfo!=null){
-			jp.setTotal(pageinfo.getTotalCount());
-		}else{
-			jp.setTotal(0);
-		}
-		jp.setRows(beans);
+		jp.setPageInfo(pageToPageinfo());
+		jp.setData(beans);
 		try {
 			
 			JSONObject json;
@@ -190,20 +186,20 @@ public class BaseAction extends ActionSupport {
 	@SuppressWarnings("rawtypes")
 	public class JsonPage{
 		
-		private long total;
-		private List rows;
-		public long getTotal() {
-			return total;
-		}
-		public void setTotal(long total) {
-			this.total = total;
-		}
+		private Pagination pageInfo;
+		private List data;
 		
-		public List getRows() {
-			return rows;
+		public Pagination getPageInfo() {
+			return pageInfo;
 		}
-		public void setRows(List rows) {
-			this.rows = rows;
+		public void setPageInfo(Pagination pageInfo) {
+			this.pageInfo = pageInfo;
+		}
+		public List getData() {
+			return data;
+		}
+		public void setData(List data) {
+			this.data = data;
 		}
 		
 
