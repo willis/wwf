@@ -94,6 +94,7 @@ public class SysGroupAction extends BaseAction {
 		long groupId = ParamHelper.getLongParamter(request, "groupId", -1L);
 		getSysGroupService().listCheckUsersToGrid(handler, searchBean, groupId);
 		handler.printLoadResponseText();
+		
 	}
 
 	public String getSysGroupInfo() {

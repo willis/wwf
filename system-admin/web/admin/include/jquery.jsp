@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/alert/jquery.alerts-min.js"></script>
 <link href="${cxp}/js/jquery/plugin/alert/jquery.alerts.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${cxp}/appjs/plugin/dictionary/jquery.dictionary.js"></script>
-<script type="text/javascript" src="${cxp}/appjs/plugin/table/jquery.table-min.js"></script>
+<script type="text/javascript" src="${cxp}/appjs/plugin/table/jquery.table.js"></script>
 <link href="${cxp}/appjs/plugin/table/jquery.table.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${cxp}/js/jquery/plugin/messager/jquery.messager.js"></script>
 <link rel="stylesheet" type="text/css" href="${cxp}/js/jquery/plugin/easyui/themes/easyui.css">

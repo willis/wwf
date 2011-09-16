@@ -54,22 +54,16 @@ MaxTable.prototype={
 		this.searchParameters = parameters;
 		var opts = this.opts;
 		var _s = this._s;
-		
 		var url = opts.queryUrl;
-		
 		var _parent = this;
 		if(_parent.loading){
 		$(_parent.loading).block({
 				message : "数据加载中...",
 				css : {
-					width : '70%'
+					width : '100%'
 				}
 			});
 		}
-		
-	 
-
-
 			$.ajax({
 				type : "POST",
 				url : opts.queryUrl,
@@ -232,11 +226,11 @@ MaxTable.prototype={
  			var text = '';
  			text += '每页显示<input id="pageSize"   value="'
  					+ pageInfo.pageSize
- 					+ '" type="text" id="pageSize"   style="width:20px; border:solid #CCC 1px"/>'
+ 					+ '" type="text" id="pageSize"   style="width:20px; border:solid #CCC 1px"/>';
  			text += '条&nbsp;|&nbsp;共<font color=red>' + pageInfo.totalPageNum
  					+ '</font>页 , <font color=red>' + pageInfo.totalRowNum
  					+ '</font>条数据';
- 			text += '&nbsp;|&nbsp;'
+ 			text += '&nbsp;|&nbsp;';
  			text += '<input id="firstPage"  type="button" '
  					+ (pageInfo.pageNum > 1 ? ' style="background:#FFF ; border:none;cursor:pointer"  '
  							: ' disabled="disabled" ')
@@ -266,7 +260,8 @@ MaxTable.prototype={
 		  if(!this.showPageInfo){
 		  	this.page.pageSize=100;
 		  }
-		var jsonData={_gt_json:"{pageInfo:"+$.toJSON(this.page)+",action:'load',filterInfo:[],sortInfo:["+(this.sortInfo==null?'':$.toJSON(this.sortInfo))+"]}"};
+		var jsonData={_gt_json:"{pageInfo:"+$.toJSON(this.page)+",action:'load',filterInfo:[],orderby:"+(this.sortInfo==null?'':$.toJSON(this.sortInfo))+"}"};
+
 		jsonData =$.extend(jsonData,parameters);
 		return jsonData;
 	},
@@ -278,7 +273,6 @@ MaxTable.prototype={
 		var _parent = this;
 		var headTrobj = $("#"+opts.head)[0];
 		this.headInfos= new Array();
-		
 		for(var i=0;i<opts.cells.length;i++){
 			
 			var fieldName = opts.cells[i].name;
@@ -286,8 +280,7 @@ MaxTable.prototype={
 
 			sortSpan.innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;";
 			$(headTrobj.cells[opts.cells[i].index]).append(sortSpan);
-			this.headInfos[this.headInfos.length] = {index:opts.cells[i].index,name:opts.cells[i].name,sortSpan:sortSpan} 
-			
+			this.headInfos[this.headInfos.length] = {index:opts.cells[i].index,name:opts.cells[i].name,sortSpan:sortSpan};
 			$(headTrobj.cells[opts.cells[i].index]).bind("click", function() {
 				_parent.setSortInfo(this.cellIndex);
 				_parent.page.pageNum=1;
@@ -302,17 +295,17 @@ MaxTable.prototype={
 			var sortSpan =   this.headInfos[i].sortSpan;
 			if(cellIndex == this.headInfos[i].index ){
  				if(!this.sortInfo){
-				this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'}
+				this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'};
 					sortSpan.className="sortDesc";
 				}else{
 					if(this.sortInfo.fieldName == fieldName){
 						if(this.sortInfo.sortOrder==""){
 							sortSpan.className="sortDesc";
-							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"desc"}
+							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"desc"};
 							
 						}else if(this.sortInfo.sortOrder=="desc"){
 							sortSpan.className="sortAsc";
-							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"asc"}
+							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"asc"};
 						}else {
 							sortSpan.className="";
 							this.sortInfo =  this.defaultSortInfo;
@@ -320,7 +313,7 @@ MaxTable.prototype={
 						
 					}else{
 						sortSpan.className="sortDesc";
-						this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'}
+						this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'};
 					}
 				}
 			}else{
@@ -331,7 +324,7 @@ MaxTable.prototype={
 		 
 	}
 		 
-}
+};
 
 function Pages(){
 	this.endRowNum = -1;
