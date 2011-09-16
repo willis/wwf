@@ -31,7 +31,7 @@ public class SystemLogAction  extends BaseAction {
 	}
 	
 	public String logList() {
-		logList = getSystemService().find(pageinfo);
+		logList = getSystemService().find(pageInfo);
 		return "log_list";
 	}
 	public int getCount() {
