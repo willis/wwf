@@ -3,10 +3,10 @@ package com.mpaike.dictionary.model;
 import java.util.Date;
 import java.util.Set;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 @SuppressWarnings("unchecked")
-public class Dictionary implements IBeanPrimaryKey, java.io.Serializable{
+public class Dictionary implements java.io.Serializable{
 	
 	  /**
 	 * @author 陈海峰
@@ -15,6 +15,7 @@ public class Dictionary implements IBeanPrimaryKey, java.io.Serializable{
 	 * @description 
 	 */
 	  private static final long serialVersionUID = 1L;
+	  @AnnotationObjectKey
 	  private Long id;
 	  private String name;
 	  private Dictionary parentObj;
