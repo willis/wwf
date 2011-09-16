@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Set;
 
 import com.mpaike.core.database.hibernate.AnnotationObjectKey;
-import com.mpaike.util.dao.IBeanPrimaryKey;
 
 
 /**
