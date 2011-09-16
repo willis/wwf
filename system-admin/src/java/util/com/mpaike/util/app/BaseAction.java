@@ -33,16 +33,11 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport {
 	protected final Log logger = LogFactory.getLog(getClass());
 
-	// easyUI前台传过来的请求页数，故必须以此命名，当然你也可以不这样，但set方法必须是setPage
-    private int page;
-    // easyUI前台传过来的请求记录数，故必须以此命名，原因同上
-    private int rows;
-    // easyUI前台传过来的排序字段，故必须以此命名，原因同上
-    private String sort;
+    private String field;
     // easyUI前台传过来的排序方式(desc?asc)，故必须以此命名，原因同上
-    private String order;
+    private String sortOrder;
     
-    protected Pagination pageinfo = new Pagination();
+    protected Pagination pageInfo = new Pagination();
     protected OrderBy orderby;
 
 	/**
@@ -122,7 +117,7 @@ public class BaseAction extends ActionSupport {
 	@SuppressWarnings("rawtypes")
 	public void printPageList(List beans,JsonConfig jsonConfig){
 		JsonPage jp = new JsonPage();
-		jp.setPageInfo(pageToPageinfo());
+		jp.setPageInfo(this.pageInfo);
 		jp.setData(beans);
 		try {
 			
@@ -140,45 +135,22 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
-	public Pagination getPageinfo() {
-		return pageinfo;
+	public Pagination getPageInfo() {
+		return pageInfo;
 	}
 
-	public void setPageinfo(Pagination pageinfo) {
-		this.pageinfo = pageinfo;
+	public void setPageInfo(Pagination pageInfo) {
+		this.pageInfo = pageInfo;
 	}
 
-	public void setPage(int page) {
-		this.page = page;
-	}
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public void setSort(String sort) {
-		this.sort = sort;
-	}
-
-	public void setOrder(String order) {
-		this.order = order;
-	}
-	
-	public Pagination pageToPageinfo() {
-		pageinfo = new Pagination();
-		pageinfo.setPageNo(page);
-		if(rows!=0){
-			pageinfo.setPageSize(rows);
-		}
-		return pageinfo;
-	}
 
 	public OrderBy getOrderby() {
-		if(order!=null&&sort!=null){
-			if("asc".equals(order)){
-				orderby = OrderBy.asc(sort);
+		if(field!=null&&!"".equals(field)&&sortOrder!=null){
+			if("asc".equals(sortOrder)){
+				orderby = OrderBy.asc(field);
 			}else{
-				orderby = OrderBy.desc(sort);
+				orderby = OrderBy.desc(field);
 			}
 		}
 		return orderby;
@@ -201,7 +173,7 @@ public class BaseAction extends ActionSupport {
 		public void setData(List data) {
 			this.data = data;
 		}
-		
+
 
 	}
 	
