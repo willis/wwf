@@ -18,6 +18,12 @@
 	<bean name="sysMenuDao" class="com.mpaike.user.dao.impl.SysMenuDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean name="sysGroupDao" class="com.mpaike.user.dao.impl.SysGroupDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="affixDao" class="com.mpaike.affix.model.dao.impl.AffixDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<!-- 系统dao -->
 	
 	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
@@ -28,6 +34,7 @@
 		<property name="sysLogDao" ref="sysLogDao"/>
 		<property name="sysRoleDao" ref="sysRoleDao"/>
 		<property name="sysMenuDao" ref="sysMenuDao"/>
+		<property name="sysGroupDao" ref="sysGroupDao"/>
 		<!-- 系统dao -->
 		<property name="webUrlDao" ref="webUrlDao"/>
 		<property name="memberDao" ref="memberDao"/>

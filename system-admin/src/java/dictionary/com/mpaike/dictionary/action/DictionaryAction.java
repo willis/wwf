@@ -23,6 +23,9 @@ public class DictionaryAction extends BaseAction{
 	private List<Dictionary> tree = new ArrayList<Dictionary>();
 	private Dictionary rootObj;
 	private Dictionary dictionary;
+	private Long pid;
+	private Long rootId;
+	private Long id;
 	/**
 	 * @author 陈海峰
 	 * @createDate 2011-1-28 下午04:41:09
@@ -31,21 +34,21 @@ public class DictionaryAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 
 	public String listDictionary(){
-	    long rootId = ParamHelper.getLongParamter(request, "rootId", Long.parseLong(super.getAppProps().get("dictionaryRootId").toString()));
+		if(rootId==null){
+			rootId = Long.parseLong(super.getAppProps().get("dictionaryRootId").toString());
+		}
 	    tree = getDictionaryService().listTree(rootId);
 	    rootObj = tree.remove(0);
 	    return "dictionaryList";
 		
 	}
 	public String toAddDictionary(){
-		long pid = ParamHelper.getLongParamter(request, "pid", -1L);
 		rootObj = getDictionaryService().getDictionary(pid);
 		return "toAddDictionary";
 	}
 	
 	public String toEditDictionary(){
-	
-		long pid = ParamHelper.getLongParamter(request, "id", -1L);
+
 		dictionary = getDictionaryService().getDictionary(pid);
 		rootObj = dictionary.getParentObj();
 		
@@ -75,7 +78,6 @@ public class DictionaryAction extends BaseAction{
 	}
 	public void del(){
 		String result = "";
-		 long id = ParamHelper.getLongParamter(request, "id", -1L);
 		 if (id == -1L)
 			 result ="请选择要删除的数据!";
 		 
@@ -128,5 +130,23 @@ public class DictionaryAction extends BaseAction{
 	public void setDictionary(Dictionary dictionary) {
 		this.dictionary = dictionary;
 	}
-
+	public Long getPid() {
+		return pid;
+	}
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
+	public Long getRootId() {
+		return rootId;
+	}
+	public void setRootId(Long rootId) {
+		this.rootId = rootId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }

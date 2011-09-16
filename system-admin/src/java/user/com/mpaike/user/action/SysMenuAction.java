@@ -6,10 +6,7 @@ import java.util.List;
 
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.user.service.SysMenuControl;
-import com.mpaike.user.service.SysMenuService;
 import com.mpaike.util.MyBeanUtils;
-import com.mpaike.util.ParamHelper;
-import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
 
@@ -22,6 +19,8 @@ public class SysMenuAction extends BaseAction {
 	private List<SysMenu> tree= new ArrayList<SysMenu>();
     private SysMenu rootObj;
     private SysMenu sysMenu;
+    private Long pid;
+    private Long id;
 	public String listSysMenu() {
 		long rootId = Long.parseLong(super.getAppProps().get("sysMenuRootId")
 				.toString());
@@ -32,13 +31,11 @@ public class SysMenuAction extends BaseAction {
 	}
 	
 	public String toAddSysMenu(){
-		long pid = ParamHelper.getLongParamter(request, "pid", -1L);
 		rootObj = this.getSysMenuService().getMenu(pid);
 		return "edit";
 	}
 	
 	public String toEditSysMenu(){
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		sysMenu = this.getSysMenuService().getMenu(id);
 		rootObj = sysMenu.getParentObj();
 		return "edit";
@@ -48,7 +45,6 @@ public class SysMenuAction extends BaseAction {
 	public void del(){
 		
 		String result = "";
-		 long id = ParamHelper.getLongParamter(request, "id", -1L);
 		 if (id == -1L)
 			 result ="请选择要删除的数据!";
 		 
@@ -106,4 +102,21 @@ public class SysMenuAction extends BaseAction {
 	public void setSysMenu(SysMenu sysMenu) {
 		this.sysMenu = sysMenu;
 	}
+
+	public Long getPid() {
+		return pid;
+	}
+
+	public void setPid(Long pid) {
+		this.pid = pid;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }

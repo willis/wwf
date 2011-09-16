@@ -1,14 +1,12 @@
 package com.mpaike.user.action;
 
 import java.util.ArrayList;
-
 import java.util.List;
-import com.fins.gt.server.GridServerHandler;
+
 import com.mpaike.user.model.SysGroup;
 import com.mpaike.user.model.SysUser;
 import com.mpaike.user.service.SysGroupService;
 import com.mpaike.util.MyBeanUtils;
-import com.mpaike.util.ParamHelper;
 import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
 
@@ -17,6 +15,10 @@ import com.mpaike.util.app.BaseAction;
 public class SysGroupAction extends BaseAction {
 	private static final long serialVersionUID = -2286431261254005556L;
 	private SysGroup sysGroup;
+	private Long id;
+	private Long groupId;
+	private String[] cs;
+	private String[] c;
 	private List<String[]> trees = new ArrayList();
 
 	public SysGroupService getSysGroupService() {
@@ -33,21 +35,19 @@ public class SysGroupAction extends BaseAction {
 	}
 
 	public void getNotCheckUsers() {
-		GridServerHandler handler = new GridServerHandler(request, response);
+
 		SysUser searchBean = new SysUser();
-		long groupId = ParamHelper.getLongParamter(request, "groupId", -1L);
-		getSysGroupService().listNotCheckUsersToGrid(handler, searchBean,
-				groupId);
-		handler.printLoadResponseText();
+		List<SysUser> datas = getSysGroupService().listNotCheckUsersToGrid(searchBean,
+				groupId,this.pageInfo);
+		this.printPageList(datas);
 	}
 
 	public void addSysUsers() {
 		String msg = "";
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
+
 		if (id == -1L)
 			msg = "请选择组织机构！";
-		String[] cs = request.getParameterValues("cs");
-
+		
 		if ((cs == null) || (cs.length == 0))
 			msg = "请选择人员列表！";
 		if (cs.length == 1)
@@ -68,10 +68,10 @@ public class SysGroupAction extends BaseAction {
 
 	public void delSysUsers() {
 		String msg = "";
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
+
 		if (id == -1L)
 			msg = "请选择组织机构！";
-		String[] cs = request.getParameterValues("cs");
+
 
 		if ((cs == null) || (cs.length == 0))
 			msg = "请选择人员列表！";
@@ -89,17 +89,15 @@ public class SysGroupAction extends BaseAction {
 	}
 
 	public void getCheckUsers() {
-		GridServerHandler handler = new GridServerHandler(request, response);
 		SysUser searchBean = new SysUser();
-		long groupId = ParamHelper.getLongParamter(request, "groupId", -1L);
-		getSysGroupService().listCheckUsersToGrid(handler, searchBean, groupId);
-		handler.printLoadResponseText();
+		List<SysUser> datas = getSysGroupService().listCheckUsersToGrid(searchBean,
+				groupId,this.pageInfo);
+		this.printPageList(datas);
 		
 	}
 
 	public String getSysGroupInfo() {
-		sysGroup = getSysGroupService().getSysGroup(
-				ParamHelper.getLongParamter(request, "groupId", -1L));
+		sysGroup = getSysGroupService().getSysGroup(groupId);
 		return "get";
 	}
 
@@ -126,7 +124,7 @@ public class SysGroupAction extends BaseAction {
 
 	public void del() {
 		String result = "请先删除子机构！";
-		String[] cs = request.getParameterValues("c");
+		String[] cs = c;
 		if (cs == null)
 			result = "请选择删除的组织机构!";
 		for (String c : cs) {
@@ -159,4 +157,36 @@ public class SysGroupAction extends BaseAction {
 		this.trees = trees;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
+
+	public String[] getCs() {
+		return cs;
+	}
+
+	public void setCs(String[] cs) {
+		this.cs = cs;
+	}
+
+	public String[] getC() {
+		return c;
+	}
+
+	public void setC(String[] c) {
+		this.c = c;
+	}
+	
 }

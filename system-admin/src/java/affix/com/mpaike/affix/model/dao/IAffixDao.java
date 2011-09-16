@@ -21,19 +21,25 @@
  * FLOSS exception.  You should have recieved a copy of the text describing 
  * the FLOSS exception, and it is also available here: 
  */
-package com.mpaike.user.dao;
+package com.mpaike.affix.model.dao;
 
 import java.util.List;
 
+import com.mpaike.affix.model.Affix;
 import com.mpaike.core.database.hibernate.BaseDao;
-import com.mpaike.user.model.SysMenu;
 
 /**
- * @author Chen.H @Date 2011-9-15
- * com.mpaike.user.dao system-admin
+ * @author Chen.H @Date 2011-9-16
+ * com.mpaike.affix.model.dao system-admin
  */
-public interface ISysMenuDao   extends BaseDao<SysMenu>{
+public interface IAffixDao extends BaseDao<Affix> {
 	
-	public List<SysMenu> getMenusByParentId(long parentId);
+	public List<Affix> getAffixs(long objectType,String objectId);
+	
+	public void updateAffixId(long objectType,String oldObjId,String newObjId );
+	
+	public void updateAffixHotAdd(long id );
+	
+	public void deleteByTypeAndOBjId(Integer type, String objId);
 
 }

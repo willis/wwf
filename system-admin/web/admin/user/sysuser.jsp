@@ -137,7 +137,7 @@
 		  		{id:'truename'},
 		  		{id:'sex'},
 		  		{id:'status',renderer:statusRenderer},
-		  		{id:'regtime',renderer:regtimeRenderer}
+		  		{id:'regtime'}
 		  		]
 		  	}
 		  )
@@ -148,7 +148,7 @@
 	    
 	     function query(){
 	     	myTable1.page.totalRowNum = 0;
-	    	myTable1.onLoad({username:$("#username").val(),truename:$("#truename").val(),status:$("#status").val()});
+	    	myTable1.onLoad({"sysUser.username":$("#username").val(),"sysUser.truename":$("#truename").val(),"sysUser.status":$("#status").val()});
 	     } 	
 	     function editRenderer(idValue,value,record){
 	    	//record["id"]

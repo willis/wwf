@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fins.gt.server.GridServerHandler;
 import com.mpaike.user.model.SysMenu;
 import com.mpaike.user.model.SysPopedom;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.service.SysMenuControl;
 import com.mpaike.util.MyBeanUtils;
-import com.mpaike.util.ParamHelper;
 import com.mpaike.util.app.BaseAction;
 
 
-@SuppressWarnings("unchecked")
 public class SysRoleAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
@@ -24,11 +21,12 @@ public class SysRoleAction extends BaseAction {
 	private long id;
 	private List<SysMenu> tree = new ArrayList<SysMenu>();
 	private SysMenu rootObj;
+	private String[] ids;
+	private String[] cs;
+	private String[] c;
+	private Long roleId;
 
 	public void list() {
-		sysRole = new SysRole();
-		sysRole.setName(ParamHelper.getStr(request, "name", null));
-		sysRole.setDescribe(ParamHelper.getStr(request, "describe", null));
 		List<SysRole> datas = this.getSysRoleService().listToGrid(sysRole,this.pageInfo,this.getOrderby());
 		this.printPageList(datas);
 	}
@@ -45,7 +43,7 @@ public class SysRoleAction extends BaseAction {
 
 
 		sysRole = new SysRole();
-		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
+		sysRole.setId(id);
 		List<SysPopedom> datas = this.getSysRoleService().listCheckPopedomsToGrid(sysRole,this.pageInfo);
 		this.printPageList(datas);
 
@@ -54,7 +52,7 @@ public class SysRoleAction extends BaseAction {
 	public void getNotCheckPopedoms() throws Exception {
 
 		sysRole = new SysRole();
-		sysRole.setId(ParamHelper.getLongParamter(request, "id", -1l));
+		sysRole.setId(id);
 		List<SysPopedom> datas = this.getSysRoleService().listNotCheckPopedomsToGrid(sysRole,this.pageInfo);
 		this.printPageList(datas);
 
@@ -62,13 +60,11 @@ public class SysRoleAction extends BaseAction {
 
 	public void addRolePopedoms() throws Exception {
 
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
 			super.printSuccessJson("请选择权限！");
 		}
 
 
-	    String[] cs = request.getParameterValues("cs");
 	    if ((cs == null) || (cs.length == 0))
 	    	super.printSuccessJson("请选择权限！");
 	    if (cs.length == 1) {
@@ -81,13 +77,9 @@ public class SysRoleAction extends BaseAction {
 	}
 
 	public void delRolePopedoms() throws Exception {
-
-		long id = ParamHelper.getLongParamter(request, "id", -1L);
 		if (id == -1L) {
 			super.printSuccessJson("请选择权限！");
 		}
-
-		String[] cs = request.getParameterValues("cs");
 		if ((cs == null) || (cs.length == 0))
 	    	super.printSuccessJson("请选择权限！");
 	    if (cs.length == 1) {
@@ -101,10 +93,10 @@ public class SysRoleAction extends BaseAction {
 
 	public void addSysMenus() {
 		try {
-			long roleId = ParamHelper.getLongParamter(request, "roleId", -1L);
+	
 			if (roleId == -1L)
 				super.printSuccessJson( "角色为空不能设置菜单！");
-			String[] cs = request.getParameterValues("c");
+			String[] cs = c;
 
 			if (cs == null) {
 				this.getSysRoleService().addSysMenu(roleId, new String[0]);
@@ -120,11 +112,8 @@ public class SysRoleAction extends BaseAction {
 	}
 
 	public void getSysMenuJson() throws IOException {
-		long roleId = ParamHelper.getLongParamter(request, "roleId", -1L);
-		if (roleId == -1L) {
 
-		}
-
+		@SuppressWarnings("rawtypes")
 		List beans = this.getSysRoleService().getSysMenusByRoleId(roleId);
 		super.printBeansJson(beans);
 
@@ -132,7 +121,7 @@ public class SysRoleAction extends BaseAction {
 
 	public void del() {
 		String result = "";
-		String[] cs = request.getParameterValues("ids");
+		String[] cs = ids;
 		if (cs == null)
 			result = "请选择删除的记录!";
 		for (String c : cs) {
@@ -198,4 +187,37 @@ public class SysRoleAction extends BaseAction {
 	public void setRootObj(SysMenu rootObj) {
 		this.rootObj = rootObj;
 	}
+
+	public String[] getIds() {
+		return ids;
+	}
+
+	public void setIds(String[] ids) {
+		this.ids = ids;
+	}
+
+	public String[] getCs() {
+		return cs;
+	}
+
+	public void setCs(String[] cs) {
+		this.cs = cs;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public String[] getC() {
+		return c;
+	}
+
+	public void setC(String[] c) {
+		this.c = c;
+	}
+	
 }

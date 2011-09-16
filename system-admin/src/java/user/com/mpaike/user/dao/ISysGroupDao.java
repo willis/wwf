@@ -26,14 +26,20 @@ package com.mpaike.user.dao;
 import java.util.List;
 
 import com.mpaike.core.database.hibernate.BaseDao;
-import com.mpaike.user.model.SysMenu;
+import com.mpaike.core.util.page.Pagination;
+import com.mpaike.user.model.SysGroup;
+import com.mpaike.user.model.SysUser;
 
 /**
- * @author Chen.H @Date 2011-9-15
+ * @author Chen.H @Date 2011-9-16
  * com.mpaike.user.dao system-admin
  */
-public interface ISysMenuDao   extends BaseDao<SysMenu>{
+public interface ISysGroupDao extends BaseDao<SysGroup>{
 	
-	public List<SysMenu> getMenusByParentId(long parentId);
+	public  List<SysUser> listCheckUsersToGrid(SysUser paramSysUser,
+			long paramLong, Pagination p);
+
+	public  List<SysUser> listNotCheckUsersToGrid(SysUser paramSysUser,
+			long paramLong ,Pagination p);
 
 }

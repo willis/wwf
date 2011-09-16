@@ -23,6 +23,8 @@
  */
 package com.mpaike.user.dao.impl;
 
+import java.util.List;
+
 import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.user.dao.ISysMenuDao;
 import com.mpaike.user.model.SysMenu;
@@ -32,5 +34,12 @@ import com.mpaike.user.model.SysMenu;
  * com.mpaike.user.dao.impl system-admin
  */
 public class SysMenuDao extends BaseDaoImpl<SysMenu> implements ISysMenuDao{
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SysMenu> getMenusByParentId(long parentId) {
+		
+		return this.find(" select new SysMenu(d.id,d.name,d.description,d.orderBy,d.img,d.link,d.alias) from SysMenu d where d.parentObj.id=?  order by d.orderby ",new Object[]{parentId});
+	}
 
 }
