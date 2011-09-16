@@ -5,18 +5,18 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.dictionary.model.Dictionary;
 import com.mpaike.dictionary.service.DictionaryService;
-import com.mpaike.util.dao.CommonDao;
 
 
 @SuppressWarnings("unchecked")
-public class DictionaryServiceImpl extends CommonDao implements
+public class DictionaryServiceImpl extends BaseDaoImpl<Dictionary> implements
 		DictionaryService {
 
 	public void addDictionary(Dictionary bean) {
 		bean.setCurDate(new Date());
-		super.add(bean);
+		this.saveOrUpdate(bean);
 	}
 
 	public void updateDictionary(Dictionary bean) {
@@ -25,13 +25,13 @@ public class DictionaryServiceImpl extends CommonDao implements
 	}
 
 	public Dictionary getDictionary(long id) {
-		return (Dictionary) super.get(Dictionary.class, Long.valueOf(id));
+		return (Dictionary) this.get(Long.valueOf(id));
 	}
 
 	public boolean delDictionary(long id) {
 		boolean result;
 		try{
-		  super.remove(Dictionary.class, Long.valueOf(id));
+		  this.deleteById(Long.valueOf(id));
 		  result = true;
 		}catch(Exception e){
 			result = false;
