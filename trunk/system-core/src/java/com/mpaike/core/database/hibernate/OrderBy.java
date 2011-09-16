@@ -1,5 +1,8 @@
 package com.mpaike.core.database.hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.criterion.Order;
 
 @SuppressWarnings("serial")
@@ -31,11 +34,17 @@ public class OrderBy extends Condition {
 
 	public static Order[] asOrders(OrderBy[] orderBys) {
 		if (orderBys != null) {
-			Order[] orders = new Order[orderBys.length];
+			List<Order> list = new ArrayList<Order>();
 			for (int i = 0; i < orderBys.length; i++) {
-				orders[i] = orderBys[i].getOrder();
+				if(orderBys[i]!=null){
+					list.add(orderBys[i].getOrder());
+				}
 			}
-			return orders;
+			if(list.size()>0){
+				return list.toArray(new Order[0]);
+			}else{
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -46,6 +55,9 @@ public class OrderBy extends Condition {
 		if (orderBys != null) {
 			StringBuilder sb = new StringBuilder(" order by ");
 			for (int i = 0,n=orderBys.length; i < n; i++) {
+				if(orderBys[i]==null){
+					continue;
+				}
 				sb.append(orderBys[i].getField());
 				if(orderBys[i].orderType==OrderType.ASC){
 					sb.append(" asc");
@@ -56,7 +68,12 @@ public class OrderBy extends Condition {
 					sb.append(",");
 				}
 			}
-			return sb.toString();
+			if(sb.toString().equals(" order by ")){
+				return "";
+			}else{
+				return sb.toString();
+			}
+			
 		} else {
 			return "";
 		}
