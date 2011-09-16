@@ -78,7 +78,7 @@ public class SysUserAction extends BaseAction {
 		sysUser.setTruename(ParamHelper.getStr(request, "truename", null));
 		sysUser.setUsername(ParamHelper.getStr(request, "username", null));
 		sysUser.setStatus(ParamHelper.getLongParamter(request, "status", -1l));
-		List<SysUser> datas = getSysUserService().find(sysUser,this.pageToPageinfo(),this.getOrderby());
+		List<SysUser> datas = getSysUserService().find(sysUser,this.pageInfo,this.getOrderby());
 		
 		this.printPageList(datas);
 
@@ -89,14 +89,14 @@ public class SysUserAction extends BaseAction {
 
 		sysUser = new SysUser();
 		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
-		List<SysRole> datas =getSysUserService().listNotCheckRolesToGrid(sysUser,this.pageToPageinfo());
+		List<SysRole> datas =getSysUserService().listNotCheckRolesToGrid(sysUser,this.pageInfo);
 		this.printPageList(datas);
 	}
 
 	public void getCheckRoles() {
 		sysUser = new SysUser();
 		sysUser.setId(ParamHelper.getLongParamter(request, "id", -1L));
-		List<SysRole> datas =getSysUserService().listCheckRolesToGrid(sysUser,this.pageToPageinfo());
+		List<SysRole> datas =getSysUserService().listCheckRolesToGrid(sysUser,this.pageInfo);
 		this.printPageList(datas);
 	}
 

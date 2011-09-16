@@ -22,7 +22,7 @@ public class SysPopedomAction extends BaseAction {
 		sysPopedom.setCode(ParamHelper.getStr(request, "code", null));
 		sysPopedom.setDescribe(ParamHelper.getStr(request, "describe", null));
 
-		List<SysPopedom> datas = this.getSysPopedomService().listToGrid(sysPopedom, this.pageToPageinfo(), this.getOrderby());
+		List<SysPopedom> datas = this.getSysPopedomService().listToGrid(sysPopedom, this.pageInfo, this.getOrderby());
 		this.printPageList(datas);
 	}
 
