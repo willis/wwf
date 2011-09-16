@@ -43,7 +43,7 @@ MaxTable.prototype={
 		this._s  = $("#"+this.opts.table)[0];
 		this.loading = $("#"+this.opts.loading);
 		if(this.opts.isSort == false){
-			this.sortInfo = null;
+			this.sortInfo = this.defaultSortInfo;
 		}
 		this.showPageInfo = this.opts.showPageInfo;
 		this.complete = this.opts.complete;
