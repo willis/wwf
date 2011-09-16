@@ -1,12 +1,13 @@
 package com.mpaike.user.model;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
-public class SysUserAndSysGroupToSysRole implements IBeanPrimaryKey, java.io.Serializable{
+public class SysUserAndSysGroupToSysRole implements  java.io.Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private SysRole sysRole;
 
