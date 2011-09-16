@@ -1,13 +1,14 @@
 package com.mpaike.bot.model;
 
-import com.mpaike.util.dao.IBeanPrimaryKey;
+import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
-public class WebUrl implements IBeanPrimaryKey, java.io.Serializable{
+public class WebUrl implements java.io.Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@AnnotationObjectKey
 	private Long id;
 	private String siteName;//网站名称
 	private String url;//网站链接
