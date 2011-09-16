@@ -28,7 +28,7 @@
  ******************************************************************************/
 var MaxTable =  function(){
 	this.page = new Pages();
-	this.defaultSortInfo ={columnId:'id',fieldName:'id',sortOrder:'desc'};
+	this.defaultSortInfo ={field:'',fieldName:'',sortOrder:''};
 	this.sortInfo =this.defaultSortInfo ;
 	this.showPageInfo = true;//是否显示分页信息
 	this.table = null;
@@ -115,7 +115,7 @@ MaxTable.prototype={
 						}
 
 						
-						if (_parent.page.totalRowNum != 0) {
+						if (_parent.page.totalCount != 0) {
 						
 							var trObj = _s.insertRow(_s.rows.length);
 							trObj.id= "page";
@@ -133,34 +133,34 @@ MaxTable.prototype={
 									return;
 								}
 								_parent.page.pageSize = this.value;
-								_parent.page.totalRowNum = -1;
+								_parent.page.totalCount = -1;
 
 								_parent.query();
 							});
 							$("#firstPage", tdObj).bind("click",
 									function() {
-										_parent.page.pageNum = 1;
+										_parent.page.pageNo = 1;
 										_parent.query();
 									});
 							$("#prePage", tdObj)
 									.bind(
 											"click",
 											function() {
-												_parent.page.pageNum = _parent.page.pageNum - 1;
+												_parent.page.pageNo = _parent.page.pageNo - 1;
 												_parent.query();
 											});
 							$("#nextPage", tdObj)
 									.bind(
 											"click",
 											function() {
-												_parent.page.pageNum = _parent.page.pageNum + 1;
+												_parent.page.pageNo = _parent.page.pageNo + 1;
 												_parent.query();
 											});
 							$("#lastPage", tdObj)
 									.bind(
 											"click",
 											function() {
-												_parent.page.pageNum = _parent.page.totalPageNum;
+												_parent.page.pageNo = _parent.page.totapageNom;
 												_parent.query();
 											});
 							$("#Pg", tdObj).bind("blur", function() {
@@ -173,7 +173,7 @@ MaxTable.prototype={
 									alert("分页数字不正确！");
 									return;
 								}
-								_parent.page.pageNum = this.value;
+								_parent.page.pageNo = this.value;
 								_parent.query();
 							});
 						}
@@ -227,28 +227,28 @@ MaxTable.prototype={
  			text += '每页显示<input id="pageSize"   value="'
  					+ pageInfo.pageSize
  					+ '" type="text" id="pageSize"   style="width:20px; border:solid #CCC 1px"/>';
- 			text += '条&nbsp;|&nbsp;共<font color=red>' + pageInfo.totalPageNum
- 					+ '</font>页 , <font color=red>' + pageInfo.totalRowNum
+ 			text += '条&nbsp;|&nbsp;共<font color=red>' + pageInfo.totalPage
+ 					+ '</font>页 , <font color=red>' + pageInfo.totalCount
  					+ '</font>条数据';
  			text += '&nbsp;|&nbsp;';
  			text += '<input id="firstPage"  type="button" '
- 					+ (pageInfo.pageNum > 1 ? ' style="background:#FFF ; border:none;cursor:pointer"  '
+ 					+ (pageInfo.pageNo > 1 ? ' style="background:#FFF ; border:none;cursor:pointer"  '
  							: ' disabled="disabled" ')
  					+ '   name="button" id="button" value="首页"  style="background:#FFF ; border:none;"/>&nbsp;';
  			text += '<input id="prePage"  type="button" '
- 					+ (pageInfo.pageNum > 1 ? '  style="background:#FFF ; border:none;cursor:pointer" '
+ 					+ (pageInfo.pageNo > 1 ? '  style="background:#FFF ; border:none;cursor:pointer" '
  							: ' disabled="disabled" ')
  					+ '   name="button" id="button" value="上一页"  style="background:#FFF ; border:none;"/>&nbsp;';
  			text += '<input id="nextPage"  type="button" '
- 					+ (pageInfo.totalPageNum > pageInfo.pageNum ? ' style="background:#FFF ; border:none;cursor:pointer"  '
+ 					+ (pageInfo.totalPage > pageInfo.pageNo ? ' style="background:#FFF ; border:none;cursor:pointer"  '
  							: ' disabled="disabled" ')
  					+ '   name="button" id="button" value="下一页"  style="background:#FFF ; border:none;"/>&nbsp;';
  			text += '<input id="lastPage"  type="button"  '
- 					+ (pageInfo.totalPageNum > pageInfo.pageNum ? ' style="background:#FFF ; border:none;cursor:pointer"  '
+ 					+ (pageInfo.totalPage > pageInfo.pageNo ? ' style="background:#FFF ; border:none;cursor:pointer"  '
  							: ' disabled="disabled" ')
  					+ '  name="button" id="button" value="尾页"  style="background:#FFF ; border:none;"/>&nbsp;';
  			text += '&nbsp;|&nbsp;第<input id="Pg"   value="'
- 					+ pageInfo.pageNum
+ 					+ pageInfo.pageNo
  					+ '" type="text" id="Pg" style="width:20px; border:solid #CCC 1px"/>页';
 
  			return text;
@@ -260,7 +260,8 @@ MaxTable.prototype={
 		  if(!this.showPageInfo){
 		  	this.page.pageSize=100;
 		  }
-		var jsonData={_gt_json:"{pageInfo:"+$.toJSON(this.page)+",action:'load',filterInfo:[],orderby:"+(this.sortInfo==null?'':$.toJSON(this.sortInfo))+"}"};
+		//var jsonData={_gt_json:"{pageInfo:"+$.toJSON(this.page)+",action:'load',filterInfo:[],orderby:"+(this.sortInfo==null?'':$.toJSON(this.sortInfo))+"}"};
+		var jsonData={"pageInfo.pageSize":this.page.pageSize,"pageInfo.pageNo":this.page.pageNo,"pageInfo.totalCount":this.page.totalCount,"field":this.sortInfo.field,"sortOrder":this.sortInfo.sortOrder};
 
 		jsonData =$.extend(jsonData,parameters);
 		return jsonData;
@@ -283,7 +284,7 @@ MaxTable.prototype={
 			this.headInfos[this.headInfos.length] = {index:opts.cells[i].index,name:opts.cells[i].name,sortSpan:sortSpan};
 			$(headTrobj.cells[opts.cells[i].index]).bind("click", function() {
 				_parent.setSortInfo(this.cellIndex);
-				_parent.page.pageNum=1;
+				_parent.page.pageNo=1;
 				_parent.query();
 				 
 			});
@@ -295,17 +296,17 @@ MaxTable.prototype={
 			var sortSpan =   this.headInfos[i].sortSpan;
 			if(cellIndex == this.headInfos[i].index ){
  				if(!this.sortInfo){
-				this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'};
+				this.sortInfo = {field:fieldName,fieldName:fieldName,sortOrder:'desc'};
 					sortSpan.className="sortDesc";
 				}else{
 					if(this.sortInfo.fieldName == fieldName){
 						if(this.sortInfo.sortOrder==""){
 							sortSpan.className="sortDesc";
-							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"desc"};
+							this.sortInfo = {field:fieldName,fieldName:fieldName,sortOrder:"desc"};
 							
 						}else if(this.sortInfo.sortOrder=="desc"){
 							sortSpan.className="sortAsc";
-							this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:"asc"};
+							this.sortInfo = {field:fieldName,fieldName:fieldName,sortOrder:"asc"};
 						}else {
 							sortSpan.className="";
 							this.sortInfo =  this.defaultSortInfo;
@@ -313,7 +314,7 @@ MaxTable.prototype={
 						
 					}else{
 						sortSpan.className="sortDesc";
-						this.sortInfo = {columnId:fieldName,fieldName:fieldName,sortOrder:'desc'};
+						this.sortInfo = {field:fieldName,fieldName:fieldName,sortOrder:'desc'};
 					}
 				}
 			}else{
@@ -327,11 +328,9 @@ MaxTable.prototype={
 };
 
 function Pages(){
-	this.endRowNum = -1;
-	this.pageNum = 1;
-	this.startRowNum = 1;
-	this.totalPageNum = 0;
-	this.totalRowNum = -1;
+	this.pageNo = 1;
+	this.totalPage = 0;
+	this.totalCount = -1;
 	this.pageSize  = 17;
 }
  
