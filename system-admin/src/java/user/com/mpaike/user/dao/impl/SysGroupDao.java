@@ -23,12 +23,15 @@
  */
 package com.mpaike.user.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysGroupDao;
 import com.mpaike.user.model.SysGroup;
+import com.mpaike.user.model.SysGroupToSysRole;
+import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
 
 /**
@@ -51,7 +54,7 @@ public class SysGroupDao extends BaseDaoImpl<SysGroup> implements ISysGroupDao {
 
 		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status)";
 
-		return this.find(select +sql.toString(),p);
+		return this.findList(select +sql.toString(),p);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -69,7 +72,20 @@ public class SysGroupDao extends BaseDaoImpl<SysGroup> implements ISysGroupDao {
 
 		String select = " select new SysUser(u.id, u.username, u.truename, u.sex, u.email, u.tel, u.mark, u.ask, u.answer, u.other, u.regtime, u.logintime, u.password, u.status) ";
 
-		return this.find(select +sql.toString(),p);
+		return this.findList(select +sql.toString(),p);
+	}
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<SysRole> getSysRoles(SysGroup sysGroup) {
+		List<SysRole> sysRoles = new ArrayList<SysRole>();
+
+	    List l1 = this.find("from SysGroupToSysRole s where s.sysGroup=?", new Object[] { sysGroup });
+	    for (int i = 0; i < l1.size(); i++)
+	    {
+	      SysGroupToSysRole sysGroupToPopedom = (SysGroupToSysRole)l1.get(i);
+	      sysRoles.add(sysGroupToPopedom.getSysRole());
+	    }
+	    return sysRoles;
 	}
 
 	
