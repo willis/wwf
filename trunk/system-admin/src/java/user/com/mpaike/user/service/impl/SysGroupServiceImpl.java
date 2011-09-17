@@ -114,8 +114,8 @@ public class SysGroupServiceImpl extends BaseService implements
 
 	@Override
 	public List<SysRole> getSysRoles(SysGroup paramSysGroup) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.getSysGroupDao().getSysRoles(paramSysGroup);
 	}
 
 }
