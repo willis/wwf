@@ -54,7 +54,7 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	
 	@Override
 	public void addSysRole(SysUser sysUser, SysRole sysRole) {
-		this.getSysUserDao().addSysRole(sysUser, sysRole);
+		this.getSysUserToSysRoleDao().saveOrUpdate(sysRole);
 	}
 	@Override
 	public SysUser loginUserByPassword(String username, String password) {

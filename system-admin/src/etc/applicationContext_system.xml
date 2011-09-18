@@ -29,7 +29,9 @@
 	<bean id="sysPopedomService"
 		class="com.mpaike.user.service.impl.SysPopedomServiceImpl"
 		autowire="byName"/>
-
+	<bean id="sysUserToSysRoleService"
+		class="com.mpaike.user.service.impl.SysUserToSysRoleImpl"
+		autowire="byName"/>
 		
 		
 	<bean id="webUrlService"

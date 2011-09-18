@@ -53,9 +53,37 @@
 								</div>
 								<div id="editor_right"></div>
 							</div>
-							<table id="datagrid">
-								
+							<table class="table" id="datagrid">
+						<thead>
+						<tr id="myHead">
+							<th style="width: 80px;">
+								<label class="checkbox">
+									<input type="checkbox" name="c_all"
+										onClick="selectAll(this.form,this.checked,this.nextSibling)">
+									全选
+								</label>
+							</th>
+							<th style="width: 100px;">
+								操作
+							</th>
+							<th>
+								网站名称
+							</th>
+							<th>
+								网站链接
+							</th>
+							<th>
+								网站英文名称
+							</th>
+							
+						</tr>
+					</thead>
+						<tbody id="myTable" >
+						
+							 
+						</tbody>
 							</table>
+						
 						</td>
 						<td id="middleRight">
 						</td>
@@ -72,41 +100,26 @@
 			</table>
 </body>
 <script>
-		$(function(){
-			$('#datagrid').datagrid({
-				nowrap: false,
-				striped: true,
-				collapsible:true,
-				fitColumns:true,
-				url:'weburlAction!list.action',
-				sortName: 'url',
-				sortOrder: 'desc',
-				remoteSort: true,
-				loadMsg:'数据加载中，请稍后......',
-				idField:'id',
-				frozenColumns:[[
-				                {field:'ck',checkbox:true},
-				                {title:'code',field:'id',width:80,sortable:true}
-				]],
-				columns:[[
-					{field:'siteName',title:'网站名称',width:120},
-					{field:'url',title:'网站链接',width:120,sortable:true},
-					{field:'enName',title:'网站英文名称',width:120}
-				]],
-				pagination:true,
-				rownumbers:true
-			
-			});
-			var p = $('#datagrid').datagrid('getPager');
-			if (p){
-				$(p).pagination({
-					onBeforeRefresh:function(){
-						
-					}
-				});
-			}
-		});
-	
+
+		 var dataGrid =  new MaxTable();
+		 dataGrid.initialize(
+		  	{
+		  		table:'dataGrid',
+		  		loading:'loading',
+		  		id:'id',
+		  		queryUrl:'weburlAction!list.action',
+		  		headerColumns:[{id:'id'},
+		  		{id:'id'},
+		  		{id:'siteName'},
+		  		{id:'enName'}
+		  		]
+		  	}
+		  );
+		  function query(){
+			  dataGrid.page.totalRowNum = 0;
+			  dataGrid.onLoad({});
+		   } 
+		  query();
 	</script>
 
 </html>

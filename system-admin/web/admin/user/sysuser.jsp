@@ -140,7 +140,7 @@
 		  		{id:'regtime'}
 		  		]
 		  	}
-		  )
+		  );
 		  
 	       myTable1.initSortHead(
 	      {head:'myHead',cells:[{index:1,name:'id'},{index:2,name:'username'},{index:3,name:'truename'},{index:4,name:'sex'},{index:5,name:'status'},{index:6,name:'regtime'}]}
