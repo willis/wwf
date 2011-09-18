@@ -21,6 +21,9 @@
 	<bean name="sysGroupDao" class="com.mpaike.user.dao.impl.SysGroupDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean name="sysUserToSysRoleDao" class="com.mpaike.user.dao.impl.SysUserToSysRoleDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean name="affixDao" class="com.mpaike.affix.model.dao.impl.AffixDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

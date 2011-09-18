@@ -115,15 +115,15 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 
 	@Override
 	public void addSysRole(SysUser sysUser, SysRole sysRole) {
-		List datas = this.find(
+		List<SysUserToSysRole> datas = this.find(
 				"from SysUserToSysRole s where s.sysUser=? and s.sysRole=?",
 				new Object[] { sysUser, sysRole });
 		if(datas.isEmpty()){
 			SysUserToSysRole info = new SysUserToSysRole();
 			info.setSysRole(sysRole);
 			info.setSysUser(sysUser);
-			this.getSession().save(info);
-			
+			sysUser.getSysUserToSysRoles().add(info);
+			this.getSession().flush();
 		}
 		
 	}
