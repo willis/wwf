@@ -9,6 +9,7 @@ import com.mpaike.core.util.page.Pagination;
 import com.mpaike.sys.service.impl.BaseService;
 import com.mpaike.user.model.SysRole;
 import com.mpaike.user.model.SysUser;
+import com.mpaike.user.model.SysUserToSysRole;
 import com.mpaike.user.service.SysUserService;
 
 
@@ -54,7 +55,10 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	
 	@Override
 	public void addSysRole(SysUser sysUser, SysRole sysRole) {
-		this.getSysUserToSysRoleDao().saveOrUpdate(sysRole);
+		
+		this.getSysUserDao().addSysRole(sysUser, sysRole);
+		
+
 	}
 	@Override
 	public SysUser loginUserByPassword(String username, String password) {

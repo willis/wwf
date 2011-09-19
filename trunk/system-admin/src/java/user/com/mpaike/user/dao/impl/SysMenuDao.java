@@ -25,7 +25,7 @@ package com.mpaike.user.dao.impl;
 
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.user.dao.ISysMenuDao;
 import com.mpaike.user.model.SysMenu;
 
@@ -33,7 +33,7 @@ import com.mpaike.user.model.SysMenu;
  * @author Chen.H @Date 2011-9-15
  * com.mpaike.user.dao.impl system-admin
  */
-public class SysMenuDao extends BaseDaoImpl<SysMenu> implements ISysMenuDao{
+public class SysMenuDao extends SpringBaseDaoImpl<SysMenu> implements ISysMenuDao{
 
 	@SuppressWarnings("unchecked")
 	@Override

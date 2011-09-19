@@ -26,8 +26,8 @@ package com.mpaike.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysRoleDao;
 import com.mpaike.user.model.SysMenu;
@@ -38,7 +38,7 @@ import com.mpaike.util.ParamHelper;
 /**
  * @author Chen.H @Date 2011-9-14 com.mpaike.user.dao.impl system-admin
  */
-public class SysRoleDao extends BaseDaoImpl<SysRole> implements ISysRoleDao {
+public class SysRoleDao extends SpringBaseDaoImpl<SysRole> implements ISysRoleDao {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void createSQLWhere(SysRole role, StringBuffer sql, List params) {
 		if (role.getName() != null && !ParamHelper.isEmpty(role.getName())) {

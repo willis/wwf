@@ -26,8 +26,8 @@ package com.mpaike.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysPopedomDao;
 import com.mpaike.user.model.SysPopedom;
@@ -37,7 +37,7 @@ import com.mpaike.util.ParamHelper;
  * @author Chen.H @Date 2011-9-13
  * com.mpaike.user.dao.impl system-admin
  */
-public class SysPopedomDao extends BaseDaoImpl<SysPopedom> implements ISysPopedomDao{
+public class SysPopedomDao extends SpringBaseDaoImpl<SysPopedom> implements ISysPopedomDao{
 	
 	public SysPopedomDao(){
 		super();

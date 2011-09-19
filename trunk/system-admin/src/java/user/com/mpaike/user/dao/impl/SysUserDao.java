@@ -26,8 +26,8 @@ package com.mpaike.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
 import com.mpaike.core.database.hibernate.OrderBy;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysUserDao;
 import com.mpaike.user.model.SysRole;
@@ -40,7 +40,7 @@ import com.mpaike.util.ParamHelper;
  * @author Chen.H @Date 2011-9-9
  * com.mpaike.user.dao.impl system-admin
  */
-public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
+public class SysUserDao extends SpringBaseDaoImpl<SysUser> implements ISysUserDao{
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void createSQLWhere(SysUser user, StringBuffer sql, List params) {
@@ -74,7 +74,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 		
 		for (int i = 0, n = id.length; i < n; i++) {
 			
-			this.updateAndDelBeanForSQL("update SysUser u set u.password=? where u.id=?",new Object[]{MD5.toMD5(password),id[i]});
+			this.bulkUpdate("update SysUser u set u.password=? where u.id=?",new Object[]{MD5.toMD5(password),id[i]});
 		}
 		
 	}
@@ -82,7 +82,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 	@Override
 	public void remove(Long[] id, Long type) {
 		for (int i = 0, n = id.length; i < n; i++) {
-			this.updateAndDelBeanForSQL("update SysUser  u set u.status=? where u.id=?",new Object[]{type,id[i]});
+			this.bulkUpdate("update SysUser  u set u.status=? where u.id=?",new Object[]{type,id[i]});
 		}
 		
 	}
@@ -103,7 +103,7 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 
 	@Override
 	public void removeSysRole(SysUser sysUser, SysRole sysRole) {
-		this.updateAndDelBeanForSQL("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?" ,new Object[]{sysUser,sysRole});
+		this.bulkUpdate("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?" ,new Object[]{sysUser,sysRole});
 		
 	}
 
@@ -123,7 +123,6 @@ public class SysUserDao extends BaseDaoImpl<SysUser> implements ISysUserDao{
 			info.setSysRole(sysRole);
 			info.setSysUser(sysUser);
 			sysUser.getSysUserToSysRoles().add(info);
-			this.getSession().flush();
 		}
 		
 	}

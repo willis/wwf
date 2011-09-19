@@ -11,7 +11,6 @@ import com.mpaike.user.dao.ISysMenuDao;
 import com.mpaike.user.dao.ISysPopedomDao;
 import com.mpaike.user.dao.ISysRoleDao;
 import com.mpaike.user.dao.ISysUserDao;
-import com.mpaike.user.dao.ISysUserToSysRoleDao;
 
 public class BaseService implements IBaseService{
 	private ISysUserDao sysUserDao;
@@ -21,7 +20,6 @@ public class BaseService implements IBaseService{
 	private ISysGroupDao sysGroupDao;
 	private ISystemLogDao sysLogDao;
 	private IAffixDao affixDao;
-	private ISysUserToSysRoleDao sysUserToSysRoleDao;
 	
 	private IWebUrlDao webUrlDao;
 	private IMemberDao memberDao;
@@ -107,13 +105,6 @@ public class BaseService implements IBaseService{
 		this.affixDao = affixDao;
 	}
 
-	public ISysUserToSysRoleDao getSysUserToSysRoleDao() {
-		return sysUserToSysRoleDao;
-	}
-
-	public void setSysUserToSysRoleDao(ISysUserToSysRoleDao sysUserToSysRoleDao) {
-		this.sysUserToSysRoleDao = sysUserToSysRoleDao;
-	}
 	
 	
 
