@@ -42,7 +42,7 @@ public class Pagination extends SimplePage implements java.io.Serializable,
 	private List list;
 
 	@SuppressWarnings("unchecked")
-	public List getList() {
+	public List list() {
 		return list;
 	}
 
