@@ -35,7 +35,7 @@ import com.mpaike.core.exception.WWFException;
 import com.mpaike.core.util.MyBeanUtils;
 import com.mpaike.core.util.page.Pagination;
 
-public class SBaseDaoImpl<T extends Serializable> extends HibernateDaoSupport implements BaseDao<T>{
+public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSupport implements BaseDao<T>{
 		
 	protected Logger log = LoggerFactory.getLogger(getClass());
 
@@ -47,7 +47,7 @@ public class SBaseDaoImpl<T extends Serializable> extends HibernateDaoSupport im
 	
 	public static final NotBlankPropertySelector NOT_BLANK = new NotBlankPropertySelector();
 	
-	public SBaseDaoImpl() {
+	public SpringBaseDaoImpl() {
 
 		java.lang.reflect.Type t = (java.lang.reflect.Type)getClass().getGenericSuperclass();
 		
