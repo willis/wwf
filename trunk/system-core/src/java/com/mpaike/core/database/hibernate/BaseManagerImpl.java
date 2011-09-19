@@ -38,11 +38,6 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 		return dao.findAll();
 	}
 
-	@Transactional(readOnly = true)
-	public Pagination findAll(int pageNo, int pageSize, OrderBy... orders) {
-		return dao.findAllForPagination(pageNo, pageSize, orders);
-	}
-
 	/**
 	 * 实例查找返回列表
 	 */
@@ -66,8 +61,7 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 	@Transactional(readOnly = true)
 	public List<T> findByEgList(T eg, boolean anywhere, Condition[] conds,
 			int firstResult, int maxResult, String... exclude) {
-		return dao.findByEgList(eg, anywhere, conds, firstResult, maxResult,
-				exclude);
+		return dao.findByEg(eg, anywhere, conds, firstResult, maxResult,exclude).getList();
 	}
 
 	@Transactional(readOnly = true)

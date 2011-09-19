@@ -24,8 +24,6 @@ public interface BaseManager<T extends Serializable> {
 	 */
 	public List<T> findAll();
 
-	public Pagination findAll(int pageNo, int pageSize, OrderBy... orderBys);
-
 	/**
 	 * 通过示例对象查找对象列表
 	 * 

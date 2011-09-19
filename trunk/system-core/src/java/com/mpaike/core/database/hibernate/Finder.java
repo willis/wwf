@@ -17,12 +17,20 @@ public class Finder {
 	protected Finder() {
 	}
 
-	public Finder(String hql) {
+	public Finder(String hql,OrderBy[] orderBys) {
 		hqlBuilder = new StringBuilder(hql);
+		if(orderBys!=null){
+			hqlBuilder.append(OrderBy.asOrdersString(orderBys));
+		}
 	}
 
 	public static Finder create(String hql) {
-		Finder finder = new Finder(hql);
+		Finder finder = new Finder(hql,null);
+		return finder;
+	}
+	
+	public static Finder create(String hql,OrderBy[] orderBys) {
+		Finder finder = new Finder(hql,orderBys);
 		return finder;
 	}
 
