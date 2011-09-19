@@ -61,7 +61,7 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 	@Transactional(readOnly = true)
 	public List<T> findByEgList(T eg, boolean anywhere, Condition[] conds,
 			int firstResult, int maxResult, String... exclude) {
-		return dao.findByEg(eg, anywhere, conds, firstResult, maxResult,exclude).getList();
+		return dao.findByEg(eg, anywhere, conds, firstResult, maxResult,exclude).list();
 	}
 
 	@Transactional(readOnly = true)

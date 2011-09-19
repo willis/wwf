@@ -171,7 +171,7 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 			OrderBy... orders) {
 		Assert.hasText(property);
 		this.findByCriteria(createCriteria(Restrictions.eq(property, value)),p,null,OrderBy.asOrders(orders));
-		return p.getList();
+		return p.list();
 	}
 
 	@Override
@@ -316,7 +316,7 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 		query.setMaxResults(p.getPageSize());
 		p.setTotalCount(totalCount);
 		p.setList(query.list());
-		return p.getList();
+		return p.list();
 	}
 	
 	protected List findList(Finder finder) {

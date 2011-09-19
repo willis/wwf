@@ -208,7 +208,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
 	public List<T> findAllPagination(Pagination p, OrderBy... orders) {
 		Criteria crit = createCriteria();
-		return findByCriteria(crit, p, null, OrderBy.asOrders(orders)).getList();
+		return findByCriteria(crit, p, null, OrderBy.asOrders(orders)).list();
 	}
 	
 	public List<T> findAllRecordInfo(RecordInfo recordInfo, OrderBy... orders) {
@@ -243,7 +243,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		query.setMaxResults(p.getPageSize());
 		p.setTotalCount(totalCount);
 		p.setList(query.list());
-		return p.getList();
+		return p.list();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -281,7 +281,7 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		// TODO Auto-generated method stub
 		Assert.hasText(property);
 		this.findByCriteria(createCriteria(Restrictions.eq(property, value)),p,null,OrderBy.asOrders(orders));
-		return p.getList();
+		return p.list();
 	}
 	
 	@SuppressWarnings("unchecked")
