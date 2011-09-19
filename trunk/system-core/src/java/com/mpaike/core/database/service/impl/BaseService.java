@@ -19,10 +19,6 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	public List findAllPagination(Pagination p,OrderBy... orders){
 		return getSelfDao().findAllPagination(p, orders);
 	}
-	
-	public List<T> findAllRecordInfo(RecordInfo r,OrderBy... orders){
-		return getSelfDao().findAllRecordInfo(r, orders);
-	}
 
 	
 	public T findBean(Serializable s)throws ParameterException{
@@ -88,14 +84,6 @@ public abstract class BaseService<T> implements IBaseService<T> {
 			throw new ParameterException();
 		}
 		return getSelfDao().findByProperty(property, value, p, orders);
-	}
-	
-	public List findRecordInfoByProperty(String property, Object value, RecordInfo r,OrderBy... orders) throws ParameterException{
-		// TODO Auto-generated method stub
-		if(property==null||value==null){
-			throw new ParameterException();
-		}
-		return getSelfDao().findByProperty(property, value, r, orders);
 	}
 
 	public T findUniqueByProperty(String property, Object value) throws ParameterException{

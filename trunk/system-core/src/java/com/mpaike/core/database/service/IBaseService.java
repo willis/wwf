@@ -16,15 +16,11 @@ public interface IBaseService<T>{
 	
 	public List<T> findAllPagination(Pagination p,OrderBy... orders);
 	
-	public List<T> findAllRecordInfo(RecordInfo r,OrderBy... orders);
-	
 	public T findBean(Serializable s)throws ParameterException;
 	
 	public T findUniqueByProperty(String property,Object value)throws ParameterException;
 	
 	public List<T> findPaginationByProperty(String property,Object value,Pagination p,OrderBy... orders)throws ParameterException;
-	
-	public List<T> findRecordInfoByProperty(String property,Object value,RecordInfo r,OrderBy... orders)throws ParameterException;
 	
 	public void updateBean(T o)throws ParameterException;
 	
