@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+<form action="" method="post" >
 				<table class="tableContent">
 				<tbody>
 					<tr id="topRow">
@@ -63,9 +63,7 @@
 									全选
 								</label>
 							</th>
-							<th style="width: 100px;">
-								操作
-							</th>
+						
 							<th>
 								网站名称
 							</th>
@@ -98,6 +96,7 @@
 					</tr>
 				</tbody>
 			</table>
+				</form>
 </body>
 <script>
 
@@ -108,14 +107,16 @@
 		  		loading:'loading',
 		  		id:'id',
 		  		queryUrl:'weburlAction!list.action',
-		  		headerColumns:[{id:'id'},
-		  		{id:'id'},
+		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
 		  		{id:'siteName'},
 		  		{id:'url'},
 		  		{id:'enName'}
 		  		]
 		  	}
 		  );
+		 dataGrid.initSortHead(
+				      {head:'myHead',cells:[{index:1,name:'siteName'},{index:2,name:'url'}]}
+	   	);
 		 function query(){
 			 dataGrid.onLoad({});
 		 } 	

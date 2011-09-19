@@ -27,10 +27,10 @@
 		<tr><td align="center" >当前可添加的用户</td><td>&nbsp;</td><td align="center">已添加用户</td></tr>
 		<tr><td valign="top">
 		<form>
-				<table class="table">
+				<table class="table" style="width: 400px">
 					<thead>
 						<tr>
-							<th style="width: 80px">
+							<th>
 								<label class="checkbox">
 									<input class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
@@ -65,7 +65,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th style="width: 80px">
+							<th>
 								<label class="checkbox">
 									<input class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
