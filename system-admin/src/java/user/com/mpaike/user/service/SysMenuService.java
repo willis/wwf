@@ -13,11 +13,11 @@ public interface SysMenuService {
 
 	public boolean save(SysMenu bean);
 
-	public boolean delMenu(long paramLong);
+	public boolean delMenu(Long paramLong);
 
-	public SysMenu getMenu(long paramLong);
+	public SysMenu getMenu(Long paramLong);
 
-	public List<SysMenu> getTree(long paramLong);
+	public List<SysMenu> getTree(Long paramLong);
 
-	public List<SysMenu> getMenusByParentId(long paramLong);
+	public List<SysMenu> getMenusByParentId(Long paramLong);
 }

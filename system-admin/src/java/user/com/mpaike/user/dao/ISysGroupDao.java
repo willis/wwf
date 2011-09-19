@@ -42,6 +42,9 @@ public interface ISysGroupDao extends BaseDao<SysGroup>{
 
 	public  List<SysUser> listNotCheckUsersToGrid(SysUser paramSysUser,
 			long paramLong ,Pagination p);
-	public List<SysRole> getSysRoles(SysGroup sysGroup);
+	
+	public  List<SysGroup> getSysGroups(Long paramLong);
+
+	public  List<SysRole> getSysRoles(SysGroup paramSysGroup);
 
 }

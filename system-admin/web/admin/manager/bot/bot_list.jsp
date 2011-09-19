@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>jQuery EasyUI</title>
+	<title></title>
 	<%@ include file="/include/taglibs.jsp"%>
 	<%@ include file="/include/jquery.jsp"%>
 
@@ -78,7 +78,7 @@
 							
 						</tr>
 					</thead>
-						<tbody id="myTable" >
+						<tbody id="dataGrid" >
 						
 							 
 						</tbody>
@@ -111,14 +111,14 @@
 		  		headerColumns:[{id:'id'},
 		  		{id:'id'},
 		  		{id:'siteName'},
+		  		{id:'url'},
 		  		{id:'enName'}
 		  		]
 		  	}
 		  );
-		  function query(){
-			  dataGrid.page.totalRowNum = 0;
-			  dataGrid.onLoad({});
-		   } 
+		 function query(){
+			 dataGrid.onLoad({});
+		 } 	
 		  query();
 	</script>
 

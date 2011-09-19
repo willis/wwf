@@ -23,22 +23,23 @@ public class SysMenuServiceImpl extends BaseService implements SysMenuService {
 		this.getSysMenuDao().update(menu);
 	}
 
-	public boolean delMenu(long id) {
+	public boolean delMenu(Long id) {
 		boolean result;
 		try {
-			this.getSysMenuDao().delete(id);
+			this.getSysMenuDao().deleteById(id);
 			result = true;
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			result = false;
 		}
 		return result;
 	}
 
-	public SysMenu getMenu(long id) {
+	public SysMenu getMenu(Long id) {
 		return this.getSysMenuDao().get(id);
 	}
 
-	public List<SysMenu> getTree(long rootId) {
+	public List<SysMenu> getTree(Long rootId) {
 		SysMenu rootObj = this.getSysMenuDao().get(rootId);
 		List tree = new ArrayList();
 
@@ -57,7 +58,7 @@ public class SysMenuServiceImpl extends BaseService implements SysMenuService {
 		}
 	}
 
-	public List<SysMenu> getMenusByParentId(long parentId) {
+	public List<SysMenu> getMenusByParentId(Long parentId) {
 		return this.getSysMenuDao().getMenusByParentId(parentId);
 	}
 

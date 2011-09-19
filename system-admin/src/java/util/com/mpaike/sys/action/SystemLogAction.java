@@ -8,7 +8,6 @@ import com.mpaike.sys.model.SystemLog;
 import com.mpaike.sys.service.SystemLogService;
 import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
-import com.mpaike.util.pager.Pager;
 
 
 
