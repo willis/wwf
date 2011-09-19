@@ -101,9 +101,14 @@ public class SysUserDao extends SpringBaseDaoImpl<SysUser> implements ISysUserDa
 		return this.findList(select + sql.toString(), params.toArray(), p, ob);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void removeSysRole(SysUser sysUser, SysRole sysRole) {
-		this.bulkUpdate("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?" ,new Object[]{sysUser,sysRole});
+		List l1 = super.find("from SysUserToSysRole s where s.sysUser=? and s.sysRole=?", new Object[] { sysUser, sysRole });
+	    for (int i = 0; i < l1.size(); i++)
+	    {
+	    	  super.delete(l1.get(i));
+	    }
 		
 	}
 
@@ -113,6 +118,7 @@ public class SysUserDao extends SpringBaseDaoImpl<SysUser> implements ISysUserDa
 		return (SysUser) this.findUnique("from SysUser where username=? and password=? and status=? ", new Object[] { username, password, Long.valueOf(0) });
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void addSysRole(SysUser sysUser, SysRole sysRole) {
 		List<SysUserToSysRole> datas = this.find(
@@ -122,7 +128,7 @@ public class SysUserDao extends SpringBaseDaoImpl<SysUser> implements ISysUserDa
 			SysUserToSysRole info = new SysUserToSysRole();
 			info.setSysRole(sysRole);
 			info.setSysUser(sysUser);
-			sysUser.getSysUserToSysRoles().add(info);
+			this.save(info);
 		}
 		
 	}

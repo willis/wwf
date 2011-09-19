@@ -123,6 +123,7 @@ public class LoginControl {
 		return ok;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static  boolean checkPopedom(String code,
 			HttpServletRequest req) {
 		if ((Set) req.getSession().getAttribute(POPEDOM_OBJ) == null)

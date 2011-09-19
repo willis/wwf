@@ -2,7 +2,6 @@ package com.mpaike.user.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import com.mpaike.core.util.page.Pagination;
@@ -18,6 +17,7 @@ public class SysGroupServiceImpl extends BaseService implements
 		SysGroupService {
 
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<String[]> getTrees(SysGroup sysGroup, List<String[]> trees) {
 		Set<SysGroup> childGroups = sysGroup.getChildGroups();
  
@@ -53,18 +53,6 @@ public class SysGroupServiceImpl extends BaseService implements
 	}
 
 	@Override
-	public List<Map> getSysGroupsToMap(long paramLong) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Map> getSysUserByGroupIdToMap(long paramLong) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public SysGroup getSysGroup(Long paramSerializable) {
 		
 		return this.getSysGroupDao().get(paramSerializable);
@@ -84,33 +72,31 @@ public class SysGroupServiceImpl extends BaseService implements
 
 	@Override
 	public void saveSysGroup(SysGroup paramSysGroup) {
-		// TODO Auto-generated method stub
-		
+		this.getSysGroupDao().saveOrUpdate(paramSysGroup);
 	}
 
 	@Override
-	public void addSysUserToGroup(long paramLong1, long paramLong2) {
-		// TODO Auto-generated method stub
+	public void addSysUserToGroup(long userid, long groupid) {
+		SysUser sysUser = this.getSysUserDao().get(userid);
+		SysGroup sysGroup = this.getSysGroupDao().get(groupid);
+		sysGroup.getSysUsers().add(sysUser);
 		
 	}
 
 	@Override
 	public List<SysGroup> getSysGroups(Long paramLong) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getSysGroupDao().getSysGroups(paramLong);
 	}
 
 	@Override
-	public void removeSysUserToGroup(long paramLong1, long paramLong2) {
-		// TODO Auto-generated method stub
-		
+	public void removeSysUserToGroup(long userid, long groupid) {
+		SysUser sysUser = this.getSysUserDao().get(userid);
+		SysGroup sysGroup = this.getSysGroupDao().get(groupid);
+		sysUser.getSysGroups().remove(sysGroup);
+		sysGroup.getSysUsers().remove(sysUser);
 	}
 
-	@Override
-	public List<SysGroup> findSysGroupByName(String paramString) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<SysRole> getSysRoles(SysGroup paramSysGroup) {

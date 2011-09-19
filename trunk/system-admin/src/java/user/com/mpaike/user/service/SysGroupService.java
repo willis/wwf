@@ -18,10 +18,6 @@ public interface SysGroupService {
 	public  List<SysUser> listNotCheckUsersToGrid(SysUser paramSysUser,
 			long paramLong ,Pagination p);
 
-	public  List<Map> getSysGroupsToMap(long paramLong);
-
-	public  List<Map> getSysUserByGroupIdToMap(long paramLong);
-
 	public  SysGroup getSysGroup(Long paramSerializable);
 
 	public  boolean removeSysGroup(Long paramSerializable);
@@ -38,8 +34,6 @@ public interface SysGroupService {
 			List<String[]> paramList);
 
 	public  void removeSysUserToGroup(long paramLong1, long paramLong2);
-
-	public  List<SysGroup> findSysGroupByName(String paramString);
 
 	public  List<SysRole> getSysRoles(SysGroup paramSysGroup);
 }

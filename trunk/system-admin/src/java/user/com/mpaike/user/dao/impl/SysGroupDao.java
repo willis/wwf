@@ -26,6 +26,9 @@ package com.mpaike.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysGroupDao;
@@ -87,4 +90,23 @@ public class SysGroupDao extends SpringBaseDaoImpl<SysGroup> implements ISysGrou
 	    }
 	    return sysRoles;
 	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SysGroup> getSysGroups(Long paramLong) {
+		Session sesison = super.getSession();
+		StringBuffer sb = new StringBuffer("from SysGroup  ");
+		if (paramLong == null) {
+			sb.append(" where parentGroup = null");
+		} else {
+			sb.append(" where parentGroup.id=");
+			sb.append(paramLong);
+		}
+		sb.append(" order by orderby desc");
+		Query query = sesison.createQuery(sb.toString());
+		return query.list();
+	}
+
+	
 }

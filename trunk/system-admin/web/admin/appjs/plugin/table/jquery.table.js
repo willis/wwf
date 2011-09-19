@@ -184,6 +184,7 @@ MaxTable.prototype={
 					
 					catch (e) 
 					{ 
+						alert(e);
 						if(response.responseText.indexOf('loginwindow')!=-1){
 							parent.location.reload();
 						}else{

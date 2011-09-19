@@ -46,7 +46,7 @@
 			class="com.mpaike.user.model.SysMenu" column="parentid" />
 
 
-		<set name="childs" lazy="true" inverse="true"
+		<set name="childs" lazy="false" inverse="true"
 			order-by="orderby">
 			<key>
 				<column name="parentid" />

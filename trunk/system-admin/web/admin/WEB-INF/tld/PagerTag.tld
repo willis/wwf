@@ -10,28 +10,7 @@
 	
 
 
-	<tag>
-		<name>pageForm</name>
-		<tagclass>com.mpaike.util.tag.PagerTag</tagclass>
-		<bodycontent>JSP</bodycontent>
-		<attribute>
-			<name>name</name>
-			<required>true</required>
-		</attribute>
-		<attribute>
-			<name>action</name>
-			<required>true</required>
-		</attribute>
-		<attribute>
-			<name>method</name>
-			<required>false</required>
-		</attribute>
-		<attribute>
-			<name>scope</name>
-			<required>false</required>
-		</attribute>
-	</tag>
-
+	
 	<tag>
 		<name>eachMenu</name>
 		<tagclass>com.mpaike.util.tag.SysMenuEachTag</tagclass>
