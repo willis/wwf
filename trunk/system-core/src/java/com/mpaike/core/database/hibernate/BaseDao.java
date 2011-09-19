@@ -38,12 +38,8 @@ public interface BaseDao<T extends Serializable> {
 	public List<T> findAll();
 
 	public List<T> findAll(OrderBy... orders);
-
-	public Pagination findAllForPagination(int pageNo, int pageSize, OrderBy... orders);
 	
 	public List<T> findAllPagination(Pagination p, OrderBy... orders);
-	
-	public List<T> findAllRecordInfo(RecordInfo recordInfo,OrderBy... orders);
 	
 	/**
 	 * 通过示例对象查找对象列表
@@ -61,9 +57,6 @@ public interface BaseDao<T extends Serializable> {
 	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
 			String... exclude);
 
-	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
-			int firstResult, int maxResult, String... exclude);
-
 	public Pagination findByEg(T exampleInstance, boolean anyWhere,
 			Condition[] conds, int pageNo, int pageSize, String... exclude);
 	
@@ -77,7 +70,6 @@ public interface BaseDao<T extends Serializable> {
 	 * 按属性查找对象列表.
 	 */
 	public List<T> findByProperty(String property, Object value,Pagination p,OrderBy... orders);
-	public List<T> findByProperty(String property, Object value,RecordInfo r,OrderBy... orders);
 
 	/**
 	 * 按属性查找唯一对象.
