@@ -5,13 +5,13 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.dictionary.model.Dictionary;
 import com.mpaike.dictionary.service.DictionaryService;
 
 
 @SuppressWarnings("unchecked")
-public class DictionaryServiceImpl extends BaseDaoImpl<Dictionary> implements
+public class DictionaryServiceImpl extends SpringBaseDaoImpl<Dictionary> implements
 		DictionaryService {
 
 	public void addDictionary(Dictionary bean) {

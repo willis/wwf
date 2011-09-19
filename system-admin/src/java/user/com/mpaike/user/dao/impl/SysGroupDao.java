@@ -26,7 +26,7 @@ package com.mpaike.user.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
 import com.mpaike.user.dao.ISysGroupDao;
 import com.mpaike.user.model.SysGroup;
@@ -38,7 +38,7 @@ import com.mpaike.user.model.SysUser;
  * @author Chen.H @Date 2011-9-16
  * com.mpaike.user.dao.impl system-admin
  */
-public class SysGroupDao extends BaseDaoImpl<SysGroup> implements ISysGroupDao {
+public class SysGroupDao extends SpringBaseDaoImpl<SysGroup> implements ISysGroupDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -87,6 +87,4 @@ public class SysGroupDao extends BaseDaoImpl<SysGroup> implements ISysGroupDao {
 	    }
 	    return sysRoles;
 	}
-
-	
 }

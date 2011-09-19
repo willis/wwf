@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.mpaike.affix.model.Affix;
 import com.mpaike.affix.model.dao.IAffixDao;
-import com.mpaike.core.database.hibernate.BaseDaoImpl;
+import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 
-public class AffixDao extends BaseDaoImpl<Affix> implements IAffixDao {
+public class AffixDao extends SpringBaseDaoImpl<Affix> implements IAffixDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -17,19 +17,19 @@ public class AffixDao extends BaseDaoImpl<Affix> implements IAffixDao {
 
 	@Override
 	public void updateAffixId(long objectType, String oldObjId, String newObjId) {
-		this.updateAndDelBeanForSQL(" update Affix a set a.objectId=? where a.objectType= "+objectType+" and a.objectId=? ",new Object[]{newObjId,oldObjId});
+		this.bulkUpdate(" update Affix a set a.objectId=? where a.objectType= "+objectType+" and a.objectId=? ",new Object[]{newObjId,oldObjId});
 		
 	}
 
 	@Override
 	public void updateAffixHotAdd(long id) {
-		this.updateAndDelBeanForSQL(" update Affix a set a.hotNum=a.hotNum+1 where a.id=?",new Object[]{id});
+		this.bulkUpdate(" update Affix a set a.hotNum=a.hotNum+1 where a.id=?",new Object[]{id});
 		
 	}
 
 	@Override
 	public void deleteByTypeAndOBjId(Integer type, String objId) {
-		this.updateAndDelBeanForSQL("delete from Affix where objectType=? and objectId=?",new Object[]{type,objId});
+		this.bulkUpdate("delete from Affix where objectType=? and objectId=?",new Object[]{type,objId});
 		
 	}
 
