@@ -25,7 +25,7 @@
            </key>
            <many-to-many column="sysmenuid" class="com.mpaike.user.model.SysMenu"  />
         </set>
-        <set name="sysPopedoms"   lazy="true"  inverse="false" table="SYSROLETOSYSPOPEDOM" order-by="syspopedomid">
+        <set name="sysPopedoms"   lazy="true"  inverse="false" table="sysroletosyspopedom" order-by="syspopedomid">
            <key>
            <column name="sysroleid"/>
            </key>
