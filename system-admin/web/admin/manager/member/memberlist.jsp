@@ -152,7 +152,7 @@
 		  		{id:'name',name:'昵称'},
 		  		{id:'sex',name:'性别'},
 		  		{id:'status',name:'状态',renderer:statusRenderer},
-		  		{id:'lastLoginDate',name:'最后登录时间',renderer:regtimeRenderer}
+		  		{id:'lastLoginDate',name:'最后登录时间'}
 		  		]
 		  	}
 		  )
@@ -170,12 +170,7 @@
 	    // 	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
 	     	return txt;
 	     }	 
-	      function regtimeRenderer(idValue,value){
-	     	if(value!=null)
-	     	return value.substring(0,value.length-2);
-	     	else
-	     	return '';
-	     }	   
+
 		 query();
 		 
 

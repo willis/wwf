@@ -26,6 +26,36 @@ public class WebUrlAction extends BaseAction{
 	 * @serialData
 	 * 
 	 */
+	public void remove(){
+		
+	}
+	/**
+	 * @author Chen.H
+	 * @serialData
+	 * 
+	 */
+	public String edit(){
+		webUrl = this.getWebUrlService().find(id);
+		return "edit";
+	}
+	/**
+	 * @author Chen.H
+	 * @serialData
+	 * 
+	 */
+	public void save(){
+		String result = "保存成功！";
+		if(webUrl.getId()!=null){
+			result = "修改成功！";
+		}
+		this.getWebUrlService().save(webUrl);
+		super.printSuccessJson(result);
+	}
+	/**
+	 * @author Chen.H
+	 * @serialData
+	 * 
+	 */
 	public void start(){
 		String result = "启动成功！";
 		webUrl = this.getWebUrlService().find(id);
