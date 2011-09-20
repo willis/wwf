@@ -132,7 +132,7 @@
 			     	var txt="";
 			     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"weburlAction!edit.action?id="+idValue+"\",\"编辑\",400,500)'>编辑</a> ";
 			     	txt+= " <a href='javascript:;' onclick='start("+value+");'>启动</a>  <a href='javascript:;' onclick='stop("+value+");' >停止</a>";
-			  
+			     	txt+= " <a href='weburlAction!viewSpider.action?id="+idValue+"' >查看抓取</a>";
 			     	return txt;
 		 }
 		  function statusRenderer(idValue,value,record){
