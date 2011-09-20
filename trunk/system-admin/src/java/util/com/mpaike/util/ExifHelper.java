@@ -427,78 +427,170 @@ public class ExifHelper{
 	            // 第三方类库，获取图片EXIF信息
 				Metadata metadata = JpegMetadataReader.readMetadata(new ByteArrayInputStream(bytes));
 				Directory exif = metadata.getDirectory(ExifDirectory.class);
-				fileDataTime = exif.getDescription(ExifDirectory.TAG_DATETIME);
-				imageDescription = exif
-						.getDescription(ExifDirectory.TAG_IMAGE_DESCRIPTION);
-				make = exif.getDescription(ExifDirectory.TAG_MAKE);
-				model = exif.getDescription(ExifDirectory.TAG_MODEL);
-				orientation = exif
-						.getDescription(ExifDirectory.TAG_ORIENTATION);
-				xResolution = exif
-						.getDescription(ExifDirectory.TAG_X_RESOLUTION);
-				yResolution = exif
-						.getDescription(ExifDirectory.TAG_Y_RESOLUTION);
-				software = exif.getDescription(ExifDirectory.TAG_SOFTWARE);
-				dateTime = exif.getDescription(ExifDirectory.TAG_DATETIME);
-				artist = exif.getDescription(ExifDirectory.TAG_ARTIST);
-				yCbCrPositioning = exif
-						.getDescription(ExifDirectory.TAG_YCBCR_POSITIONING);
-				copyright = exif.getDescription(ExifDirectory.TAG_COPYRIGHT);
+				
+				if(exif.containsTag(ExifDirectory.TAG_DATETIME)){
+					fileDataTime = exif.getDescription(ExifDirectory.TAG_DATETIME);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_IMAGE_DESCRIPTION)){
+					imageDescription = exif.getDescription(ExifDirectory.TAG_IMAGE_DESCRIPTION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_IMAGE_DESCRIPTION)){
+					make = exif.getDescription(ExifDirectory.TAG_MAKE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_MODEL)){
+					model = exif.getDescription(ExifDirectory.TAG_MODEL);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_ORIENTATION)){
+					orientation = exif.getDescription(ExifDirectory.TAG_ORIENTATION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_X_RESOLUTION)){
+					xResolution = exif.getDescription(ExifDirectory.TAG_X_RESOLUTION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_Y_RESOLUTION)){
+					yResolution = exif.getDescription(ExifDirectory.TAG_Y_RESOLUTION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_SOFTWARE)){
+					software = exif.getDescription(ExifDirectory.TAG_SOFTWARE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_DATETIME)){
+					dateTime = exif.getDescription(ExifDirectory.TAG_DATETIME);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_ARTIST)){
+					artist = exif.getDescription(ExifDirectory.TAG_ARTIST);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_YCBCR_POSITIONING)){
+					yCbCrPositioning = exif.getDescription(ExifDirectory.TAG_YCBCR_POSITIONING);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_COPYRIGHT)){
+					copyright = exif.getDescription(ExifDirectory.TAG_COPYRIGHT);
+				}
+
 				copyrightOfPhotographer = "";
 				copyrightOfEditor = "";
-				exifVersion = exif
-						.getDescription(ExifDirectory.TAG_EXIF_VERSION);
-				flashPixVersion = exif
-						.getDescription(ExifDirectory.TAG_FLASHPIX_VERSION);
-				dateTimeOriginal = exif
-						.getDescription(ExifDirectory.TAG_DATETIME_ORIGINAL);
-				dateTimeDigitized = exif
-						.getDescription(ExifDirectory.TAG_DATETIME_ORIGINAL);
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXIF_VERSION)){
+					exifVersion = exif.getDescription(ExifDirectory.TAG_EXIF_VERSION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_FLASHPIX_VERSION)){
+					flashPixVersion = exif.getDescription(ExifDirectory.TAG_FLASHPIX_VERSION);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_DATETIME_ORIGINAL)){
+					dateTimeOriginal = exif.getDescription(ExifDirectory.TAG_DATETIME_ORIGINAL);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_DATETIME_ORIGINAL)){
+					dateTimeDigitized = exif.getDescription(ExifDirectory.TAG_DATETIME_DIGITIZED);
+				}
 				computedHeight = "";
 				computedWidth = "";
-				apertureValue = exif.getDescription(ExifDirectory.TAG_APERTURE);
-				shutterSpeedValue = exif
-						.getDescription(ExifDirectory.TAG_SHUTTER_SPEED);
+				
+				if(exif.containsTag(ExifDirectory.TAG_APERTURE)){
+					apertureValue = exif.getDescription(ExifDirectory.TAG_APERTURE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_SHUTTER_SPEED)){
+					shutterSpeedValue = exif.getDescription(ExifDirectory.TAG_SHUTTER_SPEED);
+				}
 				apertureFNumber = "";
-				maxApertureValue = exif
-						.getDescription(ExifDirectory.TAG_MAX_APERTURE);
-				exposureTime = exif
-						.getDescription(ExifDirectory.TAG_EXPOSURE_TIME);
-				fNumber = exif.getDescription(ExifDirectory.TAG_FNUMBER);
-				meteringMode = exif
-						.getDescription(ExifDirectory.TAG_METERING_MODE);
-				lightSource = exif
-						.getDescription(ExifDirectory.TAG_LIGHT_SOURCE);
-				flash = exif.getDescription(ExifDirectory.TAG_FLASH);
-				exposureMode = exif
-						.getDescription(ExifDirectory.TAG_EXPOSURE_MODE);
-				whiteBalance = exif
-						.getDescription(ExifDirectory.TAG_WHITE_BALANCE);
-				exposureProgram = exif
-						.getDescription(ExifDirectory.TAG_EXPOSURE_PROGRAM);
-				exposureBiasValue = exif
-						.getDescription(ExifDirectory.TAG_EXPOSURE_BIAS);
-				isoSpeedRatings = exif
-						.getDescription(ExifDirectory.TAG_ISO_EQUIVALENT);
-				componentsConfiguration = exif
-						.getDescription(ExifDirectory.TAG_COMPONENTS_CONFIGURATION);
+				
+				if(exif.containsTag(ExifDirectory.TAG_MAX_APERTURE)){
+					maxApertureValue = exif.getDescription(ExifDirectory.TAG_MAX_APERTURE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXPOSURE_TIME)){
+					exposureTime = exif.getDescription(ExifDirectory.TAG_EXPOSURE_TIME);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_FNUMBER)){
+					fNumber = exif.getDescription(ExifDirectory.TAG_FNUMBER);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_METERING_MODE)){
+					meteringMode = exif.getDescription(ExifDirectory.TAG_METERING_MODE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_LIGHT_SOURCE)){
+					lightSource = exif.getDescription(ExifDirectory.TAG_LIGHT_SOURCE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_LIGHT_SOURCE)){
+					flash = exif.getDescription(ExifDirectory.TAG_FLASH);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXPOSURE_MODE)){
+					exposureMode = exif.getDescription(ExifDirectory.TAG_EXPOSURE_MODE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_WHITE_BALANCE)){
+					whiteBalance = exif.getDescription(ExifDirectory.TAG_WHITE_BALANCE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXPOSURE_PROGRAM)){
+					exposureProgram = exif.getDescription(ExifDirectory.TAG_EXPOSURE_PROGRAM);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXPOSURE_BIAS)){
+					exposureBiasValue = exif.getDescription(ExifDirectory.TAG_EXPOSURE_BIAS);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_ISO_EQUIVALENT)){
+					isoSpeedRatings = exif.getDescription(ExifDirectory.TAG_ISO_EQUIVALENT);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_COMPONENTS_CONFIGURATION)){
+					componentsConfiguration = exif.getDescription(ExifDirectory.TAG_COMPONENTS_CONFIGURATION);
+				}
 				compressedBitsPerPixel = "";
-				focusDistance = exif
-						.getDescription(ExifDirectory.TAG_SUBJECT_DISTANCE);
-				focalLength = exif
-						.getDescription(ExifDirectory.TAG_FOCAL_LENGTH);
-				focalLengthIn35mmFilm = exif
-						.getDescription(ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
+				
+				if(exif.containsTag(ExifDirectory.TAG_SUBJECT_DISTANCE)){
+					focusDistance = exif.getDescription(ExifDirectory.TAG_SUBJECT_DISTANCE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_FOCAL_LENGTH)){
+					focalLength = exif.getDescription(ExifDirectory.TAG_FOCAL_LENGTH);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH)){
+					focalLengthIn35mmFilm = exif.getDescription(ExifDirectory.TAG_35MM_FILM_EQUIV_FOCAL_LENGTH);
+				}
 				userCommentEncoding = "";
-				userComment = exif
-						.getDescription(ExifDirectory.TAG_USER_COMMENT);
-				colorSpace = exif.getDescription(ExifDirectory.TAG_COLOR_SPACE);
-				exifImageLength = exif
-						.getDescription(ExifDirectory.TAG_EXIF_IMAGE_WIDTH);
-				exifImageWidth = exif
-						.getDescription(ExifDirectory.TAG_EXIF_IMAGE_HEIGHT);
-				fileSource = exif.getDescription(ExifDirectory.TAG_FILE_SOURCE);
-				sceneType = exif.getDescription(ExifDirectory.TAG_SCENE_TYPE);
+				
+				if(exif.containsTag(ExifDirectory.TAG_USER_COMMENT)){
+					userComment = exif.getDescription(ExifDirectory.TAG_USER_COMMENT);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_COLOR_SPACE)){
+					colorSpace = exif.getDescription(ExifDirectory.TAG_COLOR_SPACE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXIF_IMAGE_WIDTH)){
+					exifImageLength = exif.getDescription(ExifDirectory.TAG_EXIF_IMAGE_WIDTH);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_EXIF_IMAGE_HEIGHT)){
+					exifImageWidth = exif.getDescription(ExifDirectory.TAG_EXIF_IMAGE_HEIGHT);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_FILE_SOURCE)){
+					fileSource = exif.getDescription(ExifDirectory.TAG_FILE_SOURCE);
+				}
+				
+				if(exif.containsTag(ExifDirectory.TAG_SCENE_TYPE)){
+					sceneType = exif.getDescription(ExifDirectory.TAG_SCENE_TYPE);
+				}
 				thumbnailFileType = "";
 				thumbnailMimeType = "";
 			} catch (JpegProcessingException e2) {
