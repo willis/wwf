@@ -14,7 +14,7 @@
 			not-null="true" />
 
 
-		<property name="sourceAdrr" column="sourceadrr" type="string" />
+		<property name="sourceName" column="sourceName" type="string" />
 
 		<property name="filename" column="filename" type="string" />
 
