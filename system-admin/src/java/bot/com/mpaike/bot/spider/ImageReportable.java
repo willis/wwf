@@ -160,7 +160,8 @@ public class ImageReportable implements ISpiderReportable{
 		        pic = ExifHelper.getPicture(url, bytes);
 		        if(pic!=null){
 		        		pic.setId(SequenceManager.nextID(100));
-		        		pictureDao.save(pic);
+		        		pic.setUserId(-1L);
+		        		pictureDao.saveNow(pic);
 		        }else{
 		        	System.err.println("Exif信息获取错误。（"+url+")");
 		        }
