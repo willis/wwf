@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.mpaike.user.model.SysUserAndSysGroupToSysRole"
-		table="SYSUSERANDGROUPTOROLE">
+		table="sysuserandgrouptorole">
 		<id name="id" type="java.lang.Long" column="id">
 			<generator class="assigned" />
 		</id>
