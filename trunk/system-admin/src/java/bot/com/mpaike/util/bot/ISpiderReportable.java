@@ -1,5 +1,7 @@
 package com.mpaike.util.bot;
 
+import java.util.concurrent.BlockingQueue;
+
 /**
  * <p>Title: Myniko.com</p>
  * <p>Description: Myniko.com</p>

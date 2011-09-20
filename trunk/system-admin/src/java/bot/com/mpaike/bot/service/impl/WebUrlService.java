@@ -1,5 +1,7 @@
 package com.mpaike.bot.service.impl;
 
+import static java.util.Collections.EMPTY_LIST;
+
 import java.util.List;
 
 import com.mpaike.bot.model.WebUrl;
@@ -54,6 +56,14 @@ public class WebUrlService extends BaseService implements IWebUrlService {
 			return true;
 		}else{
 			return false;
+		}
+	}
+	
+	public List spiderLog(String url){
+		if(url!=null){
+			return this.getBotSpider().spiderLog(url);
+		}else{
+			return EMPTY_LIST;
 		}
 	}
 

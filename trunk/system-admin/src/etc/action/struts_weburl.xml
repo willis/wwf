@@ -11,6 +11,9 @@
 			<result name="edit" type="dispatcher">
 				<param name="location">/manager/bot/bot_edit.jsp</param>
 			</result>
+			<result name="spider_log" type="dispatcher">
+				<param name="location">/manager/bot/spider_run.jsp</param>
+			</result>
 		</action>
 
 	</package>

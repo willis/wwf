@@ -1,6 +1,9 @@
 package com.mpaike.util.bot;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * <p>Title: Myniko.com</p>
@@ -20,7 +23,7 @@ public class Spider extends Thread implements ISpiderReportable {
   protected SpiderDone done = new SpiderDone();
   protected int maxBodySize;
   protected String currentUrl;
-
+  protected BlockingDeque<String> spiderLog = new LinkedBlockingDeque(35);
 
   /**
    * This constructor prepares the spider to begin.
@@ -264,6 +267,7 @@ public class Spider extends Thread implements ISpiderReportable {
   synchronized public boolean foundInternalLink(String url)
   {
 	currentUrl = url;
+	addLog(url);
     if ( manager.foundInternalLink(url) )
       addWorkload(url);
     return true;
@@ -285,6 +289,7 @@ public class Spider extends Thread implements ISpiderReportable {
   synchronized public boolean foundExternalLink(String url)
   {
 	currentUrl = url;
+	addLog(url);
     if ( worldSpider ) {
       foundInternalLink(url);
       return true;
@@ -309,6 +314,7 @@ public class Spider extends Thread implements ISpiderReportable {
   synchronized public boolean foundOtherLink(String url)
   {
 	currentUrl = url;
+	addLog(url);
     if ( manager.foundOtherLink(url) )
       addWorkload(url);
     return true;
@@ -414,6 +420,23 @@ public class Spider extends Thread implements ISpiderReportable {
   public int getMaxBody()
   {
     return maxBodySize;
+  }
+  
+  public BlockingDeque<String> getSpiderLog() {
+	return spiderLog;
+}
+
+private void addLog(String url){
+	  if(!this.spiderLog.offer(url)){
+		  try {
+			this.spiderLog.take();
+			this.spiderLog.offer(url);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+	  }
   }
 
 }

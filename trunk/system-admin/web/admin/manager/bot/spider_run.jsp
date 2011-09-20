@@ -7,30 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<%@ include file="/include/taglibs.jsp"%>
 		<%@ include file="/include/jquery.jsp"%>
-		<SCRIPT LANGUAGE="JavaScript">
-		  <!--
-			function getCurrentUrl(url){
-				if(url){
-					$.ajax({
-						   type: "POST",
-						   url: "spiderAction!spiderProcess.action",
-						   data: {'url':url},
-						   success: function(msg){
-							  $('spider_url').html(msg);
-						   }
-						});
-					
-				}
-			};
-			
-			function monitor(url){
-				setTimeout(function() {
-					getCurrentUrl(url);
-				}, 500);
-			}
-		  
-		//-->
-		</SCRIPT>
+
 	</head>
 	<body style="background-color: transparent;">
 		<table class="tableContent">
@@ -55,12 +32,12 @@
 									<table id="inputTable" class="table">
 										<tr>
 											<td class="lefttd">
-												<input type="button" value="监控" onClick="monitor('')"/>
+												抓取列表
 											</td>
 										</tr>
 										<tr>
 											<td class="lefttd">
-												正在抓取 <span id="spider_url"></span>
+												<span id="spider_url"></span>
 											</td>
 										</tr>
 										<tr>
@@ -69,9 +46,6 @@
 											</td>
 										</tr>
 									</table>
-									<div class="buttons" style="margin-top: 10px;">
-										<input type="submit" class="button_big" id="submit" name="submit" value="保存" />
-									</div>
 								</td>
 							</tr>
 						</table>
@@ -90,6 +64,37 @@
 				</tr>
 			</tbody>
 		</table>
-		
+				<SCRIPT LANGUAGE="JavaScript">
+		  <!--
+		    var _url = '<s:property value="webUrl.url"/>';
+			function getCurrentUrl(url){
+				if(url){
+					$.ajax({
+						   type: "POST",
+						   url: "weburlAction!spiderLog.action",
+						   data: {'webUrl.url':url},
+						   success: function(msg){
+							   var msgArr = eval(msg);
+							   var text = '';
+							   for(var i=0,n=msgArr.length;i<n;i++){
+								   text += msgArr[i]+"<br/>";
+							   }
+							   //var text = msg.replaceAll(",","<br/>");
+							   //text = text.replace("[","");
+							   //text = text.replace("]","");
+							  $('#spider_url').html(text);
+						   }
+						});
+					
+				}
+			};
+			
+			setInterval(function() {
+					getCurrentUrl(_url);
+				}, 500);
+
+		  
+		//-->
+		</SCRIPT>
 </body>
 </html>

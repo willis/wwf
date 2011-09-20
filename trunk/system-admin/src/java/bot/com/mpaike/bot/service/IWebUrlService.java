@@ -15,6 +15,8 @@ public interface IWebUrlService {
 	
 	public boolean stopWebSpider(Long id);
 	
+	public List spiderLog(String url);
+	
 	public void save(WebUrl bean);
 	
 	public WebUrl find(Long id);
