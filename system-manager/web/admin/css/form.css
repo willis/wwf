@@ -1,0 +1,52 @@
+form.headForm {
+	position: relative ;
+}
+form.headForm fieldset {  
+position: relative;  
+float: left;  
+clear: both;  
+width: 100%;  
+margin: 0 0 -1em 0;  
+padding: 0 0 1em 0;  
+border-style: none;  
+}
+form.headForm fieldset legend {  
+	margin-left: 1em;  
+	color: #637991;  
+	font-weight: bold;
+	font-size: 14px;
+	padding: 0;  
+}
+form.headForm fieldset legend span {  
+position: absolute;  
+left: 0.74em;  
+top: 0;  
+margin-top: 0.5em; 
+font-size: 100%; 
+}
+form.headForm fieldset ol {  
+margin-top: 0.75em;
+padding: 2.5em 1em 0 3em; 
+*padding: 2.5em 1em 0 0em; 
+list-style: none; 
+}
+form.headForm fieldset li {  
+	padding-bottom: 1em;
+}
+form.headForm fieldset li.two label{  
+	float: none;
+	display: inline-block;
+}
+form.headForm fieldset.submit {  
+	border-style: none;
+}
+form.headForm fieldset li label {  
+	float: left;  
+	width: 10em;  
+	margin-right: 1em;
+}
+form.headForm fieldset.submit {  
+	border-style: none;  
+	text-align:right;
+	background-color: #ffffff;
+}
