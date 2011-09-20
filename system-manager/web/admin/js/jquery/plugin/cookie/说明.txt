@@ -1,0 +1,26 @@
+在编写 W 工作室网页的时候，希望能添加存储 items 位置信息的功能，于是 cookies 成了不二的选择。虽然直接用 javascript 操作 cookies 并不太复杂，但如果使用封装了对 cookies 读取、存储、删除的 jQuery plugin，可以更加的便捷和安全，而且可以保持代码的优雅:)
+
+       这里介绍的 jQuery cookie 插件是由 Klaus Hartl 开发的，支持各个版本的 jQuery。其压缩版本（pack）的大小只有 1K :) 下载地址：
+
+    * jquery.cookie.js
+    * jquery.cookie.pack.js
+
+       这个 cookie 插件使用相当的方便，看看下面的示例：
+$.cookie(’the_cookie’); // 读取 cookie
+$.cookie(’the_cookie’, ‘the_value’); // 存储 cookie
+$.cookie(’the_cookie’, ‘the_value’, { expires: 7 }); // 存储一个带7天期限的 cookie
+$.cookie(’the_cookie’, ”, { expires: -1 }); // 删除 cookie
+
+       想了解多点 jQuery cookie plugin ，可以访问：
+
+    * Cookie Plugin for jQuery：http://www.stilbuero.de/2006/09/17/cookie-plugin-for-jquery/
+    * 我的主页（W 工作室）：http://wstudio.web.fc2.com/wstudio/index.html
+
+
+
+$.cookie('the_cookie'); // get cookie
+$.cookie('the_cookie', 'the_value'); // set cookie
+$.cookie('the_cookie', 'the_value', { expires: 7 }); // set cookie with an expiration date seven days in the future
+$.cookie('the_cookie', '', { expires: -1 }); // delete cookie
+
+$.cookie('the_cookie', null); // delete cookie

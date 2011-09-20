@@ -1,0 +1,63 @@
+<html>
+<head>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<script type="text/javascript" src="prototype.js"></script>
+</head>
+<body>
+选定日期<input id="t1" type="text" onClick="WdatePicker({skin:'whyGreen'})" readOnly="true"/>
+距离今天<input type="button" value="天数计算" onclick="myTest();">
+<input id="t11" type="text" readOnly="true" value=""/>
+<!--####################################################--><br/>
+开始日期<input id="t2" type="text" onClick="WdatePicker({skin:'whyGreen',maxDate:'#F{$dp.$D(\'t22\')}'})" readOnly="true"/>
+结束日期<input id="t22" type="text" onClick="WdatePicker({skin:'whyGreen',minDate:'#F{$dp.$D(\'t2\')}'})" readOnly="true"/>
+日期间隔<input type="button" value="天数计算" onclick="myTest2();">
+<input id="t222" type="text" readOnly="true" value=""/>
+<!--####################################################--><br/>
+距离日期<input id="t3" type="text" onClick="WdatePicker({skin:'whyGreen',maxDate:'%y-%M-%d'})" readOnly="true"/><input id="t33" type="text" value="" size=8/>天的日期<input type="button" value="天数计算" onclick="myTest3();"><input id="t333" type="text" readOnly="true" value=""/>
+</body>
+</html>
+<script language="javascript">
+function myTest(){
+	var now = new Date();
+	//alert(now.getTime());
+	var old = new Date();
+	var str = $("t1").value.split("-");
+	//alert(str);
+	old.setFullYear(str[0],str[1]-1,str[2]);
+	//alert(old.getTime());
+	var countl= now.getTime()-old.getTime();
+	var mmm=3600*24*1000;
+	var dayCount = countl/mmm;
+	$("t11").value=Math.abs(dayCount);
+}
+function myTest2(){
+	var start = new Date();
+	var end = new Date();
+	var str = $("t2").value.split("-");
+	var str2 = $("t22").value.split("-");
+	
+	start.setFullYear(str[0],str[1]-1,str[2]);
+	end.setFullYear(str2[0],str2[1]-1,str2[2]);
+	//alert(old.getTime());
+	var countl= end.getTime()-start.getTime();
+	var mmm=3600*24*1000;
+	var dayCount = countl/mmm;
+	$("t222").value=dayCount;
+}
+function myTest3(){
+	var start = new Date();
+	var str = $("t3").value.split("-");	
+	start.setFullYear(str[0],str[1]-1,str[2]);
+
+	var countl= $("t33").value;
+	var mmm=3600*24*1000*countl;
+	var trueTime = mmm+start.getTime();
+	var nextDate = new Date();
+	nextDate.setTime(trueTime);
+	//alert(nextDate.getYear());
+	//alert(nextDate.getMonth());
+	//alert(nextDate.getDate());
+	$("t333").value=nextDate.getYear()+"-"+Number(nextDate.getMonth()+1)+"-"+nextDate.getDate();
+}
+
+</script>
