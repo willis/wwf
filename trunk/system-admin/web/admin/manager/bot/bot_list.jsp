@@ -34,11 +34,11 @@
 
 										<li>
 											<a class="delete" href="javascript:"
-												onclick="removeSelect(3)">删除</a>
+												onclick="">删除</a>
 										</li>
 										<li>
 											<a class="add" href="javascript:"
-												onclick="">添加</a>
+												 onclick="window.parent.showWindow('${cxp}/manager/bot/bot_edit.jsp','添加',400,500)">添加</a>
 										</li>
 										<li>
 											<a class="modify" href="javascript:"
@@ -125,15 +125,13 @@
 		  		]
 		  	}
 		  );
-		 dataGrid.initSortHead(
-				      {head:'myHead',cells:[{index:1,name:'siteName'},{index:2,name:'url'}]}
-	   	);
 		 function query(){
 			 dataGrid.onLoad({});
 		 } 	
 		  query();
 		  function editRenderer(idValue,value,record){
 			     	var txt="";
+			     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"weburlAction!edit.action?id="+idValue+"\",\"编辑\",400,500)'>编辑</a> ";
 			     	txt+= " <a href='javascript:;' onclick='start("+value+");'>启动</a>  <a href='javascript:;' onclick='stop("+value+");' >停止</a>";
 			  
 			     	return txt;

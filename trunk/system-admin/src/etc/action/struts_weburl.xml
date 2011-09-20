@@ -8,7 +8,9 @@
 	<package name="weburl" extends="default" >
 
 		<action name="weburlAction" class="com.mpaike.bot.action.WebUrlAction">
-			
+			<result name="edit" type="dispatcher">
+				<param name="location">/manager/bot/bot_edit.jsp</param>
+			</result>
 		</action>
 
 	</package>
