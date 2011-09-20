@@ -124,7 +124,7 @@
 			<many-to-many column="sysgroupid"
 				class="com.mpaike.user.model.SysGroup" />
 		</set>
-		<set name="s"  lazy="true"  inverse="false">
+		<set name="sysUserToSysRoles"  lazy="true"  inverse="false">
 			<key>
 				<column name="sysuserid" />
 			</key>

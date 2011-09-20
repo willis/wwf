@@ -19,7 +19,7 @@
 
 		</property>
 
-       <set name="sysMenus" lazy="true"  inverse="false"  table="SYSROLETOSYSMENU" order-by="sysmenuid">
+       <set name="sysMenus" lazy="true"  inverse="false"  table="sysroletosysmenu" order-by="sysmenuid">
            <key>
            <column name="sysroleid"/>
            </key>
