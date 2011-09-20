@@ -35,7 +35,7 @@ public class ImageReportable implements ISpiderReportable{
 	private Connection connection;
 	private  String imagesPath;
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
-	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4))$");
+	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4|doc|docx|mp3|mov|zip|rar|gz|tar))$");
 	private static String score;
 	
 	public ImageReportable(String url,String path,DataSource dataSource,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
@@ -58,7 +58,7 @@ public class ImageReportable implements ISpiderReportable{
 		}
 		this.pictureDao = pictureDao;
 		connection = dataSource.getConnection();
-	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,url,filename,status) VALUES (?,?,?,?);");
+	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,score,url,filename,status) VALUES (?,?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 
 	}
@@ -152,9 +152,10 @@ public class ImageReportable implements ISpiderReportable{
 	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
 	        if(bytes!=null){
 	        		prepSetStatus.setString(1,id);
-		        prepSetStatus.setString(2,url);
-		        prepSetStatus.setString(3,tagertName.toString());
-		        prepSetStatus.setString(4,"W");
+	        		prepSetStatus.setString(2,score);
+		        prepSetStatus.setString(3,url);
+		        prepSetStatus.setString(4,tagertName.toString());
+		        prepSetStatus.setString(5,"W");
 		        prepSetStatus.executeUpdate();
 		        pic = ExifHelper.getPicture(url, bytes);
 		        if(pic!=null){
