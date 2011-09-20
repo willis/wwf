@@ -21,7 +21,7 @@
 	<bean name="sysGroupDao" class="com.mpaike.user.dao.impl.SysGroupDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean name="affixDao" class="com.mpaike.affix.model.dao.impl.AffixDao">
+	<bean name="annexDao" class="com.mpaike.upload.dao.impl.AnnexDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<!-- 系统dao -->
@@ -35,6 +35,7 @@
 		<property name="sysRoleDao" ref="sysRoleDao"/>
 		<property name="sysMenuDao" ref="sysMenuDao"/>
 		<property name="sysGroupDao" ref="sysGroupDao"/>
+		<property name="annexDao" ref="annexDao"/>
 		<!-- 系统dao -->
 		<property name="webUrlDao" ref="webUrlDao"/>
 		<property name="memberDao" ref="memberDao"/>
