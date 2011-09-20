@@ -8,7 +8,12 @@ import com.mpaike.core.util.page.Pagination;
 
 public interface IWebUrlService {
 	
+	
 	public static final String ID_NAME = "webUrlService";
+	
+	public boolean startWebSpider(Long id);
+	
+	public boolean stopWebSpider(Long id);
 	
 	public void save(WebUrl bean);
 	

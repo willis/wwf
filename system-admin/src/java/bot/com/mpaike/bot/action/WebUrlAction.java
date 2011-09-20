@@ -57,11 +57,11 @@ public class WebUrlAction extends BaseAction{
 	 * 
 	 */
 	public void start(){
-		String result = "启动成功！";
-		webUrl = this.getWebUrlService().find(id);
-		webUrl.setStatus(WebUrl.START);
-		this.getWebUrlService().save(webUrl);
-		super.printSuccessJson(result);
+		if(this.getWebUrlService().startWebSpider(id)){
+			printSuccessJson("启动成功！");
+		}else{
+			printSuccessJson("启动失败！");
+		}
 	}
 	/**
 	 * @author Chen.H
@@ -69,11 +69,11 @@ public class WebUrlAction extends BaseAction{
 	 * 
 	 */
 	public void stop(){
-		String result = "停止成功！";
-		webUrl = this.getWebUrlService().find(id);
-		webUrl.setStatus(WebUrl.STOP);
-		this.getWebUrlService().save(webUrl);
-		super.printSuccessJson(result);
+		if(this.getWebUrlService().stopWebSpider(id)){
+			printSuccessJson("停止成功！");
+		}else{
+			printSuccessJson("停止失败！");
+		}
 	}
 	
 	public WebUrl getWebUrl() {

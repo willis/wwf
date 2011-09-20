@@ -39,6 +39,7 @@
 		<property name="webUrlDao" ref="webUrlDao"/>
 		<property name="memberDao" ref="memberDao"/>
 		<property name="pictureDao" ref="pictureDao"/>
+		<property name="botSpider" ref="botSpider"/>
 	</bean>
 	
 
@@ -54,6 +55,13 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean name="botSpider" class="com.mpaike.bot.spider.BotSpider">
+		<property name="path">
+			<value>${botspider.path}</value>
+		</property>
+		<property name="pictureDao" ref="pictureDao"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 	
 
 </beans>

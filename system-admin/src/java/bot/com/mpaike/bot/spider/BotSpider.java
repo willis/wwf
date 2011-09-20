@@ -11,9 +11,9 @@ import com.mpaike.util.bot.IWorkloadStorable;
 import com.mpaike.util.bot.Spider;
 import com.mpaike.util.bot.SpiderSQLWorkload;
 
-public class BotSpider {
+public class BotSpider{
 	
-	private String path;
+	private static String path;
 	private IPictureDao pictureDao;
 	private DataSource dataSource;
 	
@@ -26,17 +26,9 @@ public class BotSpider {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
-	public IPictureDao getPictureDao() {
-		return pictureDao;
-	}
 
 	public void setPictureDao(IPictureDao pictureDao) {
 		this.pictureDao = pictureDao;
-	}
-
-	public DataSource getDataSource() {
-		return dataSource;
 	}
 
 	public void setDataSource(DataSource dataSource) {

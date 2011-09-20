@@ -2,6 +2,7 @@ package com.mpaike.sys.service.impl;
 
 import com.mpaike.affix.model.dao.IAffixDao;
 import com.mpaike.bot.dao.IWebUrlDao;
+import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.member.dao.IMemberDao;
 import com.mpaike.sys.dao.ISystemLogDao;
@@ -24,6 +25,7 @@ public class BaseService implements IBaseService{
 	private IWebUrlDao webUrlDao;
 	private IMemberDao memberDao;
 	private IPictureDao pictureDao;
+	private BotSpider botSpider;
 
 	public IWebUrlDao getWebUrlDao() {
 		return webUrlDao;
@@ -105,7 +107,12 @@ public class BaseService implements IBaseService{
 		this.affixDao = affixDao;
 	}
 
-	
-	
+	public BotSpider getBotSpider() {
+		return botSpider;
+	}
+
+	public void setBotSpider(BotSpider botSpider) {
+		this.botSpider = botSpider;
+	}
 
 }
