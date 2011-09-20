@@ -582,11 +582,7 @@ tr.alt td {
 tr.over td {
    background:#bcd4ec;
 }
-
-#grid1_container{
-	width:98%;;
-	height:340px;
-	
-
+tr.checked td {
+   background-color:#FFF9CA;
+   background:#FFF9CA;
 }
-
