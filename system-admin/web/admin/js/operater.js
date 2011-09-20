@@ -26,6 +26,10 @@ function selectAll(form,value,sibobj){
   for(var i = 0 ;i<eobj.length;i++){
      
      if(eobj[i].type == "checkbox"){
+    	if(value)
+    		$(eobj[i]).parent('td').parent('tr').addClass("checked");
+    	else
+    		$(eobj[i]).parent('td').parent('tr').removeClass("checked");
         eobj[i].checked = value;
      }
   }
