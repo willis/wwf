@@ -15,7 +15,7 @@ public class WebUrlService extends BaseService implements IWebUrlService{
 	@Override
 	public void save(WebUrl bean) {
 		
-		super.getWebUrlDao().save(bean);
+		super.getWebUrlDao().saveOrUpdate(bean);
 		
 	}
 
