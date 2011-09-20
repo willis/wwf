@@ -1,7 +1,11 @@
 package com.mpaike.bot.spider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.BlockingQueue;
 
 import javax.sql.DataSource;
 
@@ -74,6 +78,18 @@ public class BotSpider{
 		if(spider!=null){
 			spider.halt();
 		}
+	}
+	
+	public List<String> spiderLog(String url){
+		Spider spider = spiderMap.get(url);
+		List<String> list = new ArrayList<String>();
+		if(spider!=null){
+			String[] log = spider.getSpiderLog().toArray(new String[0]);
+			for(int i=log.length-1;i>=0;i--){
+				list.add(log[i]);
+			}
+		}
+		return list;
 	}
 	
 

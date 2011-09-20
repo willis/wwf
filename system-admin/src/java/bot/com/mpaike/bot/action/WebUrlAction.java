@@ -1,6 +1,7 @@
 package com.mpaike.bot.action;
 
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 import com.mpaike.bot.model.WebUrl;
 import com.mpaike.util.app.BaseAction;
@@ -38,11 +39,7 @@ public class WebUrlAction extends BaseAction{
 		webUrl = this.getWebUrlService().find(id);
 		return "edit";
 	}
-	/**
-	 * @author Chen.H
-	 * @serialData
-	 * 
-	 */
+
 	public void save(){
 		String result = "保存成功！";
 		if(webUrl.getId()!=null){
@@ -51,11 +48,7 @@ public class WebUrlAction extends BaseAction{
 		this.getWebUrlService().save(webUrl);
 		super.printSuccessJson(result);
 	}
-	/**
-	 * @author Chen.H
-	 * @serialData
-	 * 
-	 */
+
 	public void start(){
 		if(this.getWebUrlService().startWebSpider(id)){
 			printSuccessJson("启动成功！");
@@ -63,17 +56,22 @@ public class WebUrlAction extends BaseAction{
 			printSuccessJson("启动失败！");
 		}
 	}
-	/**
-	 * @author Chen.H
-	 * @serialData
-	 * 
-	 */
+
 	public void stop(){
 		if(this.getWebUrlService().stopWebSpider(id)){
 			printSuccessJson("停止成功！");
 		}else{
 			printSuccessJson("停止失败！");
 		}
+	}
+	
+	public String viewSpider(){
+		webUrl = this.getWebUrlService().find(id);
+		return "spider_log";
+	}
+	
+	public void spiderLog(){
+		printBeansJson(getWebUrlService().spiderLog(webUrl.getUrl()));
 	}
 	
 	public WebUrl getWebUrl() {
