@@ -56,11 +56,10 @@
 							<table class="table" id="datagrid">
 						<thead>
 						<tr id="myHead">
-							<th style="width: 80px;">
+							<th >
 								<label class="checkbox">
 									<input type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
 								</label>
 							</th>
 						

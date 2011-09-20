@@ -34,7 +34,6 @@
 								<label class="checkbox">
 									<input class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
 								</label>
 							</th>
 							<th>
@@ -69,7 +68,6 @@
 								<label class="checkbox">
 									<input class="checkbox" type="checkbox" name="c_all"
 										onClick="selectAll(this.form,this.checked,this.nextSibling)">
-									全选
 								</label>
 							</th>
 							<th>
