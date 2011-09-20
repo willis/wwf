@@ -15,7 +15,7 @@ function openLanMu(lanmu)
 				lanmu.style.display=lanmu.style.display=="none"?"":"none";
 	}
 function selectAll(form,value,sibobj){
-   
+
   var eobj = form.elements;
   if(value)
   sibobj.nodeValue = "取消全选";
