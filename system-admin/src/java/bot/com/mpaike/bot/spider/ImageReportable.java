@@ -37,10 +37,12 @@ public class ImageReportable implements ISpiderReportable{
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4|doc|docx|mp3|mov|zip|rar|gz|tar))$");
 	private static String score;
+	private static String sourceUrl;
 	
 	public ImageReportable(String url,String path,DataSource dataSource,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
 		imagesPath = path;
 		if(url!=null){
+			this.sourceUrl = url;
 			url = url.toLowerCase();
 			if(url.startsWith("http://")){
 				url = url.substring(7);
@@ -160,6 +162,7 @@ public class ImageReportable implements ISpiderReportable{
 		        pic = ExifHelper.getPicture(url, bytes);
 		        if(pic!=null){
 		        		pic.setId(SequenceManager.nextID(100));
+		        		pic.setSourceName(sourceUrl);
 		        		pic.setUserId(-1L);
 		        		pictureDao.saveNow(pic);
 		        }else{
