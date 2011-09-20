@@ -79,7 +79,6 @@ MaxTable.prototype={
 					}
 
 					if (data.length == 0) {
-
 						var trObj = _s.insertRow(0);
 						trObj.id= "page";
 						var tdObj = trObj.insertCell(0);
@@ -98,9 +97,7 @@ MaxTable.prototype={
 							
 							for ( var j = 0; j < opts.headerColumns.length; j++) {
 								var tdObj = trObj.insertCell(j);
-
 								if (opts.headerColumns[j].renderer) {
-
 									tdObj.innerHTML = opts.headerColumns[j]
 											.renderer(
 													data[i][opts.id],
@@ -213,15 +210,7 @@ MaxTable.prototype={
 				}
 
 			});
-			
-			var temp = $('input[name="c_all"]')[0]+"";
-			$('input[name="c_all"]').attr("checked",false);
-			if(temp!='undefined'){
-				$('input[name="c_all"]')[0].nextSibling.nodeValue = "全选";
-			}
-			
 		}
- 
 	  ,
  	  createPage:function (pageInfo){
  			var text = '';
@@ -334,28 +323,31 @@ function Pages(){
 	this.totalCount = -1;
 	this.pageSize  = 17;
 }
-function changeBackgroundColor(){
-	   var checkedObj =  $("input:name='c'");
-       //获取当前checked的value值 如果选中多个则循环
-       checkedObj.each(function() {
-    
-    	   if($(this).attr("checked") == true)    // 判断是否有选中checkbox
-    	   {
-    		   $(this).parent('td').parent('tr').addClass("checked");
-    	   }else{
-    		  
-    		   $(this).parent('td').parent('tr').removeClass("checked");
-    	   }
-
-       });
-
-
+function changeBackgroundColor(_val){
+	if($(_val).attr("checked") == true)    // 判断是否有选中checkbox
+    {
+    	$(_val).parent('td').parent('tr').addClass("checked");
+    }else{	  
+    	$(_val).parent('td').parent('tr').removeClass("checked");
+    }
 }
+function radioBackgroundColor(){
+	var check = $("input:name='c'"); //得到所有被选中的checkbox
+	check.each(function(){         //循环拼装被选中项的值
+		if($(this).attr("checked") == true)    // 判断是否有选中checkbox
+	    {
+	    	$(this).parent('td').parent('tr').addClass("checked");
+	    }else{	  
+	    	$(this).parent('td').parent('tr').removeClass("checked");
+	    }
+	});
+}
+
 function IdCheckBoxRenderer(idValue,value){
-		  	return '<input type="checkbox" name="c"	value=\"'+value+'\" onclick="changeBackgroundColor();" >';
+		  	return '<input type="checkbox" name="c"	value=\"'+value+'\" onclick="changeBackgroundColor(this);" >';
 }
 function IdRadioRenderer(idValue,value){
-		  	return '<input type="radio" name="c"	value=\"'+value+'\"">';
+		  	return '<input type="radio" name="c"	value=\"'+value+'\" onclick="radioBackgroundColor();">';
 }
 function numRenderer(idValue,value,record,num){
 		  	return (num+1);
