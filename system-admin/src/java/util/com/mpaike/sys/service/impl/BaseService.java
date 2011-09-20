@@ -1,12 +1,12 @@
 package com.mpaike.sys.service.impl;
 
-import com.mpaike.affix.model.dao.IAffixDao;
 import com.mpaike.bot.dao.IWebUrlDao;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.member.dao.IMemberDao;
 import com.mpaike.sys.dao.ISystemLogDao;
 import com.mpaike.sys.service.IBaseService;
+import com.mpaike.upload.dao.IAnnexDao;
 import com.mpaike.user.dao.ISysGroupDao;
 import com.mpaike.user.dao.ISysMenuDao;
 import com.mpaike.user.dao.ISysPopedomDao;
@@ -20,8 +20,7 @@ public class BaseService implements IBaseService{
 	private ISysMenuDao sysMenuDao;
 	private ISysGroupDao sysGroupDao;
 	private ISystemLogDao sysLogDao;
-	private IAffixDao affixDao;
-	
+	private IAnnexDao annexDao;
 	private IWebUrlDao webUrlDao;
 	private IMemberDao memberDao;
 	private IPictureDao pictureDao;
@@ -99,13 +98,6 @@ public class BaseService implements IBaseService{
 		this.sysGroupDao = sysGroupDao;
 	}
 
-	public IAffixDao getAffixDao() {
-		return affixDao;
-	}
-
-	public void setAffixDao(IAffixDao affixDao) {
-		this.affixDao = affixDao;
-	}
 
 	public BotSpider getBotSpider() {
 		return botSpider;
@@ -115,4 +107,12 @@ public class BaseService implements IBaseService{
 		this.botSpider = botSpider;
 	}
 
+	public IAnnexDao getAnnexDao() {
+		return annexDao;
+	}
+
+	public void setAnnexDao(IAnnexDao annexDao) {
+		this.annexDao = annexDao;
+	}
+	
 }
