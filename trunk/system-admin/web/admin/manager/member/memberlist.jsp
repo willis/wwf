@@ -86,11 +86,11 @@
 	<table class="table" id="senfe">
 								<thead>
 									<tr>
-										<th style="width: 80px;">
+										<th >
 											<label class="checkbox">
 												<input type="checkbox" name="c_all"
 													onClick="selectAll(this.form,this.checked,this.nextSibling)">
-												全选
+											
 											</label>
 										</th>
 										<th style="width: 100px;">

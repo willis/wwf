@@ -17,10 +17,6 @@ function openLanMu(lanmu)
 function selectAll(form,value,sibobj){
 
   var eobj = form.elements;
-  if(value)
-  sibobj.nodeValue = "取消全选";
-  else
-  sibobj.nodeValue = "全选";
   
   if(eobj.length)
   for(var i = 0 ;i<eobj.length;i++){
