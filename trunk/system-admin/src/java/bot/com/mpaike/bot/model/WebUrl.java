@@ -8,6 +8,9 @@ public class WebUrl implements java.io.Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static Integer START = 1;
+	public static Integer STOP = 0;
+	
 	@AnnotationObjectKey
 	private Long id;
 	private String siteName;//网站名称

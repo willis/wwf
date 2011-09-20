@@ -5,7 +5,8 @@
   
     <title>系统日志</title>
 	<%@ include file="/include/taglibs.jsp"%>
-	<script src="${cxp}/js/page.js?s"></script>
+	<%@ include file="/include/jquery.jsp"%>
+	<script src="${cxp}/js/page.js"></script>
   </head>
   
   <body>
@@ -53,9 +54,9 @@
 									</tr>
 								</thead>
 								<tbody>
-								<s:iterator value="logList">
+								<s:iterator value="logList" status="stuts">  
        
-								<tr>
+								<tr  <s:if test="#stuts.odd != true"> class='td2'</s:if>	>
 									
          							<td>
          							 <s:property value="id" />
@@ -79,7 +80,7 @@
          							</td>
          						
 								</s:iterator>
-								<tr>
+								<tr id="page">
 									<td colspan="6">
 									<script language="JavaScript">
 										<!--
@@ -89,7 +90,13 @@
 										pg.pageSize = <s:property value="pageInfo.pageSize"/>;
 										pg.argName = 'pageInfo.pageNo';
 										pg.printHtml(2);
-										//-->
+									
+										 $("#idTable tr").mouseover(function(){//如果鼠标移到class为stripe的表格的tr上时，执行函数
+							   				if($(this).attr("id")!="page")
+					           			 $(this).addClass("over");}).mouseout(function(){//给这行添加class值为over，并且当鼠标一出该行时执行函数
+					            			if($(this).attr("id")!="page")
+					           			 	$(this).removeClass("over");}); //移除该行的class
+					           			//-->
 									</script>
 									
 							</td>

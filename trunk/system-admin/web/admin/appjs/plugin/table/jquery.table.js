@@ -198,7 +198,7 @@ MaxTable.prototype={
 					            $(this).addClass("over");}).mouseout(function(){//给这行添加class值为over，并且当鼠标一出该行时执行函数
 					            	if($(this).attr("id")!="page")
 					            $(this).removeClass("over");}); //移除该行的class
-
+						
 					}
 				},
 				error : function(response) {
@@ -334,9 +334,25 @@ function Pages(){
 	this.totalCount = -1;
 	this.pageSize  = 17;
 }
- 
+function changeBackgroundColor(){
+	   var checkedObj =  $("input:name='c'");
+       //获取当前checked的value值 如果选中多个则循环
+       checkedObj.each(function() {
+    
+    	   if($(this).attr("checked") == true)    // 判断是否有选中checkbox
+    	   {
+    		   $(this).parent('td').parent('tr').addClass("checked");
+    	   }else{
+    		  
+    		   $(this).parent('td').parent('tr').removeClass("checked");
+    	   }
+
+       });
+
+
+}
 function IdCheckBoxRenderer(idValue,value){
-		  	return '<input type="checkbox" name="c"	value=\"'+value+'\"">';
+		  	return '<input type="checkbox" name="c"	value=\"'+value+'\" onclick="changeBackgroundColor();" >';
 }
 function IdRadioRenderer(idValue,value){
 		  	return '<input type="radio" name="c"	value=\"'+value+'\"">';

@@ -68,12 +68,20 @@
 								网站名称
 							</th>
 							<th>
+								网站名称
+							</th>
+							<th>
 								网站链接
 							</th>
 							<th>
 								网站英文名称
 							</th>
-							
+							<th>
+								启动状态
+							</th>
+							<th>
+								启动线程数
+							</th>
 						</tr>
 					</thead>
 						<tbody id="dataGrid" >
@@ -108,9 +116,12 @@
 		  		id:'id',
 		  		queryUrl:'weburlAction!list.action',
 		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
+		  		{id:'id',renderer:editRenderer},
 		  		{id:'siteName'},
 		  		{id:'url'},
-		  		{id:'enName'}
+		  		{id:'enName'},
+		  		{id:'status',renderer:statusRenderer},
+		  		{id:'threadNum'}
 		  		]
 		  	}
 		  );
@@ -121,6 +132,66 @@
 			 dataGrid.onLoad({});
 		 } 	
 		  query();
+		  function editRenderer(idValue,value,record){
+			     	var txt="";
+			     	txt+= " <a href='javascript:;' onclick='start("+value+");'>启动</a>  <a href='javascript:;' onclick='stop("+value+");' >停止</a>";
+			  
+			     	return txt;
+		 }
+		  function statusRenderer(idValue,value,record){
+		     	switch(value){
+		     	case 1:
+		     		return '<font color=green>已启动</font>';
+		     	case 0:
+		     		return '<font color=red>已停止</font>';
+		     	default:
+		     		return '<font color=red>已停止</font>';
+		     	}
+	    }
+		  function start(id){
+			
+				var message = "你确认要启动对这个URL的抓取吗？";
+				window.parent.parent.jConfirm(message, '操作确认', function(r) {
+						
+							if (r) {
+									var param = {id:id};
+					
+									doPost("weburlAction!start.action", param, function(data) {
+										
+												if (data.status) {
+													query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}else{
+												    query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}
+										});
+							}
+				});
+
+			}
+		  function stop(id){
+				
+				var message = "你确认要停止对这个URL的抓取吗？";
+				window.parent.parent.jConfirm(message, '操作确认', function(r) {
+						
+							if (r) {
+									var param = {id:id};
+					
+									doPost("weburlAction!stop.action", param, function(data) {
+										
+												if (data.status) {
+													query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}else{
+												    query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}
+										});
+							}
+				});
+
+			}
 	</script>
 
 </html>
