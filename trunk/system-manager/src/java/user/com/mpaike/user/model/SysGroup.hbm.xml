@@ -53,7 +53,7 @@
 
 
 		<set name="sysUsers" lazy="false" inverse="false"
-			table="SYSUSERTOSYSGROUP">
+			table="sysusertosysgroup">
 			<key>
 				<column name="sysgroupid" />
 			</key>
