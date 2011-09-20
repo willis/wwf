@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 指定Struts 2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- struts是Struts 2配置文件的根元素 -->
+<struts>
+
+
+	<include file="struts-default.xml" />
+	<package name="default" extends="struts-default">
+		<interceptors>
+			
+			<interceptor-stack name="validationStack">
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="basicStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="validationStack" />
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="error" type="dispatcher">/error.jsp</result>
+		</global-results>
+	</package>
+    <include file="action/struts_system.xml" />
+    <include file="action/struts_dictionary.xml" />
+    <include file="action/struts_member.xml" />
+    <include file="action/struts_spiderdata.xml" />
+    <include file="action/struts_weburl.xml" />
+    <include file="action/struts_annex.xml" />
+</struts>
+

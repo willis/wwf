@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mpaike.member.model.Member" table="paike_user">
+
+		<id name="id" type="java.lang.Long" column="userid">
+			<generator class="assigned" />
+		</id>
+		<property name="username" column="username" type="string"
+			not-null="true">
+		</property>
+		<property name="password" column="password" type="string"
+			not-null="true">
+
+		</property>
+		<property name="status" column="status" type="java.lang.Long"
+			not-null="true">
+
+		</property>
+		<property name="name" column="name" type="string"
+			not-null="true">
+
+		</property>
+
+		<property name="sex" column="sex" type="java.lang.Integer"
+			not-null="true">
+
+		</property>
+		<property name="birthday" column="birthday"
+			type="java.util.Date" not-null="true">
+
+		</property>
+		<property name="email" column="email" type="string"
+			not-null="true">
+
+		</property>
+		<property name="city" column="city" type="java.lang.Integer"
+			not-null="true">
+
+		</property>
+
+		<property name="profession" column="profession" type="string"
+			length="50" not-null="true">
+
+		</property>
+		<property name="userStatus" column="userStatus"
+			type="java.lang.Integer" not-null="true">
+
+		</property>
+
+		<property name="lastLoginDate" column="lastLoginDate"
+			type="java.util.Date">
+
+		</property>
+		<property name="loginCount" column="loginCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="photoCount" column="photoCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="friendCount" column="friendCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="accessCount" column="accessCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="fattCount" column="fattCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="myattCount" column="myattCount"
+			type="java.lang.Long">
+
+		</property>
+		<property name="points" column="points"
+			type="java.lang.Long">
+
+		</property>
+		<property name="userLevel" column="userLevel"
+			type="java.lang.Long">
+
+		</property>
+		<property name="outPoints" column="outPoints"
+			type="java.lang.Long">
+
+		</property>
+		<property name="userMoney" column="userMoney"
+			type="java.lang.Long">
+
+		</property>
+		<property name="outMoney" column="outMoney"
+			type="java.lang.Long">
+
+		</property>
+		<property name="immediatelyInfo" column="immediatelyInfo"
+			type="string">
+
+		</property>
+		<property name="createdDate" column="createdDate"
+			type="java.util.Date" not-null="true">
+
+		</property>
+		<one-to-one name="memberInfo" class="com.mpaike.member.model.MemberInfo" cascade="delete" ></one-to-one>
+		
+	</class>
+</hibernate-mapping>

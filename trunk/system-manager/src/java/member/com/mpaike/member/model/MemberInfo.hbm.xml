@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mpaike.member.model.MemberInfo" table="paike_userext">
+
+		<id name="id" type="java.lang.Long" column="userid">
+			<generator class="assigned" />
+		</id>
+		<property name="info" column="info" type="string">
+		</property>
+ 		<one-to-one name="member" class="com.mpaike.member.model.Member" constrained="true"></one-to-one>
+
+	</class>
+</hibernate-mapping>
