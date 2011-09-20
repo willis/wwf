@@ -400,6 +400,7 @@ CREATE TABLE `bot_url` (
 
 CREATE TABLE `bot_images` (
   `id` varchar(32) NOT NULL DEFAULT '',
+  `score` varchar(128) NOT NULL DEFAULT '',
   `url` varchar(1024) NOT NULL DEFAULT '',
   `filename` varchar(1024) NOT NULL DEFAULT '',
   `status` char(1) NOT NULL,
