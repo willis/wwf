@@ -6,4 +6,10 @@ import com.mpaike.image.model.Picture;
 
 public class PictureDao extends SpringBaseDaoImpl<Picture> implements IPictureDao {
 
+	@Override
+	public void saveNow(Picture pic) {
+		this.getHibernateTemplate().save(pic);
+		this.getHibernateTemplate().flush();
+	}
+
 }
