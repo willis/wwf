@@ -13,6 +13,7 @@ public class Picture implements  java.io.Serializable
 	private Long id;
 	private Long userId;
 	private String photoMd5;
+	private String sourceAdrr;
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -436,6 +437,12 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setfNumber(String fNumber) {
 		this.fNumber = fNumber;
+	}
+	public String getSourceAdrr() {
+		return sourceAdrr;
+	}
+	public void setSourceAdrr(String sourceAdrr) {
+		this.sourceAdrr = sourceAdrr;
 	}
 	
 }
