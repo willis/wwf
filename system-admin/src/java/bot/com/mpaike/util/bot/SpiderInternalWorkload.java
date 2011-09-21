@@ -127,4 +127,9 @@ public class SpiderInternalWorkload implements IWorkloadStorable {
     complete.clear();
     running.clear();
   }
+
+	@Override
+	public void close() {
+	
+	}
 }

@@ -24,6 +24,18 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
    * The JDBC connection.
    */
   Connection connection;
+  
+  /**
+   * A prepared SQL statement to create the workload.
+   */
+  PreparedStatement prepCreateURL;
+  PreparedStatement prepCreateImageURL;
+  
+  /**
+   * A prepared SQL statement to delete the workload.
+   */
+  PreparedStatement prepDeleteURL;
+  PreparedStatement prepDeleteImageURL;
 
   /**
    * A prepared SQL statement to clear the workload.
@@ -56,34 +68,37 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
    */
   PreparedStatement prepSetStatus3;
 
-  /**
-   * Create a new SQL workload store and
-   * connect to a database.
-   *
-   * @param driver The JDBC driver to use.
-   * @param source The driver source name.
-   * @exception java.sql.SQLException
-   * @exception java.lang.ClassNotFoundException
-   */
-  public SpiderSQLWorkload(DataSource dataSource) throws SQLException
-  {
-    connection = dataSource.getConnection();
-    init();
-  }
   
-  public SpiderSQLWorkload(Connection connection)throws SQLException
+  public SpiderSQLWorkload(Connection connection,String name)throws SQLException
   {
     this.connection = connection;
-    init();
+    init(name);
   }
   
-  private void init()throws SQLException{
-	    prepClear = connection.prepareStatement("DELETE FROM bot_url;");
-	    prepAssign = connection.prepareStatement("SELECT url FROM bot_url WHERE status = 'W';");
-	    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url WHERE id = ?;");
-	    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url WHERE id = ?;");
-	    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url(id,url,status) VALUES (?,?,?);");
-	    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url SET status = ? WHERE id = ?;");
+
+  private void init(String name)throws SQLException{
+	  //表操作
+	  String createTable = "CREATE TABLE `bot_url_"+name+"` (`id` varchar(32) NOT NULL DEFAULT '',`url` varchar(1024) NOT NULL DEFAULT '',`status` char(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+	  prepCreateURL = connection.prepareStatement(createTable);
+	  prepDeleteURL = connection.prepareStatement("DROP table `bot_url_"+name+"`;");
+	  
+	  {
+		  try{
+			  prepCreateURL.execute();
+		  }catch(SQLException e){
+		  }
+	  }
+	  
+	  //String createImageTable = "CREATE TABLE `bot_images"+name+"` (`id` varchar(32) NOT NULL DEFAULT '',`score` varchar(128) NOT NULL DEFAULT '',`url` varchar(1024) NOT NULL DEFAULT '',`filename` varchar(1024) NOT NULL DEFAULT '',`status` char(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+	  //prepCreateImageURL = connection.prepareStatement(createImageTable);
+	  //prepDeleteImageURL = connection.prepareStatement("DROP table `bot_image"+name+"`;");
+	  
+	    prepClear = connection.prepareStatement("DELETE FROM bot_url_"+name+";");
+	    prepAssign = connection.prepareStatement("SELECT url FROM bot_url_"+name+" WHERE status = 'W';");
+	    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url_"+name+" WHERE id = ?;");
+	    prepSetStatus1 = connection.prepareStatement("SELECT count(*) as qty FROM bot_url_"+name+" WHERE id = ?;");
+	    prepSetStatus2 = connection.prepareStatement("INSERT INTO bot_url_"+name+"(id,url,status) VALUES (?,?,?);");
+	    prepSetStatus3 = connection.prepareStatement("UPDATE bot_url_"+name+" SET status = ? WHERE id = ?;");
   }
 
   /**
@@ -238,5 +253,22 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
       Log.logException("SQL Error: ",e );
     }
   }
+  
+  public void distory(){
+	  
+  }
+
+	@Override
+	public void close() {
+		if(connection!=null){
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println("SpiderSQLWorkload close:");
+	}
 }
 

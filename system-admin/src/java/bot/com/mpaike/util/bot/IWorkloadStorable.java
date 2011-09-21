@@ -85,4 +85,7 @@ public interface IWorkloadStorable {
    * Clear the contents of the workload store.
    */
   public void clear();
+  
+  
+  public void close();
 }
