@@ -142,6 +142,8 @@
 			</props>
 		</property>
 	</bean>
+	
+
 	<bean id="loginControl"
 		class="com.mpaike.user.service.LoginControl" autowire="byName" />
 	<!-- 日志切片 -->
