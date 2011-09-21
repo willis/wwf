@@ -81,18 +81,12 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
 	  String createTable = "CREATE TABLE `bot_url_"+name+"` (`id` varchar(32) NOT NULL DEFAULT '',`url` varchar(1024) NOT NULL DEFAULT '',`status` char(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 	  prepCreateURL = connection.prepareStatement(createTable);
 	  prepDeleteURL = connection.prepareStatement("DROP table `bot_url_"+name+"`;");
-	  
-	  {
-		  try{
-			  prepCreateURL.execute();
-		  }catch(SQLException e){
-		  }
+
+	  try{
+		  prepCreateURL.execute();
+	  }catch(SQLException e){
 	  }
-	  
-	  //String createImageTable = "CREATE TABLE `bot_images"+name+"` (`id` varchar(32) NOT NULL DEFAULT '',`score` varchar(128) NOT NULL DEFAULT '',`url` varchar(1024) NOT NULL DEFAULT '',`filename` varchar(1024) NOT NULL DEFAULT '',`status` char(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
-	  //prepCreateImageURL = connection.prepareStatement(createImageTable);
-	  //prepDeleteImageURL = connection.prepareStatement("DROP table `bot_image"+name+"`;");
-	  
+
 	    prepClear = connection.prepareStatement("DELETE FROM bot_url_"+name+";");
 	    prepAssign = connection.prepareStatement("SELECT url FROM bot_url_"+name+" WHERE status = 'W';");
 	    prepGetStatus = connection.prepareStatement("SELECT status FROM bot_url_"+name+" WHERE id = ?;");
