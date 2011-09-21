@@ -39,7 +39,7 @@ public class ImageReportable implements ISpiderReportable{
 	private static String score;
 	private static String sourceUrl;
 	
-	public ImageReportable(String url,String path,DataSource dataSource,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
+	public ImageReportable(String url,String path,Connection connection,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
 		imagesPath = path;
 		if(url!=null){
 			this.sourceUrl = url;
@@ -59,7 +59,7 @@ public class ImageReportable implements ISpiderReportable{
 			
 		}
 		this.pictureDao = pictureDao;
-		connection = dataSource.getConnection();
+		this.connection = connection;
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,score,url,filename,status) VALUES (?,?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 

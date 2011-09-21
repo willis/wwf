@@ -374,6 +374,7 @@ public class Spider extends Thread implements ISpiderReportable {
   synchronized public void spiderComplete()
   {
     manager.spiderComplete();
+    workload.close();
   }
 
   /**
