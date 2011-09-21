@@ -14,12 +14,12 @@ public class SequenceManager {
 	/**
 	 * 装载ID
 	 */
-	private static final String LOAD_ID = "SELECT ID FROM SEQUENCEID WHERE IDTYPE=?";
+	private static final String LOAD_ID = "SELECT id FROM sequenceid WHERE idtype=?";
 
 	/**
 	 * 更新ID
 	 */
-	private static final String UPDATE_ID = "UPDATE SEQUENCEID SET ID=? WHERE IDTYPE=? AND ID=?";
+	private static final String UPDATE_ID = "UPDATE sequenceid SET id=? WHERE idtype=? AND id=?";
 
 	/**
 	 * 多例模式ID生成
