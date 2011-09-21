@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="system-admin">
+	<property file="build.properties" />
+
+	<!-- =================================================================== -->
+	<!-- Set Class Path                                                      -->
+	<!-- =================================================================== -->
+	<path id="classpath">
+		<fileset dir="${dir.webapps.ap.webinf.lib}">
+			<include name="*.jar" />
+			<include name="*.zip" />
+		</fileset>
+		<fileset dir="${dir.j2eelib}">
+			<include name="*.jar" />
+			<include name="*.zip" />
+		</fileset>
+	</path>
+
+	<path id="test.classpath">
+		<path refid="classpath" />
+		<path location="${dir.build.jar}/${jar.filename}" />
+		<pathelement location="${dir.build.test.classes}" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${dir.webapps.ap.webinf}/classes" />
+	</target>
+
+	<target name="cleanall" depends="clean" />
+
+	<target name="build" description="==> Build Application (compile &amp; jar)">
+		<echo>|======================================|</echo>
+		<echo>|======== Build Application ===========|</echo>
+		<echo>|======================================|</echo>
+		<antcall target="web" />
+		<antcall target="war" />
+	</target>
+
+	<target name="web" description="==> Build Web Application">
+		<echo>|======================================|</echo>
+		<echo>|======== Build Web Application========|</echo>
+		<echo>|======================================|</echo>
+		<antcall target="prepare.web" />
+	</target>
+
+	<target name="prepare.web">
+		<echo>|======================================|</echo>
+		<echo>|=========== Prepare Web ==============|</echo>
+		<echo>|======================================|</echo>
+		<delete dir="${dir.build.web}" />
+		<mkdir dir="${dir.build.web}" />
+		<echo>|======== Prepare jsp file ========|</echo>
+		<copy todir="${dir.build.web}" overwrite="true">
+			<fileset dir="${dir.webapps.ap}">
+				<include name="**" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/com/**" />
+			</fileset>
+		</copy>
+		<echo>|======================================|</echo>
+		<echo>|=========== Version html =============|</echo>
+		<echo>|======================================|</echo>
+		<!--<antcall target="svn-version"/>-->
+		
+		<echo>|====== Prepare classes ======|</echo>
+		<mkdir dir="${dir.build.web.webinf.classes}" />
+		<antcall target="webapps.compile" />
+		<copy todir="${dir.build.web.webinf.classes}" overwrite="true">
+			<fileset dir="${dir.webapps.ap.webinf.classes}">
+			</fileset>
+		</copy>
+		<echo>|====== change applicationContext.xml ======|</echo>
+		<!--
+    	<delete dir="${dir.build.web.webinf.classes}/init.properties"></delete>
+    	<rename dest="${dir.build.web.webinf.classes}/init.properties" src="${dir.build.web.webinf.classes}/init_server.properties"/>
+		-->
+	</target>
+
+	<target name="war" description="==> Build War Files">
+		<echo>|======================================|</echo>
+		<echo>|======== Build War Files =============|</echo>
+		<echo>|======================================|</echo>
+		<antcall target="dist.war" />
+		<!--<antcall target="build.installer" />-->
+	</target>
+
+
+	<target name="dist.war">
+		<echo>|======================================|</echo>
+		<echo>|===== Distribute WAR File ============|</echo>
+		<echo>|======================================|</echo>
+		<mkdir dir="${dir.dist}" />
+		<war destfile="${dir.dist}/${war.filename}" update="true">
+			<fileset dir="${dir.build.web}" />
+		</war>
+	</target>
+
+	<target name="webapps.compile">
+		<echo>|=========================================================|</echo>
+		<echo>|=== Compile Java Code To dir.webapps.ap.webinf.classes===|</echo>
+		<echo>|=========================================================|</echo>
+		<mkdir dir="${dir.webapps.ap.webinf.classes}" />
+		<javac source="1.6" optimize="on" debug="true" destdir="${dir.webapps.ap.webinf.classes}" includes="**/*.java">
+			<compilerarg line="-encoding UTF-8 " />
+			<classpath refid="classpath" />
+			<src path="${dir.src.user.java}" />
+			<src path="${dir.src.annex.java}" />
+			<src path="${dir.src.image.java}" />
+			<src path="${dir.src.bot.java}" />
+			<src path="${dir.src.member.java}" />
+			<src path="${dir.src.util.java}" />
+			<src path="${dir.src.dictionary.java}" />
+			<src path="${dir.src.servlet.java}" />
+			<src path="${dir.src.etc}" />
+		</javac>
+		<antcall target="webapps.copy.non.java" />
+	</target>
+	<target name="webapps.copy.non.java">
+		<echo>|============================================================|</echo>
+		<echo>|=== Copy Non-JAVA Files To dir.webapps.ap.webinf.classes ===|</echo>
+		<echo>|============================================================|</echo>
+		<copy todir="${dir.webapps.ap.webinf.classes}" overwrite="true">
+			
+			<fileset dir="${dir.src.etc}">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${dir.src.user.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+
+			<fileset dir="${dir.src.annex.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.image.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.bot.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.member.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.util.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.dictionary.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.servlet.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="webapps.jar" depends="webapps.compile">
+		<echo>|===========================================|</echo>
+		<echo>|==== Build JAR File from webapps classes===|</echo>
+		<echo>|===========================================|</echo>
+		<mkdir dir="${dir.build.jar}" />
+		<jar jarfile="${dir.build.jar}/${jar.filename}">
+			<fileset dir="${dir.webapps.ap.webinf.classes}">
+				<include name="**" />
+				<exclude name="log4j.properties" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="svn-version">
+		<echo>|===========================|</echo>
+		<echo>|====  Build SVN Version ===|</echo>
+		<echo>|===========================|</echo>
+		<exec executable="svn" output="${dir.build.web}/version.html" failonerror="false" failifexecutionfails="false">
+			<arg line="info" />
+			<!--
+            <redirector>
+                <outputfilterchain>
+                    <linecontainsregexp>
+                        <regexp pattern="^Revision:"/>
+                    </linecontainsregexp>
+                    <tokenfilter>
+                        <replaceregex pattern="Revision\:\s*" flags="s" replace=""/>
+                    </tokenfilter>
+                </outputfilterchain>
+            </redirector>
+            -->
+		</exec>
+	</target>
+
+</project>
