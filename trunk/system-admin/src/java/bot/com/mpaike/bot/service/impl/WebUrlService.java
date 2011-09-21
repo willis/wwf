@@ -59,12 +59,18 @@ public class WebUrlService extends BaseService implements IWebUrlService {
 		}
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public List spiderLog(String url){
 		if(url!=null){
 			return this.getBotSpider().spiderLog(url);
 		}else{
 			return EMPTY_LIST;
 		}
+	}
+
+	@Override
+	public List<WebUrl> findList(Long status) {
+		return this.getWebUrlDao().findByProperty("status", status);
 	}
 
 }

@@ -15,6 +15,7 @@ public interface IWebUrlService {
 	
 	public boolean stopWebSpider(Long id);
 	
+	@SuppressWarnings("rawtypes")
 	public List spiderLog(String url);
 	
 	public void save(WebUrl bean);
@@ -22,5 +23,7 @@ public interface IWebUrlService {
 	public WebUrl find(Long id);
 	
 	public List<WebUrl> find(Pagination p,OrderBy ob);
+	
+	public List<WebUrl> findList(Long status);
 	
 }
