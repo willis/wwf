@@ -142,6 +142,9 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="systemLogService"
+		class="com.mpaike.sys.service.impl.SystemLogServiceImpl"
+		autowire="byName" />
 	<bean id="loginControl"
 		class="com.mpaike.user.service.LoginControl" autowire="byName" />
 	<!-- 日志切片 -->

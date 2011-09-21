@@ -6,9 +6,7 @@
 	
 	<!-- 利用SPRING的手动代理 -->
 
-	<bean id="systemLogService"
-		class="com.mpaike.sys.service.impl.SystemLogServiceImpl"
-		autowire="byName" />
+
 		
 
 	<bean id="sysUserService"
