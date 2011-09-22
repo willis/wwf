@@ -157,7 +157,7 @@ MaxTable.prototype={
 									.bind(
 											"click",
 											function() {
-												_parent.page.pageNo = _parent.page.totapageNom;
+												_parent.page.pageNo = _parent.page.totalPage;
 												_parent.query();
 											});
 							$("#Pg", tdObj).bind("blur", function() {
@@ -213,6 +213,7 @@ MaxTable.prototype={
 		}
 	  ,
  	  createPage:function (pageInfo){
+ 	
  			var text = '';
  			text += '每页显示<input id="pageSize"   value="'
  					+ pageInfo.pageSize
