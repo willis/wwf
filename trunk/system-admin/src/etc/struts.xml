@@ -30,5 +30,6 @@
     <include file="action/struts_spiderdata.xml" />
     <include file="action/struts_weburl.xml" />
     <include file="action/struts_annex.xml" />
+    <include file="action/struts_picture.xml" />
 </struts>
 

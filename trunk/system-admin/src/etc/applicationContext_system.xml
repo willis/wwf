@@ -48,4 +48,7 @@
 	<bean id="memberService"
 		class="com.mpaike.member.service.impl.MemberServiceImpl"
 		autowire="byName" parent="baseService"/>
+	<bean id="pictureService"
+		class="com.mpaike.image.service.impl.PictureService"
+		autowire="byName" parent="baseService"/>
 </beans>
