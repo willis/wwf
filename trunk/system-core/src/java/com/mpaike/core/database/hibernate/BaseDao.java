@@ -60,6 +60,9 @@ public interface BaseDao<T extends Serializable> {
 	public Pagination findByEg(T exampleInstance, boolean anyWhere,
 			Condition[] conds, int pageNo, int pageSize, String... exclude);
 	
+	public List<T> findByEgList(T eg, boolean anyWhere, Pagination p, Condition[] conds,
+			String... exclude);
+	
 
 	/**
 	 * 按属性查找对象列表.

@@ -384,6 +384,30 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		crit.setMaxResults(maxResult);
 		return crit.list();
 	}
+	
+	@Override
+	public List<T> findByEgList(T eg, boolean anyWhere, Pagination p,
+			Condition[] conds, String... exclude) {
+		Order[] orderArr = null;
+		Condition[] condArr = null;
+		if (conds != null && conds.length > 0) {
+			List<Order> orderList = new ArrayList<Order>();
+			List<Condition> condList = new ArrayList<Condition>();
+			for (Condition c : conds) {
+				if (c instanceof OrderBy) {
+					orderList.add(((OrderBy) c).getOrder());
+				} else {
+					condList.add(c);
+				}
+			}
+			orderArr = new Order[orderList.size()];
+			condArr = new Condition[condList.size()];
+			orderArr = orderList.toArray(orderArr);
+			condArr = condList.toArray(condArr);
+		}
+		Criteria crit = getCritByEg(eg, anyWhere, condArr, exclude);
+		return findByCriteria(crit, p, null, orderArr).list();
+	}
 
 	public Pagination findByEg(T eg, boolean anyWhere, Condition[] conds,
 			int page, int pageSize, String... exclude) {
@@ -745,5 +769,9 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
             
         }
     }
+
+
+
+
 
 }
