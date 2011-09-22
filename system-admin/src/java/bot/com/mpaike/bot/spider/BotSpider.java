@@ -1,13 +1,9 @@
 package com.mpaike.bot.spider;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.BlockingQueue;
 
 import javax.sql.DataSource;
 
@@ -22,7 +18,6 @@ public class BotSpider{
 	private static String path;
 	private IPictureDao pictureDao;
 	private DataSource dataSource;
-	private Connection  connection;
 	
 	private Map<String,Spider> spiderMap = new HashMap<String,Spider>();
 
@@ -60,10 +55,8 @@ public class BotSpider{
 		Spider sd = spiderMap.get(url);
 		if(sd!=null){
 			sd.halt();
-			sd.spiderComplete();
 		}
 		 try{
-				connection = dataSource.getConnection();
 			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),enName);
 			 	ImageReportable ir = new ImageReportable(url,path+enName+"/",dataSource.getConnection(),pictureDao);
 			 	Spider spider = new Spider( ir,url,new HTTPSocket(),threadNum,wl);
@@ -81,13 +74,7 @@ public class BotSpider{
 		Spider spider = spiderMap.get(url);
 		if(spider!=null){
 			spider.halt();
-		}
-		if(connection!=null){
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			spiderMap.remove(url);
 		}
 	}
 	
