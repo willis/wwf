@@ -14,6 +14,7 @@ public class Picture implements  java.io.Serializable
 	private Long userId;
 	private String photoMd5;
 	private String sourceName;
+	private String gene;
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -443,6 +444,12 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setSourceName(String sourceName) {
 		this.sourceName = sourceName;
+	}
+	public String getGene() {
+		return gene;
+	}
+	public void setGene(String gene) {
+		this.gene = gene;
 	}
 
 	
