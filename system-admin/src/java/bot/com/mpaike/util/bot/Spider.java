@@ -375,6 +375,7 @@ public class Spider extends Thread implements ISpiderReportable {
   {
     manager.spiderComplete();
     workload.close();
+    addLog("spiderComplete.");
   }
 
   /**
@@ -429,14 +430,9 @@ public class Spider extends Thread implements ISpiderReportable {
 
 private void addLog(String url){
 	  if(!this.spiderLog.offer(url)){
-		  try {
-			this.spiderLog.take();
+			this.spiderLog.poll();
 			this.spiderLog.offer(url);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  
+
 	  }
   }
 
