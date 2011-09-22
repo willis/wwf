@@ -12,6 +12,8 @@ public class Picture implements  java.io.Serializable
 	@AnnotationObjectKey
 	private Long id;
 	private Long userId;
+	private Long hotNum;//点击数
+	private Long resourceType;//资源等级
 	private String photoMd5;
 	private String sourceName;
 	private String gene;
@@ -451,6 +453,18 @@ public class Picture implements  java.io.Serializable
 	public void setGene(String gene) {
 		this.gene = gene;
 	}
-
+	public Long getHotNum() {
+		return hotNum;
+	}
+	public void setHotNum(Long hotNum) {
+		this.hotNum = hotNum;
+	}
+	public Long getResourceType() {
+		return resourceType;
+	}
+	public void setResourceType(Long resourceType) {
+		this.resourceType = resourceType;
+	}
+	
 	
 }
