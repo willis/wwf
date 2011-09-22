@@ -19,6 +19,7 @@ import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.util.json.JsonConfigFactory;
 import com.mpaike.core.util.page.Pagination;
+import com.mpaike.image.service.IPictureService;
 import com.mpaike.member.service.MemberService;
 import com.mpaike.user.service.SysMenuService;
 import com.mpaike.user.service.SysPopedomService;
@@ -67,6 +68,7 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void printBeansJson(List beans) {
 		try {
 			JSONArray jsonArray = JSONArray.fromObject(beans);
@@ -91,6 +93,7 @@ public class BaseAction extends ActionSupport {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	public void printPageList(List beans){
 		printPageList(beans,null);
 	}
@@ -200,5 +203,10 @@ public class BaseAction extends ActionSupport {
 	public SysMenuService getSysMenuService() {
 		return (SysMenuService) ApplictionContext.getInstance().getBean(
 				SysMenuService.ID_NAME);
+	}
+	
+	public IPictureService getPictureService() {
+		return (IPictureService) ApplictionContext.getInstance().getBean(
+				IPictureService.ID_NAME);
 	}
 }
