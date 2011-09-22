@@ -13,6 +13,6 @@ public interface IPictureService extends IBaseService{
 	
 	public List<Picture> find(Picture pic,Pagination p, OrderBy ob);
 	
-	public void remove(String[] ids);
+	public void remove(Long[] longValue);
 
 }
