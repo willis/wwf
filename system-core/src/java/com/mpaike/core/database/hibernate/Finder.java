@@ -19,7 +19,7 @@ public class Finder {
 
 	public Finder(String hql,OrderBy[] orderBys) {
 		hqlBuilder = new StringBuilder(hql);
-		if(orderBys!=null){
+		if(orderBys!=null&&orderBys.length!=0){
 			hqlBuilder.append(OrderBy.asOrdersString(orderBys));
 		}
 	}
