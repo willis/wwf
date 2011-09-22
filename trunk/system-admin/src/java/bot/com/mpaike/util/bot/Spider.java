@@ -428,7 +428,7 @@ public class Spider extends Thread implements ISpiderReportable {
 	return spiderLog;
 }
 
-private void addLog(String url){
+  private void addLog(String url){
 	  if(!this.spiderLog.offer(url)){
 			this.spiderLog.poll();
 			this.spiderLog.offer(url);
