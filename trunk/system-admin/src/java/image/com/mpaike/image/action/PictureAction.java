@@ -44,6 +44,12 @@ public class PictureAction extends BaseAction {
 		List<Picture> datas = this.getPictureService().find(picture, this.pageInfo, this.getOrderby());
 		this.printPageList(datas);
 	}
+	
+	public void remove(){
+		String[] ids = request.getParameterValues("ids");
+		this.getPictureService().remove(ids);
+		super.printSuccessJson("删除成功！");
+	}
 
 	public Picture getPicture() {
 		return picture;

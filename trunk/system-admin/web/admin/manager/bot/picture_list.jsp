@@ -34,16 +34,9 @@
 
 										<li>
 											<a class="delete" href="javascript:"
-												onclick="">删除</a>
+												onclick="removeSelect()">删除</a>
 										</li>
-										<li>
-											<a class="add" href="javascript:"
-												 onclick="window.parent.showWindow('${cxp}/manager/bot/bot_edit.jsp','添加',400,500)">添加</a>
-										</li>
-										<li>
-											<a class="modify" href="javascript:"
-												onclick="removeSelect(1)">恢复正常</a>
-										</li>
+									
 										<li>
 											<a class="find"
 												href="javascript:void($('#find_01').toggle())">查询</a>
@@ -139,6 +132,51 @@
 			     	//txt+= " <a href='weburlAction!viewSpider.action?id="+idValue+"' >查看抓取</a>";
 			     	return txt;
 		 }
+		  dataGrid.initSortHead(
+			      {head:'myHead',cells:[{index:1,name:'id'},{index:2,name:'filename'}]}
+		  );
+		  function removeSelect(){
+				var ids  = getCheckedValuesByContainer("c",$("#dataGrid"));
+	
+				if(ids.length == 0)
+				{
+					window.parent.parent.jAlert("请选择记录", "系统提示");
+					return ;
+				}
+				var cs = "";
+				for(var i=0;i<ids.length;i++){
+					if(i>0){
+						cs+=",";
+					}
+					cs+=ids[i];
+				}
+				
+				var message = "您真的要删除<font color='red'>"+ids.length+"</font>个图片吗？";
+			
+						 
+						window.parent.parent.jConfirm(message, '操作确认', function(r) {
+						
+							if (r) {
+									var param = {
+										ids:cs
+									}
+					
+									doPost("pictureAction!remove.action", param, function(data) {
+										
+												if (data.status) {
+													query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}else{
+												    query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}
+										});
+							}
+				});
+
+			}
+
+
 	 		var _K = 1024;
 			 var _M = _K*1024;
 			function getNiceFileSize(idValue,value){
