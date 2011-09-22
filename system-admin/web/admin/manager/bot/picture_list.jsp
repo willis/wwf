@@ -63,23 +63,26 @@
 								</label>
 							</th>
 						
-							<th>
-								操作
+							<th width="200px;">
+								文件名
 							</th>
 							<th>
-								网站名称
+								文件大小
 							</th>
 							<th>
-								网站链接
+								图像高度（像素）
 							</th>
 							<th>
-								网站英文名称
+								图像宽度（像素）
 							</th>
 							<th>
-								启动状态
+								型号
 							</th>
 							<th>
-								启动线程数
+								创建软件
+							</th>
+							<th>
+								Exif版本
 							</th>
 						</tr>
 					</thead>
@@ -115,7 +118,13 @@
 		  		id:'id',
 		  		queryUrl:'pictureAction!list.action',
 		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
-		  		{id:'id',renderer:editRenderer}
+		  		{id:'filename'},
+		  		{id:'fileSize',renderer:getNiceFileSize},
+		  		{id:'srcHeight'},
+		  		{id:'srcWidth'},
+		  		{id:'model'},
+		  		{id:'software'},
+		  		{id:'exifVersion'}
 		  		]
 		  	}
 		  );
@@ -125,64 +134,25 @@
 		  query();
 		  function editRenderer(idValue,value,record){
 			     	var txt="";
-			     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"weburlAction!edit.action?id="+idValue+"\",\"编辑\",400,500)'>编辑</a> ";
-			     	txt+= " <a href='javascript:;' onclick='start("+value+");'>启动</a>  <a href='javascript:;' onclick='stop("+value+");' >停止</a>";
-			     	txt+= " <a href='weburlAction!viewSpider.action?id="+idValue+"' >查看抓取</a>";
+			     	//txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"weburlAction!edit.action?id="+idValue+"\",\"编辑\",400,500)'>编辑</a> ";
+			     	//txt+= " <a href='javascript:;' onclick='start("+value+");'>启动</a>  <a href='javascript:;' onclick='stop("+value+");' >停止</a>";
+			     	//txt+= " <a href='weburlAction!viewSpider.action?id="+idValue+"' >查看抓取</a>";
 			     	return txt;
 		 }
-		  function statusRenderer(idValue,value,record){
-		     	switch(value){
-		     	case 1:
-		     		return '<font color=green>已启动</font>';
-		     	case 0:
-		     		return '<font color=red>已停止</font>';
-		     	default:
-		     		return '<font color=red>已停止</font>';
-		     	}
-	    }
-		  function start(id){
+	 		var _K = 1024;
+			 var _M = _K*1024;
+			function getNiceFileSize(idValue,value){
+				if(value<_M){
+					if(value<_K){
+						return value+'B';
+			   		}else{
+						return Math.ceil(value/_K)+'K';
+					}
 			
-				var message = "你确认要启动对这个URL的抓取吗？";
-				window.parent.parent.jConfirm(message, '操作确认', function(r) {
-						
-							if (r) {
-									var param = {id:id};
-					
-									doPost("weburlAction!start.action", param, function(data) {
-										
-												if (data.status) {
-													query();
-													window.parent.parent.jAlert(data.message, "系统提示");
-												}else{
-												    query();
-													window.parent.parent.jAlert(data.message, "系统提示");
-												}
-										});
-							}
-				});
-
-			}
-		  function stop(id){
-				
-				var message = "你确认要停止对这个URL的抓取吗？";
-				window.parent.parent.jConfirm(message, '操作确认', function(r) {
-						
-							if (r) {
-									var param = {id:id};
-					
-									doPost("weburlAction!stop.action", param, function(data) {
-										
-												if (data.status) {
-													query();
-													window.parent.parent.jAlert(data.message, "系统提示");
-												}else{
-												    query();
-													window.parent.parent.jAlert(data.message, "系统提示");
-												}
-										});
-							}
-				});
-
+				}else{
+					return Math.ceil(100*value/_M)/100+'M';
+				}
+		
 			}
 	</script>
 
