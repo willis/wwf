@@ -17,10 +17,9 @@ public class PictureService extends BaseService implements IPictureService {
 	}
 
 	@Override
-	public void remove(String[] ids) {
-		for(String id : ids){
-			this.getPictureDao().deleteById(Long.parseLong(id));
-		}
+	public void remove(Long[] longValue) {
+		for(Long id : longValue)
+		this.getPictureDao().deleteById(id);
 		
 	}
 	

@@ -26,6 +26,7 @@ package com.mpaike.image.action;
 import java.util.List;
 
 import com.mpaike.image.model.Picture;
+import com.mpaike.util.ArrayUtil;
 import com.mpaike.util.app.BaseAction;
 
 /**
@@ -36,6 +37,7 @@ import com.mpaike.util.app.BaseAction;
 public class PictureAction extends BaseAction {
 	
 	private Picture picture;
+	private String ids;
 	/**
 	 * 查询列表
 	 */
@@ -46,8 +48,8 @@ public class PictureAction extends BaseAction {
 	}
 	
 	public void remove(){
-		String[] ids = request.getParameterValues("ids");
-		this.getPictureService().remove(ids);
+		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
+		this.getPictureService().remove(longValue);
 		super.printSuccessJson("删除成功！");
 	}
 
@@ -59,5 +61,13 @@ public class PictureAction extends BaseAction {
 		this.picture = picture;
 	}
 
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+	
 	
 }

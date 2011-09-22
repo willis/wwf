@@ -68,12 +68,7 @@
 							<th>
 								图像宽度（像素）
 							</th>
-							<th>
-								型号
-							</th>
-							<th>
-								创建软件
-							</th>
+			
 							<th>
 								Exif版本
 							</th>
@@ -115,8 +110,6 @@
 		  		{id:'fileSize',renderer:getNiceFileSize},
 		  		{id:'srcHeight'},
 		  		{id:'srcWidth'},
-		  		{id:'model'},
-		  		{id:'software'},
 		  		{id:'exifVersion'}
 		  		]
 		  	}
