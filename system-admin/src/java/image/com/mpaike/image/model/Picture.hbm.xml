@@ -14,8 +14,6 @@
 		
 		<property name="userId" column="userId" type="java.lang.Long"
 			not-null="true" />
-		<property name="userId" column="userId" type="java.lang.Long"
-			not-null="true" />
 
 
 		<property name="sourceName" column="sourceName" type="string" />

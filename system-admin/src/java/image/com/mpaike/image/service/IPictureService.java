@@ -12,5 +12,7 @@ public interface IPictureService extends IBaseService{
 	public static String ID_NAME = "pictureService"; 
 	
 	public List<Picture> find(Picture pic,Pagination p, OrderBy ob);
+	
+	public void remove(String[] ids);
 
 }
