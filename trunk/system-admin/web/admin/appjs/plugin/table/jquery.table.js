@@ -37,15 +37,14 @@ var MaxTable =  function(){
 MaxTable.prototype={
 	initialize:function(opts){
 		this.opts = $.extend({
-				id:'id',
-				showPageInfo:true
+				id:'id'
 			}, opts || {});
 		this._s  = $("#"+this.opts.table)[0];
 		this.loading = $("#"+this.opts.loading);
 		if(this.opts.isSort == false){
 			this.sortInfo = this.defaultSortInfo;
 		}
-		this.showPageInfo = this.opts.showPageInfo;
+		this.showPageInfo = (this.opts.showPageInfo==undefined)?true:this.opts.showPageInfo;
 		this.complete = this.opts.complete;
 		this.table =this.opts.table;
 	}
@@ -111,7 +110,7 @@ MaxTable.prototype={
 							
 						}
 
-						
+						if(_parent.showPageInfo){
 						if (_parent.page.totalCount != 0) {
 						
 							var trObj = _s.insertRow(_s.rows.length);
@@ -175,8 +174,13 @@ MaxTable.prototype={
 							});
 						}
 					}
-					_parent.loading.unblock();
-					_parent.complete= true;
+					}
+					if(_parent.loading){
+						_parent.loading.unblock();
+					 }
+					 if(_parent.complete){
+					 	_parent.complete(_parent);
+					 }
 					}
 					
 					catch (e) 
