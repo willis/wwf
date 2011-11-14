@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/java/user"/>
+	<classpathentry kind="src" path="src/java/annex"/>
 	<classpathentry kind="src" path="src/java/image"/>
 	<classpathentry kind="src" path="src/java/bot"/>
 	<classpathentry kind="src" path="src/java/member"/>
@@ -10,7 +11,6 @@
 	<classpathentry kind="src" path="src/java/test"/>
 	<classpathentry kind="src" path="src/java/servlet"/>
 	<classpathentry kind="src" path="src/etc"/>
-	<classpathentry kind="src" path="src/java/affix"/>
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/activation.jar"/>
@@ -38,7 +38,6 @@
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/FCKeditor-2.3.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/freemarker-2.3.16.jar"/>
-	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/gt-grid-1.42.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/hibernate-c3p0-3.3.2.GA.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/hibernate-core-3.3.2.GA.jar"/>
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/hibernate-ehcache-3.3.2.GA.jar"/>
@@ -105,5 +104,11 @@
 	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/xwork-core-2.2.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/encog-core-3.0.0.jar"/>
+	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/metadata-extractor-2.3.1-src.jar"/>
+	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/metadata-extractor-2.3.1.jar"/>
+	<classpathentry kind="lib" path="web/admin/WEB-INF/lib/wwfcore-1.0.0.jar"/>
 	<classpathentry kind="output" path="web/admin/WEB-INF/classes"/>
 </classpath>
