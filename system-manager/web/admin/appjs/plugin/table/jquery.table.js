@@ -175,8 +175,12 @@ MaxTable.prototype={
 							});
 						}
 					}
-					_parent.loading.unblock();
-					_parent.complete= true;
+					if(_parent.loading){
+						_parent.loading.unblock();
+					 }
+					 if(_parent.complete){
+					 	_parent.complete(_parent);
+					 }
 					}
 					
 					catch (e) 
