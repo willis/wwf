@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* CSS Document */
+a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
+
+.header{height:75px; line-height:73px; border-bottom:2px solid #666; margin:0 auto 0 35px; position:relative;display:none}
+.header span{text-align:center; font-size:30px; color:#000; font-weight:bold; display:block; margin:0 auto; width:270px; height:73px; line-height:73px; vertical-align:middle; overflow:hidden; word-break:break-all;}
+.header a{width:58px; height:73px; border:0; display:block; margin:0; padding:0; overflow:hidden; position:absolute; top:0;}
+.header button{height:73px; border:0; display:block; margin:0; padding:0; overflow:hidden; position:absolute; top:0; cursor:pointer; background-color:#fff;}
+.header button em{color:#5C5C5C; display:block; height:34px; line-height:34px; width:70px; font-size:14px; text-align:center; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px;border-radius:5px; border:1px solid #999;}
+.header button em.hover{border:1px solid #cc3838; background-color:#f0f0f0;}
+#btn1{left:5px; display: none;}
+#btn2{right:85px; display:none;}
+#btn3{right:5px;}
+#btn4{right:5px; display: none;}
+
+#card0{white-space:normal; width:600px;}
+.showimg{opacity:0; margin:0 1px -4px 0; width:100px;height:100px}
