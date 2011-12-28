@@ -45,7 +45,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 301BF52D109A57CC0062928A /* PhoneGapLib.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 686357A9141002F100DF4CF2 /* PhoneGapLibTests.octest */;
+			remoteGlobalIDString = 686357A9141002F100DF4CF2;
 			remoteInfo = PhoneGapLibTests;
 		};
 		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
@@ -298,6 +298,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = cctv;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ipadshow" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
