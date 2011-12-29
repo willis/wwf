@@ -26,7 +26,7 @@
 	</bean>
 	<!-- 系统dao -->
 	
-	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseServiceImpl"
+	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseService"
 		abstract="true">
 		<!-- 系统dao -->
 		<property name="sysUserDao" ref="sysUserDao"/>
