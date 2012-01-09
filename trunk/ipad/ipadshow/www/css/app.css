@@ -1,20 +1,71 @@
 @charset "UTF-8";
 /* CSS Document */
+body{
+	margin:0;
+	padding:0;
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+	font-family:helvetica;
+}
+
+.loadmask {
+    z-index: 100;
+    position: absolute;
+    top:0;
+    left:0;
+    opacity: .50;
+    background-color: #CCC;
+    width: 100%;
+    height: 100%;
+}
+.loadmask-msg {
+    z-index: 20001;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border:1px solid #6593cf;
+    background: #c3daf9;
+    padding:2px;
+}
+.loadmask-msg div {
+    padding:5px 10px 5px 25px;
+    line-height: 16px;
+	border:1px solid #a3bad9;
+    color:#222;
+    font:normal 11px tahoma, arial, helvetica, sans-serif;
+    cursor:wait;
+}
+
 a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 
 .header{height:75px; line-height:73px; border-bottom:2px solid #666; margin:0 auto 0 35px; position:relative;}
 .header span{text-align:center; font-size:30px; color:#000; font-weight:bold; display:block; margin:0 auto; width:270px; height:73px; line-height:73px; vertical-align:middle; overflow:hidden; word-break:break-all;}
 .header a{width:58px; height:73px; border:0; display:block; margin:0; padding:0; overflow:hidden; position:absolute; top:0;}
-.header button{height:73px; border:0; display:block; margin:0; padding:0; overflow:hidden; position:absolute; top:0; cursor:pointer; background-color:#fff;}
+.header button{border:0; display:block; margin:20px; padding:0; overflow:hidden; position:absolute; top:0; cursor:pointer; background-color:#fff;}
 .header button em{color:#5C5C5C; display:block; height:34px; line-height:34px; width:70px; font-size:14px; text-align:center; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px;border-radius:5px; border:1px solid #999;}
-.header button em.hover{border:1px solid #cc3838; background-color:#f0f0f0;}
+.header button em:active{border:1px solid #cc3838;}
 #btn1{left:5px; display: none;}
 #btn2{right:85px; }
 #btn3{right:5px;display: none;}
 #btn4{right:5px; }
 
 .cards1{white-space:normal; padding-top:10px; padding-left:35px; padding-right:35px;}
-.showimg{opacity:90; margin:0 1px -4px 0; width:85px;height:85px}
+.showimg{opacity:90; margin:0 1px -3px 0; width:85px;height:85px;}
+.showpic{
+	background: #fff;
+	overflow: hidden;
+	opacity: 0.9;
+	-webkit-transition: all 1500ms linear;
+
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	-webkit-box-shadow: -3px -3px 50px #666;
+	-moz-box-shadow: -3px -3px 50px #666;
+	box-shadow: -3px -3px 50px #666;
+}
+
 
 /* tags */
 .seting_list li.none_data{text-align:center; line-height:100px; font-size:16px; font-weight:bold; padding:20px 0; width:100%; color:#505050;}
@@ -22,22 +73,29 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 .seting_list li a, .seting_list li a:link, .seting_list li a:visited, .seting_list li a:hover, .seting_list li a:active{color:#505050;}
 .seting_list li a.active{color:#fff; background:#446667;}
 
-#tagcard{
-	left:800px;
+#tagcardView{
 	position:absolute;
-	width:700px;
-	height:890px;
+	width:100%;
+	height:100%;
 	background-color:#00FFCC;
-	z-index:9999;
+	z-index:102;
+	top:0;
+	left:800px;
 }
 
-#scroller {
+#tagCardScroll{
+	width:100%;
+	height:100%;
+	background-color:#00FF00;
+}
+
+#cardScroll {
 	width:2400px;
-	height:890px;
+	height:100%;
 	float:left;
 }
 
-#scroller ul {
+#cardScroll ul {
 	list-style:none;
 	display:block;
 	float:left;
@@ -48,7 +106,7 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 	text-align:left;
 }
 
-#scroller li {
+#cardScroll li {
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-o-box-sizing:border-box;
@@ -56,8 +114,8 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 	display:block; float:left;
 	list-style:none;
 	padding-top:10px;
-	padding-left:35px;
-	padding-right:0px; 
+	padding-left:33px;
+	padding-right:10px; 
 	margin:0;
 	width:768px;
 }
@@ -71,6 +129,7 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 
 #indicator {
 	width:100px;
+	margin-top:25px;
 	margin-left:auto;
 	margin-right:auto;
 	float:center;
