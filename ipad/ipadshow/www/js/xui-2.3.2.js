@@ -1486,4 +1486,69 @@ xui.extend({
     };
 
 }(this, document);
+
+x$.maskElement = function(element, label){
+		element = x$(element);
+		if(element.getStyle("position") == "static") {
+			element.addClass("masked-relative");
+		}
+		
+		element.addClass("masked");
+		
+		var maskDiv = x$('<div class="loadmask"></div>');
+		element.top(maskDiv);
+		
+		if(label !== undefined) {
+			var maskMsgDiv = x$('<div class="loadmask-msg" style="display:none;"><div>' + label + '</div></div>');
+			element.top(maskMsgDiv);
+			
+			//calculate center position
+			maskMsgDiv.setStyle("top", (document.body.offsetHeight/2)+"px");
+			maskMsgDiv.setStyle("left", (document.body.offsetWidth /2)+"px");
+			
+			maskMsgDiv.setStyle('display','');
+		}
+		
+	};
+	
+	x$.unmaskElement = function(element){
+		element = x$(element);
+		element.find(".loadmask-msg,.loadmask").remove();
+		element.removeClass("masked");
+		element.removeClass("masked-relative");
+		element.find("select").removeClass("masked-hidden");
+	};
+
+var _loadmask = new Object();
+	
+	/**
+	 * Displays loading mask over selected element(s). Accepts both single and multiple selectors.
+	 *
+	 * @param label Text message that will be displayed on top of the mask besides a spinner (optional). 
+	 * 				If not provided only mask will be displayed without a label or a spinner.  	
+	 * @param delay Delay in milliseconds before element is masked (optional). If unmask() is called 
+	 *              before the delay times out, no mask is displayed. This can be used to prevent unnecessary 
+	 *              mask display for quick processes.   	
+	 */
+	_loadmask.mask = function(label){
+				x$.maskElement(x$(document.body), label);
+		};
+	
+	/**
+	 * Removes mask from the element(s). Accepts both single and multiple selectors.
+	 */
+	_loadmask.unmask = function(){
+			x$.unmaskElement(x$(document.body));
+	};
+	
+	/**
+	 * Checks if a single element is masked. Returns false if mask is delayed or not displayed. 
+	 */
+	_loadmask.isMasked = function(){
+		return x$(document.body).hasClass("masked");
+	}
+	
+	window.loadmask = _loadmask;
+
+
 })();
