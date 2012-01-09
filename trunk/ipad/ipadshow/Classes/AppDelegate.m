@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize invokeString;
+@synthesize invokeString, cacheWebView;
 
 - (id) init
 {	
@@ -48,6 +48,27 @@
 {
     // must call super so all plugins will get the notification, and their handlers will be called 
 	// super also calls into javascript global function 'handleOpenURL'
+	/*
+	if (!url) {  return NO; }
+	
+    NSString *URLString = [url absoluteString];
+    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+	CGRect webViewBounds = [ [ UIScreen mainScreen ] applicationFrame ] ;
+	
+	if (!self.cacheWebView) {
+        self.cacheWebView = [[ [ UIWebView alloc ] initWithFrame:webViewBounds] autorelease];
+    }
+    self.cacheWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+	[self.cacheWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
+	
+    [self.viewController.view addSubview:self.cacheWebView];
+	[self.cacheWebView release];
+
+	NSLog(@"handleOpenURL = %@",url);
+    return YES;
+	*/
     return [super application:application handleOpenURL:url];
 }
 
