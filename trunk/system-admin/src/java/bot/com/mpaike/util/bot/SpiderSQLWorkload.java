@@ -241,11 +241,11 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
    */
   synchronized public void clear()
   {
-    try {
-      prepClear.executeUpdate();
-    } catch ( SQLException e ) {
-      Log.logException("SQL Error: ",e );
-    }
+//    try {
+//      prepClear.executeUpdate();
+//    } catch ( SQLException e ) {
+//      Log.logException("SQL Error: ",e );
+//    }
   }
   
   public void distory(){
