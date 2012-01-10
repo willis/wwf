@@ -36,8 +36,8 @@
 		overlayOpacity: .01,                // transparency level of overlay
 		overlayColor: '#FFF',               // base color of overlay
 		draggable: true,                    // make the dialogs draggable (requires UI Draggables plugin)
-		okButton: '&nbsp;OK&nbsp;',         // text for the OK button
-		cancelButton: '&nbsp;Cancel&nbsp;', // text for the Cancel button
+		okButton: '&nbsp;确定&nbsp;',         // text for the OK button
+		cancelButton: '&nbsp;取消&nbsp;', // text for the Cancel button
 		dialogClass: null,                  // if specified, this class will be applied to all dialogs
 		
 		// Public methods
@@ -52,6 +52,7 @@
 		},
 		
 		confirm: function(message, title, callback, okBtnText, cancelBtnText) {
+	
 			if( title == null ) title = 'Confirm';
 			if(!okBtnText){okBtnText = $.alerts.okButton;}
 			if(!cancelBtnText){cancelBtnText = $.alerts.cancelButton;}
@@ -75,15 +76,15 @@
 			
 			$.alerts._hide();
 			$.alerts._overlay('show');
-			
-			$("BODY").append(
+			$(document.body).append(
 			  '<div id="popup_container">' +
 			    '<h1 id="popup_title"></h1>' +
+			    '<a title="Close" id="popup_close" class="popup_close" onclick="$.alerts._hide();"></a>'+
 			    '<div id="popup_content">' +
 			      '<div id="popup_message"></div>' +
 				'</div>' +
 			  '</div>');
-			
+
 			if( $.alerts.dialogClass ) $("#popup_container").addClass($.alerts.dialogClass);
 			
 			// IE6 Fix
