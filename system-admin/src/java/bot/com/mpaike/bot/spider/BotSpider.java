@@ -76,6 +76,7 @@ public class BotSpider{
 			spider.halt();
 			spiderMap.remove(url);
 		}
+		System.out.println("********* spider stop = "+url+" **********");
 	}
 	
 	public List<String> spiderLog(String url){
