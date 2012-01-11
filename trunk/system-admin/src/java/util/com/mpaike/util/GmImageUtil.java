@@ -10,9 +10,12 @@ public class GmImageUtil {
 
 	/**
 	 * @param args
+	 * @throws IM4JavaException 
+	 * @throws InterruptedException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws IOException, InterruptedException, IM4JavaException {
+		cropImageCenter("/Users/tozhangwj/Documents/515x170-02.jpg","/Users/tozhangwj/Documents/xiao515x170-02.jpg",100,100);
 	}
 	
 	/** 
@@ -29,14 +32,15 @@ public class GmImageUtil {
     {  
         IMOperation op = new IMOperation();  
           
-        op.addImage();  
-        op.resize(rectw, recth, '^').gravity("center").extent(rectw, recth);  
-        op.addImage();  
+        op.addImage();
+        op.resize(rectw, recth, '^').gravity("Center").extent(rectw, recth);  
+        op.addImage();
   
-        ConvertCmd convert = new ConvertCmd(true);  
-        //convert.createScript("e:\\test\\myscript.sh",op);  
+        ConvertCmd convert = new ConvertCmd(true);
+        ConvertCmd.setGlobalSearchPath("/usr/local/bin/");
+
         convert.run(op, srcPath, desPath);  
-  
+
     }  
 
 }
