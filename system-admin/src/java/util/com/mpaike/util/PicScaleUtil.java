@@ -11,8 +11,8 @@ public class PicScaleUtil {
 	
 	private static List<ScaleType> zoomList = new ArrayList<ScaleType>();
 	static{
-		zoomList.add(new ScaleType(150,150,"jpg"));
-
+		zoomList.add(new ScaleType(150,150,ScaleType.TYPE_SCALE));
+		zoomList.add(new ScaleType(85,85,ScaleType.TYPE_CROP));
 //		zoomList.add(new ScaleType("240X320-jpg"));
 //		zoomList.add(new ScaleType("240X320-webp"));
 //		zoomList.add(new ScaleType("320X240-jpg"));
@@ -23,8 +23,11 @@ public class PicScaleUtil {
 		File file = new File(filenamePath);
 		try {
 			for(ScaleType st : zoomList){
-
-					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("-").append(file.getName()).toString(), st.width, st.height);
+				if(ScaleType.TYPE_CROP == st.getType()){
+					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("(crop)").append("-").append(file.getName()).toString(), st.width, st.height);
+				}else if(ScaleType.TYPE_SCALE == st.getType()){
+					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("(scale)").append("-").append(file.getName()).toString(), st.width, st.height);
+				}
 
 			}
 		} catch (IOException e) {
@@ -59,22 +62,25 @@ public class PicScaleUtil {
 	
 	static class ScaleType{
 		
+		public static final int TYPE_CROP = 0;
+		public static final int TYPE_SCALE = 1;
+		
 		private int width;
 		private int height;
-		private String picType;
+		private int type;
 		
 		public ScaleType(){}
 		
 		public ScaleType(String p){
 			width = Integer.valueOf(p.substring(0,p.indexOf("X")));
 			height = Integer.valueOf(p.substring(p.indexOf("X"),p.indexOf("-")));
-			picType = p.substring(p.indexOf("-"));
+			type = Integer.valueOf(p.substring(p.indexOf("-")));
 		}
 		
-		public ScaleType(int width,int height,String picType){
+		public ScaleType(int width,int height,int type){
 			this.width = width;
 			this.height = height;
-			this.picType = picType;
+			this.type = type;
 		}
 		
 		public int getWidth() {
@@ -89,12 +95,15 @@ public class PicScaleUtil {
 		public void setHeight(int height) {
 			this.height = height;
 		}
-		public String getPicType() {
-			return picType;
+
+		public int getType() {
+			return type;
 		}
-		public void setPicType(String picType) {
-			this.picType = picType;
+
+		public void setType(int type) {
+			this.type = type;
 		}
+
 
 	}
 
