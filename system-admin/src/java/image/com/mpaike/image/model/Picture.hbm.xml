@@ -10,6 +10,8 @@
 		</id>
 		<property name="type" column="type" type="java.lang.Integer" />
 		
+		<property name="url" column="url"
+			type="string" />
 		<property name="hotNum" column="hotNum" type="java.lang.Long" />
 		
 		<property name="resourceType" column="resourceType" type="java.lang.Long" />
