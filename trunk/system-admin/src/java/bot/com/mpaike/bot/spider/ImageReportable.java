@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
@@ -34,13 +35,15 @@ public class ImageReportable implements ISpiderReportable{
 	private IPictureDao pictureDao;
 	private Connection connection;
 	private  String imagesPath;
+	private String enname;
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4|doc|docx|mp3|mov|zip|rar|gz|tar))$");
 	private static String score;
 	private static String sourceUrl;
 	
-	public ImageReportable(String url,String path,Connection connection,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
+	public ImageReportable(String url,String path,String enname,Connection connection,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
 		imagesPath = path;
+		this.enname = enname;
 		if(url!=null){
 			this.sourceUrl = url;
 			url = url.toLowerCase();
@@ -139,6 +142,7 @@ public class ImageReportable implements ISpiderReportable{
 	    String filename = null;
 	    String id =null;
 	    Picture pic = null;
+	    Date date =null;
 	    try {
 	      // first see if one exists
 	    	prepAssign.setString(1,MD5.toMD5(url));
@@ -148,7 +152,8 @@ public class ImageReportable implements ISpiderReportable{
 
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
-	    	  	path = new StringBuilder().append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/").toString();
+	    	  	date = new Date();
+	    	  	path = new StringBuilder().append(enname).append("/").append(DateTimeUtil.getTime(date.getTime())).append("/").toString();
 	    	  	abspath = new StringBuilder().append(imagesPath).append(abspath).toString();
 	    	  	//创建目录
 	    	  	mkdir(abspath.toString());
@@ -164,7 +169,7 @@ public class ImageReportable implements ISpiderReportable{
 		        prepSetStatus.setString(4,tagertName.toString());
 		        prepSetStatus.setString(5,"W");
 		        prepSetStatus.executeUpdate();
-		        pic = ExifHelper.getPicture(path,filename, bytes);
+		        pic = ExifHelper.getPicture(path,filename,date, bytes);
 		        if(pic!=null){
 		        		pic.setId(SequenceManager.nextID(100));
 		        		pic.setSourceName(sourceUrl);

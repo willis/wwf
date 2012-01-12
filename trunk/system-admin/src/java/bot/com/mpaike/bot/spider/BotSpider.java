@@ -58,7 +58,7 @@ public class BotSpider{
 		}
 		 try{
 			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),enName);
-			 	ImageReportable ir = new ImageReportable(url,path+enName+"/",dataSource.getConnection(),pictureDao);
+			 	ImageReportable ir = new ImageReportable(url,path,enName,dataSource.getConnection(),pictureDao);
 			 	Spider spider = new Spider( ir,url,new HTTPSocket(),threadNum,wl);
 			 	spiderMap.put(url, spider);
 			 	spider.setMaxBody(200);
