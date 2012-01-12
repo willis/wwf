@@ -1,5 +1,7 @@
 package com.mpaike.image.model;
 
+import java.util.Date;
+
 import com.mpaike.core.database.hibernate.AnnotationObjectKey;
 
 
@@ -77,6 +79,7 @@ public class Picture implements  java.io.Serializable
     private String sceneType;//场景类型
     private String thumbnailFileType;//缩略图文件格式
     private String thumbnailMimeType;//缩略图Mime格式
+    private Date storeDate;	//存储时间
     
 	public String getFilename() {
 		return filename;
@@ -479,6 +482,12 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setPath(String path) {
 		this.path = path;
+	}
+	public Date getStoreDate() {
+		return storeDate;
+	}
+	public void setStoreDate(Date storeDate) {
+		this.storeDate = storeDate;
 	}
 	
 	
