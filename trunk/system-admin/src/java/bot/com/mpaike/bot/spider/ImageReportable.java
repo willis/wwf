@@ -135,6 +135,7 @@ public class ImageReportable implements ISpiderReportable{
 	    ResultSet rs = null;
 	    StringBuilder tagertName=null;
 	    String path = null;
+	    String abspath = null;
 	    String filename = null;
 	    String id =null;
 	    Picture pic = null;
@@ -147,12 +148,13 @@ public class ImageReportable implements ISpiderReportable{
 
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
-	    	  	path = new StringBuilder().append(imagesPath).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/").toString();
+	    	  	path = new StringBuilder().append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/").toString();
+	    	  	abspath = new StringBuilder().append(imagesPath).append(abspath).toString();
 	    	  	//创建目录
-	    	  	mkdir(path.toString());
+	    	  	mkdir(abspath.toString());
 	    	  	filename = new StringBuilder().append(id).append(".").append(FileUtil.getTypePart(url)).toString();
-	    	  		
-	    	  	tagertName = new StringBuilder().append(path).append(filename);
+	    	  	
+	    	  	tagertName = new StringBuilder().append(abspath).append(filename);
 
 	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
 	        if(bytes!=null){
@@ -162,7 +164,7 @@ public class ImageReportable implements ISpiderReportable{
 		        prepSetStatus.setString(4,tagertName.toString());
 		        prepSetStatus.setString(5,"W");
 		        prepSetStatus.executeUpdate();
-		        pic = ExifHelper.getPicture(url, bytes);
+		        pic = ExifHelper.getPicture(path,filename, bytes);
 		        if(pic!=null){
 		        		pic.setId(SequenceManager.nextID(100));
 		        		pic.setSourceName(sourceUrl);
