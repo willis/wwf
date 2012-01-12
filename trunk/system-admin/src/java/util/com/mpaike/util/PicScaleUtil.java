@@ -10,8 +10,7 @@ public class PicScaleUtil {
 	
 	private static List<ScaleType> zoomList = new ArrayList<ScaleType>();
 	{
-		zoomList.add(new ScaleType(240,320,"jpg"));
-		zoomList.add(new ScaleType(320,240,"jpg"));
+		zoomList.add(new ScaleType(150,150,"jpg"));
 
 //		zoomList.add(new ScaleType("240X320-jpg"));
 //		zoomList.add(new ScaleType("240X320-webp"));
