@@ -30,6 +30,7 @@ public class Picture implements  java.io.Serializable
 	private Integer srcWidth;//图像宽度（像素）
 	private Integer type;//照片状态
 	private String path;//路径
+	private String url;//源路径
 	//图像信息	-----------------------------
     private String imageDescription;//图片说明
     private String make;//制造商 
@@ -488,6 +489,12 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setStoreDate(Date storeDate) {
 		this.storeDate = storeDate;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	
