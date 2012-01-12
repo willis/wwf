@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,6 +147,10 @@ public class UrlIO {
 		if(image.getWidth()<minWidth||image.getHeight()<minHeight){
 			isSave = false;
 		}else{
+			File file = new File(fileName);
+			if(!file.getParentFile().exists()){
+				file.getParentFile().mkdirs();
+			}
 			OutputStream fos = new FileOutputStream(fileName);
 			fos.write(bytes);
 			fos.close();
