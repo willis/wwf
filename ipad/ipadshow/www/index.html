@@ -34,28 +34,22 @@
 							}
 						 });
 			
-
-			var _btn4 = x$("#btn4");
-			_btn4.on( 'click', function(e) {
-				window.loadmask.mask();
+			function showTagsView(){
+				window.loadmask.mask(null, hideTagsView);
 				var tagcard = x$("#tagcardView");
 				tagcard.setStyle('display','');
 				tagcard.tween({left:'500px', duration:250});
 				myTags = new iScroll("tagCardScroll",{momentum: false, hScrollbar: false});
-			});
-			
-			var _btn2 = x$("#btn2");
-			_btn2.on( 'click', function(e) {
-					window.loadmask.mask("请等待...");
-					
-			});
-			var _btnGuanbi = x$("#btnGuanbi");
-			_btnGuanbi.on( 'click', function(e) {
-				
-				var tagcard = x$("#tagcardView");
+			} 
+	
+			function hideTagsView(){
+				var tagcard = x$('#tagcardView');
 				tagcard.tween({left:'800px' },function(){tagcard.setStyle('display','none');window.loadmask.unmask();});
-				
-			});
+			} 
+
+			var _btn4 = x$("#btn4");
+			_btn4.on( 'click', showTagsView);
+
 			
 			x$(".showimg").each(function(element, index, xui) {
 				x$(element).on('click',function(e){
@@ -64,7 +58,6 @@
 				});
 			});
 	
-			
 		}
 		
 		function bigimgViewFit(url){
@@ -99,17 +92,17 @@
 <div id="tagcardView" style="display:none">
 	<div id="tagCardScroll">
         <div style="height:100%;width:100%">
-            <span><button type="button" id="btnGuanbi"><em>关闭</em></button></span>
-            <ul>
-              <li>sadf</li>
-              <li>asdf</li>
-              <li>sdaf</li>
-              <li>sdaf</li>
-              <li>sdaf</li>
-              <li>sdaf</li>
-              <li>asdf</li>
-              <li>sadfasdf</li>
+            <ul class="seting_list">
+              <li><a href="#">sadf</a></li>
+              <li><a href="#">asdf</a></li>
+              <li><a href="#">sdaf</a></li>
+              <li><a href="#">sdaf</a></li>
+              <li><a href="#">sdaf</a></li>
+              <li><a href="#">sdaf</a></li>
+              <li><a href="#">asdf</a></li>
+              <li><a href="#">sadfasdf</a></li>
             </ul>
+            <span><button type="button" id="btnGuanbi"><em>设置</em></button></span>
         </div>
 	</div>
 </div>
@@ -219,20 +212,25 @@
             </ul>
       </div>
     </div>
+
+</div>
+<!-- card end -->
+
     <div id="nav">
-        <ul id="indicator" >
+        	<ul id="indicator" >
               <li class="active">1</li>
               <li>2</li>
               <li>3</li>
               <li>4</li>
               <li>5</li>
               <li>6</li>
-              <li>7</li>
-              <li>8</li>
+			  <li>7</li>
+			  <li>8</li>
+			  <li>9</li>
+			  <li>10</li>
             </ul>
+
     </div>
-</div>
-<!-- card end -->
 
 
 
