@@ -36,8 +36,8 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return JSON字符串
 	 */
-	public static String prase2JSON(File file) {
-		Picture picture = getPicture(file);
+	public static String prase2JSON(String score,File file) {
+		Picture picture = getPicture(score,file);
 		if (picture != null) {
 			JSONObject jsonObject = JSONObject.fromObject(picture);
 			JSONObject j = new JSONObject();
@@ -57,7 +57,7 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return Picture对象
 	 */
-	public static Picture getPicture(File jpegFile) {
+	public static Picture getPicture(String score,File jpegFile) {
 		Picture picture = new Picture();
 		if (jpegFile.exists()) {
 			// 文件信息 -----------------------------
@@ -282,7 +282,8 @@ public class ExifHelper{
 			picture.setExposureProgram(formatString(exposureProgram));
 			picture.setExposureTime(formatString(exposureTime));
 			picture.setFileDataTime(formatString(fileDataTime));
-			picture.setFilename(filename);
+			picture.setPath(jpegFile.getPath().substring(jpegFile.getPath().indexOf(score+"/")));
+			picture.setFilename(jpegFile.getName());
 			picture.setFileSize(formatString(fileSize));
 			picture.setFileSource(formatString(fileSource ));
 			picture.setFileType(formatString(fileType));
@@ -326,7 +327,7 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return Picture对象
 	 */
-	public static Picture getPicture(String filename,byte[] bytes) {
+	public static Picture getPicture(String path,String filename, byte[] bytes) {
 		Picture picture = new Picture();
         // 文件信息 -----------------------------
 		// 获取文件大小，begin
@@ -621,6 +622,7 @@ public class ExifHelper{
 			picture.setExposureProgram(formatString(exposureProgram));
 			picture.setExposureTime(formatString(exposureTime));
 			picture.setFileDataTime(formatString(fileDataTime));
+			picture.setFilename(path);
 			picture.setFilename(filename);
 			picture.setFileSize(formatString(fileSize));
 			picture.setFileSource(formatString(fileSource ));
