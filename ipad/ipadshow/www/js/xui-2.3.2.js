@@ -1487,29 +1487,35 @@ xui.extend({
 
 }(this, document);
 
-x$.maskElement = function(element, label){
-		element = x$(element);
-		if(element.getStyle("position") == "static") {
-			element.addClass("masked-relative");
-		}
-		
-		element.addClass("masked");
-		
-		var maskDiv = x$('<div class="loadmask"></div>');
-		element.top(maskDiv);
-		
-		if(label !== undefined) {
-			var maskMsgDiv = x$('<div class="loadmask-msg" style="display:none;"><div>' + label + '</div></div>');
-			element.top(maskMsgDiv);
+	x$.maskElement = function(element, label, callback){
+			element = x$(element);
+			if(element.getStyle("position") == "static") {
+				element.addClass("masked-relative");
+			}
 			
-			//calculate center position
-			maskMsgDiv.setStyle("top", (document.body.offsetHeight/2)+"px");
-			maskMsgDiv.setStyle("left", (document.body.offsetWidth /2)+"px");
+			element.addClass("masked");
 			
-			maskMsgDiv.setStyle('display','');
-		}
-		
-	};
+			var maskDiv;
+			if(callback){
+				maskDiv = x$('<div class="loadmask" onclick=\"window.loadmask.maskCall('+callback+')\"></div>');
+			}else{
+				maskDiv = x$('<div class="loadmask"></div>');
+			}
+			 
+			element.top(maskDiv);
+			
+			if(label !== undefined && label != null) {
+				var maskMsgDiv = x$('<div class="loadmask-msg" style="display:none;"><div>' + label + '</div></div>');
+				element.top(maskMsgDiv);
+				
+				//calculate center position
+				maskMsgDiv.setStyle("top", (document.body.offsetHeight/2)+"px");
+				maskMsgDiv.setStyle("left", (document.body.offsetWidth /2)+"px");
+				
+				maskMsgDiv.setStyle('display','');
+			}
+			
+	}
 	
 	x$.unmaskElement = function(element){
 		element = x$(element);
@@ -1517,7 +1523,7 @@ x$.maskElement = function(element, label){
 		element.removeClass("masked");
 		element.removeClass("masked-relative");
 		element.find("select").removeClass("masked-hidden");
-	};
+	}
 
 var _loadmask = new Object();
 	
@@ -1530,16 +1536,22 @@ var _loadmask = new Object();
 	 *              before the delay times out, no mask is displayed. This can be used to prevent unnecessary 
 	 *              mask display for quick processes.   	
 	 */
-	_loadmask.mask = function(label){
-				x$.maskElement(x$(document.body), label);
-		};
+	_loadmask.mask = function(label,callback){
+				x$.maskElement(x$(document.body), label,callback);
+		}
 	
 	/**
 	 * Removes mask from the element(s). Accepts both single and multiple selectors.
 	 */
 	_loadmask.unmask = function(){
-			x$.unmaskElement(x$(document.body));
-	};
+				x$.unmaskElement(x$(document.body));
+	}
+	
+	_loadmask.maskCall = function(callback){
+				if(callback){
+					callback.call();
+				}
+	}
 	
 	/**
 	 * Checks if a single element is masked. Returns false if mask is delayed or not displayed. 
