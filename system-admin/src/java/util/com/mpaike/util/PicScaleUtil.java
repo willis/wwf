@@ -10,7 +10,7 @@ import org.im4java.core.IM4JavaException;
 public class PicScaleUtil {
 	
 	private static List<ScaleType> zoomList = new ArrayList<ScaleType>();
-	{
+	static{
 		zoomList.add(new ScaleType(150,150,"jpg"));
 
 //		zoomList.add(new ScaleType("240X320-jpg"));
@@ -57,7 +57,7 @@ public class PicScaleUtil {
 
 	}
 	
-	class ScaleType{
+	static class ScaleType{
 		
 		private int width;
 		private int height;
@@ -95,8 +95,7 @@ public class PicScaleUtil {
 		public void setPicType(String picType) {
 			this.picType = picType;
 		}
-		
-		
+
 	}
 
 }
