@@ -134,6 +134,8 @@ public class ImageReportable implements ISpiderReportable{
 	private void saveImage(String url){
 	    ResultSet rs = null;
 	    StringBuilder tagertName=null;
+	    String path = null;
+	    String filename = null;
 	    String id =null;
 	    Picture pic = null;
 	    try {
@@ -145,16 +147,17 @@ public class ImageReportable implements ISpiderReportable{
 
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
-	    	  	tagertName = new StringBuilder();
-	    	  	tagertName.append(imagesPath).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/");
+	    	  	path = new StringBuilder().append(imagesPath).append(DateTimeUtil.getTime(System.currentTimeMillis())).append("/").toString();
 	    	  	//创建目录
-	    	  	mkdir(tagertName.toString());
-	    	  	tagertName.append(id).append(".").append(FileUtil.getTypePart(url));
+	    	  	mkdir(path.toString());
+	    	  	filename = new StringBuilder().append(id).append(".").append(FileUtil.getTypePart(url)).toString();
+	    	  		
+	    	  	tagertName = new StringBuilder().append(path).append(filename);
 
 	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
 	        if(bytes!=null){
-	        		prepSetStatus.setString(1,id);
-	        		prepSetStatus.setString(2,score);
+	        	prepSetStatus.setString(1,id);
+	        	prepSetStatus.setString(2,score);
 		        prepSetStatus.setString(3,url);
 		        prepSetStatus.setString(4,tagertName.toString());
 		        prepSetStatus.setString(5,"W");
@@ -165,7 +168,8 @@ public class ImageReportable implements ISpiderReportable{
 		        		pic.setSourceName(sourceUrl);
 		        		pic.setUserId(-1L);
 		        		pic.setType(Picture.TYPE_NORMAL);
-		        		
+		        		pic.setFilename(filename);
+		        		pic.setPath(path);
 		        		pictureDao.saveNow(pic);
 		        }else{
 		        	System.err.println("Exif信息获取错误。（"+url+")");
