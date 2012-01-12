@@ -1,8 +1,8 @@
 package com.mpaike.image.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.mpaike.core.database.hibernate.Condition;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.core.database.hibernate.SpringBaseDaoImpl;
 import com.mpaike.core.util.page.Pagination;
@@ -21,10 +21,23 @@ public class PictureDao extends SpringBaseDaoImpl<Picture> implements IPictureDa
 	@Override
 	public List<Picture> find(Picture pic, Pagination p, OrderBy ob) {
 
-		String[] params = {"sourceName","model"};
 	
+		
+	
+		StringBuilder sql = new StringBuilder();
+		List params = new ArrayList();
+		createSQLWhere(pic, sql, params);
 
-		return this.findByEgList(pic, true, p,new Condition[]{ob}, params);
+		if (sql.length() > 0)
+			sql.insert(0, " where ");
+		sql.insert(0, " from Picture p ");
+		String select = " select * ";
+		return this.findList(sql.toString(), params.toArray(), p, ob);
 	}
 
+	
+	public void createSQLWhere(Picture pic, StringBuilder sql, List params) {
+	
+
+	}
 }

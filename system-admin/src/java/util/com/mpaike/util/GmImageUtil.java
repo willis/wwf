@@ -15,7 +15,7 @@ public class GmImageUtil {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException, IM4JavaException {
-		cropImageCenter("/Users/tozhangwj/Documents/515x170-02.jpg","/Users/tozhangwj/Documents/xiao515x170-02.jpg",100,100);
+		cropImageCenter("/Users/ChenH/Downloads/2011-12-06 10.14.59.jpg","/Users/ChenH/Downloads/xiao2011-12-06 10.14.59.jpg",100,100);
 	}
 	
 	/** 

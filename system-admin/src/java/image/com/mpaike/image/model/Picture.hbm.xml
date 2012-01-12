@@ -8,6 +8,8 @@
 		<id name="id" type="java.lang.Long" column="pictureid">
 			<generator class="assigned" />
 		</id>
+		<property name="type" column="type" type="java.lang.Integer" />
+		
 		<property name="hotNum" column="hotNum" type="java.lang.Long" />
 		
 		<property name="resourceType" column="resourceType" type="java.lang.Long" />
@@ -15,7 +17,8 @@
 		<property name="userId" column="userId" type="java.lang.Long"
 			not-null="true" />
 
-
+		<property name="path" column="path" type="string" />
+		
 		<property name="sourceName" column="sourceName" type="string" />
 		
 		<property name="gene" column="gene" type="string" length="1024"/>
