@@ -1,5 +1,6 @@
 package com.mpaike.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,11 @@ public class PicScaleUtil {
 	}
 	
 	public static void zoomForZoomList(String filenamePath){
-		String distPath = filenamePath.substring(0,filenamePath.lastIndexOf("/"));
-		String filename = filenamePath.substring(filenamePath.lastIndexOf("/"));
+		File file = new File(filenamePath);
 		try {
 			for(ScaleType st : zoomList){
 
-					GmImageUtil.scale(filenamePath, new StringBuilder().append(distPath).append("/").append(st.width).append("X").append(st.height).append("-").append(filename).toString(), st.width, st.height);
+					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("-").append(file.getName()).toString(), st.width, st.height);
 
 			}
 		} catch (IOException e) {
@@ -41,10 +41,9 @@ public class PicScaleUtil {
 	}
 	
 	public static void zoom(String filenamePath,int width,int height,String picType){
-		String distPath = filenamePath.substring(0,filenamePath.lastIndexOf("/"));
-		String filename = filenamePath.substring(filenamePath.lastIndexOf("/"));
+		File file = new File(filenamePath);
 		try {
-			GmImageUtil.scale(filenamePath, new StringBuilder().append(distPath).append("/").append(width).append("X").append(height).append("-").append(filename).toString(), width, height);
+			GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getParentFile()).append("/").append(width).append("X").append(height).append("-").append(file.getName()).toString(), width, height);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
