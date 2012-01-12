@@ -205,7 +205,8 @@
 		<property name="thumbnailMimeType" column="thumbnailMimeType"
 			type="string" />
 
-
+		<property name="storeDate" column="storeDate"
+			type="timestamp" />
 
 	</class>
 </hibernate-mapping>
