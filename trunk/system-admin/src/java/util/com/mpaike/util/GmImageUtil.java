@@ -15,7 +15,8 @@ public class GmImageUtil {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException, InterruptedException, IM4JavaException {
-		cropImageCenter("/Users/ChenH/Downloads/2011-12-06 10.14.59.jpg","/Users/ChenH/Downloads/xiao2011-12-06 10.14.59.jpg",100,100);
+		cropImageCenter("/Users/tozhangwj/Documents/515x170-02.jpg","/Users/tozhangwj/Documents/crop515x170-02.jpg",100,100);
+		scale("/Users/tozhangwj/Documents/515x170-02.jpg","/Users/tozhangwj/Documents/scale515x170-02.jpg",100,100);
 	}
 	
 	/** 
@@ -33,7 +34,8 @@ public class GmImageUtil {
         IMOperation op = new IMOperation();  
           
         op.addImage();
-        op.resize(rectw, recth, '^').gravity("Center").extent(rectw, recth);  
+        op.resize(rectw, recth, '^').gravity("Center").extent(rectw, recth);
+        op.quality(80d);
         op.addImage();
   
         ConvertCmd convert = new ConvertCmd(true);
@@ -41,6 +43,32 @@ public class GmImageUtil {
 
         convert.run(op, srcPath, desPath);  
 
-    }  
+    }
+    
+	/** 
+     * 先缩放，后居中切割图片 
+     * @param srcPath 源图路径 
+     * @param desPath 目标图保存路径 
+     * @param width 最大宽度 
+     * @param height 最大高度 
+     * @throws IM4JavaException  
+     * @throws InterruptedException  
+     * @throws IOException  
+     */  
+    public static void scale(String srcPath, String desPath, int maxWidth,int maxHeight) throws IOException, InterruptedException, IM4JavaException  
+    {  
+        IMOperation op = new IMOperation();  
+          
+        op.addImage();
+        op.resize(maxWidth, maxHeight);
+        op.addImage();
+  
+        ConvertCmd convert = new ConvertCmd(true);
+        ConvertCmd.setGlobalSearchPath("/usr/local/bin/");
+
+        convert.run(op, srcPath, desPath);  
+    }
+    
+
 
 }
