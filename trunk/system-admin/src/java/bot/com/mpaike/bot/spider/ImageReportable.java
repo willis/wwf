@@ -19,6 +19,7 @@ import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.image.model.Picture;
 import com.mpaike.util.ExifHelper;
 import com.mpaike.util.MD5;
+import com.mpaike.util.PicScaleUtil;
 import com.mpaike.util.bot.HTTP;
 import com.mpaike.util.bot.ISpiderReportable;
 import com.mpaike.util.bot.Log;
@@ -169,7 +170,7 @@ public class ImageReportable implements ISpiderReportable{
 		        prepSetStatus.setString(4,tagertName.toString());
 		        prepSetStatus.setString(5,"W");
 		        prepSetStatus.executeUpdate();
-		        pic = ExifHelper.getPicture(path,filename,date, bytes);
+		        pic = ExifHelper.getPicture(url,path,filename,date, bytes);
 		        if(pic!=null){
 		        		pic.setId(SequenceManager.nextID(100));
 		        		pic.setSourceName(sourceUrl);
@@ -177,6 +178,7 @@ public class ImageReportable implements ISpiderReportable{
 		        		pic.setType(Picture.TYPE_NORMAL);
 		        		pic.setFilename(filename);
 		        		pic.setPath(path);
+		        		PicScaleUtil.zoomForZoomList(tagertName.toString());
 		        		pictureDao.saveNow(pic);
 		        }else{
 		        	System.err.println("Exif信息获取错误。（"+url+")");
