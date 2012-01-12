@@ -1,11 +1,14 @@
 @charset "UTF-8";
 /* CSS Document */
+*{
+	-webkit-tap-highlight-color: transparent;
+}
+
 body{
 	margin:0;
 	padding:0;
+	text-align:center;
 	-webkit-user-select:none;
-    -webkit-text-size-adjust:none;
-	font-family:helvetica;
 }
 
 .loadmask {
@@ -17,6 +20,7 @@ body{
     background-color: #CCC;
     width: 100%;
     height: 100%;
+	
 }
 .loadmask-msg {
     z-index: 20001;
@@ -68,19 +72,21 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 
 
 /* tags */
-.seting_list li.none_data{text-align:center; line-height:100px; font-size:16px; font-weight:bold; padding:20px 0; width:100%; color:#505050;}
-.seting_list li a{display:block; border:1px solid #BDB9CA; background:#fff; width:230px; height:60px; line-height:60px; text-align:center; font-size:18px; font-family:"Î微软雅黑"; font-weight:bold; -webkit-box-shadow:3px 3px 3px #C4C5C0; box-shadow:3px 3px 3px #C4C5C0; overflow:hidden; padding:0 10px; float:left;}
-.seting_list li a, .seting_list li a:link, .seting_list li a:visited, .seting_list li a:hover, .seting_list li a:active{color:#505050;}
-.seting_list li a.active{color:#fff; background:#446667;}
+
 
 #tagcardView{
 	position:absolute;
-	width:100%;
+	width:268px;
 	height:100%;
 	background-color:#00FFCC;
 	z-index:102;
 	top:0;
 	left:800px;
+}
+
+#btnGuanbi{
+	margin-right:10px;
+
 }
 
 #tagCardScroll{
@@ -120,31 +126,30 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 	width:768px;
 }
 
+#nav{
+	width:140px;
+	background:#0ff;
+	margin: 15px auto;
+
+}
 
 #indicator, #indicator > li {
 	display:block; float:left;
 	list-style:none;
 	padding:0; margin:0;
+	background:#0f0;
 }
 
-#indicator {
-	width:100px;
-	margin-top:25px;
-	margin-left:auto;
-	margin-right:auto;
-	float:center;
-}
 
 #indicator > li {
 	text-indent:-9999em;
 	width:8px; height:8px;
 	-webkit-border-radius:4px;
-	-moz-border-radius:4px;
-	-o-border-radius:4px;
 	border-radius:4px;
 	background:#ddd;
 	overflow:hidden;
 	margin-right:4px;
+	display:inline;
 }
 
 #indicator > li.active {
