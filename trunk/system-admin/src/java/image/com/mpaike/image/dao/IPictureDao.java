@@ -12,5 +12,7 @@ public interface IPictureDao extends BaseDao<Picture>{
 	public void saveNow(Picture pic);
 	
 	public List<Picture> find(Picture pic, Pagination p, OrderBy ob);
+	
+	
 
 }
