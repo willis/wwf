@@ -155,7 +155,7 @@ public class ImageReportable implements ISpiderReportable{
 	    	  	id = MD5.toMD5(url);
 	    	  	date = new Date();
 	    	  	path = new StringBuilder().append(enname).append("/").append(DateTimeUtil.getTime(date.getTime())).append("/").toString();
-	    	  	abspath = new StringBuilder().append(imagesPath).append(abspath).toString();
+	    	  	abspath = new StringBuilder().append(imagesPath).append(path).toString();
 	    	  	//创建目录
 	    	  	mkdir(abspath.toString());
 	    	  	filename = new StringBuilder().append(id).append(".").append(FileUtil.getTypePart(url)).toString();
