@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.activation.MimetypesFileTypeMap;
@@ -25,6 +26,7 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.exif.ExifDirectory;
+import com.mpaike.core.util.date.DateTimeUtil;
 import com.mpaike.image.model.Picture;
 
 public class ExifHelper{
@@ -36,8 +38,8 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return JSON字符串
 	 */
-	public static String prase2JSON(String score,File file) {
-		Picture picture = getPicture(score,file);
+	public static String prase2JSON(String enname,File file) {
+		Picture picture = getPicture(enname,file);
 		if (picture != null) {
 			JSONObject jsonObject = JSONObject.fromObject(picture);
 			JSONObject j = new JSONObject();
@@ -57,7 +59,7 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return Picture对象
 	 */
-	public static Picture getPicture(String score,File jpegFile) {
+	public static Picture getPicture(String enname,File jpegFile) {
 		Picture picture = new Picture();
 		if (jpegFile.exists()) {
 			// 文件信息 -----------------------------
@@ -282,7 +284,8 @@ public class ExifHelper{
 			picture.setExposureProgram(formatString(exposureProgram));
 			picture.setExposureTime(formatString(exposureTime));
 			picture.setFileDataTime(formatString(fileDataTime));
-			picture.setPath(jpegFile.getPath().substring(jpegFile.getPath().indexOf(score+"/")));
+			picture.setStoreDate(new Date(jpegFile.lastModified()));
+			picture.setPath(enname+"/"+DateTimeUtil.getTime(picture.getStoreDate().getTime()));
 			picture.setFilename(jpegFile.getName());
 			picture.setFileSize(formatString(fileSize));
 			picture.setFileSource(formatString(fileSource ));
@@ -327,7 +330,7 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return Picture对象
 	 */
-	public static Picture getPicture(String path,String filename, byte[] bytes) {
+	public static Picture getPicture(String path,String filename,Date date, byte[] bytes) {
 		Picture picture = new Picture();
         // 文件信息 -----------------------------
 		// 获取文件大小，begin
@@ -622,6 +625,7 @@ public class ExifHelper{
 			picture.setExposureProgram(formatString(exposureProgram));
 			picture.setExposureTime(formatString(exposureTime));
 			picture.setFileDataTime(formatString(fileDataTime));
+			picture.setStoreDate(date);
 			picture.setFilename(path);
 			picture.setFilename(filename);
 			picture.setFileSize(formatString(fileSize));
