@@ -330,7 +330,7 @@ public class ExifHelper{
 	 * @param 文件
 	 * @return Picture对象
 	 */
-	public static Picture getPicture(String path,String filename,Date date, byte[] bytes) {
+	public static Picture getPicture(String url,String path,String filename,Date date, byte[] bytes) {
 		Picture picture = new Picture();
         // 文件信息 -----------------------------
 		// 获取文件大小，begin
@@ -602,7 +602,7 @@ public class ExifHelper{
 			} catch (MetadataException e2) {
 				e2.printStackTrace();
 			}
-
+			picture.setUrl(url);
 			picture.setApertureFNumber(formatString(apertureFNumber));
 			picture.setApertureValue(formatString(apertureValue));
 			picture.setArtist(formatString(artist));
