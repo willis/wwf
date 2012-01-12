@@ -144,6 +144,7 @@ public class ImageReportable implements ISpiderReportable{
 	    String id =null;
 	    Picture pic = null;
 	    Date date =null;
+	    Long pid = null;
 	    try {
 	      // first see if one exists
 	    	prepAssign.setString(1,MD5.toMD5(url));
@@ -153,38 +154,40 @@ public class ImageReportable implements ISpiderReportable{
 
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
+	    	  	
 	    	  	date = new Date();
-	    	  	path = new StringBuilder().append(enname).append("/").append(DateTimeUtil.getTime(date.getTime())).append("/").toString();
+	    	  	path = new StringBuilder().append(enname).append("/").append(DateTimeUtil.getTime(date.getTime())).append("/").append(id).append("/").toString();
 	    	  	abspath = new StringBuilder().append(imagesPath).append(path).toString();
 	    	  	//创建目录
-	    	  	mkdir(abspath.toString());
-	    	  	filename = new StringBuilder().append(id).append(".").append(FileUtil.getTypePart(url)).toString();
+	    	  	//mkdir(abspath.toString());
+	    	  	filename = new StringBuilder().append("picshow.").append(FileUtil.getTypePart(url)).toString();
 	    	  	
 	    	  	tagertName = new StringBuilder().append(abspath).append(filename);
 
 	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
-	        if(bytes!=null){
-	        	prepSetStatus.setString(1,id);
-	        	prepSetStatus.setString(2,score);
-		        prepSetStatus.setString(3,url);
-		        prepSetStatus.setString(4,tagertName.toString());
-		        prepSetStatus.setString(5,"W");
-		        prepSetStatus.executeUpdate();
-		        pic = ExifHelper.getPicture(url,path,filename,date, bytes);
-		        if(pic!=null){
-		        		pic.setId(SequenceManager.nextID(100));
-		        		pic.setSourceName(sourceUrl);
-		        		pic.setUserId(-1L);
-		        		pic.setType(Picture.TYPE_NORMAL);
-		        		pic.setFilename(filename);
-		        		pic.setPath(path);
-		        		PicScaleUtil.zoomForZoomList(tagertName.toString());
-		        		pictureDao.saveNow(pic);
-		        }else{
-		        	System.err.println("Exif信息获取错误。（"+url+")");
+	    	  	
+		        if(bytes!=null){
+		        	prepSetStatus.setString(1,id);
+		        	prepSetStatus.setString(2,score);
+			        prepSetStatus.setString(3,url);
+			        prepSetStatus.setString(4,tagertName.toString());
+			        prepSetStatus.setString(5,"W");
+			        prepSetStatus.executeUpdate();
+			        pic = ExifHelper.getPicture(url,path,filename,date, bytes);
+			        if(pic!=null){
+			        		pic.setId(SequenceManager.nextID(100));
+			        		pic.setSourceName(sourceUrl);
+			        		pic.setUserId(-1L);
+			        		pic.setType(Picture.TYPE_NORMAL);
+			        		pic.setFilename(filename);
+			        		pic.setPath(path);
+			        		PicScaleUtil.zoomForZoomList(tagertName.toString());
+			        		pictureDao.saveNow(pic);
+			        }else{
+			        	System.err.println("Exif信息获取错误。（"+url+")");
+			        }
 		        }
-	        }
-	      } 
+		      } 
 	    } catch ( SQLException e ) {
 	    		Log.logException("SQL Error: ",e );
 	    } catch (IOException e) {
