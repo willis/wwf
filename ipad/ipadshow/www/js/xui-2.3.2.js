@@ -104,6 +104,7 @@ xui.fn = xui.prototype = {
             xui.fn[i] = o[i];
         }
     },
+	
 
 /**
 	find
@@ -1487,26 +1488,27 @@ xui.extend({
 
 }(this, document);
 
-	x$.maskElement = function(element, label, callback){
+xui.loadmask = {
+	
+	maskElement : function(element, label, callback){
 			element = x$(element);
+			/*
 			if(element.getStyle("position") == "static") {
 				element.addClass("masked-relative");
 			}
 			
 			element.addClass("masked");
-			
+			*/
 			var maskDiv;
 			if(callback){
-				maskDiv = x$('<div class="loadmask" onclick=\"window.loadmask.maskCall('+callback+')\"></div>');
+				maskDiv = x$('<div class="loadmask" onclick=\"x$.loadmask._maskCall('+callback+')\"></div>');
 			}else{
 				maskDiv = x$('<div class="loadmask"></div>');
 			}
-			 
-			element.top(maskDiv);
 			
 			if(label !== undefined && label != null) {
 				var maskMsgDiv = x$('<div class="loadmask-msg" style="display:none;"><div>' + label + '</div></div>');
-				element.top(maskMsgDiv);
+				maskDiv.top(maskMsgDiv);
 				
 				//calculate center position
 				maskMsgDiv.setStyle("top", (document.body.offsetHeight/2)+"px");
@@ -1515,52 +1517,92 @@ xui.extend({
 				maskMsgDiv.setStyle('display','');
 			}
 			
-	}
+			element.top(maskDiv);
+			
+	},
 	
-	x$.unmaskElement = function(element){
+	unmaskElement : function(element){
 		element = x$(element);
 		element.find(".loadmask-msg,.loadmask").remove();
+		/*
 		element.removeClass("masked");
 		element.removeClass("masked-relative");
-		element.find("select").removeClass("masked-hidden");
-	}
-
-var _loadmask = new Object();
+		*/
+	},
 	
-	/**
-	 * Displays loading mask over selected element(s). Accepts both single and multiple selectors.
-	 *
-	 * @param label Text message that will be displayed on top of the mask besides a spinner (optional). 
-	 * 				If not provided only mask will be displayed without a label or a spinner.  	
-	 * @param delay Delay in milliseconds before element is masked (optional). If unmask() is called 
-	 *              before the delay times out, no mask is displayed. This can be used to prevent unnecessary 
-	 *              mask display for quick processes.   	
-	 */
-	_loadmask.mask = function(label,callback){
-				x$.maskElement(x$(document.body), label,callback);
-		}
+	mask : function(label,callback){
+				this.maskElement(x$(document.body), label,callback);
+		},
 	
 	/**
 	 * Removes mask from the element(s). Accepts both single and multiple selectors.
 	 */
-	_loadmask.unmask = function(){
-				x$.unmaskElement(x$(document.body));
-	}
+	unmask : function(){
+				this.unmaskElement(x$(document.body));
+	},
 	
-	_loadmask.maskCall = function(callback){
+	_maskCall : function(callback){
 				if(callback){
 					callback.call();
 				}
-	}
+	},
 	
 	/**
 	 * Checks if a single element is masked. Returns false if mask is delayed or not displayed. 
 	 */
-	_loadmask.isMasked = function(){
+	isMasked : function(){
 		return x$(document.body).hasClass("masked");
 	}
 	
-	window.loadmask = _loadmask;
+}
+
+xui.view = {
+
+	switchPart: function(partId, viewName) {
+		this.mask("<div style='margin-left:auto;margin-right:auto;'>loading...</div>");
+		this._showView(x$(partId), null, x$(viewName).innerHTML);
+		this.unmask();
+	},
+	
+	switchView: function(partId, viewUrl) {
+		this.mask("<div style='margin-left:auto;margin-right:auto;'>loading...</div>");
+		x$( partId ).xhr( viewUrl, this.unmask);
+	},
+	
+	_showView: function(partId, viewPath, viewData) {
+		
+		var regexp1 = /<script(.|\n)*?>(.|\n|\r\n)*?<\/script>/ig;
+		var regexp2 = /<script(.|\n)*?>((.|\n|\r\n)*)?<\/script>/im;
+		
+		/* draw the html first */
+		x$(partId).innerHTML = viewData.replace(regexp1, "");
+		
+		var result = viewData.match(regexp1);
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				var realScript = result[i].match(regexp2);
+				this._executeScript(realScript[2], partId);
+				/* Note: do not try to write more than one <script> in your view.*/
+				/* break;  process only one script element */
+			}
+		}
+		
+	},
+	
+	_executeScript : function(scriptFrag, partId) {
+		var scriptContainerId = partId + "_SCRIPT_CONTAINER";
+		var obj = $(scriptContainerId);
+		var ss = document.getElementsByTagName("SCRIPT");
+		if (obj != null) {
+			document.body.removeChild(obj);
+		}
+		var scriptContainer = document.createElement('SCRIPT');
+		scriptContainer.setAttribute("id", scriptContainerId);
+		scriptContainer.text = scriptFrag;
+		document.body.appendChild(scriptContainer);
+	} 
+
+}
 
 
 })();
