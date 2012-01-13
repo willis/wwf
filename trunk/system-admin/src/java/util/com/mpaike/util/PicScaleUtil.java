@@ -24,7 +24,7 @@ public class PicScaleUtil {
 		try {
 			for(ScaleType st : zoomList){
 				if(ScaleType.TYPE_CROP == st.getType()){
-					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("(crop)").append("-").append(file.getName()).toString(), st.width, st.height);
+					GmImageUtil.cropImageCenter(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("(crop)").append("-").append(file.getName()).toString(), st.width, st.height);
 				}else if(ScaleType.TYPE_SCALE == st.getType()){
 					GmImageUtil.scale(filenamePath, new StringBuilder().append(file.getParentFile().getAbsolutePath()).append("/").append(st.width).append("X").append(st.height).append("(scale)").append("-").append(file.getName()).toString(), st.width, st.height);
 				}
