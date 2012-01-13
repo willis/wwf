@@ -42,6 +42,8 @@ public class InitServlet extends HttpServlet {
 		WebApplicationContext wac = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		ApplictionContext.getInstance().setAppContext(wac);
+		
+		System.out.println(config.getServletContext().getRealPath(""));
 		ApplicationContextUtil.getInstance().setAppContext(wac);
 		
 		
