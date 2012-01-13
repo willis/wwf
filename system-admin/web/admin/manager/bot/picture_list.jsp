@@ -56,8 +56,8 @@
 								</label>
 							</th>
 						
-							<th width="200px;">
-								文件名
+							<th>
+								缩略图
 							</th>
 							<th>
 								文件大小
@@ -106,7 +106,7 @@
 		  		id:'id',
 		  		queryUrl:'pictureAction!list.action',
 		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
-		  		{id:'filename'},
+		  		{id:'filename',renderer:picRenderer},
 		  		{id:'fileSize',renderer:getNiceFileSize},
 		  		{id:'srcHeight'},
 		  		{id:'srcWidth'},
@@ -118,6 +118,15 @@
 			 dataGrid.onLoad({});
 		 } 	
 		  query();
+		  function picRenderer(idValue,value,record){
+		 	  
+	 	     	var txt="";
+	 	     
+	 
+	 	     	txt += " <a href='"+record['url']+"' target=_blank><img src=${cxp}/"+record['path']+"85X85(crop)-"+record['filename']+"  border=0 title="+record['url']+"></a>";	
+	 	  
+	 	     	return txt;
+	 	     }
 		  function editRenderer(idValue,value,record){
 			     	var txt="";
 			     	//txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"weburlAction!edit.action?id="+idValue+"\",\"编辑\",400,500)'>编辑</a> ";

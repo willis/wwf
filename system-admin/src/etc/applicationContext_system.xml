@@ -50,5 +50,9 @@
 		autowire="byName" parent="baseService"/>
 	<bean id="pictureService"
 		class="com.mpaike.image.service.impl.PictureService"
-		autowire="byName" parent="baseService"/>
+		autowire="byName" parent="baseService">
+			<property name="path">
+			<value>${botspider.path}</value>
+		</property>
+	</bean>
 </beans>
