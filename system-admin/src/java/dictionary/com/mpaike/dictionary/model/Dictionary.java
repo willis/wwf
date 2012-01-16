@@ -33,6 +33,43 @@ public class Dictionary implements java.io.Serializable{
 	  private String extendf6;
 	  private String extendf7;
 	  private String extendf8;
+	  
+	  
+	public Dictionary(Long id, String name, String describe, Integer orderby,
+			Date curDate, Integer flag, Integer defaultIndex) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.describe = describe;
+		this.orderby = orderby;
+		this.curDate = curDate;
+		this.flag = flag;
+		this.defaultIndex = defaultIndex;
+	}
+	public Dictionary(Long id, String name, Dictionary parentObj,
+			String describe, Set<Dictionary> childs, Integer orderby,
+			Date curDate, Integer flag, Integer defaultIndex, Long extendf1,
+			Long extendf2, Integer extendf3, Integer extendf4, String extendf5,
+			String extendf6, String extendf7, String extendf8) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.parentObj = parentObj;
+		this.describe = describe;
+		this.childs = childs;
+		this.orderby = orderby;
+		this.curDate = curDate;
+		this.flag = flag;
+		this.defaultIndex = defaultIndex;
+		this.extendf1 = extendf1;
+		this.extendf2 = extendf2;
+		this.extendf3 = extendf3;
+		this.extendf4 = extendf4;
+		this.extendf5 = extendf5;
+		this.extendf6 = extendf6;
+		this.extendf7 = extendf7;
+		this.extendf8 = extendf8;
+	}
 	/**
 	 * @return the id
 	 */

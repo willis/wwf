@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
+import com.mpaike.bot.dao.IWebUrlDao;
+import com.mpaike.bot.model.WebUrl;
 import com.mpaike.core.database.hibernate.SequenceManager;
 import com.mpaike.core.util.date.DateTimeUtil;
 import com.mpaike.core.util.resource.FileUtil;
@@ -41,12 +43,16 @@ public class ImageReportable implements ISpiderReportable{
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4|doc|docx|mp3|mov|zip|rar|gz|tar))$");
 	private static String score;
 	private static String sourceUrl;
+	private static String type;
+	private static int weight;
+	private static int height;
 	
-	public ImageReportable(String url,String path,String enname,Connection connection,IPictureDao pictureDao) throws ClassNotFoundException, SQLException{
+	public ImageReportable(String url,String path,String enname,Connection connection,IPictureDao pictureDao,String type,int weight,int height) throws ClassNotFoundException, SQLException{
 		imagesPath = path;
 		this.enname = enname;
 		if(url!=null){
 			this.sourceUrl = url;
+			
 			url = url.toLowerCase();
 			if(url.startsWith("http://")){
 				url = url.substring(7);
@@ -64,6 +70,9 @@ public class ImageReportable implements ISpiderReportable{
 		}
 		this.pictureDao = pictureDao;
 		this.connection = connection;
+		this.type = type;
+		this.height  = height;
+		this.weight = weight;
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,score,url,filename,status) VALUES (?,?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 
@@ -154,7 +163,8 @@ public class ImageReportable implements ISpiderReportable{
 
 	      if ( count<1 ) {// Create one
 	    	  	id = MD5.toMD5(url);
-	    	  	
+	   
+	   
 	    	  	date = new Date();
 	    	  	path = new StringBuilder().append(enname).append("/").append(DateTimeUtil.getTime(date.getTime())).append("/").append(id).append("/").toString();
 	    	  	abspath = new StringBuilder().append(imagesPath).append(path).toString();
@@ -164,7 +174,7 @@ public class ImageReportable implements ISpiderReportable{
 	    	  	
 	    	  	tagertName = new StringBuilder().append(abspath).append(filename);
 
-	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), 500, 500);
+	    	  	byte[] bytes = UrlIO.imageToFile(url, tagertName.toString(), weight, height);
 	    	  	
 		        if(bytes!=null){
 		        	prepSetStatus.setString(1,id);
@@ -178,9 +188,10 @@ public class ImageReportable implements ISpiderReportable{
 			        		pic.setId(SequenceManager.nextID(100));
 			        		pic.setSourceName(sourceUrl);
 			        		pic.setUserId(-1L);
-			        		pic.setType(Picture.TYPE_NORMAL);
+			        		pic.setStatus(Picture.STATUS_NORMAL);
 			        		pic.setFilename(filename);
 			        		pic.setPath(path);
+			        		pic.setType(type);
 			        		PicScaleUtil.zoomForZoomList(tagertName.toString());
 			        		pictureDao.saveNow(pic);
 			        }else{

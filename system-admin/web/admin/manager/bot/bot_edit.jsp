@@ -88,7 +88,13 @@
 								dataType="Number" msg="抓取图片高度只能为数字"  value="<s:property value="webUrl.height"/>" style="width:90%" />
 						</td>
 					</tr>
-			
+				<tr>
+								<td width="20%" class="lefttd">分类：</td>
+								<td><select name="webUrl.type" id="webtype"
+									dataType="Require" msg="分类不能为空" style="width: 150px"></select>
+								</td>
+								
+							</tr>
 
 				</table>
 				<input type="hidden" value="<s:property value="webUrl.id"/>" name="webUrl.id"/ >
@@ -114,7 +120,21 @@
 				$("#myForm").unblock();
 			}
 			}
-			
+			$("#webtype")
+			.dictionary(
+					{
+						url : '${cxp }/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
+						data : {
+							id : '301'
+						},
+						defaultOp : [ {
+							name : '请选择信息',
+							value : ''
+						} ],
+						defaultValue : '${webUrl.type}',
+						c1 : "name"//列名1
+					});
+
 		</script>
 	</body>
 </html>

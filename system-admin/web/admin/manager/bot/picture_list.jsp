@@ -60,6 +60,9 @@
 								缩略图
 							</th>
 							<th>
+								分类
+							</th>
+							<th>
 								文件大小
 							</th>
 							<th>
@@ -106,7 +109,9 @@
 		  		id:'id',
 		  		queryUrl:'pictureAction!list.action',
 		  		headerColumns:[{id:'id',renderer:IdCheckBoxRenderer},
+		  		
 		  		{id:'filename',renderer:picRenderer},
+		  		{id:'type'},
 		  		{id:'fileSize',renderer:getNiceFileSize},
 		  		{id:'srcHeight'},
 		  		{id:'srcWidth'},
