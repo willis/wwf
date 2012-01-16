@@ -26,7 +26,6 @@ public class PictureService extends BaseService implements IPictureService {
 	public void remove(Long[] longValue) {
 		for(Long id : longValue){
 			Picture pic = this.getPictureDao().get(id);
-			System.out.println(this.path+pic.getPath());
 		
 			File file = new File(this.path+pic.getPath());
 			// 如果文件路径所对应的文件存在，并且是一个文件，则直接删除

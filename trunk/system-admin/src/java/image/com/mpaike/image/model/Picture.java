@@ -11,7 +11,7 @@ public class Picture implements  java.io.Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public final static int TYPE_NORMAL = 1;//图片显示状态
+	public final static int STATUS_NORMAL = 1;//图片显示状态
 	@AnnotationObjectKey
 	private Long id;
 	private Long userId;
@@ -20,6 +20,7 @@ public class Picture implements  java.io.Serializable
 	private String photoMd5;
 	private String sourceName;
 	private String gene;
+	private String type;
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -28,7 +29,7 @@ public class Picture implements  java.io.Serializable
 	private String fileDataTime;//时间戳
 	private Integer srcHeight;//图像高度（像素）
 	private Integer srcWidth;//图像宽度（像素）
-	private Integer type;//照片状态
+	private Integer status;//照片状态
 	private String path;//路径
 	private String url;//源路径
 	//图像信息	-----------------------------
@@ -472,12 +473,6 @@ public class Picture implements  java.io.Serializable
 	public void setResourceType(Long resourceType) {
 		this.resourceType = resourceType;
 	}
-	public Integer getType() {
-		return type;
-	}
-	public void setType(Integer type) {
-		this.type = type;
-	}
 	public String getPath() {
 		return path;
 	}
@@ -495,6 +490,18 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

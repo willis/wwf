@@ -15,6 +15,10 @@
 			not-null="true">
 
 		</property>
+		<property name="type" column="type" type="string"
+			not-null="true">
+
+		</property>
 		<property name="enName" column="enName" type="string">
 
 		</property>

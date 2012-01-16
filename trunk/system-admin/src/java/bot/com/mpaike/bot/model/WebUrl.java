@@ -20,6 +20,7 @@ public class WebUrl implements java.io.Serializable{
 	private Integer status;//启用状态
 	private Integer width;//宽度
 	private Integer height;//高度
+	private String type;//分类
 	
 	public Long getId() {
 		return id;
@@ -68,6 +69,12 @@ public class WebUrl implements java.io.Serializable{
 	}
 	public void setThreadNum(Integer threadNum) {
 		this.threadNum = threadNum;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }
