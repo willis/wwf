@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -22,15 +23,15 @@ public class LogInterceptor implements MethodBeforeAdvice {
 		this.systemLogService = systemLogService;
 	}
 
-	public SysUser getOperater() {
-		return (SysUser) TransactionSynchronizationManager
-				.getResource(LoginControl.USER_OBJ);
-	}
 	
 	public void before(Method method, Object[] params, Object target)
 			throws Throwable {
 
-		SysUser sysUser = getOperater();
+
+		SysUser sysUser = null;
+		
+		if(null!=ServletActionContext.getContext())
+			sysUser = (SysUser)ServletActionContext.getRequest().getSession().getAttribute(LoginControl.USER_OBJ);
 		if (sysUser == null) {
 			return;
 		}
