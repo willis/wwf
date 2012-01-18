@@ -31,9 +31,17 @@
 	margin: 0em;
 }
 
+#popup_close {
+	width:16px;
+	height:16px;
+	z-index:3200; position:absolute; top:5px; right:5px; cursor:pointer;
+	background-image: url(images/up_close_small.png);
+}
+
 #popup_content.alert {
 	background-image: url(images/info.gif);
 }
+
 
 #popup_content.confirm {
 	background-image: url(images/important.gif);

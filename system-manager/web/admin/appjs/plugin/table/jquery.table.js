@@ -214,6 +214,11 @@ MaxTable.prototype={
 				}
 
 			});
+			var temp = $('input[name="c_all"]')[0]+"";
+			$('input[name="c_all"]').attr("checked",false);
+			if(temp!='undefined'){
+				$('input[name="c_all"]')[0].nextSibling.nodeValue = "全选";
+			}
 		}
 	  ,
  	  createPage:function (pageInfo){
