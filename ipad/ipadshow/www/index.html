@@ -9,8 +9,6 @@
 	<link rel="stylesheet" href="css/iscroll.css" type="text/css">
     <link rel="stylesheet" href="css/app.css" type="text/css">
 
-    <!--<script type="text/javascript" src="js/sencha-touch-all-debug-w-comments.js"></script-->
-    <!--<script type="text/javascript" src="js/app.js"></script>-->
     <script type="text/javascript" src="js/iscroll.js"></script>
     <script type="text/javascript" src="js/xui-2.3.2.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -22,8 +20,9 @@
 		var myScroll;
 		var myTags;
 		function onBodyLoad()
-		{		
-
+		{
+		
+				
 			myScroll = new iScroll('mainView', {
 							snap: 'li',
 							momentum: false,
@@ -49,6 +48,8 @@
 
 			var _btn4 = x$("#btn4");
 			_btn4.on( 'click', showTagsView);
+			
+
 
 			
 			x$(".showimg").each(function(element, index, xui) {
@@ -57,6 +58,7 @@
 					//alert("Here's the " + index + " element: " + this);
 				});
 			});
+
 	
 		}
 		
@@ -70,6 +72,7 @@
 				   'Mobile':'true'
 			   }
 			});
+		
 		
 		}
 		
