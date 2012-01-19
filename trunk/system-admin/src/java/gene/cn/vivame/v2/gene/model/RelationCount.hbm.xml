@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.vivame.v2.gene.model.RelationCount" table="v2_t_relationcount" >
+        <id name="keyName" type="java.lang.String" column="keyname">
+            <generator class="assigned" />
+        </id>
+        <property name="value" type="double">
+            <column name="value"/>
+        </property>
+
+    </class>
+</hibernate-mapping>

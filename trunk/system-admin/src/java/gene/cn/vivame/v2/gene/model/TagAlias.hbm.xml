@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.vivame.v2.gene.model.TagAlias" table="v2_t_tagalias" >
+        <id name="tagkey" type="java.lang.String" column="tagkey">
+            <generator class="assigned" />
+        </id>
+        <property name="tagAliasName" type="java.lang.String">
+            <column name="aliasname" />
+        </property>
+               <property name="tagName" type="java.lang.String" index="index_tagalias_tagname">
+            <column name="tagname" />
+        </property>
+        <property name="commend" type="java.lang.Integer">
+            <column name="commend" default="0" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.vivame.v2.gene.model.SubscribeTag" table="v2_t_subscribetag">
+        <id name="tagName" type="java.lang.String" column="tagname">
+            <generator class="assigned" />
+        </id>
+        <property name="typeId" type="java.lang.Long">
+            <column name="typeid" />
+        </property>
+        <property name="displayName" type="java.lang.String">
+            <column name="displayname" />
+        </property>
+        <property name="tagModel" type="java.lang.Integer">
+            <column name="tagmodel" />
+        </property>
+        <property name="commend" type="java.lang.Integer">
+            <column name="commend" />
+        </property>
+        <property name="displayType" type="java.lang.Integer">
+            <column name="displaytype" />
+        </property>
+        <property name="special" type="java.lang.Integer">
+            <column name="special" default="0" not-null="true"/>
+        </property>
+        <property name="attCount" type="java.lang.Long">
+            <column name="attcount" default="0" not-null="true"/>
+        </property>
+        <property name="attCancelCount" type="java.lang.Long">
+            <column name="att_cancel_count" default="0" not-null="true"/>
+        </property>
+        <property name="hitCount" type="java.lang.Long">
+            <column name="hitcount" default="0" not-null="true"/>
+        </property>
+        <property name="sortCode" type="java.lang.Integer">
+            <column name="sortcode" default="0" not-null="true"/>
+        </property>
+        <property name="icon" type="java.lang.String">
+            <column name="icon"/>
+        </property>
+        <property name="cover" type="java.lang.String">
+            <column name="cover"/>
+        </property>
+        <property name="createdDate" type="java.util.Date">
+            <column name="createddate" />
+        </property>
+    </class>
+</hibernate-mapping>
