@@ -796,7 +796,7 @@
 		ignoreCount = 0;
 		lineNumber = 15;
 		location = ipadshow;
-		modificationTime = 348643379.614127;
+		modificationTime = 348650496.326539;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1543,9 +1543,9 @@
 	};
 	17AC694814C6B3F700F6FE21 /* ActivityView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1216, 1170}}";
-			sepNavSelRange = "{701, 0}";
-			sepNavVisRange = "{570, 1182}";
+			sepNavIntBoundsRect = "{{0, 0}, {1216, 1235}}";
+			sepNavSelRange = "{363, 0}";
+			sepNavVisRange = "{482, 752}";
 		};
 	};
 	17AC695414C6B4DC00F6FE21 /* PBXTextBookmark */ = {
@@ -1701,7 +1701,7 @@
 		ignoreCount = 0;
 		lineNumber = 99;
 		location = ipadshow;
-		modificationTime = 348643379.614207;
+		modificationTime = 348650496.326596;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
