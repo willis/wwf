@@ -113,9 +113,9 @@
 		path = /Users/tozhangwj/ipadshow/www/main.html;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 3523}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1895, 3068}}";
 			sepNavSelRange = "{520, 0}";
-			sepNavVisRange = "{321, 1222}";
+			sepNavVisRange = "{0, 1249}";
 		};
 	};
 	17263EA214BFCD1E00073A19 /* PBXTextBookmark */ = {
@@ -304,9 +304,9 @@
 		path = /Users/tozhangwj/ipadshow/www/index.html;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {915, 572}}";
-			sepNavSelRange = "{882, 0}";
-			sepNavVisRange = "{23, 1156}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 3237}}";
+			sepNavSelRange = "{295, 0}";
+			sepNavVisRange = "{16, 1248}";
 		};
 	};
 	172644BA14C6458400073A19 /* PBXTextBookmark */ = {
@@ -363,6 +363,11 @@
 		name = "index副本.html";
 		path = "/Users/tozhangwj/ipadshow/www/index副本.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {3176, 897}}";
+			sepNavSelRange = "{548, 0}";
+			sepNavVisRange = "{0, 1152}";
+		};
 	};
 	17398F3A14BA894B004F81D7 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -796,7 +801,7 @@
 		ignoreCount = 0;
 		lineNumber = 15;
 		location = ipadshow;
-		modificationTime = 348650496.326539;
+		modificationTime = 348651220.896256;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1213,6 +1218,11 @@
 		name = "index副本 2.html";
 		path = "/Users/tozhangwj/ipadshow/www/index副本 2.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {915, 422}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 145}";
+		};
 	};
 	17AC690614C6AA6100F6FE21 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1701,7 +1711,7 @@
 		ignoreCount = 0;
 		lineNumber = 99;
 		location = ipadshow;
-		modificationTime = 348650496.326596;
+		modificationTime = 348651220.896311;
 		originalNumberOfMultipleMatches = 1;
 		state = 2;
 	};
@@ -5219,6 +5229,98 @@
 		rLen = 0;
 		rLoc = 0;
 	};
+	17AC70B314C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17AC694814C6B3F700F6FE21 /* ActivityView.m */;
+		name = "ActivityView.m: 23";
+		rLen = 4;
+		rLoc = 475;
+		rType = 0;
+		vrLen = 1215;
+		vrLoc = 274;
+	};
+	17AC70B414C7FFCF00F6FE21 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			AutoHideSplashScreen,
+		);
+		name = /Users/tozhangwj/ipadshow/PhoneGap.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	17AC70B514C7FFCF00F6FE21 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 308D05321370CCF300D202BF /* Default-Landscape.png */;
+	};
+	17AC70B614C7FFCF00F6FE21 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 308D05331370CCF300D202BF /* Default-Portrait.png */;
+	};
+	17AC70B714C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17263EA114BFCD1E00073A19 /* main.html */;
+		name = "main.html: 11";
+		rLen = 0;
+		rLoc = 520;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	17AC70B814C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 17398D3A14B6A5DE004F81D7 /* index副本.html */;
+		name = "index副本.html: 12";
+		rLen = 0;
+		rLoc = 548;
+		rType = 0;
+		vrLen = 1152;
+		vrLoc = 0;
+	};
+	17AC70B914C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 172644B914C6458400073A19 /* index.html */;
+		name = "index.html: 17";
+		rLen = 0;
+		rLoc = 760;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 0;
+	};
+	17AC70BA14C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 172644B914C6458400073A19 /* index.html */;
+		name = "index.html: 7";
+		rLen = 0;
+		rLoc = 295;
+		rType = 0;
+		vrLen = 1248;
+		vrLoc = 16;
+	};
+	17AC70BB14C7FFCF00F6FE21 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* AppDelegate.m */;
+		name = "AppDelegate.m: 44";
+		rLen = 0;
+		rLoc = 1272;
+		rType = 0;
+		vrLen = 1689;
+		vrLoc = 451;
+	};
+	17AC70BC14C7FFCF00F6FE21 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* ipadshow-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			"NSMainNibFile~ipad",
+		);
+		name = "/Users/tozhangwj/ipadshow/ipadshow-Info.plist";
+		rLen = 0;
+		rLoc = 0;
+	};
 	1D3623240D0F684500981E51 /* AppDelegate.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {915, 429}}";
@@ -5786,6 +5888,16 @@
 			17AC700C14C7E04300F6FE21 /* PBXTextBookmark */ = 17AC700C14C7E04300F6FE21 /* PBXTextBookmark */;
 			17AC700D14C7E04300F6FE21 /* PBXTextBookmark */ = 17AC700D14C7E04300F6FE21 /* PBXTextBookmark */;
 			17AC700E14C7E04300F6FE21 /* PlistBookmark */ = 17AC700E14C7E04300F6FE21 /* PlistBookmark */;
+			17AC70B314C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70B314C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70B414C7FFCF00F6FE21 /* PlistBookmark */ = 17AC70B414C7FFCF00F6FE21 /* PlistBookmark */;
+			17AC70B514C7FFCF00F6FE21 /* PBXBookmark */ = 17AC70B514C7FFCF00F6FE21 /* PBXBookmark */;
+			17AC70B614C7FFCF00F6FE21 /* PBXBookmark */ = 17AC70B614C7FFCF00F6FE21 /* PBXBookmark */;
+			17AC70B714C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70B714C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70B814C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70B814C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70B914C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70B914C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70BA14C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70BA14C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70BB14C7FFCF00F6FE21 /* PBXTextBookmark */ = 17AC70BB14C7FFCF00F6FE21 /* PBXTextBookmark */;
+			17AC70BC14C7FFCF00F6FE21 /* PlistBookmark */ = 17AC70BC14C7FFCF00F6FE21 /* PlistBookmark */;
 		};
 		sourceControlManager = 179D85F914AB11C000473109 /* Source Control */;
 		userBuildSettings = {
