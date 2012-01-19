@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.vivame.v2.gene.model.TagCatalog" table="v2_t_tagcatalog">
+        <id name="id" type="java.lang.Long" column="id">
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="tagName" type="java.lang.String">
+            <column name="tagname" />
+        </property>
+        <property name="tagModel" type="java.lang.Integer">
+            <column name="tagmodel" />
+        </property>
+        <property name="commend" type="java.lang.Integer">
+            <column name="commend" />
+        </property>
+        <property name="displayType" type="java.lang.Integer">
+            <column name="displaytype" />
+        </property>
+        <property name="sortValue" type="java.lang.Integer">
+            <column name="sortvalue" />
+        </property>
+    </class>
+</hibernate-mapping>

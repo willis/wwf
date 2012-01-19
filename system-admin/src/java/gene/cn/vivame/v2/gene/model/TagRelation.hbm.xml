@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="cn.vivame.v2.gene.model.TagRelation" table="v2_t_tagrelation" >
+        <id name="relationKey" type="java.lang.String" column="relationkey">
+            <generator class="assigned" />
+        </id>
+        <property name="parentTagName" type="java.lang.String">
+            <column name="parent_tag_name" />
+        </property>
+        <property name="tagName" type="java.lang.String">
+            <column name="tagname" />
+        </property>
+        <property name="relationType" type="java.lang.Integer">
+            <column name="relation_type" />
+        </property>
+    </class>
+</hibernate-mapping>
