@@ -58,66 +58,29 @@ border:1px solid #C5C4CC;
 		
 							
 					<table class="table" style="width:100%;" >
-					<tr>
-						<td  width="20%"  class="lefttd">
-							<a href="javascript:;" onclick="getTextValue('title');" >标题</a>：
-						</td>
-						<td>
-							<input type="text" id="title" name="articleMongo.title" value="<s:property value="articleMongo.title"/>"  dataType="Require" msg="标题不能为空" style="width:90%" 
-								 class="EditBox" />
-						</td>
-						<td  width="20%"  class="lefttd">
-							<a href="javascript:;" onclick="getTextValue('viceTitle');" >副标题</a>：
-						</td>
-						<td>
-							<input type="text"  id="viceTitle" name="articleMongo.viceTitle" value="<s:property value="articleMongo.viceTitle"/>" style="width:90%" 
-								 class="EditBox" />
-						</td>	
-					</tr>
+					
 					<tr>
 						<td  width="20%"  class="lefttd">
 							分类：
 						</td>
 						<td colspan="3">
-							 <select name="articleMongo.type" id="articletype"   dataType="Require" msg="分类不能为空"  style="width:150px" ></select> 
-						</td>	
-					</tr>
-					<tr>
-						<td  width="20%"  class="lefttd">
-							题图：
-						</td>
-						<td colspan="3">
-						
-					
-						</td>	
-					</tr>
-					<tr>
-						<td  width="20%"  class="lefttd">
-							<a href="javascript:;" onclick="getTextValue('introduction');" >导语</a>：
-						</td>
-						<td colspan="3">
-							<textarea id="introduction" name="articleMongo.introduction" class="MultiEditBox" style="width:90%;height:20px"><s:property value="articleMongo.introduction"/></textarea>
+							 <select name="articleMongo.type" id="webtype"   dataType="Require" msg="分类不能为空"  style="width:150px" ></select> 
 						</td>	
 					</tr>
 					
+					
+					
 					<tr>
 						<td  width="20%" class="lefttd">
-							<a href="javascript:;" onclick="getReturnValue('body');" >正文</a>：
+							<a href="javascript:;" >说明</a>：
 						</td>
 						<td colspan="3">
-						<textarea id="body"  name="articleMongo.content"  style="width:90%;height:180px"><s:property value="articleMongo.content"/></textarea>
+						<textarea id="body"  name="articleMongo.content"  style="width:90%;height:180px"></textarea>
 						
 						</td>
 					</tr>
-					<tr>
-						<td  width="20%" class="lefttd">
-							<a href="javascript:;" onclick="getTextValue('author');" >作者</a>：
-						</td>
-						<td colspan="3">
-							<input type="text" id="author" name="articleMongo.author" value="<s:property value="articleMongo.author"/>" style="width:20%" 
-								 class="EditBox" />
-						</td>
-					</tr>
+				
+	
 					<tr>
 						<td  width="20%" class="lefttd">
 							编辑：
@@ -136,9 +99,10 @@ border:1px solid #C5C4CC;
 				</table>
 				
 				<div class="buttons" style="margin-top: 10px;">
-							 <s:if test="picture!=null"> <input type="button" class="button_big" id="prev" name="prev"  value="上一张" /></s:if>
-								<input type="button" class="button_big" id="formReset" name="formReset" value="刷新" />
-							 <s:if test="picture!=null"> <input type="button" class="button_big" id="next" name="next" value="下一张"/></s:if>
+				
+							<input type="button" class="button_big" id="prev" name="prev"  value="上一张" />
+								<input type="button" class="button_big" id="remove" name="remove" value="删除" />
+							  <input type="button" class="button_big" id="next" name="next" value="下一张"/>
 				</div>
 				</td>
 				</tr>
@@ -162,14 +126,61 @@ border:1px solid #C5C4CC;
 	</body>
 	<script type="text/javascript">
 	$("#prev").click(function() {
-		window.location='${cxp }/manager/bot/pictureAction!imagePrev.action?id=<s:property value="picture.id" />';
+		window.location='${cxp }/manager/bot/pictureAction!imagePrev.action?type=prev&id=<s:property value="picture.id" />';
 	});
 	
 	$("#next").click(function() {
-		window.location='${cxp }/manager/bot/pictureAction!imageNext.action?id=<s:property value="picture.id" />';
+		window.location='${cxp }/manager/bot/pictureAction!imageNext.action?type=next&id=<s:property value="picture.id" />';
 	});
-	$(function() {
+	$("#remove").click(function() {
+		removeSelect(<s:property value="picture.id" />);
+	});
+	 function removeSelect(id){
+			
+			var cs = id;
+			
+			var message = "您真的要删除吗？";
+		
+					 
+					window.parent.parent.jConfirm(message, '操作确认', function(r) {
+					
+						if (r) {
+								var param = {
+									ids:cs
+								}
+				
+								doPost("pictureAction!remove.action", param, function(data) {
+									
+											if (data.status) {
+												window.location='${cxp }/manager/bot/pictureAction!imagePrev.action?type=prev&id=<s:property value="picture.id" />';
+												window.parent.parent.jAlert(data.message, "系统提示");
+											}else{
+											   
+												window.parent.parent.jAlert(data.message, "系统提示");
+											}
+									});
+						}
+			});
 
+		}
+	 $("#webtype")
+		.dictionary(
+				{
+					url : '${cxp }/manager/dictionary/dictionaryAction!getDictionarysByParentId.action',
+					data : {
+						id : '301'
+					},
+					defaultOp : [ {
+						name : '请选择信息',
+						value : ''
+					} ],
+					defaultValue : '${picture.type}',
+					c1 : "name"//列名1
+				});
+
+	$(function() {
+		<s:if test="picture==null && type=='next'">$("#next").hide();</s:if>
+		<s:if test="picture==null && type=='prev'">$("#prev").hide();</s:if>
 		$(document).unblock();
 	});
 	</script>

@@ -112,7 +112,7 @@ getNiceFileSize(<s:property value="fileSize" />);
                         <td align="center" style="color: gray; font-size:12px;" width="25%">  <s:date name="storeDate" format="yyyy-MM-dd HH:mm:ss" /></td>
                     </tr>
                     <tr> 
-                        <td align="center"><a href="create_album.html">编辑</a>&nbsp;&nbsp;<a href="#">删除</a></td>
+                        <td align="center"><a href="javascript:;" onclick="removeSelect(<s:property value="id" />);">删除</a></td>
                     </tr>
                 </tbody>
              </table>
@@ -166,6 +166,35 @@ getNiceFileSize(<s:property value="fileSize" />);
 
 		$(document).unblock();
 	});
+	  function removeSelect(id){
+	
+			var cs = id;
+			
+			var message = "您真的要删除吗？";
+		
+					 
+					window.parent.parent.jConfirm(message, '操作确认', function(r) {
+					
+						if (r) {
+								var param = {
+									ids:cs
+								}
+				
+								doPost("pictureAction!remove.action", param, function(data) {
+									
+											if (data.status) {
+												window.location.reload();
+												window.parent.parent.jAlert(data.message, "系统提示");
+											}else{
+											   
+												window.parent.parent.jAlert(data.message, "系统提示");
+											}
+									});
+						}
+			});
+
+		}
+
 	</script>
 </body>
 </html>
