@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<!-- dao -->
+    <bean id="geneDao" class="cn.vivame.v2.gene.dao.impl.GeneDao">
+    	<constructor-arg index="0" ref="shardedJedisPool" />
+    	<constructor-arg index="1" value="${gene.dbname}" />
+    </bean>
+
+    <bean id="geneSqlDao" 
+		class="cn.vivame.v2.gene.dao.impl.GeneSqlDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+    <bean id="picGeneDao" class="cn.vivame.v2.gene.dao.impl.PicGeneDao">
+    	<constructor-arg index="0" ref="shardedJedisPool" />
+    </bean>
+    
+    <bean id="userGeneDao" class="cn.vivame.v2.gene.dao.impl.UserGeneDao">
+    	<constructor-arg index="0" ref="shardedJedisPool" />
+    </bean>
+    
+    <bean id="geneSettingDao" class="cn.vivame.v2.gene.dao.impl.GeneSettingDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="subscribeTagDao" class="cn.vivame.v2.gene.dao.impl.SubscribeTagDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="tagCatalogDao" class="cn.vivame.v2.gene.dao.impl.TagCatalogDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	
+	<bean name="geneService" class="cn.vivame.v2.gene.service.impl.GeneService" parent="baseService">
+	</bean>
+</beans>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="genepak" extends="default">
+
+		<action name="geneaction" class="cn.vivame.v2.gene.action.GeneAction">
+			<result name="gene_add" type="dispatcher">
+				<param name="location">/system/gene/gene_add.jsp</param>
+			</result>
+			<result name="gene_search" type="dispatcher">
+				<param name="location">/system/gene/gene_search_tag.jsp</param>
+			</result>
+			<result name="gene_relation" type="dispatcher">
+				<param name="location">/system/gene/gene_relation.jsp</param>
+			</result>
+			<result name="gene_tree" type="dispatcher">
+				<param name="location">/system/gene/gene_tree.jsp</param>
+			</result>
+			<result name="gene_reversetree" type="dispatcher">
+				<param name="location">/system/gene/gene_reversetree.jsp</param>
+			</result>
+			<result name="ajax_tree" type="dispatcher">
+				<param name="location">/system/gene/gene_ajaxtree.jsp</param>
+			</result>
+			<result name="gene_form_tag" type="dispatcher">
+				<param name="location">/system/gene/gene_selecttree.jsp</param>
+			</result>
+			<result name="checktag_list" type="dispatcher">
+				<param name="location">/system/gene/checktag_list.jsp</param>
+			</result>
+			<result name="gene_import_relation" type="dispatcher">
+				<param name="location">/system/gene/gene_import_relation.jsp</param>
+			</result>
+			<result name="gene_setting" type="dispatcher">
+				<param name="location">/system/gene/gene_setting.jsp</param>
+			</result>
+			<result name="gene_weigh_setting" type="dispatcher">
+				<param name="location">/system/gene/gene_weigh_setting.jsp</param>
+			</result>
+			<result name="gene_subscribe" type="dispatcher">
+				<param name="location">/system/gene/gene_subscribe.jsp</param>
+			</result>
+			<result name="subscribe_list" type="dispatcher">
+				<param name="location">/system/gene/subscribe_list.jsp</param>
+			</result>
+			<result name="sitesubscribe_list" type="dispatcher">
+				<param name="location">/system/gene/sitesubscribe_list.jsp</param>
+			</result>
+			<result name="tagcatalog_list" type="dispatcher">
+				<param name="location">/system/gene/tagcatalog_list.jsp</param>
+			</result>
+			<result name="tagcatalog_add" type="dispatcher">
+				<param name="location">/system/gene/tagcatalog_add.jsp</param>
+			</result>
+			<result name="tagcatalog_save" type="redirect">
+				<param name="location">geneaction!tagCatalogList.action?status=1&amp;tagsave=${tagsave}</param>
+			</result>
+			<result name="tag_remove_list" type="dispatcher">
+				<param name="location">/system/gene/tag_remove_list.jsp</param>
+			</result>
+			<result name="commend_list" type="dispatcher">
+				<param name="location">/system/gene/commend_list.jsp</param>
+			</result>
+			<result name="commend_tagcatalog_list" type="dispatcher">
+				<param name="location">/system/gene/commend_tagcatalog_list.jsp</param>
+			</result>
+		</action>
+
+
+	</package>
+</struts>
