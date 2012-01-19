@@ -30,36 +30,40 @@ Ext.setup({
 							}
 						};
 	
-	var actionSheet = new Ext.ActionSheet(
-        {
-            hideOnMaskTap : true,
-            stretchX : true,
-            stretchY : true,
-            enter : 'right',
-            exit : 'right',
-            layout : 'fit',
-            width : 230,
-            style :
-            {
-                background : '#fff',
-                boxShadow : '0 0 10px #666',
-                webkitBoxShadow : '0 0 10px #666',
-            },
-            items : [{text:'sadfsafsasffdsafsafsafsdafsfsfsaffdafdas'}]
-        });
 
-
-		var horizontalCarousel = Ext.Viewport.add({
-			height:500,
-			xtype: 'carousel',
-			direction: 'horizontal',
-			items:cards,
-			listeners:{
-				activate:function() {
-					initAnim();
-				}
-			}
-		});
+			var appMain = Ext.create('Ext.Container', {
+					layout:{
+							 type: 'card',
+							 animation: {
+								 type: 'slide',
+								 //direction: 'left',
+								 duration: 250
+							 }
+					},
+					items: [
+						{
+							height:600,
+							xtype: 'carousel',
+							direction: 'horizontal',
+							items:cards
+						},
+						{
+							contentEl:Ext.get('tags')
+						}
+					]
+			});
+			
+			var viewPort = Ext.Viewport.add(appMain);
+			
+		btn4.onclick = function(){
+			var test =appMain.getLayout();
+			//alert(appMain.getLayout());
+			appMain.setActiveItem(1);
+		}
+		btn2.onclick = function(){
+			//alert(appMain.items.length);
+			appMain.setActiveItem(0);
+		}
 	
 	}
 });
