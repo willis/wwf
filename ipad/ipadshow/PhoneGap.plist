@@ -11,7 +11,7 @@
 	<key>EnableAcceleration</key>
 	<true/>
 	<key>EnableViewportScale</key>
-	<false/>
+	<true/>
 	<key>AutoHideSplashScreen</key>
 	<true/>
 	<key>ShowSplashScreenSpinner</key>
