@@ -25,6 +25,7 @@ package com.mpaike.image.action;
 
 import java.util.List;
 
+import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.image.model.Picture;
 import com.mpaike.util.ArrayUtil;
 import com.mpaike.util.app.BaseAction;
@@ -38,15 +39,39 @@ public class PictureAction extends BaseAction {
 	
 	private Picture picture;
 	private String ids;
+	private List<Picture> datas;
+	private Long id;
 	/**
 	 * 查询列表
 	 */
 	public void list(){
 		picture = new Picture();
-		List<Picture> datas = this.getPictureService().find(picture, this.pageInfo, this.getOrderby());
+		
+		datas = this.getPictureService().find(picture, this.pageInfo, OrderBy.desc("id"));
 		this.printPageList(datas);
 	}
 	
+	public String imageList(){
+		picture = new Picture();
+		pageInfo.setPageSize(12);
+		datas = this.getPictureService().find(picture, this.pageInfo, 	OrderBy.desc("id"));
+		return "imageList";
+	}
+	
+	public String imageProcess(){
+		picture = this.getPictureService().find(id);
+		return "imageProcess";
+	}
+	
+	public String imagePrev(){
+		picture = this.getPictureService().findPrev(id);
+		return "imageProcess";
+	}
+	
+	public String imageNext(){
+		picture = this.getPictureService().findNext(id);
+		return "imageProcess";
+	}
 	public void remove(){
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
 		this.getPictureService().remove(longValue);
@@ -68,6 +93,21 @@ public class PictureAction extends BaseAction {
 	public void setIds(String ids) {
 		this.ids = ids;
 	}
-	
+
+	public List<Picture> getDatas() {
+		return datas;
+	}
+
+	public void setDatas(List<Picture> datas) {
+		this.datas = datas;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 }
