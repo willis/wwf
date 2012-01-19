@@ -14,6 +14,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
+import cn.vivame.v2.gene.service.IGeneService;
+
 import com.mpaike.bot.service.IWebUrlService;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.core.database.hibernate.OrderBy;
@@ -25,6 +27,8 @@ import com.mpaike.user.service.SysMenuService;
 import com.mpaike.user.service.SysPopedomService;
 import com.mpaike.user.service.SysRoleService;
 import com.mpaike.user.service.SysUserService;
+import com.mpaike.util.HtmlUtil;
+import com.mpaike.util.KeyFactory;
 import com.mpaike.util.ParamHelper;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -92,6 +96,18 @@ public class BaseAction extends ActionSupport {
 		}
 	}
 	
+	public void printBeanToJson(String message){
+		response.setCharacterEncoding("utf-8");
+		try {
+			response.getWriter().print(message);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 	@SuppressWarnings("rawtypes")
 	public void printPageList(List beans){
@@ -117,6 +133,22 @@ public class BaseAction extends ActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String addSlashes(String html) {
+		return HtmlUtil.addSlashes(html);
+	}
+
+	public String htmlEncode(String html) {
+		return HtmlUtil.htmlEncode(html);
+	}
+
+	public String encode(String text) {
+		return KeyFactory.mapKey("VIVA X2").encryptString(text);
+	}
+
+	public String decode(String text) {
+		return KeyFactory.mapKey("VIVA X2").decryptString(text);
 	}
 
 	public Pagination getPageInfo() {
@@ -179,6 +211,9 @@ public class BaseAction extends ActionSupport {
 		return (BotSpider) ApplictionContext.getInstance().getBean("botSpider");
 	}
 	
+	public IGeneService getGeneService() {
+		return (IGeneService) ApplictionContext.getInstance().getBean("geneService");
+	}
 	
 	public IWebUrlService getWebUrlService() {
 		return (IWebUrlService) ApplictionContext.getInstance().getBean(IWebUrlService.ID_NAME);
