@@ -10,7 +10,12 @@
 		
 		<action name="pictureAction"
 			class="com.mpaike.image.action.PictureAction">
-			
+			<result name="imageList" type="dispatcher">
+				<param name="location">/manager/bot/picture_imageview.jsp</param>
+			</result>
+			<result name="imageProcess" type="dispatcher">
+				<param name="location">/manager/bot/picture_imageprocess.jsp</param>
+			</result>
 		</action>
 	</package>
 </struts>

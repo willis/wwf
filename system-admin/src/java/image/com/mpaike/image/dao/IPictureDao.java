@@ -13,6 +13,8 @@ public interface IPictureDao extends BaseDao<Picture>{
 	
 	public List<Picture> find(Picture pic, Pagination p, OrderBy ob);
 	
+	public Picture findPrev(Long id);
 	
+	public Picture findNext(Long id);
 
 }

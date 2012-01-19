@@ -38,13 +38,30 @@ public class PictureService extends BaseService implements IPictureService {
 		}
 		
 	}
-	
+
+	@Override
+	public Picture find(Long id) {
+		return this.getPictureDao().get(id);
+	}
+
 	public String getPath() {
 		return this.path;
 	}
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	@Override
+	public Picture findPrev(Long id) {
+		
+		return this.getPictureDao().findPrev(id);
+	}
+
+	@Override
+	public Picture findNext(Long id) {
+		
+		return this.getPictureDao().findNext(id);
 	}
 
 }

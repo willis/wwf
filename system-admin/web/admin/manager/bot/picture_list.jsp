@@ -119,6 +119,9 @@
 		  		]
 		  	}
 		  );
+		 dataGrid.initSortHead(
+			      {head:'myHead',cells:[{index:1,name:'id'}]}
+		);
 		 function query(){
 			 dataGrid.onLoad({});
 		 } 	

@@ -85,12 +85,17 @@
 									<script language="JavaScript">
 										<!--
 										var pg = new showPages('pg');
-										pg.pageCount = <s:property value="pageInfo.totalPage"/>;
-										pg.totalCount = <s:property value="pageInfo.totalCount"/>;
+
 										pg.pageSize = <s:property value="pageInfo.pageSize"/>;
+										pg.firstPage = <s:property value="pageInfo.firstPage"/>;
+										pg.lastPage = <s:property value="pageInfo.lastPage"/>;
+										pg.prePage = <s:property value="pageInfo.prePage"/>;
+										pg.nextPage = <s:property value="pageInfo.nextPage"/>;
+										pg.pageNo = <s:property value="pageInfo.pageNo"/>;
+										pg.totalPage = <s:property value="pageInfo.totalPage"/>;
+										pg.totalCount = <s:property value="pageInfo.totalCount"/>;
 										pg.argName = 'pageInfo.pageNo';
 										pg.printHtml(2);
-									
 										 $("#idTable tr").mouseover(function(){//如果鼠标移到class为stripe的表格的tr上时，执行函数
 							   				if($(this).attr("id")!="page")
 					           			 $(this).addClass("over");}).mouseout(function(){//给这行添加class值为over，并且当鼠标一出该行时执行函数
