@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "ActivityView.h"
+
 #ifdef PHONEGAP_FRAMEWORK
 	#import <PhoneGap/PhoneGapDelegate.h>
 #else
@@ -24,7 +27,6 @@
 // http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
 
 @property (copy)  NSString* invokeString;
-@property (nonatomic, readwrite, retain) IBOutlet UIWebView *cacheWebView;
 
 @end
 

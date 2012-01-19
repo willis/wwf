@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize invokeString, cacheWebView;
+@synthesize invokeString;
 
 - (id) init
 {	
@@ -37,6 +37,11 @@
 		NSURL *url = [launchOptions objectForKey:[keyArray objectAtIndex:0]];
 		self.invokeString = [url absoluteString];
 		NSLog(@"ipadshow launchOptions = %@",url);
+		NSLog(@"ipadshow absoluteString = %@",self.invokeString);
+	}else{
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+		NSLog(@"ipadshow error = %@",basePath);
 	}
 	
 	return [super application:application didFinishLaunchingWithOptions:launchOptions];
@@ -48,27 +53,11 @@
 {
     // must call super so all plugins will get the notification, and their handlers will be called 
 	// super also calls into javascript global function 'handleOpenURL'
-	/*
+	
 	if (!url) {  return NO; }
-	
-    NSString *URLString = [url absoluteString];
-    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-	CGRect webViewBounds = [ [ UIScreen mainScreen ] applicationFrame ] ;
-	
-	if (!self.cacheWebView) {
-        self.cacheWebView = [[ [ UIWebView alloc ] initWithFrame:webViewBounds] autorelease];
-    }
-    self.cacheWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-	[self.cacheWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
-	
-    [self.viewController.view addSubview:self.cacheWebView];
-	[self.cacheWebView release];
 
 	NSLog(@"handleOpenURL = %@",url);
-    return YES;
-	*/
+	
     return [super application:application handleOpenURL:url];
 }
 
@@ -85,6 +74,9 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView 
 {
+	NSLog(@"webViewDidFinishLoad = %@",self.invokeString);
+	[[ActivityView sharedActivityView] hide: YES]; 
+
 	// only valid if ipadshow.plist specifies a protocol to handle
 	if(self.invokeString)
 	{
@@ -97,6 +89,13 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)theWebView 
 {
+	NSLog(@"webViewDidStartLoad = %@",[[theWebView.request URL] path]);
+	
+	if ([[theWebView.request URL] path]!=NULL) {
+		[[ActivityView sharedActivityView] showWithAnimate: YES];
+	}
+	
+	//[super javascriptAlert:@"test"];
 	return [ super webViewDidStartLoad:theWebView ];
 }
 
@@ -106,6 +105,11 @@
  */
 - (void)webView:(UIWebView *)theWebView didFailLoadWithError:(NSError *)error 
 {
+	NSLog(@"didFailLoadWithError = %@",error);
+	if (error != NULL) {
+		NSLog(@"web access error = %@",[error localizedDescription]);
+		//[super javascriptAlert:[error localizedDescription]];
+	}
 	return [ super webView:theWebView didFailLoadWithError:error ];
 }
 
@@ -116,14 +120,19 @@
  */
 - (BOOL)webView:(UIWebView *)theWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+	NSLog(@"shouldStartLoadWithRequest = %@",self.invokeString);
 	return [ super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType ];
 }
 
 
 - (BOOL) execute:(InvokedUrlCommand*)command
 {
+	NSLog(@"execute = %@",self.invokeString);
 	return [ super execute:command];
 }
+
+
+
 
 - (void)dealloc
 {
