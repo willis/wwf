@@ -41,6 +41,14 @@
 		<property name="memberDao" ref="memberDao"/>
 		<property name="pictureDao" ref="pictureDao"/>
 		<property name="botSpider" ref="botSpider"/>
+		<!-- 基因dao -->
+		<property name="geneDao" ref="geneDao"/>
+		<property name="geneSqlDao" ref="geneSqlDao"/>
+		<property name="picGeneDao" ref="picGeneDao"/>
+		<property name="userGeneDao" ref="userGeneDao"/>
+		<property name="geneSettingDao" ref="geneSettingDao"/>
+		<property name="subscribeTagDao" ref="subscribeTagDao"/>
+		<property name="tagCatalogDao" ref="tagCatalogDao"/>
 	</bean>
 	
 
