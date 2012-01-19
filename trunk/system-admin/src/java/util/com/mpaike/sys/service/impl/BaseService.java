@@ -1,5 +1,13 @@
 package com.mpaike.sys.service.impl;
 
+import cn.vivame.v2.gene.dao.IGeneDao;
+import cn.vivame.v2.gene.dao.IGeneSettingDao;
+import cn.vivame.v2.gene.dao.IGeneSqlDao;
+import cn.vivame.v2.gene.dao.IPicGeneDao;
+import cn.vivame.v2.gene.dao.ISubscribeTagDao;
+import cn.vivame.v2.gene.dao.ITagCatalogDao;
+import cn.vivame.v2.gene.dao.IUserGeneDao;
+
 import com.mpaike.bot.dao.IWebUrlDao;
 import com.mpaike.bot.spider.BotSpider;
 import com.mpaike.image.dao.IPictureDao;
@@ -25,6 +33,14 @@ public class BaseService implements IBaseService{
 	private IMemberDao memberDao;
 	private IPictureDao pictureDao;
 	private BotSpider botSpider;
+	//gene
+	private IGeneSqlDao geneSqlDao;
+	private IGeneDao geneDao;
+	private ISubscribeTagDao subscribeTagDao;
+	private ITagCatalogDao tagCatalogDao;
+	private IUserGeneDao userGeneDao;
+	private IGeneSettingDao geneSettingDao;
+	private IPicGeneDao picGeneDao;
 
 	public IWebUrlDao getWebUrlDao() {
 		return webUrlDao;
@@ -113,6 +129,62 @@ public class BaseService implements IBaseService{
 
 	public void setAnnexDao(IAnnexDao annexDao) {
 		this.annexDao = annexDao;
+	}
+
+	public IGeneSqlDao getGeneSqlDao() {
+		return geneSqlDao;
+	}
+
+	public void setGeneSqlDao(IGeneSqlDao geneSqlDao) {
+		this.geneSqlDao = geneSqlDao;
+	}
+
+	public IGeneDao getGeneDao() {
+		return geneDao;
+	}
+
+	public void setGeneDao(IGeneDao geneDao) {
+		this.geneDao = geneDao;
+	}
+
+	public ISubscribeTagDao getSubscribeTagDao() {
+		return subscribeTagDao;
+	}
+
+	public void setSubscribeTagDao(ISubscribeTagDao subscribeTagDao) {
+		this.subscribeTagDao = subscribeTagDao;
+	}
+
+	public ITagCatalogDao getTagCatalogDao() {
+		return tagCatalogDao;
+	}
+
+	public void setTagCatalogDao(ITagCatalogDao tagCatalogDao) {
+		this.tagCatalogDao = tagCatalogDao;
+	}
+
+	public IUserGeneDao getUserGeneDao() {
+		return userGeneDao;
+	}
+
+	public void setUserGeneDao(IUserGeneDao userGeneDao) {
+		this.userGeneDao = userGeneDao;
+	}
+
+	public IGeneSettingDao getGeneSettingDao() {
+		return geneSettingDao;
+	}
+
+	public void setGeneSettingDao(IGeneSettingDao geneSettingDao) {
+		this.geneSettingDao = geneSettingDao;
+	}
+
+	public IPicGeneDao getPicGeneDao() {
+		return picGeneDao;
+	}
+
+	public void setPicGeneDao(IPicGeneDao picGeneDao) {
+		this.picGeneDao = picGeneDao;
 	}
 	
 }
