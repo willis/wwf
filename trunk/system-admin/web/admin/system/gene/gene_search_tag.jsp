@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
@@ -10,13 +9,13 @@
 <head>
 	<title>标签搜索</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<%@ include file="/common/taglibs.jsp"%>
+	<%@ include file="/include/taglibs.jsp"%>
 	<link rel="stylesheet" href="js/zTreeStyle/zTreeStyle.css" type="text/css">
 	<link rel="stylesheet" href="js/zTreeStyle/zTreeIcons.css" type="text/css">
 	<script type="text/javascript" src="js/jquery.1.4.4.min.js"></script>
 	<script type="text/javascript" src="js/jquery.ztree-2.6.min.js"></script>
 	<link href="${cxp}/cms/gene/js/styles.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="${cxp}/cms/gene/js/jquery.autocomplete-min.js"></script>
+	<script type="text/javascript" src="${cxp}/system/gene/js/jquery.autocomplete-min.js"></script>
 
 </head>
 	<body style="background-color: transparent;" id="mybody">

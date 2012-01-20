@@ -4,9 +4,8 @@
 	<head>
 		<title>基因库管理</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<%@ include file="/common/taglibs.jsp"%>
-		<%@ include file="/common/jquery.jsp"%>
-		<%@ include file="/common/data.jsp"%>
+		<%@ include file="/include/taglibs.jsp"%>
+		<%@ include file="/include/jquery.jsp"%>
 		<script src="${cxp }/appjs/ajaxform.common.js"></script>
 		<style>
 			.taglist{

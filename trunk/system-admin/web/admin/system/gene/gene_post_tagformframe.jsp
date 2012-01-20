@@ -9,9 +9,9 @@
 	<head>
 		<title>基因库管理</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<%@ include file="/common/taglibs.jsp"%>
-		<%@ include file="/common/jquery.jsp"%>
-		<link href="${cxp}/cms/gene/js/styles.css" rel="stylesheet" type="text/css" />
+		<%@ include file="/include/taglibs.jsp"%>
+		<%@ include file="/include/jquery.jsp"%>
+		<link href="${cxp}/system/gene/js/styles.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${cxp}/cms/gene/js/jquery.autocomplete-min.js"></script>
 
 		<style type="text/css">
