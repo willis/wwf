@@ -27,9 +27,12 @@
     <include file="action/struts_system.xml" />
     <include file="action/struts_dictionary.xml" />
     <include file="action/struts_member.xml" />
+	<include file="action/struts_gene.xml" />
     <include file="action/struts_spiderdata.xml" />
     <include file="action/struts_weburl.xml" />
     <include file="action/struts_annex.xml" />
     <include file="action/struts_picture.xml" />
+ 
+    
 </struts>
 
