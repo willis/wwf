@@ -7,11 +7,11 @@
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<true/>
+	<false/>
 	<key>EnableAcceleration</key>
-	<true/>
+	<false/>
 	<key>EnableViewportScale</key>
-	<true/>
+	<false/>
 	<key>AutoHideSplashScreen</key>
 	<true/>
 	<key>ShowSplashScreenSpinner</key>

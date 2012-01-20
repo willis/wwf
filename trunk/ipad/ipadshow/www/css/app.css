@@ -54,7 +54,7 @@ a, a:link, a:visited, a:hover, a:active{text-decoration:none;}
 #btn4{right:5px; }
 
 .cards1{white-space:normal; padding-top:10px; padding-left:35px; padding-right:35px;}
-.showimg{opacity:90; margin:0 1px -4px 0; width:85px;height:85px;}
+.showimg{margin:0 1px 1px 0; width:85px;height:85px; disply:block; float:left;}
 .showpic{
 	background: #fff;
 	overflow: hidden;
