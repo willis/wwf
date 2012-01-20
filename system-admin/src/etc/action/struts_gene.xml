@@ -5,7 +5,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="genepak" extends="default">
+	<package name="gene" extends="default">
 
 		<action name="geneaction" class="cn.vivame.v2.gene.action.GeneAction">
 			<result name="gene_add" type="dispatcher">
@@ -28,9 +28,6 @@
 			</result>
 			<result name="gene_form_tag" type="dispatcher">
 				<param name="location">/system/gene/gene_selecttree.jsp</param>
-			</result>
-			<result name="checktag_list" type="dispatcher">
-				<param name="location">/system/gene/checktag_list.jsp</param>
 			</result>
 			<result name="gene_import_relation" type="dispatcher">
 				<param name="location">/system/gene/gene_import_relation.jsp</param>
