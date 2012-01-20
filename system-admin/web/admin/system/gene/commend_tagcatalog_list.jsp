@@ -1,13 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
   
     <title>提交标签列表</title>
-	<%@ include file="/common/taglibs.jsp"%>
-	<%@ include file="/common/jquery.jsp"%>
-	<%@ include file="/common/data.jsp"%>
+	<%@ include file="/include/taglibs.jsp"%>
+	<%@ include file="/include/jquery.jsp"%>
 	<link href="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.min.js"></script>
 	<style>
