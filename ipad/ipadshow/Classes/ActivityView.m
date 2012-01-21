@@ -83,5 +83,14 @@ static ActivityView *activityView;
     }
     [[UIApplication sharedApplication] keyWindow].userInteractionEnabled = YES;
     isShow = NO;
-}    
+} 
+
+
+- (void)dealloc
+{
+	[loadingView release];
+	[view release];
+	[ super dealloc ];
+}
+
 @end
