@@ -6,7 +6,7 @@
     <title>提交标签列表</title>
 	<%@ include file="/include/taglibs.jsp"%>
 	<%@ include file="/include/jquery.jsp"%>
-	
+	<script src="${cxp}/js/page.js"></script>
 	<script>
 		function removeTag(tag){
 			$('#namecode').attr("value",tag);
