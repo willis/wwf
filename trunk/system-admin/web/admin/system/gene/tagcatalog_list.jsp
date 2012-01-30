@@ -6,6 +6,7 @@
     <title>提交标签列表</title>
 	<%@ include file="/include/taglibs.jsp"%>
 	<%@ include file="/include/jquery.jsp"%>
+	<script src="${cxp}/js/page.js"></script>
 	<link href="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.min.js"></script>
 	<script>
@@ -106,11 +107,18 @@
 								</s:iterator>
 								<tr>
 									<td colspan="4">
-
-									<pager:pageForm name="myPage" action="geneaction!tagCatalogList.action" method="post">
-									</pager:pageForm>
-									<script>
-										$("form[name='formPage']").append('<input type="hidden" name="status" value="<s:property value='status'/>"/>');
+									<script type="text/javascript">
+									var pg = new showPages('pg');
+									pg.pageSize = <s:property value="pageInfo.pageSize"/>;
+									pg.firstPage = <s:property value="pageInfo.firstPage"/>;
+									pg.lastPage = <s:property value="pageInfo.lastPage"/>;
+									pg.prePage = <s:property value="pageInfo.prePage"/>;
+									pg.nextPage = <s:property value="pageInfo.nextPage"/>;
+									pg.pageNo = <s:property value="pageInfo.pageNo"/>;
+									pg.totalPage = <s:property value="pageInfo.totalPage"/>;
+									pg.totalCount = <s:property value="pageInfo.totalCount"/>;
+									pg.argName = 'pageInfo.pageNo';
+									pg.printHtml(2);
 									</script>
 									</td>
 								</tr>
