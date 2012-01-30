@@ -12,7 +12,7 @@ import com.mpaike.core.util.page.Pagination;
 public class TagCatalogDao extends BaseDaoImpl<TagCatalog> implements ITagCatalogDao{
 
 	public List<TagCatalog> findTagCatalogList(int tagModel,Pagination pager) {
-		return find("from TagCatalog where tagModel=?","from TagCatalog where tagModel=? order by sortValue desc", new Object[]{tagModel}, pager);
+		return findList("from TagCatalog where tagModel=? order by sortValue desc", pager,new Object[]{tagModel});
 	}
 
 	public void saveTagCatalog(TagCatalog tc) {
@@ -52,7 +52,7 @@ public class TagCatalogDao extends BaseDaoImpl<TagCatalog> implements ITagCatalo
 
 	@Override
 	public List<TagCatalog> findCommendCatalogList(int tagModel, Pagination pager) {
-		return find("from TagCatalog where commend=1 and tagModel=?","from TagCatalog where commend=1 and tagModel=? order by sortValue desc", new Object[]{tagModel}, pager);
+		return findList("from TagCatalog where commend=1 and tagModel=? order by sortValue desc",pager, new Object[]{tagModel});
 	}
 
 	@Override

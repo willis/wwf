@@ -14,9 +14,9 @@ public class SubscribeTagDao extends BaseDaoImpl<SubscribeTag> implements ISubsc
 	public List<SubscribeTag> findSubscribeTagList(String name,int tagModel,Pagination pager) {
 		List<SubscribeTag> list = null;
 		if(name==null){
-			list=find("from SubscribeTag where tagModel=?","from SubscribeTag where tagModel=? order by createdDate desc", new Object[]{tagModel}, pager);
+			list=findList("from SubscribeTag where tagModel=? order by createdDate desc", pager, new Object[]{tagModel});
 		}else{
-			list=find("from SubscribeTag where tagModel=?  and lower(tagName) like lower(?) escape '/' ","from SubscribeTag where tagModel=? and lower(tagName) like lower(?) escape '/' order by createdDate desc",new Object[]{tagModel,"%"+name+"%"},pager);
+			list=findList("from SubscribeTag where tagModel=? and lower(tagName) like lower(?) escape '/' order by createdDate desc",pager,new Object[]{tagModel,"%"+name+"%"});
 		}
 		return list;
 	}
@@ -59,7 +59,7 @@ public class SubscribeTagDao extends BaseDaoImpl<SubscribeTag> implements ISubsc
 			sb.append(" and lower(tagName) like lower(?) escape '/' "); 
 			paramList.add("%"+name+"%");
 		}
-		list = this.find(sb.toString(),sb.append(" order by createdDate desc").toString(),paramList.toArray(),pager);
+		list = this.findList(sb.append(" order by createdDate desc").toString(),pager,paramList.toArray());
 		return list;
 	}
 	
