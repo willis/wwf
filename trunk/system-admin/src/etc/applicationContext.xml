@@ -97,6 +97,7 @@
                	<value>classpath:com/mpaike/bot/model</value>
                	<value>classpath:com/mpaike/upload/model</value>
                	<value>classpath:com/mpaike/image/model</value>
+               	<value>classpath:cn/vivame/v2/gene/model</value>
             </list>
          </property>
 		<property name="mappingResources">
