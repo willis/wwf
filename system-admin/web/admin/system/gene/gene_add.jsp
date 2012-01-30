@@ -6,8 +6,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<%@ include file="/include/taglibs.jsp"%>
 		<%@ include file="/include/jquery.jsp"%>
-		<link href="${cxp}/cms/gene/js/styles.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${cxp}/cms/gene/js/jquery.autocomplete-min.js"></script>
+		<link href="${cxp}/system/gene/js/styles.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${cxp}/system/gene/js/jquery.autocomplete-min.js"></script>
 	</head>
 	<body style="background-color: transparent;">
 		<table class="tableContent">
