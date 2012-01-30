@@ -118,7 +118,22 @@ INSERT INTO `icore_menu` (`id`, `name`, `alias`, `description`, `img`, `link`, `
 (2556, '系统日志', '', '系统日志', '', '/systemLog!logList.action', 7, '2011-02-25 09:25:22', 502),
 (3004,'数据管理','datamanager','抓取数据和分析处理数据','','',0,'2011-02-21 13:21:14',1),
 (3005,'数据源管理','dataorn','数据源管理','','',1,'2011-02-21 13:21:14',3004),
-(3005,'图片资源管理','picdataorn','图片资源管理','','',1,'2011-02-21 13:21:14',3004);
+(3006,'图片资源管理','picdataorn','图片资源管理','','',1,'2011-02-21 13:21:14',3004),
+(12951,'基因管理','tagmanager','基因管理','','',0,'2011-02-21 13:21:14',1),
+(12952,'标签管理','','标签管理','','',1,'2011-02-21 13:21:14',12951),
+(12953,'添加标签','','添加标签','','/system/gene/geneaction!addView.action',1,'2011-02-21 13:21:14',12952),
+(12956,'批量关系导入','','批量关系导入','','/system/gene/geneaction!importRelationView.action',4,'2011-02-21 13:21:14',12952),
+(12957,'标签删除管理','','标签删除管理','','/system/gene/geneaction!tagRemoveList.action',5,'2011-02-21 13:21:14',12952),
+(12958,'订阅及推荐管理','','订阅及推荐管理','','',2,'2011-02-21 13:21:14',12951),
+(12959,'标签订阅管理','','标签订阅管理','','/system/gene/geneaction!subscribeView.action',1,'2011-02-21 13:21:14',12958),
+(12960,'标签推荐','','标签推荐','','/system/gene/geneaction!subscribeList.action',2,'2011-02-21 13:21:14',12958),
+(12961,'数据源标签推荐','','数据源标签推荐','','/system/gene/geneaction!siteSubscribeList.action?status=1&typeId=-1',3,'2011-02-21 13:21:14',12958),
+(12962,'地区标签推荐','','地区标签推荐','','/system/gene/geneaction!subscribeList.action?status=2',4,'2011-02-21 13:21:14',12958),
+(12963,'数据源标签分类','','数据源标签分类','','/system/gene/geneaction!tagCatalogList.action?status=1',5,'2011-02-21 13:21:14',12958),
+(12964,'推荐排序管理','','推荐排序管理','','',3,'2011-02-21 13:21:14',12951),
+(12965,'标签推荐排序','','标签推荐排序','','/system/gene/geneaction!commendList.action?status=0&typeId=0',1,'2011-02-21 13:21:14',12964),
+(12966,'数据源推荐排序','','数据源推荐排序','','/system/gene/geneaction!commendTagCatalogList.action?status=1',2,'2011-02-21 13:21:14',12964),
+(12967,'地区推荐排序','','地区推荐排序','','/system/gene/geneaction!commendList.action?status=2&typeId=0',3,'2011-02-21 13:21:14',12964);
 
 -- --------------------------------------------------------
 
@@ -524,21 +539,7 @@ INSERT INTO `system_log` (`id`, `logtype`, `logtitle`, `logcontent`, `createat`,
 (2901, 0, 'com.mpaike.member.service.impl.MemberServiceImpl', 'listToGrid', '2011-02-25 12:26:05', 1, '系统管理员', '192.168.5.183'),
 (2951, 0, 'com.mpaike.member.service.impl.MemberServiceImpl', 'listToGrid', '2011-02-25 12:43:56', 1, '系统管理员', '192.168.5.183'),
 (2952, 0, 'com.mpaike.member.service.impl.MemberServiceImpl', 'listToGrid', '2011-02-25 12:44:30', 1, '系统管理员', '192.168.5.183');
-(12951,'基因管理','tagmanager','基因管理','','','2011-02-21 13:21:14',1),
-(12952,'标签管理','','标签管理','','',1,'2011-02-21 13:21:14',12951),
-(12953,'添加标签','','添加标签','','/system/gene/geneaction!addView.action',1,'2011-02-21 13:21:14',12952),
-(12956,'批量关系导入','','批量关系导入','','/system/gene/geneaction!importRelationView.action',4,'2011-02-21 13:21:14',12952),
-(12957,'标签删除管理','','标签删除管理','','/system/gene/geneaction!tagRemoveList.action',5,'2011-02-21 13:21:14',12952),
-(12958,'订阅及推荐管理','','订阅及推荐管理','','',2,'2011-02-21 13:21:14',12951),
-(12959,'标签订阅管理','','标签订阅管理','','/system/gene/geneaction!subscribeView.action',1,'2011-02-21 13:21:14',12958),
-(12960,'标签推荐','','标签推荐','','/system/gene/geneaction!subscribeList.action',2,'2011-02-21 13:21:14',12958),
-(12961,'数据源标签推荐','','数据源标签推荐','','/system/gene/geneaction!siteSubscribeList.action?status=1&typeId=-1',3,'2011-02-21 13:21:14',12958),
-(12962,'地区标签推荐','','地区标签推荐','','/system/gene/geneaction!subscribeList.action?status=2',4,'2011-02-21 13:21:14',12958),
-(12963,'数据源标签分类','','数据源标签分类','','/system/gene/geneaction!tagCatalogList.action?status=1',5,'2011-02-21 13:21:14',12958),
-(12964,'推荐排序管理','','推荐排序管理','','',3,'2011-02-21 13:21:14',12951),
-(12965,'标签推荐排序','','标签推荐排序','','/system/gene/geneaction!commendList.action?status=0&typeId=0',1,'2011-02-21 13:21:14',12964),
-(12966,'数据源推荐排序','','数据源推荐排序','','/system/gene/geneaction!commendTagCatalogList.action?status=1',2,'2011-02-21 13:21:14',12964),
-(12967,'地区推荐排序','','地区推荐排序','','/system/gene/geneaction!commendList.action?status=2&typeId=0',3,'2011-02-21 13:21:14',12964);
+
 -- --------------------------------------------------------
 
 --
