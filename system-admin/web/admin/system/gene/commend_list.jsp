@@ -6,6 +6,8 @@
     <title>提交标签列表</title>
 	<%@ include file="/include/taglibs.jsp"%>
 	<%@ include file="/include/jquery.jsp"%>
+	<script type="text/javascript" src="${cxp}/js/jquery/plugin/ui/js/jquery-ui-1.7.2.custom.min.js"></script>
+	<link href="${cxp}/js/jquery/plugin/ui/css/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
 	<link href="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="${cxp}/js/jquery/plugin/loadmask/jquery.loadmask.min.js"></script>
 	<style>
