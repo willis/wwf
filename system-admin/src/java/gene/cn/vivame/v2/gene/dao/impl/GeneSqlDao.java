@@ -15,16 +15,16 @@ import com.mpaike.core.util.page.Pagination;
 public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 
 	public List<Tag> likeTag(String likeName) {
-		List<Tag> list = find("from Tag where type=1  and lower(name) like lower(?) escape '/' order by name",new Object[]{likeName+"%"},8,1);
+		List<Tag> list = findList("from Tag where type=1  and lower(name) like lower(?) escape '/' order by name",new Pagination(),new Object[]{likeName+"%"});
 		return list;
 	}
 	
 	public List<Tag> findTag(String name,Pagination pager) {
 		List<Tag> list = null;
 		if(name==null){
-			 list = find("from Tag where type=1 ","from Tag where (type=1 or type=3)  order by name",null,pager);
+			 list = findList("from Tag where (type=1 or type=3)  order by name",pager);
 		}else{
-			 list = find("from Tag where type=1 and lower(name) like lower(?) escape '/'","from Tag where type=1 and lower(name) like lower(?) escape '/' order by name",new Object[]{"%"+name+"%"},pager);	
+			 list = findList("from Tag where type=1 and lower(name) like lower(?) escape '/' order by name",pager,new Object[]{"%"+name+"%"});	
 		}
 		return list;
 	}
@@ -32,9 +32,9 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 	public List<Tag> findSubscribeTag(String name, int tagModel, int commendType, Pagination pager) {
 		List<Tag> list = null;
 		if(name==null){
-			list=find("from Tag where type=1 and tagSelected=1 and tagModel=?","from Tag where type=1  and tagSelected=1 and tagModel=?  order by name",new Object[]{tagModel},pager);
+			list=findList("from Tag where type=1  and tagSelected=1 and tagModel=?  order by name",pager,new Object[]{tagModel});
 		}else{
-			list=find("from Tag where type=1 and tagSelected=1 and tagModel=?  and lower(name) like lower(?) escape '/' ","from Tag where type=1 and tagSelected=1 and tagModel=? and lower(name) like lower(?) escape '/' order by name",new Object[]{tagModel,"%"+name+"%"},pager);
+			list=findList("from Tag where type=1 and tagSelected=1 and tagModel=? and lower(name) like lower(?) escape '/' order by name",pager,new Object[]{tagModel,"%"+name+"%"});
 		}
 		return list;
 	}
@@ -44,7 +44,7 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 		StringBuilder sb = new StringBuilder();
 		sb.append("from Tag where type=1 and tagSelected=1 and commend=1 and tagModel=");
 		sb.append(tagModel);
-		list = find(sb.toString(),sb.append(" order by name").toString(),null,pager);
+		list = findList(sb.append(" order by name").toString(),pager);
 		return list;
 	}
 	
@@ -152,9 +152,9 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 	public List<Tag> findTagList(String name,Pagination pager) {
 		List<Tag> list = null;
 		if(name==null){
-			 list = find("from Tag","from Tag order by name",null,pager);
+			 list = findList("from Tag order by name",pager);
 		}else{
-			 list = find("from Tag where lower(name) like lower(?) escape '/'","from Tag where lower(name) like lower(?) escape '/' order by name",new Object[]{"%"+name+"%"},pager);	
+			 list = findList("from Tag where lower(name) like lower(?) escape '/' order by name",pager,new Object[]{"%"+name+"%"});	
 		}
 		return list;
 	}
@@ -171,7 +171,7 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 		Pagination pager = new Pagination();
 		pager.setPageSize(100);
 		sb.append("from TagAlias where lower(tagName) = lower(?)");
-		list = find(sb.toString(),sb.toString(),new Object[]{name},pager);
+		list = findList(sb.toString(),pager,new Object[]{name});
 		
 		return convTagAlias(list);
 	}
@@ -179,7 +179,7 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 	
 	public List<Tag> findTagList(Pagination pager){
 		List<Tag> list = null;
-		list = find("from Tag","from Tag order by name",null,pager);
+		list = findList("from Tag order by name",pager);
 		return list;
 	}
 	
@@ -191,11 +191,11 @@ public class GeneSqlDao extends BaseDaoImpl<Tag> implements IGeneSqlDao{
 			tag.setAlias(list);
 			Pagination paper = new Pagination();
 			paper.setPageSize(Integer.MAX_VALUE);
-			List<TagRelation> childList = find("from TagRelation where parentTagName = ?","from TagRelation where parentTagName=? order by tagName",new Object[]{name},paper);
+			List<TagRelation> childList = findList("from TagRelation where parentTagName=? order by tagName",paper,new Object[]{name});
 			tag.setRelationSet(convTagRelation(childList));
 			Pagination paper1 = new Pagination();
 			paper1.setPageSize(Integer.MAX_VALUE);
-			List<TagRelation> parentList = find("from TagRelation where tagName = ?","from TagRelation where tagName=? order by parentTagName",new Object[]{name},paper1);
+			List<TagRelation> parentList = findList("from TagRelation where tagName=? order by parentTagName",paper1,new Object[]{name});
 			tag.setParentRelationSet(convTagRelation(parentList));
 			
 			return tag;
