@@ -108,11 +108,18 @@
 								</s:iterator>
 								<tr>
 									<td colspan="6">
-
-									<pager:pageForm name="myPage" action="geneaction!tagRemoveList.action" method="post">
-									</pager:pageForm>
-									<script>
-										$("form[name='formPage']").append('<input type="hidden" name="status" value="<s:property value='status'/>"/>').append('<input type="hidden" name="name" value="<s:property value='name'/>"/>');
+									<script type="text/javascript">
+									var pg = new showPages('pg');
+									pg.pageSize = <s:property value="pageInfo.pageSize"/>;
+									pg.firstPage = <s:property value="pageInfo.firstPage"/>;
+									pg.lastPage = <s:property value="pageInfo.lastPage"/>;
+									pg.prePage = <s:property value="pageInfo.prePage"/>;
+									pg.nextPage = <s:property value="pageInfo.nextPage"/>;
+									pg.pageNo = <s:property value="pageInfo.pageNo"/>;
+									pg.totalPage = <s:property value="pageInfo.totalPage"/>;
+									pg.totalCount = <s:property value="pageInfo.totalCount"/>;
+									pg.argName = 'pageInfo.pageNo';
+									pg.printHtml(2);
 									</script>
 							</td>
 								</tr>
