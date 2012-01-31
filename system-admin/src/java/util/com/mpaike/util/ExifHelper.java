@@ -119,10 +119,18 @@ public class ExifHelper{
 			
 			int srcHeight = 0;//图像高度（像素）
 			int srcWidth = 0;//图像宽度（像素）
+			
 			try {
 				BufferedImage bufferedImage = ImageIO.read(jpegFile);   
 				srcWidth = bufferedImage.getWidth();   
 				srcHeight = bufferedImage.getHeight();
+				if(srcWidth>srcHeight){
+					picture.setPut(Picture.SCREEN_V);
+				}else if(srcWidth<srcHeight){
+					picture.setPut(Picture.SCREEN_H);
+				}else{
+					picture.setPut(Picture.SCREEN_T);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
@@ -373,6 +381,13 @@ public class ExifHelper{
 				BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytes));   
 				srcWidth = bufferedImage.getWidth();   
 				srcHeight = bufferedImage.getHeight();
+				if(srcWidth>srcHeight){
+					picture.setPut(Picture.SCREEN_V);
+				}else if(srcWidth<srcHeight){
+					picture.setPut(Picture.SCREEN_H);
+				}else{
+					picture.setPut(Picture.SCREEN_T);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 
