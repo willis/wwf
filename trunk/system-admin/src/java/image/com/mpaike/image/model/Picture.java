@@ -12,6 +12,9 @@ public class Picture implements  java.io.Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	public final static int STATUS_NORMAL = 1;//图片显示状态
+	public final static String SCREEN_H = "H";//横horizontal 
+	public final static String SCREEN_V = "V";//竖 vertical
+	public final static String SCREEN_T = "T";//平铺 tiled
 	@AnnotationObjectKey
 	private Long id;
 	private Long userId;
@@ -21,6 +24,7 @@ public class Picture implements  java.io.Serializable
 	private String sourceName;
 	private String gene;
 	private String type;
+	private String put;//摆放 横horizontal 竖 vertical
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -502,6 +506,12 @@ public class Picture implements  java.io.Serializable
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getPut() {
+		return put;
+	}
+	public void setPut(String put) {
+		this.put = put;
 	}
 	
 	
