@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import proj.zoie.impl.indexing.ZoieSystem;
+
+import com.mpaike.client.zoie.service.IndexEngineBuild;
 import com.mpaike.core.util.ApplicationContextUtil;
 import com.mpaike.util.app.ApplictionContext;
 
@@ -42,10 +45,11 @@ public class InitServlet extends HttpServlet {
 		WebApplicationContext wac = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		ApplictionContext.getInstance().setAppContext(wac);
-		
+		IndexEngineBuild.setIndexingSystem((ZoieSystem)wac.getBean("indexingSystem"));
 		System.out.println(config.getServletContext().getRealPath(""));
 		ApplicationContextUtil.getInstance().setAppContext(wac);
 		
+		System.out.println(IndexEngineBuild.getIndexingSystem());
 		
 	}
 
