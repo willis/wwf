@@ -64,6 +64,16 @@ public class DataIndexable implements ZoieIndexable {
 		
 		return dc;
 	}
+	@Override
+	public boolean isStorable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public byte[] getStoreValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }
