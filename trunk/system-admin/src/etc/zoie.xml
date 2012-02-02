@@ -49,6 +49,7 @@
 		<constructor-arg index="7" value="true" />
 		
 		<constructor-arg index="8" ref="comparatorHelper" />
+		<constructor-arg index="9" value="false" />
 	</bean>
 	
 	<bean id="zoie-system-mbean" class="proj.zoie.mbean.ZoieSystemAdmin">
