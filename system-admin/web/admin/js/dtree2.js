@@ -650,7 +650,6 @@ dTree.prototype.updateCookie = function() {
 
 dTree.prototype.mys = function(url) {
      document.getElementById('rFrame').src=url;
-	
 
 };
 

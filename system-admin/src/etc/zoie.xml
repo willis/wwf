@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="dataInterpreter" class="com.mpaike.client.zoie.service.DataIndexableInterpreter" />	
+	
+	<bean id="decorator" class="com.mpaike.client.zoie.service.MyDoNothingIndexReaderDecorator" />	
+	
+	<bean id="analyzer" class="com.mpaike.client.zoie.service.analysis.MatchChineseAnalyzer" />
+	
+	<!-- 
+	<bean id="versionFactory" class="proj.zoie.api.DefaultZoieVersion$DefaultZoieVersionFactory" />
+	 -->
+	<bean id="comparatorHelper" class="com.mpaike.client.zoie.service.ComparatorHelper" />
+	
+	<bean id="indexingSystem" class="proj.zoie.impl.indexing.ZoieSystem"
+		init-method="start" destroy-method="shutdown">
+		<!-- disk index directory 索引文件夹 -->
+		<constructor-arg index="0" value="file:${index.dir}" />
+		<!-- sets the interpreter 设置翻译器 -->
+		<constructor-arg index="1" ref="dataInterpreter" />
+		<!-- sets the decorator 设置装饰器 -->
+		<constructor-arg index="2">
+			<ref bean="decorator" />
+		</constructor-arg>
+		<!-- set the Analyzer, if null is passed, Lucene's StandardAnalyzer is 
+			used 设置分词器，如果为null，则使用默认的Lucene的StandardAnalyzer -->
+		<constructor-arg index="3">
+			<ref bean="analyzer" />
+		</constructor-arg>
+		<!-- sets the Similarity, if null is passed, Lucene's DefaultSimilarity 
+			is used 设置相似性评分器，如果为null，则使用Lucene默认的DefaultSimilarity -->
+		<constructor-arg index="4">
+			<null />
+		</constructor-arg>
+		<!-- the following parameters indicate how often to triggered batched indexing, 
+			whichever the first of the following two event happens will triggered indexing 
+			下面的两个参数表示触发批量索引的频率，任意一个满足条件则触发索引。 -->
+		<!-- Batch size: how many items to put on the queue before indexing is 
+			triggered 批量大小：即队列中放入多少项方才触发索引 -->
+		<constructor-arg index="5" value="10" />
+		<!-- Batch delay, how long to wait before indxing is triggered 批量延时：即等待多长时间方才触发索引 -->
+		<constructor-arg index="6" value="300000" />
+		<!-- flag turning on/off real time indexing 是否开启实时索引的标志位 -->
+		<constructor-arg index="7" value="true" />
+		
+		<constructor-arg index="8" ref="comparatorHelper" />
+	</bean>
+	
+	<bean id="zoie-system-mbean" class="proj.zoie.mbean.ZoieSystemAdmin">
+		<constructor-arg ref="indexingSystem" />
+	</bean>
+	
+	<bean id="zoie-index-stat-mbean" class="proj.zoie.mbean.ZoieIndexingStatusAdmin">
+		<constructor-arg ref="indexingSystem" />
+	</bean>
+	
+	<bean id="defaultOptScheduler" class="proj.zoie.api.indexing.DefaultOptimizeScheduler" factory-bean="indexingSystem" factory-method="getOptimizeScheduler" />
+	
+	<bean id="optimize-scheduler-mbean" class="proj.zoie.mbean.ZoieOptimizeSchedulerAdmin">
+		<constructor-arg ref="defaultOptScheduler" />
+	</bean>
+	
+	<alias name="indexingSystem" alias="index-reader-factory"/>
+	<alias name="indexingSystem" alias="consumer"/>
+	
+	<bean id="searchService" class="com.mpaike.client.zoie.service.ZoieSearchServiceImpl">
+		<constructor-arg ref="index-reader-factory"/>
+	</bean>
+</beans>

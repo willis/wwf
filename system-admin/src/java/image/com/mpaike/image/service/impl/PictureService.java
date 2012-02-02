@@ -64,4 +64,10 @@ public class PictureService extends BaseService implements IPictureService {
 		return this.getPictureDao().findNext(id);
 	}
 
+	@Override
+	public void issue(Picture pic) {
+	
+		 this.getPictureDao().saveOrUpdate(pic);
+	}
+
 }

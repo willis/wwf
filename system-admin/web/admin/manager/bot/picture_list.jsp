@@ -36,7 +36,10 @@
 											<a class="delete" href="javascript:"
 												onclick="removeSelect()">删除</a>
 										</li>
-									
+										<li>
+											<a class="preview" href="javascript:"
+												onclick="issueSelect()">发布</a>
+										</li>
 										<li>
 											<a class="find"
 												href="javascript:void($('#find_01').toggle())">查询</a>
@@ -185,10 +188,49 @@
 				});
 
 			}
+		  function issueSelect(){
+				var ids  = getCheckedValuesByContainer("c",$("#dataGrid"));
+	
+				if(ids.length == 0)
+				{
+					window.parent.parent.jAlert("请选择记录", "系统提示");
+					return ;
+				}
+				var cs = "";
+				for(var i=0;i<ids.length;i++){
+					if(i>0){
+						cs+=",";
+					}
+					cs+=ids[i];
+				}
+				
+				var message = "您真的要发布<font color='red'>"+ids.length+"</font>个图片吗？";
+			
+						 
+						window.parent.parent.jConfirm(message, '操作确认', function(r) {
+						
+							if (r) {
+									var param = {
+										ids:cs
+									}
+					
+									doPost("pictureAction!issue.action", param, function(data) {
+										
+												if (data.status) {
+													query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}else{
+												    query();
+													window.parent.parent.jAlert(data.message, "系统提示");
+												}
+										});
+							}
+				});
 
+			}
 
 	 		var _K = 1024;
-			 var _M = _K*1024;
+			var _M = _K*1024;
 			function getNiceFileSize(idValue,value){
 				if(value<_M){
 					if(value<_K){
