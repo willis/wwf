@@ -23,8 +23,12 @@
  */
 package com.mpaike.image.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import proj.zoie.api.ZoieException;
+
+import com.mpaike.client.zoie.service.IndexEngineBuild;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.image.model.Picture;
 import com.mpaike.util.ArrayUtil;
@@ -77,6 +81,23 @@ public class PictureAction extends BaseAction {
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
 		this.getPictureService().remove(longValue);
 		super.printSuccessJson("删除成功！");
+	}
+	public void issue(){
+		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
+		List list = new ArrayList();
+		for(Long idds : longValue){
+			list.add(this.getPictureService().find(idds));
+		}
+		
+		try {
+
+			IndexEngineBuild.getIndexingSystem().consume(list);
+		} catch (ZoieException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("111");
+		super.printSuccessJson("发布成功！");
 	}
 
 	public Picture getPicture() {

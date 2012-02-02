@@ -14,6 +14,37 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
+	
+	<!-- ******************************************************************* -->
+	<!-- * Servlets definition * -->
+	<!-- ******************************************************************* -->
+
+	<servlet>
+
+		<servlet-name>dwr</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+		     <param-name>debug</param-name>
+		     <param-value>true</param-value>
+		</init-param>
+		<init-param>
+		    <param-name>crossDomainSessionSecurity</param-name>
+		    <param-value>false</param-value>
+		</init-param>
+
+		
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<!-- ******************************************************************* -->
+	<!-- * Servlets mapping * -->
+	<!-- ******************************************************************* -->
+
+	<servlet-mapping>
+		<servlet-name>dwr</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 配置session的filter过滤 -->
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>
@@ -150,6 +181,10 @@
 		<error-code>404</error-code>
 		<location>/error/404.jsp</location>
 	</error-page>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
 
 
 </web-app>

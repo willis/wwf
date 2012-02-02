@@ -13,6 +13,8 @@ public interface IPictureService extends IBaseService{
 	
 	public List<Picture> find(Picture pic,Pagination p, OrderBy ob);
 	
+	public void issue(Picture pic);
+	
 	public void remove(Long[] longValue);
 	
 	public Picture find(Long id);

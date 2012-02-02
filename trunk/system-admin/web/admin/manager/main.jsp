@@ -93,7 +93,7 @@
 				
 			</s:if>
 		
-			d.add(${menu.id},${menu.parentObj.id},"${menu.name}","javascript:<s:if test="not empty(#attr.menu.link)">d.mys('${cxp}${menu.link}')</s:if>","","" );
+			d.add(${menu.id},${menu.parentObj.id},"${menu.name}","javascript:<s:if test="not empty(#attr.menu.link)&& #attr.menu.link!=''&&#attr.menu.link!=null">d.mys('${cxp}${menu.link}')</s:if><s:else>d.o(<s:property value="#attr.ind+1"/>)</s:else>","","" );
 			</pager:eachMenu>
 
 			document.write(d);
