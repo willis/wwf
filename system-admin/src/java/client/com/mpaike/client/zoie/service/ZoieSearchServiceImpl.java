@@ -24,6 +24,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
+import org.apache.lucene.util.Version;
 
 import proj.zoie.api.IndexReaderFactory;
 import proj.zoie.api.ZoieException;
@@ -63,7 +64,7 @@ public class ZoieSearchServiceImpl<R extends IndexReader> implements ZoieSearchS
 	public SearchResult search(SearchRequest req) throws ZoieException{
 		String queryString = req.getQuery();
 		Analyzer analyzer = _idxReaderFactory.getAnalyzer();
-		QueryParser qparser = new QueryParser("content", analyzer);
+		QueryParser qparser = new QueryParser(Version.LUCENE_CURRENT, "content", analyzer);
 		
 		SearchResult result=new SearchResult();
 		
