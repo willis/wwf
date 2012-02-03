@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proj.zoie.api.ZoieException;
+import proj.zoie.api.DataConsumer.DataEvent;
 
 import com.mpaike.client.zoie.service.IndexEngineBuild;
 import com.mpaike.core.database.hibernate.OrderBy;
@@ -40,6 +41,8 @@ import com.mpaike.util.app.BaseAction;
  */
 @SuppressWarnings("serial")
 public class PictureAction extends BaseAction {
+	
+	
 	
 	private Picture picture;
 	private String ids;
@@ -86,11 +89,9 @@ public class PictureAction extends BaseAction {
 		Long[] longValue =  ArrayUtil.toLongArray(ids,",");
 		List list = new ArrayList();
 		for(Long idds : longValue){
-			list.add(this.getPictureService().find(idds));
+			list.add(new  DataEvent(this.getPictureService().find(idds), String.valueOf(version)));
 		}
-		
 		try {
-
 			IndexEngineBuild.getIndexingSystem().consume(list);
 		} catch (ZoieException e) {
 			
