@@ -34,6 +34,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BaseAction extends ActionSupport {
+	
+	protected static int version = 0x01;
+	
 	protected final Log logger = LogFactory.getLog(getClass());
 
     private String field;
