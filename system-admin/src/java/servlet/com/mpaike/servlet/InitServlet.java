@@ -14,7 +14,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import proj.zoie.impl.indexing.ZoieSystem;
 
+import cn.vivame.v2.gene.service.IGeneService;
+
 import com.mpaike.client.zoie.service.IndexEngineBuild;
+import com.mpaike.core.exception.ParameterException;
 import com.mpaike.core.util.ApplicationContextUtil;
 import com.mpaike.util.app.ApplictionContext;
 
@@ -50,6 +53,11 @@ public class InitServlet extends HttpServlet {
 		ApplicationContextUtil.getInstance().setAppContext(wac);
 		
 		System.out.println(IndexEngineBuild.getIndexingSystem());
+		
+		System.out.println("＊＊＊＊＊＊重建基因开始＊＊＊＊＊");
+		IGeneService db = (IGeneService)wac.getBean("geneService");
+		db.tagSqlToRedis();
+		System.out.println("＊＊＊＊＊＊重建基因开始＊＊＊＊＊");
 		
 	}
 
