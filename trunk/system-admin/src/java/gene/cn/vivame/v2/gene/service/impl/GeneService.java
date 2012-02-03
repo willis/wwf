@@ -1094,11 +1094,11 @@ public class GeneService extends BaseService implements IGeneService{
 	}
 	
 	
-	public void tagSqlToRedis() throws ParameterException{
+	public void tagSqlToRedis(){
 		this.getGeneDao().removeAll();
 		Pagination pager = new Pagination();
 		pager.setPageSize(100);
-		//pager.setPage(343);
+		//pager.setPageNo(61);
 		List<Tag> list = this.getGeneSqlDao().findTagList(pager);
 		int count = 0;
 		if(list!=null){
@@ -1115,7 +1115,7 @@ public class GeneService extends BaseService implements IGeneService{
 						}
 					}
 
-				pager.setPageSize(pager.getPageSize()+1);
+				pager.setPageNo(pager.getPageNo()+1);
 				list = this.getGeneSqlDao().findTagList(pager);
 			}
 		}

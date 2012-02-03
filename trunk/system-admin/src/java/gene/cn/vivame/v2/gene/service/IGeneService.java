@@ -110,6 +110,6 @@ public interface IGeneService {
 	
 	public Tag findSqlTag(String name);
 	
-	public void tagSqlToRedis() throws ParameterException;
+	public void tagSqlToRedis();
 	
 }
