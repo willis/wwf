@@ -15,7 +15,8 @@
 		<property name="lat" column="lat" type="double" />
 		<property name="lon" column="lon" type="double" />
 		<property name="alt" column="alt" type="double" />
-		<property name="url" column="url" type="boolean" />
+		<property name="url" column="url" type="string" />
+		<property name="gpsinfo" column="gpsinfo" type="boolean" />
 		<property name="hotNum" column="hotNum" type="java.lang.Long" />
 		
 		<property name="resourceType" column="resourceType" type="java.lang.Long" />
