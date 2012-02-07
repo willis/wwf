@@ -50,7 +50,7 @@ public class BotSpider{
 	/**
 	 * @param args
 	 */
-	public void startSpider(String url,String enName,int threadNum,String type,int weight,int height) {
+	public void startSpider(String url,String enName,int threadNum,String type,int weight,int height,boolean restart) {
 		if(url==null){
 			return;
 		}
@@ -59,7 +59,7 @@ public class BotSpider{
 			sd.halt();
 		}
 		 try{
-			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),enName);
+			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),enName,restart);
 			 	ImageReportable ir = new ImageReportable(url,path,enName,dataSource.getConnection(),pictureDao,type,weight,height);
 			 	Spider spider = new Spider( ir,url,new HTTPSocket(),threadNum,wl);
 			 	spiderMap.put(url, spider);
