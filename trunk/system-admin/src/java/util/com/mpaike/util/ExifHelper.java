@@ -687,15 +687,33 @@ public class ExifHelper{
 				}
 				// 第三方类库，获取图片GPS信息
 				Directory gps = metadata.getDirectory(GpsDirectory.class);
-				Rational latpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LATITUDE);
-				Rational lonpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LONGITUDE);
-				String northing = gps.getString(GpsDirectory.TAG_GPS_LATITUDE_REF);
-				String easting = gps.getString(GpsDirectory.TAG_GPS_LONGITUDE_REF);
+				Rational latpart[] = null;
+				Rational lonpart[] = null;
+				if(gps.containsTag(GpsDirectory.TAG_GPS_LATITUDE)){
+					latpart = gps.getRationalArray(GpsDirectory.TAG_GPS_LATITUDE);
+				}
+				if(gps.containsTag(GpsDirectory.TAG_GPS_LONGITUDE)){
+					lonpart = gps.getRationalArray(GpsDirectory.TAG_GPS_LONGITUDE);
+				}
+				
+				String northing = "";
+				String easting = "";
+				if(gps.containsTag(GpsDirectory.TAG_GPS_LATITUDE_REF)){
+					northing = gps.getString(GpsDirectory.TAG_GPS_LATITUDE_REF);
+				}
+				if(gps.containsTag(GpsDirectory.TAG_GPS_LONGITUDE_REF)){
+					easting = gps.getString(GpsDirectory.TAG_GPS_LONGITUDE_REF);
+				}
+				
 				double alt = 0.0;
 				double lat = 0.0;
 				double lon = 0.0;
 				try {
-					alt = gps.getDouble(GpsDirectory.TAG_GPS_ALTITUDE);
+					if(gps.containsTag(GpsDirectory.TAG_GPS_ALTITUDE)){
+						
+						alt = gps.getDouble(GpsDirectory.TAG_GPS_ALTITUDE);
+					}
+					
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
