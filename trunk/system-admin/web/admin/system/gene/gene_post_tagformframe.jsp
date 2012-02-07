@@ -171,9 +171,9 @@
 					<br/><br/>
 					<div id="tags" class="tag"></div>
 				</td>
-				<td width="450" valign="top">
+				<td width="400" valign="top">
 
-					<iframe id="relationFrame" src="geneaction!formTag.action" scrolling="auto" frameborder="0" width="98%" height="490px;"></iframe>	
+					<iframe id="relationFrame" src="geneaction!formTag.action" scrolling="auto" frameborder="0" width="98%" height="390px;"></iframe>	
 				</td>
 			</tr>
 		</table>

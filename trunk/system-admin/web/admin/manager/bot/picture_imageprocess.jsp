@@ -67,34 +67,36 @@ border:1px solid #C5C4CC;
 							 <select name="articleMongo.type" id="webtype"   dataType="Require" msg="分类不能为空"  style="width:150px" ></select> 
 						</td>	
 					</tr>
-					
-					
-					
 					<tr>
-						<td  width="20%" class="lefttd">
-							<a href="javascript:;" >说明</a>：
-						</td>
-						<td colspan="3">
-						<textarea id="body"  name="articleMongo.content"  style="width:90%;height:180px"></textarea>
+								<td width="20%" class="lefttd">文章标题：</td>
+								<td><input type="text" id="title" name="articleMongo.title"
+									value="<s:property value="articleMongo.title"/>"
+									dataType="LimitChEn"  require="true" msg="标题必须在[1-17.5]个汉字之内" min="1"  max="35" style="width: 80%"
+									class="EditBox" /> <font color="green">标题必须在[1-17.5]个汉字之内</font></td>
+					</tr>
+					<tr>
+					
+						<td colspan="4">
+						<iframe id="relationFrame"
+										name="relationFrame"
+										src="${cxp }/system/gene/gene_post_tagformframe.jsp"
+										scrolling="auto" frameborder="0" width="98%" height="400px"></iframe>
 						
 						</td>
 					</tr>
-				
-	
+			
 					<tr>
 						<td  width="20%" class="lefttd">
-							编辑：
+							说明：
 						</td>
-						<td >
-						<input type="hidden" name="articleMongo.editor" value="${userOBJ.truename}"/> 
-							${userOBJ.truename}
+						<td colspan="3">
+						<textarea id="remark"
+										name="articleMongo.remark" class="MultiEditBox"
+										dataType="LimitChEn"  min="0" max="200"  msg="备注的长度不能超过100个 汉字"
+										style="width: 80%; height: 40px" ><s:property value="articleMongo.remark" /></textarea>
 						</td>
-						<td  width="20%" class="lefttd">
-							数据来源：
-						</td>
-						<td >
-							<input type="hidden" name="articleMongo.datasources" value="<s:property value="pdf.bookitemname"/>"/> <s:property value="pdf.bookitemname"/></td>
 					</tr>
+		
 					
 				</table>
 				
