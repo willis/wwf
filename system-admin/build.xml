@@ -116,6 +116,8 @@
 			<src path="${dir.src.util.java}" />
 			<src path="${dir.src.dictionary.java}" />
 			<src path="${dir.src.servlet.java}" />
+			<src path="${dir.src.client.java}" />
+			<src path="${dir.src.gene.java}" />
 			<src path="${dir.src.etc}" />
 		</javac>
 		<antcall target="webapps.copy.non.java" />
@@ -167,6 +169,18 @@
 				<exclude name="**/*.java" />
 			</fileset>
 			<fileset dir="${dir.src.dictionary.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.client.java}">
+				<include name="**" />
+				<include name="**/*.xml" />
+				<exclude name="**/*.scc" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.src.gene.java}">
 				<include name="**" />
 				<include name="**/*.xml" />
 				<exclude name="**/*.scc" />

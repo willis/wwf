@@ -56,7 +56,7 @@ public class InitServlet extends HttpServlet {
 		
 		System.out.println("＊＊＊＊＊＊重建基因开始＊＊＊＊＊");
 		IGeneService db = (IGeneService)wac.getBean("geneService");
-		db.tagSqlToRedis();
+		//db.tagSqlToRedis();
 		System.out.println("＊＊＊＊＊＊重建基因完成＊＊＊＊＊");
 		
 	}

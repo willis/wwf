@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -22,10 +23,12 @@ import org.apache.commons.logging.LogFactory;
 
 import com.drew.imaging.jpeg.JpegMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
+import com.drew.lang.Rational;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.exif.ExifDirectory;
+import com.drew.metadata.exif.GpsDirectory;
 import com.mpaike.core.util.date.DateTimeUtil;
 import com.mpaike.image.model.Picture;
 
@@ -52,7 +55,10 @@ public class ExifHelper{
 			return "{'data':{},'error':'1'}";
 		}
 	}
-
+	public static void main(String args[]){
+		File file  = new File("/Users/ChenH/Downloads/gps/IMG_0010.JPG");
+		System.out.println(prase2JSON("mac.jps",file));
+	}
 	/**
 	 * 返回封装EXIF等信息的Picture对象
 	 * 
@@ -188,6 +194,7 @@ public class ExifHelper{
 			String thumbnailMimeType = "";
 			try {
 	            // 第三方类库，获取图片EXIF信息
+				
 				Metadata metadata = JpegMetadataReader.readMetadata(jpegFile);
 				Directory exif = metadata.getDirectory(ExifDirectory.class);
 				fileDataTime = exif.getDescription(ExifDirectory.TAG_DATETIME);
@@ -264,6 +271,34 @@ public class ExifHelper{
 				sceneType = exif.getDescription(ExifDirectory.TAG_SCENE_TYPE);
 				thumbnailFileType = "";
 				thumbnailMimeType = "";
+				
+				// 第三方类库，获取图片GPS信息
+				Directory gps = metadata.getDirectory(GpsDirectory.class);
+				Rational latpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LATITUDE);
+				Rational lonpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LONGITUDE);
+				String northing = gps.getString(GpsDirectory.TAG_GPS_LATITUDE_REF);
+				String easting = gps.getString(GpsDirectory.TAG_GPS_LONGITUDE_REF);
+				double alt = 0.0;
+				double lat = 0.0;
+				double lon = 0.0;
+				try {
+					alt = gps.getDouble(GpsDirectory.TAG_GPS_ALTITUDE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
+				double latsign = 1.0d; if (northing.equalsIgnoreCase("S")) latsign = -1.0d;
+				double lonsign = 1.0d; if (easting.equalsIgnoreCase("W")) lonsign = -1.0d;
+				lat = (Math.abs(latpart[0].doubleValue()) + latpart[1].doubleValue()/60.0d + latpart[2].doubleValue()/3600.0d)*latsign;
+			    lon = (Math.abs(lonpart[0].doubleValue()) + lonpart[1].doubleValue()/60.0d + lonpart[2].doubleValue()/3600.0d)*lonsign;
+				if (Double.isNaN(lat) || Double.isNaN(lon))
+					picture.setGpsinfo(false);
+				else
+					picture.setGpsinfo(true);
+				picture.setLat(lat);
+		    	picture.setLon(lon);
+		    	picture.setAlt(alt);
+			    	
 			} catch (JpegProcessingException e2) {
 				e2.printStackTrace();
 			} catch (MetadataException e2) {
@@ -331,7 +366,47 @@ public class ExifHelper{
 		}
 		return picture;
 	}
-	
+	 /**
+	  * DMS形式のGPS情報からDD形式のGPS情報を取得します
+	  * 
+	  * @param strDms
+	  *            DMS形式のGPS情報
+	  * @return DD形式のGPS情報
+	  */
+	 private String getDDFromDMS(String strDms) {
+	  BigDecimal bidDd = new BigDecimal(0);
+	  BigDecimal bidPart = new BigDecimal(0);
+	  String[] strParts = strDms.split(" ");
+	  for (int i = 0, n = strParts.length; i < n; i++) {
+	   if (i == 0) {
+	    bidPart = getValue(strParts[i]);
+	   } else {
+	    bidPart = getValue(strParts[i]).divide(
+	      new BigDecimal(Math.pow(60, i)), 6,
+	      BigDecimal.ROUND_HALF_UP);
+	   }
+	   bidDd = bidDd.add(bidPart);
+	  }
+	  return String.valueOf(bidDd);
+	 }
+
+	 /**
+	  * 取得したデータからGPS情報を取得します
+	  * 
+	  * @param strObj
+	  *            取得したデータ
+	  * @return GPS情報
+	  */
+	 private BigDecimal getValue(String strObj) {
+	  BigDecimal bidValue = new BigDecimal(0);
+	  String[] strParts = strObj.split("/");
+	  if (strParts.length == 0) {
+	   return bidValue;
+	  } else {
+	   return (new BigDecimal(strParts[0]).divide(new BigDecimal(
+	     strParts[1]), 6, BigDecimal.ROUND_HALF_UP));
+	  }
+	 }
 	/**
 	 * 返回封装EXIF等信息的Picture对象
 	 * 
@@ -610,6 +685,32 @@ public class ExifHelper{
 				if(exif.containsTag(ExifDirectory.TAG_SCENE_TYPE)){
 					sceneType = exif.getDescription(ExifDirectory.TAG_SCENE_TYPE);
 				}
+				// 第三方类库，获取图片GPS信息
+				Directory gps = metadata.getDirectory(GpsDirectory.class);
+				Rational latpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LATITUDE);
+				Rational lonpart[] = gps.getRationalArray(GpsDirectory.TAG_GPS_LONGITUDE);
+				String northing = gps.getString(GpsDirectory.TAG_GPS_LATITUDE_REF);
+				String easting = gps.getString(GpsDirectory.TAG_GPS_LONGITUDE_REF);
+				double alt = 0.0;
+				double lat = 0.0;
+				double lon = 0.0;
+				try {
+					alt = gps.getDouble(GpsDirectory.TAG_GPS_ALTITUDE);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+
+				double latsign = 1.0d; if (northing.equalsIgnoreCase("S")) latsign = -1.0d;
+				double lonsign = 1.0d; if (easting.equalsIgnoreCase("W")) lonsign = -1.0d;
+				lat = (Math.abs(latpart[0].doubleValue()) + latpart[1].doubleValue()/60.0d + latpart[2].doubleValue()/3600.0d)*latsign;
+			    lon = (Math.abs(lonpart[0].doubleValue()) + lonpart[1].doubleValue()/60.0d + lonpart[2].doubleValue()/3600.0d)*lonsign;
+			    if (Double.isNaN(lat) || Double.isNaN(lon))
+					picture.setGpsinfo(false);
+				else
+					picture.setGpsinfo(true);
+				picture.setLat(lat);
+		    	picture.setLon(lon);
+		    	picture.setAlt(alt);
 				thumbnailFileType = "";
 				thumbnailMimeType = "";
 			} catch (JpegProcessingException e2) {
