@@ -21,7 +21,7 @@ public class SpiderTest {
 
 		BotSpider db = (BotSpider)ac.getBean("botSpider");
 		
-		db.startSpider("http://www.moko.cc", "moko.cc", 10,"",500,500);
+		db.startSpider("http://www.moko.cc", "moko.cc", 10,"",500,500,true);
 
 	}
 }
