@@ -34,12 +34,12 @@ public class WebUrlService extends BaseService implements IWebUrlService {
 	}
 
 	@Override
-	public boolean startWebSpider(Long id) {
+	public boolean startWebSpider(Long id,boolean restart) {
 		WebUrl webUrl = this.find(id);
 		if(webUrl!=null){
 			webUrl.setStatus(WebUrl.START);
 			this.save(webUrl);
-			this.getBotSpider().startSpider(webUrl.getUrl(), webUrl.getEnName(), webUrl.getThreadNum(),webUrl.getType(),webUrl.getWidth(),webUrl.getHeight());
+			this.getBotSpider().startSpider(webUrl.getUrl(), webUrl.getEnName(), webUrl.getThreadNum(),webUrl.getType(),webUrl.getWidth(),webUrl.getHeight(),restart);
 			return true;
 		}else{
 			return false;

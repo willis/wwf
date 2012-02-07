@@ -75,7 +75,7 @@ public class ImageReportable implements ISpiderReportable{
 		this.weight = weight;
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,score,url,filename,status) VALUES (?,?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
-
+	    
 	}
 
 	@Override

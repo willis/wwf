@@ -69,19 +69,25 @@ public class SpiderSQLWorkload implements IWorkloadStorable {
   PreparedStatement prepSetStatus3;
 
   
-  public SpiderSQLWorkload(Connection connection,String name)throws SQLException
+  public SpiderSQLWorkload(Connection connection,String name,boolean restart)throws SQLException
   {
     this.connection = connection;
-    init(name);
+    init(name,restart);
   }
   
 
-  private void init(String name)throws SQLException{
+  private void init(String name,boolean restart)throws SQLException{
 	  //表操作
 	  String createTable = "CREATE TABLE `bot_url_"+name+"` (`id` varchar(32) NOT NULL DEFAULT '',`url` varchar(1024) NOT NULL DEFAULT '',`status` char(1) NOT NULL,PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
 	  prepCreateURL = connection.prepareStatement(createTable);
 	  prepDeleteURL = connection.prepareStatement("DROP table `bot_url_"+name+"`;");
 
+	  try{
+		  if(restart){
+			  prepDeleteURL.execute();
+		  }
+	  }catch(SQLException e){
+	  }
 	  try{
 		  prepCreateURL.execute();
 	  }catch(SQLException e){

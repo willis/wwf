@@ -11,7 +11,7 @@ public interface IWebUrlService {
 	
 	public static final String ID_NAME = "webUrlService";
 	
-	public boolean startWebSpider(Long id);
+	public boolean startWebSpider(Long id,boolean restart);
 	
 	public boolean stopWebSpider(Long id);
 	

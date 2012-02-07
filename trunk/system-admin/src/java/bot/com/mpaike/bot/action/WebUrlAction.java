@@ -15,6 +15,7 @@ public class WebUrlAction extends BaseAction{
 	private static final long serialVersionUID = 2884893102617198833L;
 	private WebUrl webUrl;
 	private Long id;
+	private boolean restart;
 	/**
 	 * 查询列表
 	 */
@@ -50,7 +51,7 @@ public class WebUrlAction extends BaseAction{
 	}
 
 	public void start(){
-		if(this.getWebUrlService().startWebSpider(id)){
+		if(this.getWebUrlService().startWebSpider(id,restart)){
 			printSuccessJson("启动成功！");
 		}else{
 			printSuccessJson("启动失败！");
