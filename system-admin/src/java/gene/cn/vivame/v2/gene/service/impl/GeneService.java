@@ -1098,7 +1098,7 @@ public class GeneService extends BaseService implements IGeneService{
 		this.getGeneDao().removeAll();
 		Pagination pager = new Pagination();
 		pager.setPageSize(100);
-		//pager.setPageNo(380);
+		//pager.setPageNo(500);
 		List<Tag> list = this.getGeneSqlDao().findTagList(pager);
 		int count = 0;
 		if(list!=null){
