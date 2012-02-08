@@ -720,7 +720,9 @@ public class ExifHelper{
 
 				double latsign = 1.0d; if (northing.equalsIgnoreCase("S")) latsign = -1.0d;
 				double lonsign = 1.0d; if (easting.equalsIgnoreCase("W")) lonsign = -1.0d;
+				if(latpart!=null)
 				lat = (Math.abs(latpart[0].doubleValue()) + latpart[1].doubleValue()/60.0d + latpart[2].doubleValue()/3600.0d)*latsign;
+				if(lonpart!=null)
 			    lon = (Math.abs(lonpart[0].doubleValue()) + lonpart[1].doubleValue()/60.0d + lonpart[2].doubleValue()/3600.0d)*lonsign;
 			    if (Double.isNaN(lat) || Double.isNaN(lon))
 					picture.setGpsinfo(false);
