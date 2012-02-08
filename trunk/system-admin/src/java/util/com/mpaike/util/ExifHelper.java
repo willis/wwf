@@ -725,9 +725,9 @@ public class ExifHelper{
 				if(lonpart!=null)
 			    lon = (Math.abs(lonpart[0].doubleValue()) + lonpart[1].doubleValue()/60.0d + lonpart[2].doubleValue()/3600.0d)*lonsign;
 			    if (Double.isNaN(lat) || Double.isNaN(lon))
-					picture.setGpsinfo(false);
-				else
 					picture.setGpsinfo(true);
+				else
+					picture.setGpsinfo(false);
 				picture.setLat(lat);
 		    	picture.setLon(lon);
 		    	picture.setAlt(alt);
