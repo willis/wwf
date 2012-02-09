@@ -14,8 +14,8 @@ public class PicGeneDao implements IPicGeneDao {
 	
 	public static final String PIC_GENE = "_PG_";
 	public static final String PIC_OBJECT = "_PO_";
-	public static final String GENE_SETTING = "_GS_";
-	public static final String SETTING_NAME = "RelationRate";
+	public static final String GENE_SETTING = "_PGS_";
+	public static final String SETTING_NAME = "P_RelationRate";
 	private KeyValueDao keyValueDao;
 	
 	public PicGeneDao(ShardedJedisPool shardedJedisPool) throws ClassNotFoundException{
