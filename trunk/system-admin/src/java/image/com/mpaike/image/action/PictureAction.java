@@ -26,8 +26,12 @@ package com.mpaike.image.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import proj.zoie.api.ZoieException;
 import proj.zoie.api.DataConsumer.DataEvent;
+
+import cn.vivame.v2.gene.model.GeneGrade;
 
 import com.mpaike.client.zoie.service.IndexEngineBuild;
 import com.mpaike.core.database.hibernate.OrderBy;
@@ -97,10 +101,44 @@ public class PictureAction extends BaseAction {
 			
 			e.printStackTrace();
 		}
-		System.out.println("111");
 		super.printSuccessJson("发布成功！");
 	}
+	public void process(){
+		System.out.println(picture.getTags());
+		//计算标签并保存
+		StringBuilder geneContent = new StringBuilder();
+		StringBuilder geneDefaultValue = new StringBuilder();
+	
+		if (StringUtils.isNotBlank(picture.getTags())) {
+			String[] tagsName = picture.getTags().split(";");
+				if (tagsName.length != 0) {
+					List<GeneGrade> spiltTagsName = getGeneService().grade(tagsName);
+					getGeneService().saveGradeRedis(picture.getId(), spiltTagsName);
+					if(!spiltTagsName.isEmpty()){
+						for(GeneGrade gg : spiltTagsName){
+							geneContent.append(gg.getTagName());
+							geneContent.append(";");
+							geneDefaultValue.append(gg.toString());
+							geneDefaultValue.append(";");
+						}
+						picture.setGeneContent(geneContent.substring(0, geneContent.length()-1).toString());
+						picture.setGeneDefaultValue(geneDefaultValue.substring(0, geneDefaultValue.length()-1).toString());
+				
+					}
 
+				}
+			
+			if(geneContent.length()>0)
+			{	
+				 this.getPictureService().save(picture);
+				
+			}
+			super.printSuccessJson("发布成功！");
+		}else{
+			
+		}
+		
+	}
 	public Picture getPicture() {
 		return picture;
 	}

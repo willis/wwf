@@ -15,16 +15,23 @@ public class Picture implements  java.io.Serializable
 	public final static String SCREEN_H = "H";//横horizontal 
 	public final static String SCREEN_V = "V";//竖 vertical
 	public final static String SCREEN_T = "T";//平铺 tiled
+	public final static String _MARKED_FOR_DELETE = "_MARKED_FOR_DELETE";
+	public final static String _MARKED_FOR_ISSUE = "_MARKED_FOR_ISSUE";
 	@AnnotationObjectKey
 	private Long id;
 	private Long userId;
+	private String title;// 文章标题
 	private Long hotNum;//点击数
 	private Long resourceType;//资源等级
 	private String photoMd5;
 	private String sourceName;
-	private String gene;
+	private String tags;// 标签
+	private String gene;// 基因
+	private String geneContent;// 基因系数
+	private String geneDefaultValue;//基因分值
 	private String type;
 	private String put;//摆放 横horizontal 竖 vertical
+	private String remark;//备注
 	//文件信息	-----------------------------
 	private String filename;//文件名
 	private String fileType;//文件类型
@@ -542,6 +549,35 @@ public class Picture implements  java.io.Serializable
 	public void setGpsinfo(boolean gpsinfo) {
 		this.gpsinfo = gpsinfo;
 	}
-	
+	public String getGeneContent() {
+		return geneContent;
+	}
+	public void setGeneContent(String geneContent) {
+		this.geneContent = geneContent;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	public String getGeneDefaultValue() {
+		return geneDefaultValue;
+	}
+	public void setGeneDefaultValue(String geneDefaultValue) {
+		this.geneDefaultValue = geneDefaultValue;
+	}
 	
 }

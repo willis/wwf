@@ -8,140 +8,114 @@
 		<id name="id" type="java.lang.Long" column="pictureid">
 			<generator class="assigned" />
 		</id>
+		<property name="title" column="title" type="string" />
+		
+		<property name="tags" column="tags" type="string" />
+		
+		<property name="remark" column="remark" type="string" />
+		
 		<property name="put" column="put" type="string" />
+		
 		<property name="type" column="type" type="string" />
+		
 		<property name="status" column="status" type="java.lang.Integer" />
 		
 		<property name="lat" column="lat" type="double" />
+		
 		<property name="lon" column="lon" type="double" />
+		
 		<property name="alt" column="alt" type="double" />
+		
 		<property name="url" column="url" type="string" />
+		
 		<property name="gpsinfo" column="gpsinfo" type="boolean" />
+		
 		<property name="hotNum" column="hotNum" type="java.lang.Long" />
 		
 		<property name="resourceType" column="resourceType" type="java.lang.Long" />
 		
-		<property name="userId" column="userId" type="java.lang.Long"
-			not-null="true" />
+		<property name="userId" column="userId" type="java.lang.Long" not-null="true" />
 
 		<property name="path" column="path" type="string" />
 		
 		<property name="sourceName" column="sourceName" type="string" />
 		
 		<property name="gene" column="gene" type="string" length="1024"/>
-
+		
+		<property name="geneContent" column="geneContent" type="string" length="2048"/>
+		
+		<property name="geneDefaultValue" column="geneDefaultValue" type="string" length="2048"/>
+		
 		<property name="filename" column="filename" type="string" />
-
 
 		<property name="fileType" column="fileType" type="string" />
 
-
-
 		<property name="mimeType" column="mimeType" type="string" />
-
 
 		<property name="fileSize" column="fileSize" type="string" />
 
-
 		<property name="fileDataTime" column="fileDataTime" type="string" />
-
 
 		<property name="srcHeight" column="srcHeight" type="java.lang.Integer"
 			not-null="true" />
 
-
-
 		<property name="srcWidth" column="srcWidth" type="java.lang.Integer" />
-
 
 		<property name="imageDescription" column="imageDescription"
 			type="string" />
 
-
-
 		<property name="make" column="make" type="string" />
-
 
 		<property name="model" column="model" type="string" />
 
-
 		<property name="orientation" column="orientation" type="string" />
-
 
 		<property name="xResolution" column="xResolution" type="string" />
 
-
 		<property name="yResolution" column="yResolution" type="string" />
-
 
 		<property name="software" column="software" type="string" />
 
-
 		<property name="dateTime" column="dateTime" type="string" />
 
-
 		<property name="artist" column="artist" type="string" />
-
 
 		<property name="yCbCrPositioning" column="yCbCrPositioning"
 			type="string" />
 
-
 		<property name="copyright" column="copyright" type="string" />
-
 
 		<property name="copyrightOfPhotographer" column="copyrightOfPhotographer"
 			type="string" />
 
-
 		<property name="copyrightOfEditor" column="copyrightOfEditor"
 			type="string" />
 
-
 		<property name="exifVersion" column="exifVersion" type="string" />
 
+		<property name="flashPixVersion" column="flashPixVersion" type="string" />
 
-		<property name="flashPixVersion" column="flashPixVersion"
-			type="string" />
-
-
-
-		<property name="dateTimeDigitized" column="dateTimeDigitized"
-			type="string" />
-
+		<property name="dateTimeDigitized" column="dateTimeDigitized" type="string" />
 
 		<property name="computedHeight" column="computedHeight" type="string" />
 
-
 		<property name="computedWidth" column="computedWidth" type="string" />
-
 
 		<property name="apertureValue" column="apertureValue" type="string" />
 
+		<property name="shutterSpeedValue" column="shutterSpeedValue" type="string" />
 
-		<property name="shutterSpeedValue" column="shutterSpeedValue"
-			type="string" />
+		<property name="apertureFNumber" column="apertureFNumber" type="string" />
 
-
-		<property name="apertureFNumber" column="apertureFNumber"
-			type="string" />
-
-
-		<property name="maxApertureValue" column="maxApertureValue"
-			type="string" />
-
+		<property name="maxApertureValue" column="maxApertureValue" type="string" />
 
 		<property name="exposureTime" column="exposureTime" type="string" />
 
-
 		<property name="fNumber" column="fNumber" type="string" />
-
 
 		<property name="meteringMode" column="meteringMode" type="string" />
 
-
 		<property name="lightSource" column="lightSource" type="string" />
-
 
 		<property name="flash" column="flash" type="string" />
 
