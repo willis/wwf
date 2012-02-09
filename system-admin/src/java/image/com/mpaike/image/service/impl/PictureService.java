@@ -70,4 +70,9 @@ public class PictureService extends BaseService implements IPictureService {
 		 this.getPictureDao().saveOrUpdate(pic);
 	}
 
+	@Override
+	public void save(Picture pic) {
+		this.getPictureDao().saveOrUpdate(pic);
+	}
+
 }
