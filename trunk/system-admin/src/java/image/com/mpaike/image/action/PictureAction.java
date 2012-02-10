@@ -36,7 +36,9 @@ import cn.vivame.v2.gene.model.GeneGrade;
 import com.mpaike.client.zoie.service.IndexEngineBuild;
 import com.mpaike.core.database.hibernate.OrderBy;
 import com.mpaike.image.model.Picture;
+import com.mpaike.user.model.SysUser;
 import com.mpaike.util.ArrayUtil;
+import com.mpaike.util.MyBeanUtils;
 import com.mpaike.util.app.BaseAction;
 
 /**
@@ -104,16 +106,19 @@ public class PictureAction extends BaseAction {
 		super.printSuccessJson("发布成功！");
 	}
 	public void process(){
-		System.out.println(picture.getTags());
+		
+		Picture target = getPictureService().find(picture.getId());
+		
+	    MyBeanUtils.fillForNotNullObject(target, picture);
 		//计算标签并保存
 		StringBuilder geneContent = new StringBuilder();
 		StringBuilder geneDefaultValue = new StringBuilder();
 	
-		if (StringUtils.isNotBlank(picture.getTags())) {
-			String[] tagsName = picture.getTags().split(";");
+		if (StringUtils.isNotBlank(target.getTags())) {
+			String[] tagsName = target.getTags().split(";");
 				if (tagsName.length != 0) {
 					List<GeneGrade> spiltTagsName = getGeneService().grade(tagsName);
-					getGeneService().saveGradeRedis(picture.getId(), spiltTagsName);
+					getGeneService().saveGradeRedis(target.getId(), spiltTagsName);
 					if(!spiltTagsName.isEmpty()){
 						for(GeneGrade gg : spiltTagsName){
 							geneContent.append(gg.getTagName());
@@ -121,8 +126,8 @@ public class PictureAction extends BaseAction {
 							geneDefaultValue.append(gg.toString());
 							geneDefaultValue.append(";");
 						}
-						picture.setGeneContent(geneContent.substring(0, geneContent.length()-1).toString());
-						picture.setGeneDefaultValue(geneDefaultValue.substring(0, geneDefaultValue.length()-1).toString());
+						target.setGeneContent(geneContent.substring(0, geneContent.length()-1).toString());
+						target.setGeneDefaultValue(geneDefaultValue.substring(0, geneDefaultValue.length()-1).toString());
 				
 					}
 
@@ -130,12 +135,22 @@ public class PictureAction extends BaseAction {
 			
 			if(geneContent.length()>0)
 			{	
-				 this.getPictureService().save(picture);
+				picture = target;
+				picture.setStatus(Picture.STATUS_ISSUE);
+				this.getPictureService().save(picture);
+				try {
+					List list = new ArrayList();
+					list.add(new  DataEvent(picture, String.valueOf(version)));
+					IndexEngineBuild.getIndexingSystem().consume(list);
+				} catch (ZoieException e) {
+					
+					e.printStackTrace();
+				}
 				
 			}
 			super.printSuccessJson("发布成功！");
 		}else{
-			
+			super.printSuccessJson("发布失败！");
 		}
 		
 	}

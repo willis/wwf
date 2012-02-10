@@ -12,6 +12,7 @@ public class Picture implements  java.io.Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	public final static int STATUS_NORMAL = 1;//图片显示状态
+	public final static int STATUS_ISSUE = 2;//图片显示状态
 	public final static String SCREEN_H = "H";//横horizontal 
 	public final static String SCREEN_V = "V";//竖 vertical
 	public final static String SCREEN_T = "T";//平铺 tiled
