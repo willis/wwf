@@ -100,6 +100,8 @@ public class ImageReportable implements ISpiderReportable{
 						}
 					}
 				}
+			}else{
+				saveImage(url);
 			}
 			return false;
 		}
@@ -123,6 +125,8 @@ public class ImageReportable implements ISpiderReportable{
 						}
 					}
 				}
+			}else{
+				saveImage(url);
 			}
 		}
 		if(url.toLowerCase().indexOf(score)!=-1) {
