@@ -134,7 +134,7 @@
 	 	     	var txt="";
 	 	     
 	 
-	 	     	txt += " <a href='"+record['url']+"' target=_blank><img src=${cxp}/"+record['path']+"85X85(crop)-"+record['filename']+"  border=0 title="+record['url']+"></a>";	
+	 	     	txt += " <a href='${cxp}/"+record['path']+record['filename']+"' target=_blank><img src=${cxp}/"+record['path']+"85X85(crop)-"+record['filename']+"  border=0 title="+record['url']+"></a>";	
 	 	  
 	 	     	return txt;
 	 	     }
