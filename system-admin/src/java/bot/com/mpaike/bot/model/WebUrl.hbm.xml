@@ -35,5 +35,11 @@
 		<property name="height" column="height" type="java.lang.Integer">
 
 		</property>
+		<property name="pattern" column="pattern" type="string">
+
+		</property>
+		<property name="rule" column="rule" type="string">
+
+		</property>
 	</class>
 </hibernate-mapping>

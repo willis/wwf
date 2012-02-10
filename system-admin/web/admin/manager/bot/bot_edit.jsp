@@ -88,7 +88,26 @@
 								dataType="Number" msg="抓取图片高度只能为数字"  value="<s:property value="webUrl.height"/>" style="width:90%" />
 						</td>
 					</tr>
-				<tr>
+					<tr>
+						<td bgcolor="#EEF2F2" class="leftAndTop">
+							抓取模式：
+						</td>
+							<td><input type="radio" name="webUrl.pattern"   <s:if test="webUrl.pattern eq \"normal\"">checked</s:if><s:elseif test="webUrl.pattern eq \"ajax\""></s:elseif><s:else>checked</s:else>  value="normal"   
+								  />普通 <input type="radio" name="webUrl.pattern"   <s:if test="webUrl.pattern eq \"ajax\"">checked</s:if><s:elseif test="webUrl.pattern eq \"normal\""></s:elseif><s:else></s:else> value="ajax"   
+								  />Ajax
+						</td>
+					</tr>
+						<tr>
+						<td bgcolor="#EEF2F2" class="leftAndTop">
+							抓取规则：
+						</td>
+						<td>
+							<textarea 
+										name="webUrl.rule" class="MultiEditBox"
+										style="width: 90%; height: 40px"><s:property value="webUrl.rule" /></textarea>
+						</td>
+					</tr>
+					<tr>
 								<td width="20%" class="lefttd">分类：</td>
 								<td><select name="webUrl.type" id="webtype"
 									dataType="Require" msg="分类不能为空" style="width: 150px"></select>
