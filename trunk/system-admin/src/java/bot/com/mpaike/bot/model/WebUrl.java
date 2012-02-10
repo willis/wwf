@@ -21,6 +21,8 @@ public class WebUrl implements java.io.Serializable{
 	private Integer width;//宽度
 	private Integer height;//高度
 	private String type;//分类
+	private String rule;//抓取规则
+	private String pattern;//模式
 	
 	public Long getId() {
 		return id;
@@ -75,6 +77,18 @@ public class WebUrl implements java.io.Serializable{
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getRule() {
+		return rule;
+	}
+	public void setRule(String rule) {
+		this.rule = rule;
+	}
+	public String getPattern() {
+		return pattern;
+	}
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
 	}
 	
 }
