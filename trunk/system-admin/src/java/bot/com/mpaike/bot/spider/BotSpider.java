@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import com.mpaike.bot.dao.IWebUrlDao;
+import com.mpaike.bot.model.WebUrl;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.util.bot.HTTPSocket;
 import com.mpaike.util.bot.IWorkloadStorable;
@@ -50,19 +50,19 @@ public class BotSpider{
 	/**
 	 * @param args
 	 */
-	public void startSpider(String url,String enName,int threadNum,String type,int weight,int height,boolean restart) {
-		if(url==null){
+	public void startSpider(WebUrl weburl,boolean restart) {
+		if(weburl==null){
 			return;
 		}
-		Spider sd = spiderMap.get(url);
+		Spider sd = spiderMap.get(weburl.getUrl());
 		if(sd!=null){
 			sd.halt();
 		}
 		 try{
-			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),enName,restart);
-			 	ImageReportable ir = new ImageReportable(url,path,enName,dataSource.getConnection(),pictureDao,type,weight,height);
-			 	Spider spider = new Spider( ir,url,new HTTPSocket(),threadNum,wl);
-			 	spiderMap.put(url, spider);
+			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),weburl.getEnName(),restart);
+			 	ImageReportable ir = new ImageReportable(weburl.getUrl(),path,weburl.getEnName(),dataSource.getConnection(),pictureDao,weburl.getType(),weburl.getWidth(),weburl.getHeight());
+			 	Spider spider = new Spider( ir,weburl.getUrl(),new HTTPSocket(),weburl.getThreadNum(),wl);
+			 	spiderMap.put(weburl.getUrl(), spider);
 			 	spider.setMaxBody(200);
 			 	spider.start();
 		    }

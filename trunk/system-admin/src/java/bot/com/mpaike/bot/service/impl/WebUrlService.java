@@ -39,7 +39,7 @@ public class WebUrlService extends BaseService implements IWebUrlService {
 		if(webUrl!=null){
 			webUrl.setStatus(WebUrl.START);
 			this.save(webUrl);
-			this.getBotSpider().startSpider(webUrl.getUrl(), webUrl.getEnName(), webUrl.getThreadNum(),webUrl.getType(),webUrl.getWidth(),webUrl.getHeight(),restart);
+			this.getBotSpider().startSpider(webUrl,restart);
 			return true;
 		}else{
 			return false;

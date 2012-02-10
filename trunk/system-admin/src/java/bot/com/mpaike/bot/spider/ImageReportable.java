@@ -3,17 +3,15 @@ package com.mpaike.bot.spider;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
-import javax.sql.DataSource;
-
-import com.mpaike.bot.dao.IWebUrlDao;
-import com.mpaike.bot.model.WebUrl;
+import com.mpaike.bot.plugins.IImgFilterPlugin;
 import com.mpaike.core.database.hibernate.SequenceManager;
 import com.mpaike.core.util.date.DateTimeUtil;
 import com.mpaike.core.util.resource.FileUtil;
@@ -41,13 +39,15 @@ public class ImageReportable implements ISpiderReportable{
 	private String enname;
 	private static final Pattern imgPatterns = Pattern.compile(".*(\\.(bmp|gif|jpeg|jpg|png|tiff))$");
 	private static final Pattern otherPatterns = Pattern.compile(".*(\\.(js|css|flv|mp4|doc|docx|mp3|mov|zip|rar|gz|tar))$");
-	private static String score;
-	private static String sourceUrl;
-	private static String type;
-	private static int weight;
-	private static int height;
+	private String score;
+	private String sourceUrl;
+	private String type;
+	private int weight;
+	private int height;
+	private Map<IImgFilterPlugin,Set<String>> pluginsMap;
+	private Set<IImgFilterPlugin> plugins;
 	
-	public ImageReportable(String url,String path,String enname,Connection connection,IPictureDao pictureDao,String type,int weight,int height) throws ClassNotFoundException, SQLException{
+	public ImageReportable(String url,String path,String enname,Connection connection,IPictureDao pictureDao,String type,int weight,int height,Map<IImgFilterPlugin,Set<String>> pluginsMap) throws ClassNotFoundException, SQLException{
 		imagesPath = path;
 		this.enname = enname;
 		if(url!=null){
@@ -73,6 +73,11 @@ public class ImageReportable implements ISpiderReportable{
 		this.type = type;
 		this.height  = height;
 		this.weight = weight;
+		this.pluginsMap = pluginsMap;
+		if(pluginsMap!=null&&!pluginsMap.isEmpty()){
+			this.plugins = pluginsMap.keySet();
+		}
+		
 	    prepSetStatus =  connection.prepareStatement("INSERT INTO bot_images(id,score,url,filename,status) VALUES (?,?,?,?,?);");
 	    prepAssign = connection.prepareStatement("SELECT count(*) as qty FROM bot_images WHERE id = ?;");
 	    
@@ -85,7 +90,17 @@ public class ImageReportable implements ISpiderReportable{
 			return false;
 		}
 		if(imgPatterns.matcher(url.toLowerCase()).matches()){
-			saveImage(url);
+			String[] urls;
+			if(plugins!=null){
+				for(IImgFilterPlugin ifp : plugins){
+					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
+					if(urls!=null&&urls.length>0){
+						for(String u : urls){
+							saveImage(u);
+						}
+					}
+				}
+			}
 			return false;
 		}
 		return true;
@@ -98,7 +113,17 @@ public class ImageReportable implements ISpiderReportable{
 			return false;
 		}
 		if(imgPatterns.matcher(url.toLowerCase()).matches()){
-			saveImage(url);
+			String[] urls;
+			if(plugins!=null){
+				for(IImgFilterPlugin ifp : plugins){
+					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
+					if(urls!=null&&urls.length>0){
+						for(String u : urls){
+							saveImage(u);
+						}
+					}
+				}
+			}
 		}
 		if(url.toLowerCase().indexOf(score)!=-1) {
 			return true;
