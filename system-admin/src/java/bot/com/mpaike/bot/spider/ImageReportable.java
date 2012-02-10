@@ -91,7 +91,7 @@ public class ImageReportable implements ISpiderReportable{
 		}
 		if(imgPatterns.matcher(url.toLowerCase()).matches()){
 			String[] urls;
-			if(plugins!=null){
+			if(plugins!=null&&!plugins.isEmpty()){
 				for(IImgFilterPlugin ifp : plugins){
 					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
 					if(urls!=null&&urls.length>0){
@@ -116,7 +116,7 @@ public class ImageReportable implements ISpiderReportable{
 		}
 		if(imgPatterns.matcher(url.toLowerCase()).matches()){
 			String[] urls;
-			if(plugins!=null){
+			if(plugins!=null&&!plugins.isEmpty()){
 				for(IImgFilterPlugin ifp : plugins){
 					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
 					if(urls!=null&&urls.length>0){
