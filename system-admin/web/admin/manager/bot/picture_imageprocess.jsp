@@ -215,6 +215,18 @@ border:1px solid #C5C4CC;
 	$(function() {
 		<s:if test="picture==null && type=='next'">$("#next").hide();</s:if>
 		<s:if test="picture==null && type=='prev'">$("#prev").hide();</s:if>
+		 <s:if test="picture.tags!=null && picture.tags!=''">
+			$(relationFrame.document).ready(function(){
+				if(navigator.appName.indexOf("Microsoft Internet Explorer")!=-1 && document.all){
+					relationFrame.ajaxAddTag("<s:property value='picture.tags' escape='false'/>"); 
+				}else{
+					relationFrame.onload = function(){        
+						relationFrame.ajaxAddTag("<s:property value='picture.tags' escape='false'/>"); 
+					};
+				}
+			});
+	
+	 </s:if>
 		$(document).unblock();
 	});
 	</script>
