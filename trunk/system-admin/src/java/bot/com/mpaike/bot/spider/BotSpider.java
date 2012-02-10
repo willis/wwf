@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import com.mpaike.bot.model.WebUrl;
+import com.mpaike.bot.plugins.ImgFilterFactory;
 import com.mpaike.image.dao.IPictureDao;
 import com.mpaike.util.bot.HTTPSocket;
 import com.mpaike.util.bot.IWorkloadStorable;
@@ -60,7 +61,7 @@ public class BotSpider{
 		}
 		 try{
 			 	IWorkloadStorable wl = new SpiderSQLWorkload(dataSource.getConnection(),weburl.getEnName(),restart);
-			 	ImageReportable ir = new ImageReportable(weburl.getUrl(),path,weburl.getEnName(),dataSource.getConnection(),pictureDao,weburl.getType(),weburl.getWidth(),weburl.getHeight());
+			 	ImageReportable ir = new ImageReportable(weburl.getUrl(),path,weburl.getEnName(),dataSource.getConnection(),pictureDao,weburl.getType(),weburl.getWidth(),weburl.getHeight(),ImgFilterFactory.ruleConvert(weburl.getRule()));
 			 	Spider spider = new Spider( ir,weburl.getUrl(),new HTTPSocket(),weburl.getThreadNum(),wl);
 			 	spiderMap.put(weburl.getUrl(), spider);
 			 	spider.setMaxBody(200);
