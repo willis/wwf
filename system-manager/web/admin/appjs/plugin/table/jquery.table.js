@@ -37,15 +37,14 @@ var MaxTable =  function(){
 MaxTable.prototype={
 	initialize:function(opts){
 		this.opts = $.extend({
-				id:'id',
-				showPageInfo:true
+				id:'id'
 			}, opts || {});
 		this._s  = $("#"+this.opts.table)[0];
 		this.loading = $("#"+this.opts.loading);
 		if(this.opts.isSort == false){
 			this.sortInfo = this.defaultSortInfo;
 		}
-		this.showPageInfo = this.opts.showPageInfo;
+		this.showPageInfo = (this.opts.showPageInfo==undefined)?true:this.opts.showPageInfo;
 		this.complete = this.opts.complete;
 		this.table =this.opts.table;
 	}
@@ -85,7 +84,6 @@ MaxTable.prototype={
 						tdObj.colSpan = opts.headerColumns.length;
 						tdObj.innerHTML = "没有记录！";
 					} else {
-						var dataLength = data.length;
 						for ( var i = 0; i < data.length; i++) {
 							var trObj = _s.insertRow(_s.rows.length);
 						
@@ -102,7 +100,7 @@ MaxTable.prototype={
 											.renderer(
 													data[i][opts.id],
 													data[i][opts.headerColumns[j].id],
-													data[i]);
+													data[i],trObj.id);
 
 								} else {
 									tdObj.innerHTML = data[i][opts.headerColumns[j].id];
@@ -111,7 +109,7 @@ MaxTable.prototype={
 							
 						}
 
-						
+						if(_parent.showPageInfo){
 						if (_parent.page.totalCount != 0) {
 						
 							var trObj = _s.insertRow(_s.rows.length);
@@ -157,7 +155,7 @@ MaxTable.prototype={
 									.bind(
 											"click",
 											function() {
-												_parent.page.pageNo = _parent.page.totapageNom;
+												_parent.page.pageNo = _parent.page.totalPage;
 												_parent.query();
 											});
 							$("#Pg", tdObj).bind("blur", function() {
@@ -174,6 +172,7 @@ MaxTable.prototype={
 								_parent.query();
 							});
 						}
+					}
 					}
 					if(_parent.loading){
 						_parent.loading.unblock();
@@ -222,6 +221,7 @@ MaxTable.prototype={
 		}
 	  ,
  	  createPage:function (pageInfo){
+ 	
  			var text = '';
  			text += '每页显示<input id="pageSize"   value="'
  					+ pageInfo.pageSize
@@ -266,7 +266,7 @@ MaxTable.prototype={
 		return jsonData;
 	},
 	query:function(){
-		
+	
 		this.onLoad(this.searchParameters);
 	},
 	initSortHead:function(opts){
