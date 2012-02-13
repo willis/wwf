@@ -131,7 +131,9 @@ public class UrlIO {
         //建立链接
         url = new URL(destUrl);
         httpUrl = (HttpURLConnection) url.openConnection();
-        httpUrl.setReadTimeout(10000);
+        httpUrl.setConnectTimeout(3000);
+        httpUrl.setReadTimeout(3000);
+        httpUrl.setRequestProperty("referrer", destUrl);
         //连接指定的资源
         httpUrl.connect();
 
