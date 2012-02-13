@@ -229,10 +229,10 @@ public class ImageReportable implements ISpiderReportable{
 		        }
 		      } 
 	    } catch ( SQLException e ) {
-	    		Log.logException("SQL Error: ",e );
+	    		System.out.println("SQL Error: "+e.getMessage() );
 	    } catch (IOException e) {
-	    		Log.logException("ImageIO Error: ("+url+")",e );
-			e.printStackTrace();
+	    	System.out.println("ImageIO Error: ("+url+")"+e.getMessage() );
+			//e.printStackTrace();
 		} finally {
 	      try {
 	        if ( rs!=null )
