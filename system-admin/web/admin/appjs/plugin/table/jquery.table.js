@@ -100,7 +100,7 @@ MaxTable.prototype={
 											.renderer(
 													data[i][opts.id],
 													data[i][opts.headerColumns[j].id],
-													data[i]);
+													data[i],trObj.id);
 
 								} else {
 									tdObj.innerHTML = data[i][opts.headerColumns[j].id];
