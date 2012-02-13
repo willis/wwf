@@ -17,16 +17,16 @@ public class ThumbnailFilterPlugin implements IImgFilterPlugin{
 
 	@Override
 	public String[] filterUrl(String url,Set<String> regexs) {
-		List<String> list = EMPTY_LIST;
+		List<String> list =  new ArrayList<String>();
+		list.add(url);
 		if(regexs!=null){
-			list = new ArrayList<String>();
 			for(String key : regexs){
 				if(url.contains(key)){
 					list.add(url.replaceAll(key, ""));
 				}
 			}
 		}
-		return (String[])list.toArray();
+		return (String[])list.toArray(new String[0]);
 	}
 
 	@Override

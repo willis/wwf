@@ -1,6 +1,10 @@
 package com.mpaike.servlet;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -45,6 +49,48 @@ public class InitServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		
+		String configFile=this.getClass().getResource("/init.properties").getFile();
+		FileInputStream fis = null;
+		InputStreamReader isr = null;
+		Properties p = new Properties();
+		try {
+			fis = new FileInputStream(configFile);
+			isr = new InputStreamReader(fis, "UTF-8");
+			p.load(isr);
+			fis.close();
+			isr.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(fis!=null){
+				try {
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(isr!=null){
+				try {
+					isr.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		//初始化爬取资源存放路径
+		String botspider_path = p.getProperty("botspider.path");
+		if(botspider_path!=null){
+			try{
+				new File(botspider_path).mkdirs();
+			}catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+		}
+		
+		
 		WebApplicationContext wac = WebApplicationContextUtils
 				.getRequiredWebApplicationContext(config.getServletContext());
 		ApplictionContext.getInstance().setAppContext(wac);
@@ -54,10 +100,6 @@ public class InitServlet extends HttpServlet {
 		
 		System.out.println(IndexEngineBuild.getIndexingSystem());
 		
-		System.out.println("＊＊＊＊＊＊重建基因开始＊＊＊＊＊");
-		IGeneService db = (IGeneService)wac.getBean("geneService");
-		//db.tagSqlToRedis();
-		System.out.println("＊＊＊＊＊＊重建基因完成＊＊＊＊＊");
 		
 	}
 

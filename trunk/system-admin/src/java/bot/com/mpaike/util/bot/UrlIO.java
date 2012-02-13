@@ -131,8 +131,10 @@ public class UrlIO {
         //建立链接
         url = new URL(destUrl);
         httpUrl = (HttpURLConnection) url.openConnection();
+        httpUrl.setReadTimeout(10000);
         //连接指定的资源
         httpUrl.connect();
+
         //获取网络输入流
         bis = new BufferedInputStream(httpUrl.getInputStream());
         //读取图像到内存
