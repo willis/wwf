@@ -118,7 +118,7 @@ public class ImageReportable implements ISpiderReportable{
 			String[] urls;
 			if(plugins!=null&&!plugins.isEmpty()){
 				for(IImgFilterPlugin ifp : plugins){
-					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
+ 					urls = ifp.filterUrl(url, pluginsMap.get(ifp));
 					if(urls!=null&&urls.length>0){
 						for(String u : urls){
 							saveImage(u);
@@ -231,7 +231,7 @@ public class ImageReportable implements ISpiderReportable{
 	    } catch ( SQLException e ) {
 	    		Log.logException("SQL Error: ",e );
 	    } catch (IOException e) {
-	    		Log.logException("ImageIO Error: ",e );
+	    		Log.logException("ImageIO Error: ("+url+")",e );
 			e.printStackTrace();
 		} finally {
 	      try {
