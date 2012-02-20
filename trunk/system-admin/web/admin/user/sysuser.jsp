@@ -150,11 +150,12 @@
 	     	myTable1.page.totalRowNum = 0;
 	    	myTable1.onLoad({"sysUser.username":$("#username").val(),"sysUser.truename":$("#truename").val(),"sysUser.status":$("#status").val()});
 	     } 	
-	     function editRenderer(idValue,value,record){
+	     function editRenderer(idValue,value,record,trId){
 	    	//record["id"]
 	     	var txt="";
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysUser!getSysUserInfo.action?id="+idValue+"\",\"修改\",300,400)'>编辑</a>"
 	     	txt+= " <a href='javascript:' onclick='window.parent.showWindow(\"${cxp}/user/sysuser_role.jsp?id="+idValue+"&method=get\",\"角色配置\",400,600)'>角色配置</a>"
+	     	//alert($("#"+trId).html());
 	     	return txt;
 	     }	 
 	      function regtimeRenderer(idValue,value){
@@ -250,7 +251,8 @@ function updateSelect(){
 
 }
 
-	 
+
+
 		 
 		</script>	
 	
