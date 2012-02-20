@@ -149,6 +149,16 @@
 		<servlet-name>XFireServlet</servlet-name>
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>MydailyServlet</servlet-name>
+		<servlet-class>
+			com.mpaike.client.servlet.MydailyServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MydailyServlet</servlet-name>
+		<url-pattern>/mydaily</url-pattern>
+	</servlet-mapping>
 	<!--xfire-->
 
 	<!-- 用户过滤器 -->
