@@ -86,4 +86,12 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 		
 		return this.getSysUserDao().listCheckRolesToGrid(sysuser, p);
 	}
+
+
+
+	@Override
+	public List<SysUser> findList() {
+		
+		return this.getSysUserDao().findAll();
+	}
 }

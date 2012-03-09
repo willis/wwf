@@ -23,6 +23,8 @@ public interface SysUserService {
 	public void changePassword(Long[] id, String password);
 
 	public List<SysUser> find(SysUser sysuser,Pagination p, OrderBy ob);
+	
+	public List<SysUser> findList();
 
 	public List<SysRole> listNotCheckRolesToGrid(SysUser sysuser, Pagination p);
 
