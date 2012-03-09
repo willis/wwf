@@ -1,6 +1,10 @@
 package com.mpaike.user.action;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.mpaike.user.model.SysRole;
@@ -13,6 +17,7 @@ import com.mpaike.util.MyBeanUtils;
 import com.mpaike.util.ParamHelper;
 import com.mpaike.util.app.ApplictionContext;
 import com.mpaike.util.app.BaseAction;
+import com.mpaike.util.offices.ExcelUtil;
 
 public class SysUserAction extends BaseAction  {
 	public SysUserService getSysUserService() {
@@ -149,7 +154,35 @@ public class SysUserAction extends BaseAction  {
 		getSysUserService().changePassword(longValue, password);
 		super.printSuccessJson("修改密码成功！");
 	}
-
+	public void excel(){
+		response.setContentType("application/vnd.ms-excel;charset=utf-8");// // 指定文件的保存类型。
+		response.setCharacterEncoding("utf-8");
+        response.addHeader("Content-Disposition","attachment;filename=test.xls");  
+        
+	
+		try {
+			OutputStream out = response.getOutputStream();  
+			List<String> title = new ArrayList<String>();
+			title.add("ID");
+			title.add("用户名");
+			title.add("地址");
+            ExcelUtil.write("用户表", out, title, getPersonList());  
+            out.close();  
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
+	
+	}
+	public static List<List> getPersonList() {
+		List<List> excelList = new ArrayList<List>();
+		List<String> strlist = new ArrayList<String>();
+		strlist.add("00001");
+		strlist.add("科研室主任");
+		strlist.add("海淀区");
+		excelList.add(strlist);
+		return excelList;
+	}
 	public SysUser getSysUser() {
 		return sysUser;
 	}

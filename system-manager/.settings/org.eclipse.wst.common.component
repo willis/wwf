@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="system-admin">
+    <wb-module deploy-name="system-manager">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/user"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/util"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/dictionary"/>
@@ -15,7 +15,7 @@
 <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/affix"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/annex"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/java/workflow"/>
-        <property name="context-root" value="system-admin"/>
-        <property name="java-output-path" value="/system-admin/web/admin/WEB-INF/classes"/>
+        <property name="context-root" value="system-manager"/>
+        <property name="java-output-path" value="/system-manager/web/admin/WEB-INF/classes"/>
     </wb-module>
 </project-modules>

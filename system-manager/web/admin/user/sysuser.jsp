@@ -47,6 +47,7 @@
 					<li><a class="modify" href="javascript:" onclick="removeSelect(2)">冻结</a></li>
 					<li><a class="modify" href="javascript:" onclick="removeSelect(0)">恢复正常</a></li>
 					<li><a class="modify" href="javascript:" onclick="updateSelect()">修改密码</a></li>
+					<li><a class="modify" href="sysUser!excel.action">导出</a></li>
 					<li><a class="find" href="javascript:void($('#find_01').toggle())">查询</a></li>
 						
 						</ul>
