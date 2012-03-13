@@ -6,8 +6,9 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.PayloadAttribute;
 import org.apache.lucene.index.Payload;
 
 import com.mpaike.util.ByteUtil;
@@ -19,44 +20,26 @@ public class MatchChineseTokenizer extends Tokenizer
     private int listIndex = 0;
     private long dateTime=0;
     private int type = 0;
-
-    public MatchChineseTokenizer(Reader reader)
-    {
-        super(reader);
-        try
-        {
-            this.process();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-
-    public Token next() throws IOException
-    {
-    	Token token = null;
-        if (this.listIndex >= this.list.size()){
-
-        }else{
-            String word = this.list.get(listIndex++);
-            token = new Token();
-            token.setTermBuffer(word);
-            if(type==0){
-            	token.setPayload(new Payload(ByteUtil.long2bytes(dateTime)));
-            }
-        }
-        //System.out.println("next Token:"+listIndex+" ="+token);
-        return token;
-    }
     
+    private CharTermAttribute termAtt;
+    private PayloadAttribute payloadAtt;
     
 
+    public MatchChineseTokenizer(Reader input)
+    {
+        super(input);
+        termAtt = addAttribute(CharTermAttribute.class);
+        payloadAtt = addAttribute(PayloadAttribute.class);
+        try {
+			process();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     private void process() throws IOException
     {
-
         BufferedReader in = new BufferedReader(this.input);
 
         String line = null;
@@ -86,10 +69,11 @@ public class MatchChineseTokenizer extends Tokenizer
         for(String s : strs){
         	value = s.split("=");
         	if(value.length==2){
-        		rate = Math.round(Float.valueOf(value[1])*10);
-        		for(int i=0;i<rate;i++){
-        			this.list.add(value[0]);
-        		}
+//        		rate = Math.round(Float.valueOf(value[1])*10);
+//        		for(int i=0;i<rate;i++){
+//        			this.list.add(value[0]);
+//        		}
+        		this.list.add(value[0]);
         	}else{
         		this.list.add(value[0]);
         	}
@@ -99,8 +83,24 @@ public class MatchChineseTokenizer extends Tokenizer
 
 	@Override
 	public boolean incrementToken() throws IOException {
-		// TODO Auto-generated method stub
-		return false;
+		this.clearAttributes();
+		final char[] buffer = termAtt.buffer();
+	    final int length = termAtt.length(); 
+        if (this.listIndex >= this.list.size()){
+        	return false;
+        }else{
+            String word = this.list.get(listIndex++);
+            termAtt.append(word);
+            if(type==0){
+            	 payloadAtt.setPayload(new Payload(ByteUtil.long2bytes(dateTime)));
+            }
+        }
+        return true;
 	}
-
+	
+	public void reset() throws IOException {
+		super.reset();
+		listIndex=0;
+	}
+	
 }
