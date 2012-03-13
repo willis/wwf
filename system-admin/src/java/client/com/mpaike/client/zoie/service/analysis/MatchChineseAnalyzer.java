@@ -6,6 +6,8 @@ import java.util.Set;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.WhitespaceTokenizer;
+import org.apache.lucene.util.Version;
 
 
 public class MatchChineseAnalyzer extends Analyzer
@@ -38,7 +40,7 @@ public class MatchChineseAnalyzer extends Analyzer
     @Override
     public TokenStream tokenStream(String fieldName, Reader reader)
     {
-        return new StopFilter(false,new MatchChineseTokenizer(reader), this.stopTable);
+        return new MatchChineseTokenizer(reader);
     }
 
 }
