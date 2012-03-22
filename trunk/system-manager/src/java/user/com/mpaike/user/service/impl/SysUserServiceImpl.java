@@ -18,13 +18,12 @@ public class SysUserServiceImpl extends BaseService implements SysUserService {
 	public boolean save(SysUser sysUser) {
 		
 		if ((sysUser.getId() == null)
-				&& (this.getSysUserDao().countByProperty("username", new Object[] { sysUser.getUsername() }) > 0)) {
+				&& (this.getSysUserDao().findByProperty("username", sysUser.getUsername()).size()>0)) {
 			return false;
 		} else {
 			this.getSysUserDao().save(sysUser);
 			return true;
 		}
-		
 	}
 
 
