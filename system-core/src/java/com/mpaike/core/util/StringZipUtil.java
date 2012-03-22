@@ -30,7 +30,7 @@ public class StringZipUtil {
 	    GZIPInputStream gunzip = new GZIPInputStream(in);  
 	    byte[] buffer = new byte[256];  
 	    int n;  
-	    while ((n = gunzip.read(buffer)) >= 0) {  
+	    while ((n = gunzip.read(buffer)) != -1) {  
 	      out.write(buffer, 0, n);  
 	    }    
 	    return out.toString("UTF-8");  
