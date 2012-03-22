@@ -33,7 +33,7 @@ public class StringZipUtil {
 	    while ((n = gunzip.read(buffer)) >= 0) {  
 	      out.write(buffer, 0, n);  
 	    }    
-	    return out.toString();  
+	    return out.toString("UTF-8");  
 	  }  
 	  
 	  // 测试方法  
