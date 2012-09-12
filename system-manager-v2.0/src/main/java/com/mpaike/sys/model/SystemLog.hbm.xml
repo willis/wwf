@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.mpaike.sys.model.SystemLog" table="system_log" >
+        <id name="id" type="java.lang.Long" column="id">
+            <generator class="assigned" />
+        </id>
+        <property name="logtype" type="java.lang.Long">
+            <column name="logtype" />
+        </property>
+        <property name="logtitle" type="java.lang.String">
+            <column name="logtitle" />
+        </property>
+        <property name="logcontent" type="java.lang.String">
+            <column name="logcontent" />
+        </property>
+        <property name="createat" type="java.util.Date">
+            <column name="createat" />
+        </property>
+        <property name="createby" type="java.lang.Long">
+            <column name="createby" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="username"  />
+        </property>
+        <property name="ip" type="java.lang.String">
+            <column name="ip"  />
+        </property>
+    </class>
+</hibernate-mapping>
