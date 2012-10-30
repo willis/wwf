@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: asm:asm-xml:20041228.180559">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/20041228.180559/asm-xml-20041228.180559.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/20041228.180559/asm-xml-20041228.180559-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/asm/asm-xml/20041228.180559/asm-xml-20041228.180559-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
