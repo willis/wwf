@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 系统dao -->
+	<bean name="sysUserDao" class="com.mpaike.user.dao.impl.SysUserDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysPopedomDao" class="com.mpaike.user.dao.impl.SysPopedomDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysLogDao" class="com.mpaike.sys.dao.impl.SystemLogDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysRoleDao" class="com.mpaike.user.dao.impl.SysRoleDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysMenuDao" class="com.mpaike.user.dao.impl.SysMenuDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sysGroupDao" class="com.mpaike.user.dao.impl.SysGroupDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="annexDao" class="com.mpaike.upload.dao.impl.AnnexDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 系统dao -->
+	
+	<bean name="baseService" class="com.mpaike.sys.service.impl.BaseService"
+		abstract="true">
+		<!-- 系统dao -->
+		<property name="sysUserDao" ref="sysUserDao"/>
+		<property name="sysPopedomDao" ref="sysPopedomDao"/>
+		<property name="sysLogDao" ref="sysLogDao"/>
+		<property name="sysRoleDao" ref="sysRoleDao"/>
+		<property name="sysMenuDao" ref="sysMenuDao"/>
+		<property name="sysGroupDao" ref="sysGroupDao"/>
+		<property name="annexDao" ref="annexDao"/>
+	</bean>
+	
+
+
+</beans>

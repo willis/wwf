@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.mpaike.user.model.SysUserAndSysGroupToSysRole"
+		table="sysuserandgrouptorole">
+		<id name="id" type="java.lang.Long" column="id">
+			<generator class="assigned" />
+		</id>
+
+
+
+		<discriminator column="mark" type="java.lang.String" />
+
+
+		<many-to-one column="sysroleid" name="sysRole"
+			class="com.mpaike.user.model.SysRole" />
+
+
+
+		<subclass name="com.mpaike.user.model.SysUserToSysRole" discriminator-value="U">
+			<many-to-one column="sysuserid" name="sysUser"
+				class="com.mpaike.user.model.SysUser" />
+
+
+		</subclass>
+
+
+		<subclass name="com.mpaike.user.model.SysGroupToSysRole" discriminator-value="G">
+			<many-to-one column="sysgroupid" name="sysGroup"
+				class="com.mpaike.user.model.SysGroup" />
+		</subclass>
+
+	</class>
+</hibernate-mapping>
