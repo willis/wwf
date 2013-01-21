@@ -17,7 +17,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
 	protected abstract BaseDao getSelfDao();
 	
 	public List findAllPagination(Pagination p,OrderBy... orders){
-		return getSelfDao().findAllPagination(p, orders);
+		return getSelfDao().findAllPagination(p, orders).list();
 	}
 
 	
