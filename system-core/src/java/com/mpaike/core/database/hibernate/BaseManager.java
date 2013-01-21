@@ -25,49 +25,6 @@ public interface BaseManager<T extends Serializable> {
 	public List<T> findAll();
 
 	/**
-	 * 通过示例对象查找对象列表
-	 * 
-	 * @param eg
-	 *            示例对象
-	 * @param anyWhere
-	 *            是否模糊查询。默认false。
-	 * @param conds
-	 *            排序及is null。分别为OrderBy和String。
-	 * @param exclude
-	 *            排除属性
-	 * @return
-	 */
-	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
-			String... exclude);
-
-	public List<T> findByEgList(T eg, boolean anyWhere, String... exclude);
-
-	public List<T> findByEgList(T eg, Condition[] conds, String... exclude);
-
-	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
-			int firstResult, int maxResult, String... exclude);
-
-	public List<T> findByEgList(T eg, boolean anyWhere, int firstResult,
-			int maxResult, String... exclude);
-
-	public List<T> findByEgList(T eg, Condition[] conds, int firstResult,
-			int maxResult, String... exclude);
-
-	public List<T> findByEgList(T eg, String... exclude);
-
-	public Pagination findByEg(T eg, boolean anyWhere, Condition[] conds,
-			int pageNo, int pageSize, String... exclude);
-
-	public Pagination findByEg(T eg, boolean anyWhere, int pageNo,
-			int pageSize, String... exclude);
-
-	public Pagination findByEg(T eg, Condition[] conds, int pageNo,
-			int pageSize, String... exclude);
-
-	public Pagination findByEg(T eg, int pageNo, int pageSize,
-			String... exclude);
-
-	/**
 	 * 根据Updater更新对象
 	 * 
 	 * @param updater
@@ -97,7 +54,7 @@ public interface BaseManager<T extends Serializable> {
 	 * @param id
 	 *            记录ID
 	 */
-	public T deleteById(Serializable id);
+	public void deleteById(Serializable id);
 
 	/**
 	 * 根据ID数组删除记录，当发生异常时，操作终止并回滚
@@ -106,7 +63,7 @@ public interface BaseManager<T extends Serializable> {
 	 *            记录ID数组
 	 * @return 删除的对象
 	 */
-	public List<T> deleteById(Serializable[] ids);
+	public void deleteById(Serializable[] ids);
 
 	/**
 	 * 保存并刷新对象，避免many-to-one属性不完整

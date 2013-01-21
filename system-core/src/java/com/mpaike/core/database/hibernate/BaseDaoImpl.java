@@ -154,11 +154,10 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		getSession().delete(entity);
 	}
 
-	public T deleteById(Serializable id) {
+	public void deleteById(Serializable id) {
 		Assert.notNull(id);
 		T entity = load(id);
 		getSession().delete(entity);
-		return entity;
 	}
 
 	public T load(Serializable id) {
@@ -206,9 +205,10 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 				.asOrders(orders));
 	}
 
-	public List<T> findAllPagination(Pagination p, OrderBy... orders) {
+	public Pagination findAllPagination(Pagination p, OrderBy... orders) {
 		Criteria crit = createCriteria();
-		return findByCriteria(crit, p, null, OrderBy.asOrders(orders)).list();
+		findByCriteria(crit, p, null, OrderBy.asOrders(orders)).list();
+		return p;
 	}
 	
 	public List<T> findAllRecordInfo(RecordInfo recordInfo, OrderBy... orders) {
@@ -385,7 +385,6 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 		return crit.list();
 	}
 	
-	@Override
 	public List<T> findByEgList(T eg, boolean anyWhere, Pagination p,
 			Condition[] conds, String... exclude) {
 		Order[] orderArr = null;
@@ -768,6 +767,25 @@ public  class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
                 + method.getName() + " - " + e.getMessage());
             
         }
+    }
+
+    /* (non-Javadoc)
+     * @see com.mpaike.core.database.hibernate.BaseDao#findByList(java.lang.String, com.mpaike.core.util.page.Pagination, java.lang.Object[])
+     */
+    @Override
+    public Pagination findByList(String hql, Pagination p, Object... values) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see com.mpaike.core.database.hibernate.BaseDao#findByList(java.lang.String, java.lang.Object[], com.mpaike.core.util.page.Pagination, com.mpaike.core.database.hibernate.OrderBy[])
+     */
+    @Override
+    public Pagination findByList(String hql, Object[] values, Pagination p,
+            OrderBy... orders) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 
