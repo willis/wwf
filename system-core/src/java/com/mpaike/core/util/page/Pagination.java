@@ -2,18 +2,10 @@ package com.mpaike.core.util.page;
 
 import java.util.List;
 
-import net.sf.json.JSONSerializer;
-import net.sf.json.JsonConfig;
-
 @SuppressWarnings("serial")
 public class Pagination extends SimplePage implements java.io.Serializable,
 		Paginable {
 	
-	private static JsonConfig jsonConfig = new JsonConfig();
-	static{
-		jsonConfig.setExcludes(new String[]{"list"});
-	}
-
 	public Pagination() {
 	}
 	
@@ -51,7 +43,4 @@ public class Pagination extends SimplePage implements java.io.Serializable,
 		this.list = list;
 	}
 	
-	public String toString(){
-		return JSONSerializer.toJSON(this, jsonConfig).toString();
-	}
 }
