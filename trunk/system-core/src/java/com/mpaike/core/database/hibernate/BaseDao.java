@@ -39,29 +39,13 @@ public interface BaseDao<T extends Serializable> {
 
 	public List<T> findAll(OrderBy... orders);
 	
-	public List<T> findAllPagination(Pagination p, OrderBy... orders);
+	public Pagination findAllPagination(Pagination p, OrderBy... orders);
 	
-	/**
-	 * 通过示例对象查找对象列表
-	 * 
-	 * @param eg
-	 *            示例对象
-	 * @param anyWhere
-	 *            是否模糊查询，默认false。
-	 * @param conds
-	 *            排序和is null的字段。分别为OrderBy和String。
-	 * @param exclude
-	 *            需要排除的属性
-	 * @return 对象列表
-	 */
-	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
-			String... exclude);
 
-	public Pagination findByEg(T exampleInstance, boolean anyWhere,
-			Condition[] conds, int pageNo, int pageSize, String... exclude);
+	public Pagination findByList(String hql,Pagination p, Object... values);
+
 	
-	public List<T> findByEgList(T eg, boolean anyWhere, Pagination p, Condition[] conds,
-			String... exclude);
+	public Pagination findByList(String hql,Object[] values,Pagination p,OrderBy... orders);
 	
 
 	/**
@@ -140,14 +124,9 @@ public interface BaseDao<T extends Serializable> {
 	 *            实体对象
 	 */
 	public void delete(Object entity);
+	
+	public void deleteById(Serializable id);
 
-	/**
-	 * 根据ID删除记录
-	 * 
-	 * @param id
-	 *            记录ID
-	 */
-	public T deleteById(Serializable id);
 
 	/**
 	 * 刷新对象

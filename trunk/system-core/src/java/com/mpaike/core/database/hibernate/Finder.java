@@ -14,6 +14,31 @@ import org.hibernate.type.Type;
  * 
  */
 public class Finder {
+    
+    private StringBuilder hqlBuilder;
+
+    private List<String> params;
+    private List<Object> values;
+    private List<Type> types;
+
+    private List<String> paramsList;
+    private List<Collection<Object>> valuesList;
+    private List<Type> typesList;
+
+    private List<String> paramsArray;
+    private List<Object[]> valuesArray;
+    private List<Type> typesArray;
+
+    private int firstResult = 0;
+
+    private int maxResults = 0;
+
+    public static final String ROW_COUNT = "select count(*) ";
+    public static final String FROM = "from";
+    public static final String DISTINCT = "distinct";
+    public static final String HQL_FETCH = "fetch";
+    public static final String ORDER_BY = "order";
+    
 	protected Finder() {
 	}
 
@@ -33,6 +58,14 @@ public class Finder {
 		Finder finder = new Finder(hql,orderBys);
 		return finder;
 	}
+	
+   public static Finder create(String name,String property,Object value,OrderBy[] orderBys) {
+       StringBuilder hql = new StringBuilder();
+       hql.append("select * from ").append(name).append(" where ").append(property).append("=:").append(property);
+        Finder finder = new Finder(hql.toString(),orderBys);
+        finder.setParam(property, value);
+        return finder;
+    }
 
 	public Finder append(String hql) {
 		hqlBuilder.append(hql);
@@ -297,29 +330,7 @@ public class Finder {
 		return typesArray;
 	}
 
-	private StringBuilder hqlBuilder;
 
-	private List<String> params;
-	private List<Object> values;
-	private List<Type> types;
-
-	private List<String> paramsList;
-	private List<Collection<Object>> valuesList;
-	private List<Type> typesList;
-
-	private List<String> paramsArray;
-	private List<Object[]> valuesArray;
-	private List<Type> typesArray;
-
-	private int firstResult = 0;
-
-	private int maxResults = 0;
-
-	public static final String ROW_COUNT = "select count(*) ";
-	public static final String FROM = "from";
-	public static final String DISTINCT = "distinct";
-	public static final String HQL_FETCH = "fetch";
-	public static final String ORDER_BY = "order";
 
 	public static void main(String[] args) {
 		Finder find = Finder

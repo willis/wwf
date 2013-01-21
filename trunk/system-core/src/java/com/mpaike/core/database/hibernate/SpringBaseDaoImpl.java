@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
@@ -27,6 +29,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.metadata.ClassMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.util.Assert;
 
@@ -112,9 +115,7 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 		return this.getHibernateTemplate().find(Finder.create(selectAllSql, orders).getOrigHql());
 	}
 
-
-	@Override
-	public List<T> findAllPagination(Pagination p, OrderBy... orders) {
+	public Pagination findAllPagination(Pagination p, OrderBy... orders) {
 		Finder finder = Finder.create(selectAllSql, orders);
 		int totalCount = countQueryResult(finder);
 		p.setTotalCount(totalCount);
@@ -123,10 +124,9 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 		query.setMaxResults(p.getPageSize());
 		List list = query.list();
 		p.setList(list);
-		return list;
+		return p;
 	}
 
-	@Override
 	public List<T> findByEgList(T eg, boolean anyWhere, Condition[] conds,
 			String... exclude) {
 		Criteria crit = getCritByEg(eg, anyWhere, conds, exclude);
@@ -156,7 +156,6 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 		return findByCriteria(crit, p, null, orderArr).list();
 	}
 
-	@Override
 	public Pagination findByEg(T eg, boolean anyWhere,
 			Condition[] conds, int pageNo, int pageSize, String... exclude) {
 		Order[] orderArr = null;
@@ -278,12 +277,10 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 		this.getHibernateTemplate().delete(entity);
 	}
 
-	@Override
-	public T deleteById(Serializable id) {
+	public void deleteById(Serializable id) {
 		Assert.notNull(id);
 		T entity = load(id);
 		getSession().delete(entity);
-		return entity;
 	}
 
 	@Override
@@ -536,4 +533,42 @@ public class SpringBaseDaoImpl<T extends Serializable> extends HibernateDaoSuppo
 			}
 		}
 	}
+
+    /* (non-Javadoc)
+     * @see com.mpaike.core.database.hibernate.BaseDao#findByList(java.lang.String, com.mpaike.core.util.page.Pagination, java.lang.Object[])
+     */
+    @Override
+    public Pagination findByList(String hql, Pagination p, Object... values) {
+        findByList(hql,values,p,null); 
+        return p;
+    }
+
+    /* (non-Javadoc)
+     * @see com.mpaike.core.database.hibernate.BaseDao#findByList(java.lang.String, java.lang.Object[], com.mpaike.core.util.page.Pagination, com.mpaike.core.database.hibernate.OrderBy[])
+     */
+    @Override
+    public Pagination findByList(String hql, final Object[] values,final Pagination p,
+            OrderBy... orders) {
+        final Finder finder = Finder.create(hql, orders);
+        int totalCount = countQueryResult(finder);
+        p.setTotalCount(totalCount);
+          List<T> l = this.getHibernateTemplate().executeFind(new HibernateCallback(){
+            public Object doInHibernate(org.hibernate.Session session)
+                    throws HibernateException, SQLException {
+                Query query = session.createQuery(finder.getOrigHql());
+                if(values!=null){
+                    for(int i=0,n=values.length;i<n;i++){
+                        query.setParameter(i, values[i]);
+                    }
+                }
+                query.setFirstResult(p.getFirstResult());
+                query.setMaxResults(p.getPageSize());
+                List list = query.list();
+                p.setList(list);
+                return list;
+            }
+              
+          });
+        return p;
+    }
 }

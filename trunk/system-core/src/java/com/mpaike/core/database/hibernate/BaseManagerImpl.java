@@ -38,75 +38,6 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 		return dao.findAll();
 	}
 
-	/**
-	 * 实例查找返回列表
-	 */
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, boolean anywhere, Condition[] conds,
-			String... exclude) {
-		return dao.findByEgList(eg, anywhere, conds, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, boolean anywhere, String... exclude) {
-		return this.findByEgList(eg, anywhere, null, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, Condition[] conds, String... exclude) {
-		return this.findByEgList(eg, false, conds, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, boolean anywhere, Condition[] conds,
-			int firstResult, int maxResult, String... exclude) {
-		return dao.findByEg(eg, anywhere, conds, firstResult, maxResult,exclude).list();
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, boolean anywhere, int firstResult,
-			int maxResult, String... exclude) {
-		return this.findByEgList(eg, anywhere, null, firstResult, maxResult,
-				exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, Condition[] conds, int firstResult,
-			int maxResult, String... exclude) {
-		return this.findByEgList(eg, false, conds, firstResult, maxResult,
-				exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public List<T> findByEgList(T eg, String... exclude) {
-		return this.findByEgList(eg, false, null, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public Pagination findByEg(T eg, boolean anywhere, Condition[] conds,
-			int pageNo, int pageSize, String... exclude) {
-		return dao.findByEg(eg, anywhere, conds, pageNo, pageSize, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public Pagination findByEg(T eg, boolean anywhere, int pageNo,
-			int pageSize, String... exclude) {
-		return this.findByEg(eg, anywhere, null, pageNo, pageSize, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public Pagination findByEg(T eg, Condition[] conds, int pageNo,
-			int pageSize, String... exclude) {
-		return this.findByEg(eg, false, conds, pageNo, pageSize, exclude);
-	}
-
-	@Transactional(readOnly = true)
-	public Pagination findByEg(T eg, int pageNo, int pageSize,
-			String... exclude) {
-		return this.findByEg(eg, false, null, pageNo, pageSize, exclude);
-	}
-
 	public Object updateByUpdater(Updater updater) {
 		return dao.updateByUpdater(updater);
 	}
@@ -141,24 +72,18 @@ public class BaseManagerImpl<T extends Serializable> implements BaseManager<T> {
 		return getDao().merge(o);
 	}
 
-	public T deleteById(Serializable id) {
+	public void deleteById(Serializable id) {
 		if (id == null) {
-			return null;
+			return;
 		}
-		return dao.deleteById(id);
+		dao.deleteById(id);
 	}
 
-	public List<T> deleteById(Serializable[] ids) {
-		List<T> dts = new ArrayList<T>();
-		T del = null;
+	public void deleteById(Serializable[] ids) {
 		if (ids != null && ids.length > 0) {
 			for (Serializable id : ids) {
-				del = deleteById(id);
-				if (del != null) {
-					dts.add(del);
-				}
+				deleteById(id);
 			}
 		}
-		return dts;
 	}
 }
