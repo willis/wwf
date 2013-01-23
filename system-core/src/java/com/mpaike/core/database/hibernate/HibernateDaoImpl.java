@@ -7,7 +7,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,19 +14,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Example;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.metadata.ClassMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +25,6 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.util.Assert;
 
-import com.mpaike.core.database.hibernate.BaseDaoImpl.NotBlankPropertySelector;
 import com.mpaike.core.exception.WWFException;
 import com.mpaike.core.util.MyBeanUtils;
 import com.mpaike.core.util.page.Pagination;
@@ -52,7 +41,6 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	protected String keyType;
 	private HibernateDaoSupport support;
 	
-	public static final NotBlankPropertySelector NOT_BLANK = new NotBlankPropertySelector();
 	
 	public HibernateDaoImpl() {
 
@@ -120,7 +108,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	}
 	
 	@Override
-	public List<T> findAllPagination(String hql, Object... values) {
+	public List findAllPagination(String hql, Object... values) {
 		return support.getHibernateTemplate().find(hql, values);
 	}
 
@@ -134,7 +122,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	@Override
 	public List<T> findByProperty(String property, Object value) {
 		Assert.hasText(property);
-		return support.getHibernateTemplate().findByNamedQuery(property, value);
+		return findByProperty(property, value,null,null);
 	}
 
 	@Override
@@ -156,7 +144,6 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
                 	query.setMaxResults(p.getPageSize());
                 }
                 List list = query.list();
-                p.setList(list);
                 return list;
             }
 		    
@@ -201,7 +188,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
             }
             
         });
-        return ((Integer)o).intValue();
+        return ((Long)o).intValue();
 	}
 
 	@Override
@@ -371,7 +358,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	protected int countQueryResult(Finder finder) {
 		List list = support.getHibernateTemplate().find(finder.getRowCountHql());
 		if(list!=null&&list.size()>0){
-		    return ((Integer)list.get(0)).intValue();
+		    return ((Long)list.get(0)).intValue();
 		}else{
 		    return 0;
 		}
@@ -386,24 +373,24 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	protected int countQueryResult(Finder finder,Object... values) {
 		List list = support.getHibernateTemplate().find(finder.getRowCountHql(), values);
 		if (list != null && list.size()>0) {
-		    return ((Integer)list.get(0)).intValue();
+		    return ((Long)list.get(0)).intValue();
 		}
 		return 0;
 	}
 
 
     @Override
-    public List<T> findByList(String hql, Pagination p, Object... values) {
+    public List findByList(String hql, Pagination p, Object... values) {
         return findByList(hql,values,p,null); 
     }
 
 
     @Override
-    public List<T> findByList(String hql,final Object[] values,final Pagination p,
+    public List findByList(String hql,final Object[] values,final Pagination p,
             OrderBy... orders) {
         final Finder finder = Finder.create(hql, orders);
         if(p!=null){
-        	int totalCount = countQueryResult(finder);
+        	int totalCount = countQueryResult(finder,values);
         	p.setTotalCount(totalCount);
         }
           List<T> l = support.getHibernateTemplate().executeFind(new HibernateCallback(){
