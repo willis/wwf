@@ -42,6 +42,7 @@ import com.mpaike.core.util.page.Pagination;
 
 public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 		
+	
 	protected Logger log = LoggerFactory.getLogger(getClass());
 
 	private String selectAllSql;
@@ -421,6 +422,13 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
         support.getHibernateTemplate().delete(this.get(id));
     }
 
+    public HibernateDaoSupport getSupport() {
+		return support;
+	}
+
+	public void setSupport(HibernateDaoSupport support) {
+		this.support = support;
+	}
 
 	
 }
