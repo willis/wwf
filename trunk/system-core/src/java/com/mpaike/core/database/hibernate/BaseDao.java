@@ -39,13 +39,15 @@ public interface BaseDao<T extends Serializable> {
 
 	public List<T> findAll(OrderBy... orders);
 	
-	public Pagination findAllPagination(Pagination p, OrderBy... orders);
+	public List<T> findAllPagination(Pagination p, OrderBy... orders);
+	
+	public List findAllPagination(String hql, Object... values);
 	
 
-	public Pagination findByList(String hql,Pagination p, Object... values);
+	public List findByList(String hql,Pagination p, Object... values);
 
 	
-	public Pagination findByList(String hql,Object[] values,Pagination p,OrderBy... orders);
+	public List findByList(String hql,Object[] values,Pagination p,OrderBy... orders);
 	
 
 	/**
