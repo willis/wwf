@@ -118,12 +118,16 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	public List<T> findAll(OrderBy... orders) {
 		return support.getHibernateTemplate().find(Finder.create(selectAllSql, orders).getOrigHql());
 	}
+	
+	@Override
+	public List<T> findAllPagination(String hql, Object... values) {
+		return support.getHibernateTemplate().find(hql, values);
+	}
 
 
 	@Override
-	public Pagination findAllPagination(final Pagination p, OrderBy... orders) {
-	    findByList(selectAllSql,null,p,orders); 
-        return p;
+	public List<T> findAllPagination(final Pagination p, OrderBy... orders) {
+        return findByList(selectAllSql,null,p,orders); 
 	}
 
 
@@ -138,6 +142,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 			OrderBy... orders) {
 		Assert.hasText(property);
 		final Finder finder = Finder.create(persistentClass.getSimpleName(),property,value,orders);
+		
 		List<T> l = support.getHibernateTemplate().executeFind(new HibernateCallback(){
 
             @Override
@@ -146,8 +151,10 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
                 Query query = session.createQuery(finder.getOrigHql());
                 //finder.setParamsToQuery(query);
                 query.setParameter(property, value);
-                query.setFirstResult(p.getFirstResult());
-                query.setMaxResults(p.getPageSize());
+                if(p!=null){
+                	query.setFirstResult(p.getFirstResult());
+                	query.setMaxResults(p.getPageSize());
+                }
                 List list = query.list();
                 p.setList(list);
                 return list;
@@ -386,18 +393,19 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 
 
     @Override
-    public Pagination findByList(String hql, Pagination p, Object... values) {
-        findByList(hql,values,p,null); 
-        return p;
+    public List<T> findByList(String hql, Pagination p, Object... values) {
+        return findByList(hql,values,p,null); 
     }
 
 
     @Override
-    public Pagination findByList(String hql,final Object[] values,final Pagination p,
+    public List<T> findByList(String hql,final Object[] values,final Pagination p,
             OrderBy... orders) {
         final Finder finder = Finder.create(hql, orders);
-        int totalCount = countQueryResult(finder);
-        p.setTotalCount(totalCount);
+        if(p!=null){
+        	int totalCount = countQueryResult(finder);
+        	p.setTotalCount(totalCount);
+        }
           List<T> l = support.getHibernateTemplate().executeFind(new HibernateCallback(){
             public Object doInHibernate(org.hibernate.Session session)
                     throws HibernateException, SQLException {
@@ -407,15 +415,16 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
                         query.setParameter(i, values[i]);
                     }
                 }
-                query.setFirstResult(p.getFirstResult());
-                query.setMaxResults(p.getPageSize());
+                if(p!=null){
+                	query.setFirstResult(p.getFirstResult());
+                    query.setMaxResults(p.getPageSize());
+                }
                 List list = query.list();
-                p.setList(list);
                 return list;
             }
               
           });
-        return p;
+        return l;
     }
 
     public void deleteById(Serializable id) {
@@ -429,6 +438,8 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	public void setSupport(HibernateDaoSupport support) {
 		this.support = support;
 	}
+
+
 
 	
 }
