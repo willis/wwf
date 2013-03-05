@@ -21,6 +21,7 @@ import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.util.Assert;
@@ -40,7 +41,7 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 	protected String _key;
 	protected String keyType;
 	private HibernateDaoSupport support;
-	
+	protected JdbcTemplate jdbcTemplate;
 	
 	public HibernateDaoImpl() {
 
@@ -424,6 +425,14 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
 
 	public void setSupport(HibernateDaoSupport support) {
 		this.support = support;
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 

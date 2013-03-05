@@ -60,8 +60,8 @@ public class Finder {
 	}
 	
    public static Finder create(String name,String property,Object value,OrderBy[] orderBys) {
-       StringBuilder hql = new StringBuilder();
-       hql.append("select * from ").append(name).append(" where ").append(property).append("=:").append(property);
+       	StringBuilder hql = new StringBuilder();
+       	hql.append("from ").append(name).append(" where ").append(property).append("=:").append(property);
         Finder finder = new Finder(hql.toString(),orderBys);
         finder.setParam(property, value);
         return finder;
