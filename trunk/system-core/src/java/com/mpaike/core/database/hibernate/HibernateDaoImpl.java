@@ -7,6 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -393,6 +394,9 @@ public class HibernateDaoImpl<T extends Serializable> implements BaseDao<T>{
         if(p!=null){
         	int totalCount = countQueryResult(finder,values);
         	p.setTotalCount(totalCount);
+        	if(totalCount<=0){
+        		return new ArrayList();
+        	}
         }
           List<T> l = support.getHibernateTemplate().executeFind(new HibernateCallback(){
             public Object doInHibernate(org.hibernate.Session session)
